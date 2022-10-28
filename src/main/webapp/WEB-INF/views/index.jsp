@@ -26,20 +26,20 @@
             integrity="sha512-rstIgDs0xPgmG6RX1Aba4KV5cWJbAMcvRCVmglpam9SoHZiUCyQVDdH2LPlxoHtrv17XWblE/V/PP+Tr04hbtA=="
             crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../../asserts/css/style.css">
     <title>Dashboard</title>
 </head>
 
 <body>
 <div class="container-fluid ">
     <nav class="row topnavbar py-1">
-        <a href="index.html" class="navbar-brand ml-3 mr-auto"><img class="img" src="../assets/img/logo.png"></a>
+        <a href="index.html" class="navbar-brand ml-3 mr-auto"><img class="img" src="../../asserts/img/logo.png"></a>
     </nav>
     <div class="row">
         <div class="col-sm-3 border-right left" id="accordion">
             <div class="list-group list-group-flush" >
                 <div class="list-group-item text-white profile">
-                    <div><img class="img-admin" src="../assets/img/admin.png"></div>
+                    <div><img class="img-admin" src="../../asserts/img/admin.png"></div>
                     <div class="mt-1">Admin</div>
                     <div class="mt-1">admin@fsoft.com.vn</div>
                 </div>
