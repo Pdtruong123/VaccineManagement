@@ -208,13 +208,15 @@
                         </div>
                         <div class="col-sm-6"></div>
                         <div class="col-sm-3">
-                            <div class="input-group ">
-                                <input type="search" class="form-control border-right-0 border-top-0 border-left-0 form-select"
-                                       placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
-                                <span class="input-group-text border-0 bg-white" id="search-addon">
-                                      <i class="fas fa-search"></i>
-                                    </span>
-                            </div>
+                            <form action="#">
+                                <div class="input-group ">
+                                    <input type="search" class="form-control border-right-0 border-top-0 border-left-0 form-select"
+                                           placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
+                                    <button type="submit" class="input-group-text border-0 bg-white" id="search-addon">
+                                          <i class="fas fa-search"></i>
+                                    </button>
+                                </div>
+                            </form>
                         </div>
                     </div>
                     <div class="mt-3">
