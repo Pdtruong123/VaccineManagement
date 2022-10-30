@@ -10,6 +10,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -62,4 +63,17 @@ public class Vaccine {
 	
 	@OneToMany(mappedBy = "vaccine")
 	private Set<InjectionSchedule> injectionSchedules;
+	
+	@Transient
+	private String status;
+	
+	public String getStatus() {
+		if (timeEndNextInjection.isBefore(LocalDate.now())) {
+			return "Active";
+		} else {
+			return "In-Active";
+		}
+	}
+	
+	
 }
