@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
          pageEncoding="ISO-8859-1" %>
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -27,19 +27,21 @@
 <body>
 <div>${success}</div>
 <h1 class="text-center">CREATE INJECTION RESULT</h1>
-<form:form action="${pageContext.request.contextPath}/add/injection-result" method="post" modelAttribute="injectionResult">
+<form:form action="${pageContext.request.contextPath}/add/injection-result" method="post"
+           modelAttribute="injectionResult">
 
     <div class="row m-4">
         <div class="col form-group">
             <label for="customer">Customer:</label>
-            <form:input type="text" class="form-control" placeholder="--Select Customer" id="customer" path="id" value="${injectionResult.id}"/>
+            <form:input type="text" class="form-control" placeholder="--Select Customer" id="customer" path="id"
+                        value="${injectionResult.id}"/>
         </div>
         <div class="col form-group">
             <label for="prevention">Prevention:</label>
             <form:select path="prevention" id="prevention" class="form-control">
                 <option label="--Select Prevention" selected value=""/>
                 <c:forEach items="${preventionList}" var="pre">
-                    <option value="${pre}" label="${pre}" />
+                    <option value="${pre}" label="${pre}"/>
                 </c:forEach>
             </form:select>
         </div>
@@ -48,7 +50,7 @@
             <form:select class="form-control" id="vaccineType" path="vaccine">
                 <option label="--Select Vaccine Type" selected/>
                 <c:forEach items="${vaccineList}" var="vaccines">
-                    <option value="${vaccines.id}" label="${vaccines.vaccineName}" />
+                    <option value="${vaccines.id}" label="${vaccines.vaccineName}"/>
                 </c:forEach>
             </form:select>
         </div>
@@ -56,21 +58,25 @@
     <div class="row m-4">
         <div class="col form-group">
             <label for="injection">Injection:</label>
-            <form:input type="text" class="form-control" placeholder="" id="injection" path="numberOfInjection" value="${injectionResult.numberOfInjection}"/>
+            <form:input type="text" class="form-control" placeholder="" id="injection" path="numberOfInjection"
+                        value="${injectionResult.numberOfInjection}"/>
         </div>
         <div class="col form-group">
             <label for="dateOfInjection">Date of injection:</label>
-            <form:input type="date" class="form-control" placeholder="" id="dateOfInjection" path="injectionDate" value="${injectionResult.injectionDate}"/>
+            <form:input type="date" class="form-control" placeholder="" id="dateOfInjection" path="injectionDate"
+                        value="${injectionResult.injectionDate}"/>
         </div>
         <div class="col form-group">
             <label for="nextOfInjection">Next injection appoinment:</label>
-            <form:input type="date" class="form-control" placeholder="" id="nextOfInjection" path="nextInjectionDate" value="${injectionResult.nextInjectionDate}"/>
+            <form:input type="date" class="form-control" placeholder="" id="nextOfInjection" path="nextInjectionDate"
+                        value="${injectionResult.nextInjectionDate}"/>
         </div>
     </div>
     <div class="row m-4">
         <div class="col form-group">
             <label for="placeOfinjection">Place of injection:</label>
-            <form:input type="text" class="form-control" placeholder="--Select place of injection--" id="placeOfinjection" path="injectionPlace" value="${injectionResult.injectionPlace}"/>
+            <form:input type="text" class="form-control" placeholder="--Select place of injection--"
+                        id="placeOfinjection" path="injectionPlace" value="${injectionResult.injectionPlace}"/>
         </div>
         <div class="col"></div>
         <div class="col"></div>

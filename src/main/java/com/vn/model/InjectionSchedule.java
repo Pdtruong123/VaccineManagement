@@ -34,6 +34,13 @@ public class InjectionSchedule {
 	private LocalDate endDate;
 	
 	private String place;
+
+	public Vaccine getVaccine(){
+		return vaccine;
+	}
+	public void setVaccine(Vaccine vaccine){
+		this.vaccine=vaccine;
+	}
 	
 	@Column(name = "start_date")
 	private LocalDate startDate;
