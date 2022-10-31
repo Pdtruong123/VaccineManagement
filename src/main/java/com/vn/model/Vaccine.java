@@ -65,14 +65,11 @@ public class Vaccine {
 	private Set<InjectionSchedule> injectionSchedules;
 	
 	@Transient
-	private String status;
+	private Boolean status;
 	
-	public String getStatus() {
-		if (timeEndNextInjection.isBefore(LocalDate.now())) {
-			return "Active";
-		} else {
-			return "In-Active";
-		}
+	public Boolean getStatus() {
+			return true;
+		
 	}
 	
 	
