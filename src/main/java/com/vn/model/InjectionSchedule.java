@@ -2,12 +2,7 @@ package com.vn.model;
 
 import java.time.LocalDate;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -23,29 +18,42 @@ import lombok.Setter;
 
 public class InjectionSchedule {
 
-	@Id
-	@Column(name = "injection_schedule_id", length = 36)
-	private String id;
-	
-	@Column(length = 1000)
-	private String description;
-	
-	@Column(name = "end_date")
-	private LocalDate endDate;
-	
-	private String place;
+    @Id
+    @Column(name = "injection_schedule_id", length = 36)
+    private String id;
 
-	public Vaccine getVaccine(){
-		return vaccine;
-	}
-	public void setVaccine(Vaccine vaccine){
-		this.vaccine=vaccine;
-	}
-	
-	@Column(name = "start_date")
-	private LocalDate startDate;
-	
-	@ManyToOne
-	@JoinColumn(name = "vaccine_id")
-	private Vaccine vaccine;
+    @Column(length = 1000)
+    private String description;
+    @Column(name = "end_date")
+    private LocalDate endDate;
+
+    private String place;
+
+    public Vaccine getVaccine() {
+        return vaccine;
+    }
+
+    public void setVaccine(Vaccine vaccine) {
+        this.vaccine = vaccine;
+    }
+
+    @Column(name = "start_date")
+    private LocalDate startDate;
+
+    @ManyToOne
+    @JoinColumn(name = "vaccine_id")
+    private Vaccine vaccine;
+
+    @Transient
+    private String status;
+
+    public String getStatus() {
+
+        return status;
+    }
+
+    public void setStatus(String status) {
+
+        this.status = status;
+    }
 }

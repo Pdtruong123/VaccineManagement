@@ -24,23 +24,19 @@ public class InjectionScheduleServiceImpl implements InjectionScheduleService {
     VaccineRepository vaccineRepository;
 
     @Override
-    public InjectionScheduleDTO save(InjectionScheduleDTO injectionScheduleDTO){
-////        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/mm/yyyy");
-//
-//        Date startDate =  injectionScheduleDTO.getStartDate();
-//
-//        Date endDate = injectionScheduleDTO.getEndDate();
-//        InjectionSchedule injectionSchedule = new InjectionSchedule();
-////        if (endDate.compareTo(startDate) > 0) {
-//            injectionSchedule.setStartDate(startDate);
-//            injectionSchedule.setEndDate(endDate);
-//            injectionSchedule.setDescription(injectionScheduleDTO.getNote());
-//            injectionSchedule.setPlace(injectionScheduleDTO.getPlace());
-//            injectionSchedule.setId("abc1");
-//            Vaccine vaccine = vaccineRepository.findByIDVaccine(injectionScheduleDTO.getVaccineID());
-//            injectionSchedule.setVaccine(vaccine);
-//            injectionSchuduleRepository.save(injectionSchedule);
-////        }
+    public InjectionScheduleDTO save(InjectionScheduleDTO injectionScheduleDTO) {
+        InjectionSchedule injectionSchedule = new InjectionSchedule();
+        injectionSchedule.setVaccine(vaccineRepository.findById(injectionScheduleDTO.getVaccineID()).orElse(null));
+        LocalDate startDate = injectionScheduleDTO.getStartDate();
+        LocalDate endDate = injectionScheduleDTO.getEndDate();
+        if (startDate.isBefore(endDate)) {
+            injectionSchedule.setStartDate(startDate);
+            injectionSchedule.setEndDate(endDate);
+        }
+        injectionSchedule.setPlace(injectionScheduleDTO.getPlace());
+        injectionSchedule.setDescription(injectionScheduleDTO.getNote());
+        injectionSchedule.setId("abc1");
+        injectionSchuduleRepository.save(injectionSchedule);
         return injectionScheduleDTO;
     }
 }
