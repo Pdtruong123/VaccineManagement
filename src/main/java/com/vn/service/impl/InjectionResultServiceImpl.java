@@ -33,6 +33,11 @@ public class InjectionResultServiceImpl implements InjectionResultService {
     }
 
     @Override
+    public InjectionResult findById(String id) {
+        return injectionResultRepository.findById(id).get();
+    }
+
+    @Override
     public Page<InjectionResult> findAll(Pageable pageable) {
         return injectionResultRepository.findAll(pageable);
     }

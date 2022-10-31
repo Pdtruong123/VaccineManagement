@@ -1,6 +1,8 @@
 package com.vn.controller;
 
 import com.vn.model.InjectionResult;
+import com.vn.model.JSON_InjectionResult;
+import com.vn.model.Vaccine;
 import com.vn.service.InjectionResultService;
 import com.vn.service.VaccineService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,10 +12,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
@@ -36,7 +35,7 @@ public class InjectionResultController {
         return "injection-result-list";
     }
 
-    @GetMapping(value={"/add/injection-result", "/update/injection-result"})
+    @GetMapping("/add/injection-result")
     public String addInjectionResultPage(Model model){
         model.addAttribute("preventionList", injectionResultService.findAllPrevention());
         model.addAttribute("vaccineList", vaccineService.findAll());
@@ -59,4 +58,43 @@ public class InjectionResultController {
         injectionResultService.deleteInjectionResult(id);
         return "redirect:/injection-result-list";
     }
+
+    @GetMapping("/update/injection-result")
+    public String update(Model model){
+        model.addAttribute("preventionList", injectionResultService.findAllPrevention());
+        model.addAttribute("vaccineList", vaccineService.findAll());
+        return "update-injection-result";
+    }
+
+    @PostMapping("/update/injection-result")
+    @ResponseBody
+    public JSON_InjectionResult updatePage(Model model, @RequestParam String id){
+        InjectionResult injectionResult = injectionResultService.findById(id);
+        JSON_InjectionResult json_injectionResult = new JSON_InjectionResult();
+
+        json_injectionResult.setId(injectionResult.getId());
+        json_injectionResult.setPrevention(injectionResult.getPrevention());
+        json_injectionResult.setNumberOfInjection(injectionResult.getNumberOfInjection());
+        json_injectionResult.setInjectionDate(injectionResult.getInjectionDate());
+        json_injectionResult.setNextInjectionDate(injectionResult.getNextInjectionDate());
+        json_injectionResult.setInjectionPlace(injectionResult.getInjectionPlace());
+        Vaccine vaccine = new Vaccine();
+        vaccine.setVaccineName(injectionResult.getVaccine().getVaccineName());
+        json_injectionResult.setVaccine(vaccine);
+
+
+       /* model.addAttribute("updateInjectionResult", injectionResult);
+        model.addAttribute("preventionList", injectionResultService.findAllPrevention());
+        model.addAttribute("vaccineList", vaccineService.findAll());*/
+        return json_injectionResult;
+    }
+
+/*    @GetMapping("/add/injection-result")
+    public String addInjectionResultPage(Model model){
+        model.addAttribute("preventionList", injectionResultService.findAllPrevention());
+        model.addAttribute("vaccineList", vaccineService.findAll());
+        return "create-injection-result";
+    }*/
+
+
 }
