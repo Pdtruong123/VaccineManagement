@@ -1,41 +1,58 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jstl/core" prefix="c"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Vaccine List</title>
 <link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
-<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/reseter.css/1.0.8/reseter.min.css">
-<link rel="stylesheet"
-	href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
-	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+	href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
 	crossorigin="anonymous">
-
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-	integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+	integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
 	crossorigin="anonymous"></script>
 <script
-	src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
-	integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+	src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"
+	integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+	crossorigin="anonymous"></script>
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+<script
+	src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
+<script
+	src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+<link rel="stylesheet"
+	href="https://fonts.googleapis.com/css?family=Roboto|Open+Sans|Sofia|Trirong">
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+	integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+	crossorigin="anonymous" referrerpolicy="no-referrer" />
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"
+	integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
 	crossorigin="anonymous"></script>
 <script
-	src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
-	integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-	crossorigin="anonymous"></script>
-	 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Open+Sans|Sofia|Trirong">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/css/style.css">
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/css/VaccineList.css">
-
+	src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js"
+	integrity="sha512-rstIgDs0xPgmG6RX1Aba4KV5cWJbAMcvRCVmglpam9SoHZiUCyQVDdH2LPlxoHtrv17XWblE/V/PP+Tr04hbtA=="
+	crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="../../asserts/js/loadFileName.js"></script>
+<script src="../../asserts/js/previewImg.js"></script>
+<link rel="stylesheet" href="../../asserts/css/style.css">
+<title>Create</title>
+<style type="text/css">
+.a {
+	width: 100%;
+}
+</style>
 </head>
+
 <body>
 	<div class="container-fluid ">
 		<nav class="row topnavbar py-1">
@@ -132,8 +149,7 @@
 							</div>
 							<div class="mt-3 collapse" id="vaccine" data-parent="#accordion">
 								<div class="ml-4 text-sub">
-									<a class="text-reset text-decoration-none"
-										href="${pageContext.request.contextPath}/vaccine/list"> <span
+									<a class="text-reset text-decoration-none" href="#"> <span
 										class="ml-2">Vaccine List</span>
 									</a>
 								</div>
@@ -231,123 +247,124 @@
 							</div>
 						</div>
 					</div>
-
-
-
 				</div>
-
 			</div>
 			<div class="col-sm-9 bg-light right">
-				<div class="card-body">
-					<div class="row">
-						<div class="col-sm-3 form-inline">
-							<span>Show</span> <select
-								class="form-select mx-2 border-right-0 border-top-0 border-left-0"
-								id="inlineFormCustomSelect" name="showNumberList" onchange="location = this.value;">
-								<option selected></option>
-								<option value="${pageContext.request.contextPath}/vaccine/list?size=5">5</option>
-								<option value="${pageContext.request.contextPath}/vaccine/list?size=10">10</option>
-								<option value="${pageContext.request.contextPath}/vaccine/list?size=15">15</option>
-							</select> <span>entities</span>
-						</div>
-						<div class="col-sm-6"></div>
-						<div class="col-sm-3">
-							<form action="${pageContext.request.contextPath}/vaccine/search", method="post">
-								<div class="input-group ">
-									<input type="search"
-										class="form-control border-right-0 border-top-0 border-left-0 form-select"
-										placeholder="Search" aria-label="Search"
-										aria-describedby="search-addon" / name="searchVaccine">
-									<button type="submit"
-										class="input-group-text border-0 bg-white" id="search-addon">
-										<i class="fas fa-search"></i>
-									</button>
+				<div
+					class="h5 mt-3 text-center text-secondary font-weight-bold mb-3">CREATE
+					VACCINE</div>
+				<div class="card mx-3">
+					<div class="card-body">
+						<form action="">
+							<div class="form-row">
+								<div class="form-group col-sm-8">
+									<label class="font-weight-bold" for="vaccine-code">Vaccine
+										Id <span class="text-danger">(*)</span>:
+									</label> <input type="text" class="form-control"
+										placeholder="Enter code" id="vaccine-code" required>
+
+
 								</div>
-							</form>
-						</div>
+								<div class="form-group col-sm-2 ml-2">
+									<label class="font-weight-bold" for="vaccine-active">Active
+										<span class="text-danger">(*)</span>:
+									</label>
+									<div class="form-inline mt-2">
+										<i class="fa-solid fa-fill h5"></i> <input
+											class="form-check ml-4 checkbox-lg" type="checkbox"
+											id="vaccine-active" required>
+									</div>
+								</div>
+							</div>
+							<div class="form-row">
+								<div class="form-group col-sm-4">
+									<label class="font-weight-bold" for="typecode">Vaccine
+										Name <span class="text-danger">(*)</span>:
+									</label> <input type="text" class="form-control"
+										placeholder="Vaccine ABC" id="vaccine-name" required>
+
+								</div>
+								<div class="form-group col-sm-4">
+									<label class="font-weight-bold" for="accine-type">Vaccine
+										Type <span class="text-danger">(*)</span>:
+									</label> <input type="text" class="form-control"
+										placeholder="Enter code" id="vaccine-type" required>
+
+								</div>
+								<div class="form-group col-sm-4">
+									<label class="font-weight-bold"
+										for="vaccine-number-of-injection">Number of Injection:</label>
+									<div class="form-inline">
+										<input type="text" class="form-control"
+											placeholder="Enter number" id="vaccine-number-of-injection"
+											required>
+									</div>
+								</div>
+							</div>
+							<div class="form-row">
+							
+								<div class="form-group col-sm-4">
+									<label class="font-weight-bold" for="vaccine-uasge">Usage:</label>
+										<br>
+									<textarea rows="6" class="form-control-lg"
+										placeholder="Mô tả sử dụng" id="vaccine-uasge"></textarea> >
+
+								</div>
+								<div class="form-group col-sm-4">
+									<label class="font-weight-bold" for="vaccine-indication">Indication:</label>
+										<br>
+									<input type="text" class="form-control-lg"
+										placeholder="Mô tả chi tiết sử dụng" id="vaccine-indication"
+										required>
+
+								</div>
+								<div class="form-group col-sm-4">
+									<label class="font-weight-bold" for="vaccine-contraindication">Number
+										of Injection:</label>
+										<br>
+										 <input type="text" class="form-control-lg"
+										placeholder="Mô tả chi tiết chống định"
+										id="vaccine-contraindication" required>
+
+								</div>
+							</div>
+							<div class="form-row">
+								<div class="form-group col-sm-4">
+									<label class="font-weight-bold"
+										for="vaccine-time-next-injection">Time of beginning
+										next injection:</label> <input type="date" class="form-control"
+										placeholder="01/01/2001" id="vaccine-time-next-injection"
+										required>
+
+								</div>
+								<div class="form-group col-sm-4">
+									<label class="font-weight-bold"
+										for="vaccine-time-end-injection">Time of beginning
+										next injection:</label> <input type="date" class="form-control"
+										placeholder="Mô tả chi tiết sử dụng"
+										id="vaccine-time-end-injection" required>
+
+								</div>
+								<div class="form-group col-sm-4">
+									<label class="font-weight-bold" for="typecode">Origin:</span>
+										:
+									</label> <input type="text" class="form-control" placeholder="Vietnam"
+										id="vaccine-origin" required>
+
+								</div>
+							</div>
+							<div class="mt-5">
+								<button type="submit" class="btn btn-sm btn-success">Submit</button>
+								<button type="reset" class="btn btn-sm btn-primary ml-2">Reset</button>
+								<a class="btn btn-sm btn-warning ml-2" href="#">Cancel</a>
+							</div>
+
+						</form>
 					</div>
-					<table class="table table-striped table-bordered text-center"
-						id="table-IR">
-						<thead class="table-thead">
-							<tr>
-								<th><input type="checkbox" id="checkAll"></th>
-								<th>Vaccine Id</th>
-								<th>Vaccine Name</th>
-								<th>Vaccine Type</th>
-								<th>Number of Injection</th>
-								<th>Origin</th>
-								<th>Status</th>
-							</tr>
-						</thead>
-						<tbody>
-							<c:forEach items="${vaccineList.content}" var="result">
-								<tr>
-									<td><input type="checkbox" value="${result.id}" name="id"></td>
-									<td>${result.id}</td>
-									<td>${result.vaccineName}</td>
-									<td>${result.vaccineType.vaccineTypeName}</td>
-									<td>${result.numberOfInjection}</td>
-									<td>${result.origin}</td>
-									<c:if test="${result.status=='true'}">
-									<td>Active</td>
-									</c:if>
-									<c:if test="${!result.status=='true'}">
-									<td>In-Active</td>
-									</c:if>
-									
-								</tr>
-							</c:forEach>
-						</tbody>
-					</table>
-					<div class="row mt-4">
-						<div class="col-sm-3">
-							<span>Showing ${vaccineList.size} to ${vaccineList.totalElements} of 5 entities</span>
-						</div>
-						<div class="col-sm-6"></div>
-						<div class="col-sm-3">
-							<nav aria-label="Page">
-								<ul class="pagination">
-									<li class="page-item"><a class="page-link"
-										href="/vaccine/list?p=${vaccineList.number - 1}"
-										aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
-											<span class="sr-only">Previous</span>
-									</a></li>
-									<li class="page-item"><a class="page-link"
-										href="/vaccine/list?p=0">1</a></li>
-									<li class="page-item"><a class="page-link"
-										href="/vaccine/list?p=1">2</a></li>
-									<li class="page-item"><a class="page-link"
-										href="/vaccine/list?p=${vaccineList.number + 1}"
-										aria-label="Next"> <span aria-hidden="true">&raquo;</span>
-											<span class="sr-only">Next</span>
-									</a></li>
-								</ul>
-							</nav>
-						</div>
-					</div>
-					
-					<div class="list-button">
-						<button class="btn btn-success" type="submit">
-							<a href="${pageContext.request.contextPath}/vaccine/add"
-								class="text-white">Create Vaccine</a>
-						</button>
-						<button class="btn btn-warning" type="submit">
-							<a href="${pageContext.request.contextPath}/vaccine/update"
-								class="text-white">Update Vaccine</a>
-						</button>
-						<button class="btn btn-danger" type="submit" id="delete-button">Delete
-							Vaccine</button>
-					</div>
-					<span class="msg">${msg}</span>
 				</div>
-
 			</div>
-		</div>
 
-		<script src="${pageContext.request.contextPath}/js/DeleteVaccine.js"></script>
-		<script
-			src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
-			integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
-			crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+		</div>
+	</div>
 </body>
 </html>
