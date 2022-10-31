@@ -11,4 +11,5 @@ public interface InjectionResultService {
     List<String> findAllPrevention();
     InjectionResult save(InjectionResult injectionResult);
     void deleteInjectionResult(String id);
+    InjectionResult findById(String id);
 }

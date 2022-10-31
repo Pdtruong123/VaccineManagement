@@ -25,7 +25,7 @@
 
 </head>
 <body>
-
+<div id="section-right">
 <h1 class="text-center">Injection Result List</h1>
 <div class="dropdown">
 
@@ -54,12 +54,12 @@
     <c:forEach items="${injectionResultList.content}" var="result">
     <tr>
         <td><input type="checkbox" value="${result.id}" name="id"></td>
-        <td>${result.id}</td>
-        <td>${result.vaccine.vaccineName}</td>
-        <td>${result.prevention}</td>
-        <td>${result.numberOfInjection}</td>
-        <td>${result.injectionDate}</td>
-        <td>${result.nextInjectionDate}</td>
+        <td id="id">${result.id}</td>
+        <td id="vaccineName">${result.vaccine.vaccineName}</td>
+        <td id="prevention">${result.prevention}</td>
+        <td id="numberOfInjection">${result.numberOfInjection}</td>
+        <td id="injectionDate">${result.injectionDate}</td>
+        <td id="nextInjectionDate">${result.nextInjectionDate}</td>
     </tr>
     </c:forEach>
     </tbody>
@@ -80,10 +80,12 @@
 </nav>
 <div class="list-button">
     <button class="btn btn-success" type="submit"><a href="${pageContext.request.contextPath}/add/injection-result" class="text-white">Create Injection Result</a></button>
-    <button class="btn btn-warning" type="submit" ><a href="${pageContext.request.contextPath}/update/injection-result" class="text-white">Update Injection Result</a></button>
+    <button class="btn btn-warning" type="submit" id="update-button">Update Injection Result</button>
     <button class="btn btn-danger" type="submit" id="delete-button">Delete Injection Result</button>
 </div>
 <script src="${pageContext.request.contextPath}/js/DeleteInjectionResult.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</div>
 </body>
+
 </html>
