@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
          pageEncoding="ISO-8859-1"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://www.springframework.org/tags/form"  prefix="form"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -87,13 +89,13 @@
                         </div>
                         <div  class="mt-3 collapse" id="vaccineType" data-parent="#accordion">
                             <div class="ml-4 text-sub">
-                                <a class="text-reset text-decoration-none" href="#">
+                                <a class="text-reset text-decoration-none" href="${pageContext.request.contextPath}/listVaccineType">
                                     <span class="ml-2">Vaccine Type List</span>
                                 </a>
                             </div>
                             <div class="ml-4 mt-2 text-sub">
-                                <a class="text-reset text-decoration-none" href="#">
-                                    <span class="ml-2">Vaccine Type Employee</span>
+                                <a class="text-reset text-decoration-none" href="${pageContext.request.contextPath}/createVaccineType">
+                                    <span class="ml-2">Create Vaccine Type</span>
                                 </a>
                             </div>
                         </div>
@@ -231,27 +233,25 @@
                             </tr>
                             </thead>
                             <tbody>
+                            <c:forEach items="${list}" var="element" varStatus="status">
                             <tr>
                                 <td><input class="form-check mx-auto" type="checkbox" id=""></td>
-                                <td>John</td>
-                                <td>John</td>
-                                <td>Doe</td>
-                                <td>john@example.com</td>
+                                <td>${element.id}</td>
+                                <td>${element.vaccineTypeName}</td>
+                                <td>${element.description}</td>
+								<c:choose>
+									<c:when test="${element.vaccineTypeStatus}">
+										<td>Active</td>
+									</c:when>
+									<c:otherwise>
+										<td>In-Active</td>
+									</c:otherwise>
+								</c:choose>
+								
+                                
                             </tr>
-                            <tr>
-                                <td><input class="form-check mx-auto" type="checkbox" id=""></td>
-                                <td>John</td>
-                                <td>Mary</td>
-                                <td>Moe</td>
-                                <td>mary@example.com</td>
-                            </tr>
-                            <tr>
-                                <td><input class="form-check mx-auto" type="checkbox" id=""></td>
-                                <td>John</td>
-                                <td>July</td>
-                                <td>Dooley</td>
-                                <td>july@example.com</td>
-                            </tr>
+                            </c:forEach>
+                            
                             </tbody>
                         </table>
                     </div>
@@ -283,7 +283,7 @@
                         </div>
                     </div>
                     <div class="">
-                        <a class="btn btn-sm btn-success" href="#">New Vaccine Type</a>
+                        <a class="btn btn-sm btn-success" href="${pageContext.request.contextPath}/createVaccineType">New Vaccine Type</a>
                         <a class="btn btn-sm btn-warning ml-2" href="#">Make In-Active</a>
                     </div>
                 </div>
