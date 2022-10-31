@@ -241,7 +241,7 @@
                                 </div>
                                 <div class="custom-file mb-3 col-sm-5">
                                     <input type="file" class="custom-file-input" accept="image/*" id="file-input" name="filename">
-                                    <label class="custom-file-label" for="customFile">Choose file</label>
+                                    <label class="custom-file-label" for="file-input">Choose file</label>
                                 </div>
                             </div>
                             <div class="img-upload">
