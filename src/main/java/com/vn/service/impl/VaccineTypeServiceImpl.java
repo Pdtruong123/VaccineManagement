@@ -5,7 +5,10 @@ import java.util.List;
 
 import javax.servlet.ServletContext;
 
+import com.vn.model.Vaccine;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.vn.dto.VaccineTypeDTO;
@@ -49,6 +52,11 @@ public class VaccineTypeServiceImpl implements VaccineTypeService  {
 		
 	}
 
+	@Override
+	public Page<VaccineType> findAll(Pageable pageable) {
+
+		return vaccineTypeRepository.findAll(pageable);
+	}
 	@Override
 	public List<VaccineType> findAll() {
 		
