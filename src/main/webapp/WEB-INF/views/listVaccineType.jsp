@@ -200,11 +200,12 @@
                     <div class="row">
                         <div class="col-sm-3 form-inline" >
                             <span>Show</span>
-                            <select class="form-select mx-2 border-right-0 border-top-0 border-left-0" id="inlineFormCustomSelect">
+                            <select class="form-select mx-2 border-right-0 border-top-0 border-left-0" id="inlineFormCustomSelect"
+                                    name="showNumberList" onchange="location = this.value;">
                                 <option selected></option>
-                                <option value="1">5</option>
-                                <option value="2">10</option>
-                                <option value="3">15</option>
+                                <option value="${pageContext.request.contextPath}/vaccine/listVaccineType?size=5">5</option>
+                                <option value="${pageContext.request.contextPath}/vaccine/listVaccineType?size=10">10</option>
+                                <option value="${pageContext.request.contextPath}/vaccine/listVaccineType?size=15">15</option>
                             </select>
                             <span>entities</span>
                         </div>
@@ -233,7 +234,7 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <c:forEach items="${list}" var="element" varStatus="status">
+                            <c:forEach items="${vaccineTypeList.content}" var="element" varStatus="status">
                             <tr>
                                 <td><input class="form-check mx-auto" type="checkbox" id=""></td>
                                 <td>${element.id}</td>
@@ -257,23 +258,23 @@
                     </div>
                     <div class="row mt-4">
                         <div class="col-sm-3">
-                            <span>Showing 1 to 5 of 12 entities</span>
+                            <span>Showing ${vaccineTypeList.size} to ${vaccineTypeList.totalElements} of ${vaccineTypeList.totalElements} entities</span>
                         </div>
                         <div class="col-sm-6"></div>
                         <div class="col-sm-3">
                             <nav aria-label="Page">
                                 <ul class="pagination">
                                     <li class="page-item">
-                                        <a class="page-link pagination-list" href="#" aria-label="Previous">
+                                        <a class="page-link pagination-list" href="/vaccine/listVaccineType?p=${vaccineTypeList.number - 1}" aria-label="Previous">
                                             <span aria-hidden="true">&laquo;</span>
                                             <span class="sr-only">Previous</span>
                                         </a>
                                     </li>
-                                    <li class="page-item"><a class="page-link pagination-list" href="#">1</a></li>
-                                    <li class="page-item"><a class="page-link pagination-list" href="#">2</a></li>
-                                    <li class="page-item"><a class="page-link pagination-list" href="#">3</a></li>
+                                    <li class="page-item"><a class="page-link pagination-list" href="/vaccine/listVaccineType?p=0">1</a></li>
+                                    <li class="page-item"><a class="page-link pagination-list" href="/vaccine/listVaccineType?p=1">2</a></li>
+                                    <li class="page-item"><a class="page-link pagination-list" href="/vaccine/listVaccineType?p=2">3</a></li>
                                     <li class="page-item">
-                                        <a class="page-link pagination-list" href="#" aria-label="Next">
+                                        <a class="page-link pagination-list" href="/vaccine/listVaccineType?p=${vaccineTypeList.number + 1}" aria-label="Next">
                                             <span aria-hidden="true">&raquo;</span>
                                             <span class="sr-only">Next</span>
                                         </a>
@@ -292,5 +293,11 @@
 
     </div>
 </div>
+
+<script
+        src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+        integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
 </body>
 </html>
