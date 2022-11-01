@@ -56,4 +56,8 @@ public class VaccineController {
 		return "vaccine-list";
 	}
 	
+	@GetMapping(value = "/vaccine/add")
+	public String viewAddVaccine() {
+		return "vaccine-create";
+	}
 }

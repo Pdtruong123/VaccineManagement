@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
          pageEncoding="ISO-8859-1"%>
+ <%@ taglib uri="http://www.springframework.org/tags/form"  prefix="form"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -83,19 +84,19 @@
                         </div>
                     </div>
                     <div class="list-group-item" >
-                        <div class="row text act" data-toggle="collapse" data-target="#vaccineType">
+                        <div class="row text act" data-toggle="collapse" data-target="#vaccineType1">
                             <div class="col-sm-10 font-weight-bold ">Vaccine Type Management</div>
                             <div class="col-sm-2"><i class="fa-solid fa-plus"></i></div>
                         </div>
-                        <div  class="mt-3 collapse" id="vaccineType" data-parent="#accordion">
+                        <div  class="mt-3 collapse" id="vaccineType1" data-parent="#accordion">
                             <div class="ml-4 text-sub">
-                                <a class="text-reset text-decoration-none" href="#">
+                                <a class="text-reset text-decoration-none" href="${pageContext.request.contextPath}/listVaccineType">
                                     <span class="ml-2">Vaccine Type List</span>
                                 </a>
                             </div>
                             <div class="ml-4 mt-2 text-sub">
-                                <a class="text-reset text-decoration-none" href="#">
-                                    <span class="ml-2">Vaccine Type Employee</span>
+                                <a class="text-reset text-decoration-none" href="${pageContext.request.contextPath}/createVaccineType">
+                                    <span class="ml-2">Create Vaccine Type</span>
                                 </a>
                             </div>
                         </div>
@@ -197,13 +198,14 @@
             <div class="h5 mt-3 text-center text-secondary font-weight-bold mb-3">CREATE VACCINE TYPE</div>
             <div class="card mx-3">
                 <div class="card-body">
-                    <form action="">
+                	<div class="h5 text-danger">${message}</div>
+                    <form:form action="${pageContext.request.contextPath}/createVaccineType" modelAttribute="vaccineType" enctype="multipart/form-data">
                         <div class="form-row">
                             <div class="form-group col-sm-5">
                                 <label class="font-weight-bold" for="typecode">Vaccine Type Code <span class="text-danger">(*)</span> :</label>
                                 <div class="form-inline">
                                     <i class="fa-solid fa-fill h5"></i>
-                                    <input type="text" class="form-control ml-2" placeholder="Enter code" id="typecode" required>
+                                    <input type="text" class="form-control ml-2" placeholder="Enter code" name="id" id="typecode" required>
                                 </div>
 
                             </div>
@@ -211,14 +213,14 @@
                                 <label class="font-weight-bold" for="typename">Vaccine Type Name <span class="text-danger">(*)</span> :</label>
                                 <div class="form-inline">
                                     <i class="fa-solid fa-fill h5"></i>
-                                    <input type="text" class="form-control ml-2" placeholder="Enter name" id="typename" required>
+                                    <input type="text" class="form-control ml-2" placeholder="Enter name" name="vaccineTypeName" id="typename" required>
                                 </div>
                             </div>
                             <div class="form-group col-sm-2">
                                 <label class="font-weight-bold" for="typeactive">Active <span class="text-danger">(*)</span> :</label>
                                 <div class="form-inline">
                                     <i class="fa-solid fa-fill h5"></i>
-                                    <input class="form-check ml-4 checkbox-lg" type="checkbox" id="typeactive" required>
+                                    <input class="form-check ml-4 checkbox-lg" type="checkbox" name="vaccineTypeStatus" id="typeactive" checked disabled>
                                 </div>
                             </div>
                         </div>
@@ -229,7 +231,7 @@
                                     <i class="fa-solid fa-file-prescription h5 "></i>
                                 </div>
                                 <div class="col-sm-11">
-                                    <textarea class="form-control" rows="3" id="description"></textarea>
+                                    <textarea class="form-control" rows="3" name="description" id="description"></textarea>
                                 </div>
                             </div>
                         </div>
@@ -240,8 +242,8 @@
                                     <i class="fa-solid fa-image mt-2 h5"></i>
                                 </div>
                                 <div class="custom-file mb-3 col-sm-5">
-                                    <input type="file" class="custom-file-input" accept="image/*" id="file-input" name="filename">
-                                    <label class="custom-file-label" for="file-input">Choose file</label>
+                                    <input type="file" class="custom-file-input" name="imageFile" accept="image/*" id="file-input">
+                                    <label class="custom-file-label" for="customFile">Choose file</label>
                                 </div>
                             </div>
                             <div class="img-upload">
@@ -254,7 +256,7 @@
                             <a class="btn btn-sm btn-warning ml-2" href="#">Cancel</a>
                         </div>
 
-                    </form>
+                    </form:form>
                 </div>
             </div>
         </div>

@@ -2,12 +2,7 @@ package com.vn.model;
 
 import java.time.LocalDate;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -23,22 +18,48 @@ import lombok.Setter;
 
 public class InjectionSchedule {
 
-	@Id
-	@Column(name = "injection_schedule_id", length = 36)
-	private String id;
-	
-	@Column(length = 1000)
-	private String description;
-	
-	@Column(name = "end_date")
-	private LocalDate endDate;
-	
-	private String place;
-	
-	@Column(name = "start_date")
-	private LocalDate startDate;
-	
-	@ManyToOne
-	@JoinColumn(name = "vaccine_id")
-	private Vaccine vaccine;
+    @Id
+    @Column(name = "injection_schedule_id", length = 36)
+    private String id;
+
+    @Column(length = 1000)
+    private String description;
+    @Column(name = "end_date")
+    private LocalDate endDate;
+
+    private String place;
+
+    public Vaccine getVaccine() {
+        return vaccine;
+    }
+
+    public void setVaccine(Vaccine vaccine) {
+        this.vaccine = vaccine;
+    }
+
+    @Column(name = "start_date")
+    private LocalDate startDate;
+
+    @ManyToOne
+    @JoinColumn(name = "vaccine_id")
+    private Vaccine vaccine;
+
+    @Transient
+    private String status;
+
+    public String getStatus() {
+        if (endDate.isBefore(LocalDate.now()) && vaccine.getStatus() == true) {
+            status = "Open";
+        } if(!endDate.isBefore(LocalDate.now())&& vaccine.getStatus() == true){
+            status = "Not yet";
+        }if(!vaccine.getStatus() && endDate.isBefore(LocalDate.now())){
+            status="Over";
+        }
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
 }

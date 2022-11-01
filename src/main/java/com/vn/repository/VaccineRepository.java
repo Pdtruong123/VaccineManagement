@@ -17,4 +17,5 @@ public interface VaccineRepository extends JpaRepository<Vaccine, String> {
     List<String> findAllVaccineName();
 
 	Page<Vaccine> findByVaccineNameContaining(String name, Pageable pageable);
+
 }
