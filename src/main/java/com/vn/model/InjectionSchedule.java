@@ -48,12 +48,18 @@ public class InjectionSchedule {
     private String status;
 
     public String getStatus() {
-
+        if (endDate.isBefore(LocalDate.now()) && vaccine.getStatus() == true) {
+            status = "Open";
+        } if(!endDate.isBefore(LocalDate.now())&& vaccine.getStatus() == true){
+            status = "Not yet";
+        }if(!vaccine.getStatus() && endDate.isBefore(LocalDate.now())){
+            status="Over";
+        }
         return status;
     }
 
     public void setStatus(String status) {
-
         this.status = status;
     }
+
 }

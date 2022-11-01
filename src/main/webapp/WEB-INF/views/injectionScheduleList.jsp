@@ -109,7 +109,8 @@
                         </div>
                         <div class="mt-3 collapse" id="vaccine" data-parent="#accordion">
                             <div class="ml-4 text-sub">
-                                <a class="text-reset text-decoration-none" href="#">
+                                <a class="text-reset text-decoration-none"
+                                   href="${pageContext.request.contextPath}/vaccine/list">
                                     <span class="ml-2">Vaccine List</span>
                                 </a>
                             </div>
@@ -196,7 +197,7 @@
             </div>
         </div>
         <div class="col-sm-9 bg-light right">
-            <div class="h5 mt-3 text-center text-secondary font-weight-bold mb-3">VACCINE TYPE LIST</div>
+            <div class="h5 mt-3 text-center text-secondary font-weight-bold mb-3">Injection Schedule</div>
             <div class="card mx-3">
                 <div class="card-body">
                     <div class="row">
@@ -239,10 +240,10 @@
                             <tbody>
                             <c:forEach items="${listInjectionPage.content}" var="listPage">
                                 <tr>
-                                    <td>${listPage.vaccine.vaccineName}</td>
+                                    <td><a>${listPage.vaccine.vaccineName}</a></td>
                                     <td>From ${listPage.startDate} to ${listPage.endDate}</td>
                                     <td>${listPage.place}</td>
-                                    <td>abc</td>
+                                    <td>${listPage.status}</td>
                                     <td>${listPage.description}</td>
                                 </tr>
                             </c:forEach>
@@ -258,16 +259,23 @@
                             <nav aria-label="Page">
                                 <ul class="pagination">
                                     <li class="page-item">
-                                        <a class="page-link pagination-list" href="/listInjectionSchedule?l=${listInjectionPage.number+-1}" aria-label="Previous">
+                                        <a class="page-link pagination-list"
+                                           href="/listInjectionSchedule?l=${listInjectionPage.number+-1}"
+                                           aria-label="Previous">
                                             <span aria-hidden="true">&laquo;</span>
                                             <span class="sr-only">Previous</span>
                                         </a>
                                     </li>
-                                    <li class="page-item"><a class="page-link pagination-list" href="/listInjectionSchedule?l=0">1</a></li>
-                                    <li class="page-item"><a class="page-link pagination-list" href="/listInjectionSchedule?l=1">2</a></li>
-                                    <li class="page-item"><a class="page-link pagination-list" href="/listInjectionSchedule?l=2">3</a></li>
+                                    <li class="page-item"><a class="page-link pagination-list"
+                                                             href="/listInjectionSchedule?l=0">1</a></li>
+                                    <li class="page-item"><a class="page-link pagination-list"
+                                                             href="/listInjectionSchedule?l=1">2</a></li>
+                                    <li class="page-item"><a class="page-link pagination-list"
+                                                             href="/listInjectionSchedule?l=2">3</a></li>
                                     <li class="page-item">
-                                        <a class="page-link pagination-list" href="/listInjectionSchedule?l=${listInjectionPage.number+1}" aria-label="Next">
+                                        <a class="page-link pagination-list"
+                                           href="/listInjectionSchedule?l=${listInjectionPage.number+1}"
+                                           aria-label="Next">
                                             <span aria-hidden="true">&raquo;</span>
                                             <span class="sr-only">Next</span>
                                         </a>
