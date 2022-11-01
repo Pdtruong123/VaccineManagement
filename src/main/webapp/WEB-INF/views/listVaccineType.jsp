@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
          pageEncoding="ISO-8859-1"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://www.springframework.org/tags/form"  prefix="form"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -87,13 +89,13 @@
                         </div>
                         <div  class="mt-3 collapse" id="vaccineType" data-parent="#accordion">
                             <div class="ml-4 text-sub">
-                                <a class="text-reset text-decoration-none" href="#">
+                                <a class="text-reset text-decoration-none" href="${pageContext.request.contextPath}/listVaccineType">
                                     <span class="ml-2">Vaccine Type List</span>
                                 </a>
                             </div>
                             <div class="ml-4 mt-2 text-sub">
-                                <a class="text-reset text-decoration-none" href="#">
-                                    <span class="ml-2">Vaccine Type Employee</span>
+                                <a class="text-reset text-decoration-none" href="${pageContext.request.contextPath}/createVaccineType">
+                                    <span class="ml-2">Create Vaccine Type</span>
                                 </a>
                             </div>
                         </div>
@@ -198,11 +200,12 @@
                     <div class="row">
                         <div class="col-sm-3 form-inline" >
                             <span>Show</span>
-                            <select class="form-select mx-2 border-right-0 border-top-0 border-left-0" id="inlineFormCustomSelect">
+                            <select class="form-select mx-2 border-right-0 border-top-0 border-left-0" id="inlineFormCustomSelect"
+                                    name="showNumberList" onchange="location = this.value;">
                                 <option selected></option>
-                                <option value="1">5</option>
-                                <option value="2">10</option>
-                                <option value="3">15</option>
+                                <option value="${pageContext.request.contextPath}/vaccine/listVaccineType?size=5">5</option>
+                                <option value="${pageContext.request.contextPath}/vaccine/listVaccineType?size=10">10</option>
+                                <option value="${pageContext.request.contextPath}/vaccine/listVaccineType?size=15">15</option>
                             </select>
                             <span>entities</span>
                         </div>
@@ -231,49 +234,47 @@
                             </tr>
                             </thead>
                             <tbody>
+                            <c:forEach items="${vaccineTypeList.content}" var="element" varStatus="status">
                             <tr>
                                 <td><input class="form-check mx-auto" type="checkbox" id=""></td>
-                                <td>John</td>
-                                <td>John</td>
-                                <td>Doe</td>
-                                <td>john@example.com</td>
+                                <td>${element.id}</td>
+                                <td>${element.vaccineTypeName}</td>
+                                <td>${element.description}</td>
+								<c:choose>
+									<c:when test="${element.vaccineTypeStatus}">
+										<td>Active</td>
+									</c:when>
+									<c:otherwise>
+										<td>In-Active</td>
+									</c:otherwise>
+								</c:choose>
+								
+                                
                             </tr>
-                            <tr>
-                                <td><input class="form-check mx-auto" type="checkbox" id=""></td>
-                                <td>John</td>
-                                <td>Mary</td>
-                                <td>Moe</td>
-                                <td>mary@example.com</td>
-                            </tr>
-                            <tr>
-                                <td><input class="form-check mx-auto" type="checkbox" id=""></td>
-                                <td>John</td>
-                                <td>July</td>
-                                <td>Dooley</td>
-                                <td>july@example.com</td>
-                            </tr>
+                            </c:forEach>
+                            
                             </tbody>
                         </table>
                     </div>
                     <div class="row mt-4">
                         <div class="col-sm-3">
-                            <span>Showing 1 to 5 of 12 entities</span>
+                            <span>Showing ${vaccineTypeList.size} to ${vaccineTypeList.totalElements} of ${vaccineTypeList.totalElements} entities</span>
                         </div>
                         <div class="col-sm-6"></div>
                         <div class="col-sm-3">
                             <nav aria-label="Page">
                                 <ul class="pagination">
                                     <li class="page-item">
-                                        <a class="page-link pagination-list" href="#" aria-label="Previous">
+                                        <a class="page-link pagination-list" href="/vaccine/listVaccineType?p=${vaccineTypeList.number - 1}" aria-label="Previous">
                                             <span aria-hidden="true">&laquo;</span>
                                             <span class="sr-only">Previous</span>
                                         </a>
                                     </li>
-                                    <li class="page-item"><a class="page-link pagination-list" href="#">1</a></li>
-                                    <li class="page-item"><a class="page-link pagination-list" href="#">2</a></li>
-                                    <li class="page-item"><a class="page-link pagination-list" href="#">3</a></li>
+                                    <li class="page-item"><a class="page-link pagination-list" href="/vaccine/listVaccineType?p=0">1</a></li>
+                                    <li class="page-item"><a class="page-link pagination-list" href="/vaccine/listVaccineType?p=1">2</a></li>
+                                    <li class="page-item"><a class="page-link pagination-list" href="/vaccine/listVaccineType?p=2">3</a></li>
                                     <li class="page-item">
-                                        <a class="page-link pagination-list" href="#" aria-label="Next">
+                                        <a class="page-link pagination-list" href="/vaccine/listVaccineType?p=${vaccineTypeList.number + 1}" aria-label="Next">
                                             <span aria-hidden="true">&raquo;</span>
                                             <span class="sr-only">Next</span>
                                         </a>
@@ -283,7 +284,7 @@
                         </div>
                     </div>
                     <div class="">
-                        <a class="btn btn-sm btn-success" href="#">New Vaccine Type</a>
+                        <a class="btn btn-sm btn-success" href="${pageContext.request.contextPath}/createVaccineType">New Vaccine Type</a>
                         <a class="btn btn-sm btn-warning ml-2" href="#">Make In-Active</a>
                     </div>
                 </div>
@@ -292,5 +293,11 @@
 
     </div>
 </div>
+
+<script
+        src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+        integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
 </body>
 </html>
