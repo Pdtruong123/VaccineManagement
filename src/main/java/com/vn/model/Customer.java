@@ -55,4 +55,10 @@ public class Customer {
 	
 	@OneToMany(mappedBy = "customer")
 	private Set<InjectionResult> injectionResults;
+
+	@Override
+	public String toString() {
+		return dateOfBirth + "-" + fullName;
+
+	}
 }
