@@ -27,20 +27,20 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js"
             integrity="sha512-rstIgDs0xPgmG6RX1Aba4KV5cWJbAMcvRCVmglpam9SoHZiUCyQVDdH2LPlxoHtrv17XWblE/V/PP+Tr04hbtA=="
             crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <link rel="stylesheet" href="../../asserts/css/style.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
     <title>List</title>
 </head>
 
 <body>
 <div class="container-fluid ">
     <nav class="row topnavbar py-1">
-        <a href="index.html" class="navbar-brand ml-3 mr-auto"><img class="img" src=".../../asserts/img/logo.png"></a>
+        <a href="index.html" class="navbar-brand ml-3 mr-auto"><img class="img" src="${pageContext.request.contextPath}/img/logo.png"></a>
     </nav>
     <div class="row">
         <div class="col-sm-3 border-right left" id="accordion">
             <div class="list-group list-group-flush" >
                 <div class="list-group-item text-white profile">
-                    <div><img class="img-admin" src="../../asserts/img/admin.png"></div>
+                    <div><img class="img-admin" src="${pageContext.request.contextPath}/img/admin.png"></div>
                     <div class="mt-1">Admin</div>
                     <div class="mt-1">admin@fsoft.com.vn</div>
                 </div>
@@ -89,12 +89,12 @@
                         </div>
                         <div  class="mt-3 collapse" id="vaccineType" data-parent="#accordion">
                             <div class="ml-4 text-sub">
-                                <a class="text-reset text-decoration-none" href="${pageContext.request.contextPath}/listVaccineType">
+                                <a class="text-reset text-decoration-none" href="${pageContext.request.contextPath}/vaccineType/list">
                                     <span class="ml-2">Vaccine Type List</span>
                                 </a>
                             </div>
                             <div class="ml-4 mt-2 text-sub">
-                                <a class="text-reset text-decoration-none" href="${pageContext.request.contextPath}/createVaccineType">
+                                <a class="text-reset text-decoration-none" href="${pageContext.request.contextPath}/vaccineType/add">
                                     <span class="ml-2">Create Vaccine Type</span>
                                 </a>
                             </div>
@@ -203,18 +203,18 @@
                             <select class="form-select mx-2 border-right-0 border-top-0 border-left-0" id="inlineFormCustomSelect"
                                     name="showNumberList" onchange="location = this.value;">
                                 <option selected></option>
-                                <option value="${pageContext.request.contextPath}/vaccine/listVaccineType?size=5">5</option>
-                                <option value="${pageContext.request.contextPath}/vaccine/listVaccineType?size=10">10</option>
-                                <option value="${pageContext.request.contextPath}/vaccine/listVaccineType?size=15">15</option>
+                                <option value="${pageContext.request.contextPath}/vaccineType/list?size=5">5</option>
+                                <option value="${pageContext.request.contextPath}/vaccineType/list?size=10">10</option>
+                                <option value="${pageContext.request.contextPath}/vaccineType/list?size=15">15</option>
                             </select>
                             <span>entities</span>
                         </div>
                         <div class="col-sm-6"></div>
                         <div class="col-sm-3">
-                            <form action="#">
+                            <form action="${pageContext.request.contextPath}/vaccineType/search", method="post">
                                 <div class="input-group ">
                                     <input type="search" class="form-control border-right-0 border-top-0 border-left-0 form-select"
-                                           placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
+                                           placeholder="Search" aria-label="Search" aria-describedby="search-addon" name="searchVaccineType" />
                                     <button type="submit" class="input-group-text border-0 bg-white" id="search-addon">
                                           <i class="fas fa-search"></i>
                                     </button>
@@ -237,7 +237,10 @@
                             <c:forEach items="${vaccineTypeList.content}" var="element" varStatus="status">
                             <tr>
                                 <td><input class="form-check mx-auto" type="checkbox" id=""></td>
-                                <td>${element.id}</td>
+                                <td>
+                                    <a href="${pageContext.request.contextPath}/vaccineType/update/${element.id}">${element.id}</a>
+
+                                </td>
                                 <td>${element.vaccineTypeName}</td>
                                 <td>${element.description}</td>
 								<c:choose>
@@ -256,6 +259,7 @@
                             </tbody>
                         </table>
                     </div>
+                    <div><span class="text-danger">${msg}</span></div>
                     <div class="row mt-4">
                         <div class="col-sm-3">
                             <span>Showing ${vaccineTypeList.size} to ${vaccineTypeList.totalElements} of ${vaccineTypeList.totalElements} entities</span>
@@ -265,16 +269,16 @@
                             <nav aria-label="Page">
                                 <ul class="pagination">
                                     <li class="page-item">
-                                        <a class="page-link pagination-list" href="/vaccine/listVaccineType?p=${vaccineTypeList.number - 1}" aria-label="Previous">
+                                        <a class="page-link pagination-list" href="/vaccineType/list?p=${vaccineTypeList.number - 1}" aria-label="Previous">
                                             <span aria-hidden="true">&laquo;</span>
                                             <span class="sr-only">Previous</span>
                                         </a>
                                     </li>
-                                    <li class="page-item"><a class="page-link pagination-list" href="/vaccine/listVaccineType?p=0">1</a></li>
-                                    <li class="page-item"><a class="page-link pagination-list" href="/vaccine/listVaccineType?p=1">2</a></li>
-                                    <li class="page-item"><a class="page-link pagination-list" href="/vaccine/listVaccineType?p=2">3</a></li>
+                                    <li class="page-item"><a class="page-link pagination-list" href="/vaccineType/list?p=0">1</a></li>
+                                    <li class="page-item"><a class="page-link pagination-list" href="/vaccineType/list?p=1">2</a></li>
+                                    <li class="page-item"><a class="page-link pagination-list" href="/vaccineType/list?p=2">3</a></li>
                                     <li class="page-item">
-                                        <a class="page-link pagination-list" href="/vaccine/listVaccineType?p=${vaccineTypeList.number + 1}" aria-label="Next">
+                                        <a class="page-link pagination-list" href="/vaccineType/list?p=${vaccineTypeList.number + 1}" aria-label="Next">
                                             <span aria-hidden="true">&raquo;</span>
                                             <span class="sr-only">Next</span>
                                         </a>
@@ -284,7 +288,7 @@
                         </div>
                     </div>
                     <div class="">
-                        <a class="btn btn-sm btn-success" href="${pageContext.request.contextPath}/createVaccineType">New Vaccine Type</a>
+                        <a class="btn btn-sm btn-success" href="${pageContext.request.contextPath}/vaccineType/add">New Vaccine Type</a>
                         <a class="btn btn-sm btn-warning ml-2" href="#">Make In-Active</a>
                     </div>
                 </div>
