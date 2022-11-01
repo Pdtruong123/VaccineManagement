@@ -197,7 +197,7 @@
             </div>
         </div>
         <div class="col-sm-9 bg-light right">
-            <div class="h5 mt-3 text-center text-secondary font-weight-bold mb-3">VACCINE TYPE LIST</div>
+            <div class="h5 mt-3 text-center text-secondary font-weight-bold mb-3">Injection Schedule</div>
             <div class="card mx-3">
                 <div class="card-body">
                     <div class="row">
