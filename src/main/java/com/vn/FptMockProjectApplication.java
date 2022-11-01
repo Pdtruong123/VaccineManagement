@@ -10,5 +10,4 @@ public class FptMockProjectApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(FptMockProjectApplication.class, args);
 	}
-
 }
