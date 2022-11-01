@@ -1,6 +1,6 @@
 package com.vn.controller;
 
-import com.vn.config.DTO.InjectionScheduleDTO;
+import com.vn.dto.InjectionScheduleDTO;
 import com.vn.model.InjectionSchedule;
 import com.vn.model.Vaccine;
 import com.vn.repository.InjectionSchuduleRepository;

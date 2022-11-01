@@ -1,6 +1,6 @@
 package com.vn.service;
 
-import com.vn.config.DTO.InjectionScheduleDTO;
+import com.vn.dto.InjectionScheduleDTO;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.criteria.CriteriaBuilder;
