@@ -138,7 +138,7 @@
 									</a>
 								</div>
 								<div class="ml-4 mt-2 text-sub">
-									<a class="text-reset text-decoration-none " href="#"> <span
+									<a class="text-reset text-decoration-none " href="${pageContext.request.contextPath}/vaccine/add"> <span
 										class="ml-2">Create Vaccine</span>
 									</a>
 								</div>
@@ -238,6 +238,10 @@
 
 			</div>
 			<div class="col-sm-9 bg-light right">
+			<div
+					class="h5 mt-3 text-center text-secondary font-weight-bold mb-3">LIST
+					VACCINE</div>
+					<span class="msg">${Addmsg}</span>
 				<div class="card-body">
 					<div class="row">
 						<div class="col-sm-3 form-inline">
@@ -291,7 +295,7 @@
 									<c:if test="${result.status=='true'}">
 									<td>Active</td>
 									</c:if>
-									<c:if test="${!result.status=='true'}">
+									<c:if test="${result.status=='false'}">
 									<td>In-Active</td>
 									</c:if>
 									
@@ -344,7 +348,7 @@
 			</div>
 		</div>
 
-		<script src="${pageContext.request.contextPath}/js/DeleteVaccine.js"></script>
+		<script src="${pageContext.request.contextPath}/js/ListVaccine.js"></script>
 		<script
 			src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
 			integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
