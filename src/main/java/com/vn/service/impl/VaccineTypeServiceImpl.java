@@ -53,14 +53,26 @@ public class VaccineTypeServiceImpl implements VaccineTypeService  {
 	}
 
 	@Override
+	public String update(VaccineTypeDTO vaccineTypeDTO) {
+		VaccineType vaccineType = new VaccineType();
+		return   vaccineTypeRepository.save(vaccineType).getId();
+	}
+
+	@Override
+	public VaccineType findById(String name) {
+		return vaccineTypeRepository.getById(name);
+	}
+
+	@Override
 	public Page<VaccineType> findAll(Pageable pageable) {
 
 		return vaccineTypeRepository.findAll(pageable);
 	}
+
 	@Override
-	public List<VaccineType> findAll() {
-		
-		return vaccineTypeRepository.findAll();
+	public Page<VaccineType> findByVaccineTypeNameContaining(String name, Pageable pageable) {
+		return vaccineTypeRepository.findByVaccineTypeNameContaining(name,pageable);
 	}
+
 
 }

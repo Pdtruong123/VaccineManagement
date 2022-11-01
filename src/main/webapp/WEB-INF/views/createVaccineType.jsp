@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
          pageEncoding="ISO-8859-1"%>
  <%@ taglib uri="http://www.springframework.org/tags/form"  prefix="form"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -199,13 +200,13 @@
             <div class="card mx-3">
                 <div class="card-body">
                 	<div class="h5 text-danger">${message}</div>
-                    <form:form action="${pageContext.request.contextPath}/createVaccineType" modelAttribute="vaccineType" enctype="multipart/form-data">
+                    <form:form action="${pageContext.request.contextPath}/vaccineType/add" modelAttribute="vaccineType" enctype="multipart/form-data">
                         <div class="form-row">
                             <div class="form-group col-sm-5">
                                 <label class="font-weight-bold" for="typecode">Vaccine Type Code <span class="text-danger">(*)</span> :</label>
                                 <div class="form-inline">
                                     <i class="fa-solid fa-fill h5"></i>
-                                    <input type="text" class="form-control ml-2" placeholder="Enter code" name="id" id="typecode" required>
+                                    <input type="text" class="form-control ml-2" placeholder="Enter code" value="${vaccineType.id} name="id" id="typecode" required>
                                 </div>
 
                             </div>
@@ -213,7 +214,7 @@
                                 <label class="font-weight-bold" for="typename">Vaccine Type Name <span class="text-danger">(*)</span> :</label>
                                 <div class="form-inline">
                                     <i class="fa-solid fa-fill h5"></i>
-                                    <input type="text" class="form-control ml-2" placeholder="Enter name" name="vaccineTypeName" id="typename" required>
+                                    <input type="text" class="form-control ml-2" placeholder="Enter name" value="${vaccineType.vaccineTypeName}" name="vaccineTypeName" id="typename" required>
                                 </div>
                             </div>
                             <div class="form-group col-sm-2">
@@ -231,7 +232,7 @@
                                     <i class="fa-solid fa-file-prescription h5 "></i>
                                 </div>
                                 <div class="col-sm-11">
-                                    <textarea class="form-control" rows="3" name="description" id="description"></textarea>
+                                    <textarea class="form-control" rows="3" name="description" id="description">${vaccineType.description}</textarea>
                                 </div>
                             </div>
                         </div>
@@ -247,7 +248,12 @@
                                 </div>
                             </div>
                             <div class="img-upload">
-                                <img id="img-preview" src="../../asserts/img/admin.png" />
+                                <c:if test="${empty vaccineType.imageUrl}">
+                                <img id="img-preview" src="${pageContext.request.contextPath}/img/admin.png" />
+                                </c:if>
+                                <c:if test="${not empty vaccineType.imageUrl}">
+                                    <img id="img-preview" src="${pageContext.request.contextPath}/img/imgvaccine/${vaccineType.imageUrl}" />
+                                </c:if>
                             </div>
                         </div>
                         <div class="mt-5">
