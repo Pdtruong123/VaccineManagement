@@ -38,6 +38,21 @@ public class InjectionResultServiceImpl implements InjectionResultService {
     }
 
     @Override
+    public Integer countElement() {
+        return (int) injectionResultRepository.count();
+    }
+
+    @Override
+    public Page<InjectionResult> findContainElement(String searchParam, Pageable pageable) {
+        return injectionResultRepository.findContainElement(searchParam, pageable);
+    }
+
+    @Override
+    public int countContainElement(String searchParam) {
+        return injectionResultRepository.countContainElement(searchParam);
+    }
+
+    @Override
     public Page<InjectionResult> findAll(Pageable pageable) {
         return injectionResultRepository.findAll(pageable);
     }
