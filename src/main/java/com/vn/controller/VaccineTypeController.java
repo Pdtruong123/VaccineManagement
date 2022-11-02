@@ -83,4 +83,12 @@ public class VaccineTypeController {
 
         return "createVaccineType";
     }
+    @PostMapping("/vaccineType/update")
+    public String updateVaccineType(@ModelAttribute("vaccineType") VaccineTypeDTO vaccineTypeDTO,  Model model ) {
+
+        vaccineTypeService.update(vaccineTypeDTO);
+
+        return "redirect:/vaccineType/list";
+
+    }
 }
