@@ -46,7 +46,7 @@
         <div class="col form-group">
             <label for="vaccineType">Vaccine type:</label>
             <form:select class="form-control" id="vaccineType" path="vaccine">
-                <option label="--Select Vaccine Type" selected/>
+                <option label="--Select Vaccine Type"/>
                 <c:forEach items="${vaccineList}" var="vaccines">
                     <option value="${vaccines.id}" label="${vaccines.vaccineName}" />
                 </c:forEach>

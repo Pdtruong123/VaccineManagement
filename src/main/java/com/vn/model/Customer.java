@@ -1,14 +1,20 @@
 package com.vn.model;
 
-import java.time.LocalDate;
+import java.io.Serializable;
+import java.util.Date;
 import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Email;
+
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.DateTimeFormat.ISO;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -16,22 +22,28 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table(name = "Customer")
+@Table(name = "Customer_DB")
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
+public class Customer implements Serializable {
 
-public class Customer {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name = "customer_id", length = 36)
 	private String id;
 	
 	private String address;
 	
 	@Column(name = "date_of_birth")
-	private LocalDate dateOfBirth;
+	@DateTimeFormat(iso=ISO.DATE)
+	private Date dateOfBirth;
 	
 	@Column(length = 100)
 	@Email
@@ -45,6 +57,7 @@ public class Customer {
 	@Column(name = "identity_card", length = 12)
 	private String identityCard;
 	
+	@Column(name ="password")
 	private String password;
 	
 	@Column(length = 20)
