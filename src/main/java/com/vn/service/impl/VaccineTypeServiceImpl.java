@@ -54,8 +54,35 @@ public class VaccineTypeServiceImpl implements VaccineTypeService  {
 
 	@Override
 	public String update(VaccineTypeDTO vaccineTypeDTO) {
+
+		if(!vaccineTypeDTO.getImageFile().isEmpty()) {
+			String path = context.getRealPath("/");
+			System.out.println("path = " + path);
+			try {
+				vaccineTypeDTO.setImageUrl(vaccineTypeDTO.getImageFile().getOriginalFilename());
+				String filePath = path + "/asserts/img/imgvaccine/" + vaccineTypeDTO.getImageUrl();
+				vaccineTypeDTO.getImageFile().transferTo(Path.of(filePath));
+				vaccineTypeDTO.setImageFile(null);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		VaccineType vaccineType1 = vaccineTypeRepository.getById(vaccineTypeDTO.getId());
+
 		VaccineType vaccineType = new VaccineType();
-		return   vaccineTypeRepository.save(vaccineType).getId();
+		vaccineType.setId(vaccineTypeDTO.getId());
+		vaccineType.setVaccineTypeName(vaccineTypeDTO.getVaccineTypeName());
+		vaccineType.setVaccineTypeStatus(vaccineTypeDTO.getVaccineTypeStatus());
+		vaccineType.setDescription(vaccineTypeDTO.getDescription());
+		vaccineType.setImageFile(vaccineTypeDTO.getImageFile());
+		if (vaccineTypeDTO.getImageUrl() == null) {
+			vaccineType.setImageUrl(vaccineType1.getImageUrl());
+//		} else if(vaccineTypeDTO.getImageUrl().equals("")){
+//			vaccineType.setImageUrl(null);
+		}else {
+			vaccineType.setImageUrl(vaccineTypeDTO.getImageUrl());
+		}
+		return vaccineTypeRepository.save(vaccineType).getId();
 	}
 
 	@Override
