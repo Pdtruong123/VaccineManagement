@@ -10,8 +10,8 @@ public class WebConfig implements WebMvcConfigurer {
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
 
-        registry.addResourceHandler("/css/**", "/js/**","/fontawesome-free-6.1.1-web/**")
-                .addResourceLocations("/asserts/css/", "/asserts/js/", "/asserts/fontawesome-free-6.1.1-web/");
+        registry.addResourceHandler("/css/**", "/img/**", "/js/**","/fontawesome-free-6.1.1-web/**")
+                .addResourceLocations("/asserts/css/", "/asserts/img/", "/asserts/js/", "/asserts/fontawesome-free-6.1.1-web/");
 
     }
 }

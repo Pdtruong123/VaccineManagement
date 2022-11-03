@@ -3,18 +3,16 @@ package com.vn.model;
 import java.io.Serializable;
 import java.time.LocalDate;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.constraints.NotBlank;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.GenericGenerator;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
@@ -27,8 +25,15 @@ import org.springframework.format.annotation.DateTimeFormat;
 public class InjectionResult implements Serializable {
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "injectionId")
+	@GenericGenerator(name = "injectionId", strategy = "com.vn.model.StringSuffixSequenceGenerator",
+			parameters ={
+					@org.hibernate.annotations.Parameter(name = StringSuffixSequenceGenerator.INCREMENT_PARAM, value = "1"),
+					@org.hibernate.annotations.Parameter(name = StringSuffixSequenceGenerator.VALUE_SUFFIX_PARAMETER, value = "-"),
+					@org.hibernate.annotations.Parameter(name = StringSuffixSequenceGenerator.NUMBER_FORMAT_PARAMETER, value = "%05d")
+			} )
 	@Column(name = "Injection_result_id", length = 36)
-	@NotBlank
+	@NotBlank(message = "Please fill id")
 	private String id;
 	
 	@ManyToOne
@@ -41,7 +46,7 @@ public class InjectionResult implements Serializable {
 
 
 	@Column(name = "injection_place")
-	@NotBlank
+	@NotBlank(message = "Please fill Injection Place")
 	private String injectionPlace;
 
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
@@ -49,11 +54,11 @@ public class InjectionResult implements Serializable {
 	private LocalDate nextInjectionDate;
 	
 	@Column(name = "number_of_injection", length = 100)
-	@NotBlank
+	@NotBlank(message = "Please fill number of injection")
 	private String numberOfInjection;
 	
 	@Column(length = 100)
-	@NotBlank
+	@NotBlank(message = "Please select prevention")
 	private String prevention;
 	
 	

@@ -3,4 +3,9 @@ $(document).ready(function () {
         var fileName = $(this).val().split("\\").pop();
         $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
     });
+    $(".delete-img").on("click", function() {
+        $("#img-preview").hide();
+        $(".custom-file-input").val('');
+
+    });
 });

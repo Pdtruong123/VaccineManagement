@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
          pageEncoding="ISO-8859-1"%>
  <%@ taglib uri="http://www.springframework.org/tags/form"  prefix="form"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -90,12 +91,12 @@
                         </div>
                         <div  class="mt-3 collapse" id="vaccineType1" data-parent="#accordion">
                             <div class="ml-4 text-sub">
-                                <a class="text-reset text-decoration-none" href="${pageContext.request.contextPath}/listVaccineType">
+                                <a class="text-reset text-decoration-none" href="${pageContext.request.contextPath}/vaccineType/list">
                                     <span class="ml-2">Vaccine Type List</span>
                                 </a>
                             </div>
                             <div class="ml-4 mt-2 text-sub">
-                                <a class="text-reset text-decoration-none" href="${pageContext.request.contextPath}/createVaccineType">
+                                <a class="text-reset text-decoration-none" href="${pageContext.request.contextPath}/vaccineType/add">
                                     <span class="ml-2">Create Vaccine Type</span>
                                 </a>
                             </div>
@@ -199,7 +200,8 @@
             <div class="card mx-3">
                 <div class="card-body">
                 	<div class="h5 text-danger">${message}</div>
-                    <form:form action="${pageContext.request.contextPath}/createVaccineType" modelAttribute="vaccineType" enctype="multipart/form-data">
+                    <c:if test="${empty vaccineType.id}">
+                    <form:form action="${pageContext.request.contextPath}/vaccineType/add" modelAttribute="vaccineType" enctype="multipart/form-data">
                         <div class="form-row">
                             <div class="form-group col-sm-5">
                                 <label class="font-weight-bold" for="typecode">Vaccine Type Code <span class="text-danger">(*)</span> :</label>
@@ -247,7 +249,7 @@
                                 </div>
                             </div>
                             <div class="img-upload">
-                                <img id="img-preview" src="../../asserts/img/admin.png" />
+                                <img id="img-preview" src="${pageContext.request.contextPath}/img/admin.png" />
                             </div>
                         </div>
                         <div class="mt-5">
@@ -257,6 +259,75 @@
                         </div>
 
                     </form:form>
+                    </c:if>
+
+                    <c:if test="${not empty vaccineType.id}">
+                        <form:form action="${pageContext.request.contextPath}/vaccineType/update" modelAttribute="vaccineType" enctype="multipart/form-data">
+                            <div class="form-row">
+                                <div class="form-group col-sm-5">
+                                    <label class="font-weight-bold" for="typecode">Vaccine Type Code :</label>
+                                    <div class="form-inline">
+                                        <i class="fa-solid fa-fill h5"></i>
+                                        <input type="text" class="form-control ml-2" placeholder="Enter code" value="${vaccineType.id}" name="id" id="typecode" disabled>
+                                        <input type="hidden" class="form-control ml-2" placeholder="Enter code" value="${vaccineType.id}" name="id" id="typecode">
+                                    </div>
+
+                                </div>
+                                <div class="form-group col-sm-5">
+                                    <label class="font-weight-bold" for="typename">Vaccine Type Name <span class="text-danger">(*)</span> :</label>
+                                    <div class="form-inline">
+                                        <i class="fa-solid fa-fill h5"></i>
+                                        <input type="text" class="form-control ml-2" placeholder="Enter name" value="${vaccineType.vaccineTypeName}" name="vaccineTypeName" id="typename" required>
+                                    </div>
+                                </div>
+                                <div class="form-group col-sm-2">
+                                    <label class="font-weight-bold" for="typeactive">Active <span class="text-danger">(*)</span> :</label>
+                                    <div class="form-inline">
+                                        <i class="fa-solid fa-fill h5"></i>
+                                        <input class="form-check ml-4 checkbox-lg" type="checkbox" name="vaccineTypeStatus" id="typeactive" >
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group mt-2">
+                                <label class="font-weight-bold" for="description">Description :</label>
+                                <div class="row">
+                                    <div class="col-sm-1 d-flex align-self-center">
+                                        <i class="fa-solid fa-file-prescription h5 "></i>
+                                    </div>
+                                    <div class="col-sm-11">
+                                        <textarea class="form-control" rows="3" name="description" id="description">${vaccineType.description}</textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group mt-2">
+                                <label class="font-weight-bold">Image :</label>
+                                <div class="row">
+                                    <div class="col-sm-1">
+                                        <i class="fa-solid fa-image mt-2 h5"></i>
+                                    </div>
+                                    <div class="custom-file mb-3 col-sm-5">
+                                        <input type="file" class="custom-file-input" name="imageFile"  accept="image/*" id="file-input">
+                                        <label class="custom-file-label" for="customFile">Choose file</label>
+                                    </div>
+                                </div>
+                                <div class="img-upload">
+                                   <c:if test="${empty vaccineType.imageUrl}">
+                                       <span class="ml-5 text-danger">Not image found !!!</span>
+                                   </c:if>
+                                        <a class="delete-img">Delete</a>
+                                        <img id="img-preview" src="${pageContext.request.contextPath}/img/imgvaccine/${vaccineType.imageUrl}" />
+
+                                </div>
+                            </div>
+                            <div class="mt-5">
+                                <button type="submit" class="btn btn-sm btn-success">Submit</button>
+                                <button type="reset" class="btn btn-sm btn-primary ml-2">Reset</button>
+                                <a class="btn btn-sm btn-warning ml-2" href="#">Cancel</a>
+                            </div>
+
+                        </form:form>
+                    </c:if>
+
                 </div>
             </div>
         </div>
