@@ -205,14 +205,15 @@
                 <div class="card-body">
                     <form:form action="${pageContext.request.contextPath}/add/injection-result" method="post"
                                modelAttribute="injectionResult" id="IR-form">
+                        <form:input type="hidden" id="id" path="id" value="${injectionResult.id}"/>
                         <div class="row m-4">
                             <div class="col-sm-4 form-group">
                                 <label class="font-weight-bold" for="customer">Customer</label>
                                 <span class="text-danger">(*):</span>
-                                <form:select path="id" id="id" class="form-control">
+                                <form:select path="customer" id="customer" class="form-control">
                                     <option label="--Select Customer" selected value=""/>
                                     <c:forEach items="${customer}" var="cus">
-                                        <option value="<%--${cus.fullName}-${cus.dateOfBirth}--%>${cus.id}" label="<%--${cus.fullName}-${cus.dateOfBirth}--%>${cus}"/>
+                                        <option value="${cus.id}" label="${cus.fullName}-${cus.dateOfBirth}"/>
                                     </c:forEach>
                                 </form:select>
                                 <form:errors path="id"></form:errors>

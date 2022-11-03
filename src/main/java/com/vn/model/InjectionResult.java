@@ -29,11 +29,9 @@ public class InjectionResult implements Serializable {
 	@GenericGenerator(name = "injectionId", strategy = "com.vn.model.StringSuffixSequenceGenerator",
 			parameters ={
 					@org.hibernate.annotations.Parameter(name = StringSuffixSequenceGenerator.INCREMENT_PARAM, value = "1"),
-					@org.hibernate.annotations.Parameter(name = StringSuffixSequenceGenerator.VALUE_SUFFIX_PARAMETER, value = "-"),
 					@org.hibernate.annotations.Parameter(name = StringSuffixSequenceGenerator.NUMBER_FORMAT_PARAMETER, value = "%05d")
 			} )
 	@Column(name = "Injection_result_id", length = 36)
-	@NotBlank(message = "Please fill id")
 	private String id;
 	
 	@ManyToOne

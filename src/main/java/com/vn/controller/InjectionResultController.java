@@ -6,6 +6,7 @@ import com.vn.model.Vaccine;
 import com.vn.service.CustomerService;
 import com.vn.service.InjectionResultService;
 import com.vn.service.VaccineService;
+import com.vn.util.DataInjectionPrevention;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -35,6 +36,7 @@ public class InjectionResultController {
 
     @Autowired
     CustomerService customerService;
+
 
     @GetMapping("/injection-result-list")
     public String viewPage(Model model, @RequestParam(value = "p", defaultValue = "0") Optional<Integer> p,
@@ -73,7 +75,7 @@ public class InjectionResultController {
 
     @GetMapping("/add/injection-result")
     public String addInjectionResultPage(Model model) {
-        model.addAttribute("preventionList", injectionResultService.findAllPrevention());
+        model.addAttribute("preventionList", DataInjectionPrevention.preventionData);
         model.addAttribute("vaccineList", vaccineService.findAll());
         model.addAttribute("injectionResult", new InjectionResult());
         model.addAttribute("customer", customerService.findAllCustomer());
@@ -82,7 +84,8 @@ public class InjectionResultController {
     }
 
     @PostMapping("/add/injection-result")
-    public String addInjectionResult(@Valid @ModelAttribute(value = "injectionResult") InjectionResult injectionResult, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
+    public String addInjectionResult(@Valid @ModelAttribute(value = "injectionResult") InjectionResult injectionResult,
+                                     BindingResult bindingResult, RedirectAttributes redirectAttributes) {
         if (bindingResult.hasErrors()) {
             return "create-injection-result";
         }
