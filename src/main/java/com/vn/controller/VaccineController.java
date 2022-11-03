@@ -18,8 +18,11 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.vn.dto.VaccineDTO;
 import com.vn.model.Vaccine;
@@ -41,18 +44,28 @@ public class VaccineController {
 	
 	@GetMapping(value = "/vaccine/list")
 	public String viewListVaccine(Model model, @RequestParam(name ="p", required = false, defaultValue = "0") Integer p,
-												@RequestParam(name ="size",required = false, defaultValue = "5") Integer size) {
+												@RequestParam(name ="size",required = false, defaultValue = "2") Integer size,
+												@ModelAttribute("msgAdd") String msgAdd) {
 		
 		Pageable pageable = PageRequest.of(p,size);
 		Page<Vaccine> vaccines = vaccineService.findAll(pageable);
 		model.addAttribute("vaccineList",vaccines);
-		vaccines.getTotalElements();
-		return "vaccine-list";
+		
+		System.out.println(vaccines.getContent().size());
+		if (size*(vaccines.getNumber()+1)>vaccines.getTotalElements()) {
+			model.addAttribute("firstElement",size*p+1);
+			model.addAttribute("lastElement",vaccines.getTotalElements());
+		} else {
+			model.addAttribute("firstElement",size*p+1);
+			model.addAttribute("lastElement",size*(p+1));
+		}
+		model.addAttribute("msgAdd", msgAdd);
+		return "vaccine/vaccine-list";
 	}
 	
 	@PostMapping(value = "/vaccine/search")
 	public String searchVaccine(Model model, @RequestParam(name ="p", required = false, defaultValue = "0") Integer p,
-			@RequestParam(name ="size",required = false, defaultValue = "5") Integer size) {
+			@RequestParam(name ="size",required = false, defaultValue = "5") Integer size, RedirectAttributes redirectAttributes) {
 		
 		String name = request.getParameter("searchVaccine");
 		Pageable pageable = PageRequest.of(p,size);
@@ -63,7 +76,16 @@ public class VaccineController {
 		}
 		model.addAttribute("vaccineList",vaccines);
 		
-		return "vaccine-list";
+		if (size*(vaccines.getNumber()+1)>vaccines.getTotalElements()) {
+			model.addAttribute("firstElement",size*p+1);
+			model.addAttribute("lastElement",vaccines.getTotalElements());
+		} else {
+			model.addAttribute("firstElement",size*p+1);
+			model.addAttribute("lastElement",size*(p+1));
+			
+		}
+		
+		return "vaccine/vaccine-list";
 	}
 	
 	@GetMapping(value = "/vaccine/add")
@@ -74,13 +96,13 @@ public class VaccineController {
 		model.addAttribute("vaccineTypeList",vaccineTypeList);
 		model.addAttribute("vaccineDto",new VaccineDTO());
 		
-		return "vaccine-create";
+		return "vaccine/vaccine-create";
 	}
 	
 	@PostMapping(value = "/vaccine/add")
-	public String addVaccine(Model model,@Valid@ModelAttribute("vaccineDto") VaccineDTO vaccineDTO,BindingResult bindingResult) {
+	public String addVaccine(Model model,@Valid@ModelAttribute("vaccineDto") VaccineDTO vaccineDTO,BindingResult bindingResult,RedirectAttributes redirectAttributes) {
 		if (bindingResult.hasErrors()) {
-			return "vaccine-create";
+			return "vaccine/vaccine-create";
 		}
 		System.out.println(vaccineDTO.getStatus());
 		if(vaccineService.hasVaccineById(vaccineDTO.getId())) {
@@ -91,11 +113,19 @@ public class VaccineController {
 			model.addAttribute("vaccineTypeList",vaccineTypeList);
 			model.addAttribute("vaccineDto",new VaccineDTO());
 			model.addAttribute("msgId","Id is already exists!");
-			return "vaccine-create";
+			return "vaccine/vaccine-create";
 		}
 		
 		vaccineService.save(vaccineDTO);
-		
+		redirectAttributes.addFlashAttribute("msgAdd","Create vaccine successfull!");
 		return "redirect:/vaccine/list";
 	}
+	
+	@PostMapping(value="/vaccine/update/makeInActive")
+	public String updateInActive(@RequestParam String id) {
+		Boolean status=false;
+		vaccineService.updateInActive(status,id);
+		return "redirect:/vaccine/list";
+	}
+	
 }

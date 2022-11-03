@@ -21,5 +21,7 @@ public interface VaccineService {
 
 	Boolean hasVaccineById(String id);
 
-	void save(@Valid VaccineDTO vaccineDTO);
+	Vaccine save(@Valid VaccineDTO vaccineDTO);
+
+	Vaccine updateInActive(Boolean status, String id);
 }

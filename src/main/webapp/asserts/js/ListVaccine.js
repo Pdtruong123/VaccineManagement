@@ -9,22 +9,45 @@ $("#checkAll").change(function (){
         })
     }
 })
-
-$("#delete-button").click(function (){
+$('td .status').css("color", "red");
+$("#make-in-active-button").click(function (){
+	var count=0;
+	var countInActive=0;
+	var valueStatus;
+	$("#table-IR input").each(function (){
+        if(this.checked) {
+		count ++;
+		valueStatus = $(this).closest('tr').find("td:eq(6)").text();
+		if(valueStatus=="In-Active"){
+			countInActive++;
+		}
+		}
+        })
+	if(count==0){
+			alert("No data to make inactive!");
+			return false;
+		}
+		
+	if(countInActive>0){
+			alert("Invalid data - Please recheck your selects!");
+			return false;
+		}
     $("#table-IR > tbody input:checked").each(function (){
+		
        var id = $(this).val();
+      alert(id);
        var thisResult = $(this);
-       var c = confirm('Are you sure to delete?');
+       var c = confirm('Are you sure to make in-active?');
        if(c) {
            $.ajax({
                type: "POST",
-               url: "/vaccine/delete?id=" + id,
+               url: "/vaccine/update/makeInActive?id=" + id,
                success: function (){
-                   thisResult.closest("tr").remove();
-                   alert("Delete Successfully!")
+                   thisResult.closest('tr').find("td:eq(6)").text("In-Active");
+                   alert("Update In-Active Successfully!")
                },
                error: function (){
-                   alert("Something wrong, can not delete!")
+                   alert("Something wrong, can not make In-Active!")
                }
            })
         }
@@ -32,22 +55,5 @@ $("#delete-button").click(function (){
     })
 })
 
-/*$("select[name='showNumberList']").change(function(){
-	var sizePage = $(this).val();
-	
-	$.ajax({
-               type: "POST",
-               url: "/vaccine/list",
-               data: {
-					size : sizePage
-				},
-               success: function (){
-                   thisResult.closest("tr").remove();
-                   alert("Delete Successfully!")
-               },
-               error: function (){
-                   alert("Something wrong, can not delete!")
-               }
-           })
-})*/
+
 

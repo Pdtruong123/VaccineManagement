@@ -59,7 +59,7 @@ public class VaccineServiceImpl implements VaccineService {
 
 
 	@Override
-	public void save(@Valid VaccineDTO vaccineDTO) {
+	public Vaccine save(@Valid VaccineDTO vaccineDTO) {
 		Vaccine vaccine = new Vaccine();
 		vaccine.setId(vaccineDTO.getId());
 		vaccine.setStatus(vaccineDTO.getStatus());
@@ -75,6 +75,25 @@ public class VaccineServiceImpl implements VaccineService {
 		
 		System.out.println(vaccine.getStatus());
 		vaccineRepository.save(vaccine);
+		return vaccine;
+		
+		
+	}
+
+
+	@Override
+	public Vaccine updateInActive(Boolean status, String id) {
+		
+		Optional<Vaccine> optionalV = vaccineRepository.findById(id);
+		if (optionalV.isPresent()) {
+			Vaccine vaccine = optionalV.get();
+			vaccine.setStatus(status);
+			vaccineRepository.save(vaccine);
+			return vaccine;
+		}else {
+			return null;
+		}
+		
 		
 	}
 }
