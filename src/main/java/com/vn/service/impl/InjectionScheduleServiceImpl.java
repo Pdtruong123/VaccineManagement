@@ -32,10 +32,10 @@ public class InjectionScheduleServiceImpl implements InjectionScheduleService {
         if (startDate.isBefore(endDate)) {
             injectionSchedule.setStartDate(startDate);
             injectionSchedule.setEndDate(endDate);
+
         }
         injectionSchedule.setPlace(injectionScheduleDTO.getPlace());
         injectionSchedule.setDescription(injectionScheduleDTO.getNote());
-        injectionSchedule.setId("abc1");
         injectionSchuduleRepository.save(injectionSchedule);
         return injectionScheduleDTO;
     }

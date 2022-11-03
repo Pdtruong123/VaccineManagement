@@ -10,9 +10,11 @@ $(document).ready(function () {
         var startDate = $('#dateOfInjection').val();
         return Date.parse(startDate) < Date.parse(value) || value == "";
     }, "Please input Next date of vaccination with value greater than Date of vaccination");
+
     $.validator.addMethod("checkSelect", function (value) {
         return (value != "");
     }, "Please select value")
+
     $("#IR-form").validate({
         rules: {
             id: {

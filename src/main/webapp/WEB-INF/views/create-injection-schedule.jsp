@@ -202,7 +202,8 @@
                 <div class="head-title card-header">
                     <h4 class="text-center">CREATE INJECTION SCHEDULE</h4>
                 </div>
-                <form:form modelAttribute="injection" action="${pageContext.request.contextPath}/add/injectionSchedule" method="post">
+                <form:form modelAttribute="injection" action="${pageContext.request.contextPath}/add/injectionSchedule"
+                           method="post" id="form-Schedule">
                     <div class="card-body">
                         <div class="mt-1 row">
                             <div class="col-sm-4">
@@ -215,21 +216,21 @@
                             </div>
                             <div class="col-sm-4">
                                 <label>From</label><label class="lbls">(*)</label>
-                                <form:input path="startDate" type="date" class="form-control"/>
+                                <form:input path="startDate" type="date" name="startDate" class="form-control"/>
                             </div>
                             <div class="col-sm-4">
                                 <label>To</label><label class="lbls">(*)</label>
-                                <form:input path="endDate" type="date" class="form-control"/>
+                                <form:input path="endDate" type="date" name="endDate" class="form-control"/>
                             </div>
                         </div>
                         <div class="mt-2 row">
                             <div class="col-sm-5">
                                 <label>Place</label><label class="lbls">(*)</label>
-                                <form:textarea path="place" class="form-control"></form:textarea>
+                                <form:textarea path="place" name="place" class="form-control"></form:textarea>
                             </div>
                             <div class="col-sm-7">
                                 <label>Note:</label>
-                                <form:textarea path="note" class="form-control"></form:textarea>
+                                <form:textarea path="note" name="note" class="form-control"></form:textarea>
                             </div>
 
                         </div>
@@ -247,5 +248,6 @@
 
 </div>
 </div>
+<script src="${pageContext.request.contextPath}/js/ValidatorInjectionSchedule.js"></script>
 </body>
 </html>
