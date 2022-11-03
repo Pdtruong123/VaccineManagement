@@ -237,7 +237,7 @@
                             <c:forEach items="${injectionResultList.content}" var="result">
                             <tr>
                                 <td><input class="form-check mx-auto" type="checkbox" value="${result.id}" name="id"></td>
-                                    <td>${result.id}</td>
+                                    <td>${result.id}-${result.customer.fullName}-${result.customer.dateOfBirth}</td>
                                     <td>${result.vaccine.vaccineName}</td>
                                     <td>${result.prevention}</td>
                                     <td>${result.numberOfInjection}</td>
