@@ -1,9 +1,11 @@
 package com.vn.model;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -15,8 +17,8 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-
-public class InjectionSchedule {
+//@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class,property = "id")
+public class InjectionSchedule implements Serializable{
 
     @Id
     @Column(name = "injection_schedule_id", length = 36)
@@ -40,8 +42,10 @@ public class InjectionSchedule {
     @Column(name = "start_date")
     private LocalDate startDate;
 
+    //    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "vaccine_id")
+    @JsonBackReference
     private Vaccine vaccine;
 
     @Transient
@@ -50,10 +54,12 @@ public class InjectionSchedule {
     public String getStatus() {
         if (endDate.isBefore(LocalDate.now()) && vaccine.getStatus() == true) {
             status = "Open";
-        } if(!endDate.isBefore(LocalDate.now())&& vaccine.getStatus() == true){
+        }
+        if (!endDate.isBefore(LocalDate.now()) && vaccine.getStatus() == true) {
             status = "Not yet";
-        }if(!vaccine.getStatus() && endDate.isBefore(LocalDate.now())){
-            status="Over";
+        }
+        if (!vaccine.getStatus() && endDate.isBefore(LocalDate.now())) {
+            status = "Over";
         }
         return status;
     }
