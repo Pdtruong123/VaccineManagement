@@ -1,5 +1,6 @@
 package com.vn.model;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
 import javax.persistence.Column;
@@ -23,7 +24,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 @AllArgsConstructor
 @NoArgsConstructor
 
-public class InjectionResult {
+public class InjectionResult implements Serializable {
 
 	@Id
 	@Column(name = "Injection_result_id", length = 36)
