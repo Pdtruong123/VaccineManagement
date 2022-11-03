@@ -47,7 +47,7 @@ public class InjectionScheduleController {
     @PostMapping("/add/injectionSchedule")
     public String addInjection(@Valid @ModelAttribute("injection") InjectionScheduleDTO injectionScheduleDTO, BindingResult bindingResult) {
         injectionScheduleService.save(injectionScheduleDTO);
-        return "injectionScheduleList";
+        return "redirect:/injectionScheduleList";
     }
     @GetMapping("/listInjectionSchedule")
     public String listInjectionSchedule(Model model, @RequestParam("l")Optional<Integer> l){
