@@ -12,9 +12,14 @@ public interface VaccineTypeService {
 
 	String save(VaccineTypeDTO vaccineTypeDTO);
 
-	List<VaccineType> findAll();
+	String update(VaccineTypeDTO vaccineTypeDTO);
+
+	VaccineType findById(String id);
 
 	Page<VaccineType> findAll(Pageable pageable);
+
+	Page<VaccineType> findByVaccineTypeNameContaining(String string, Pageable pageable);
+
 
 
 }

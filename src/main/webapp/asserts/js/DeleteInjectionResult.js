@@ -31,6 +31,17 @@ $("#delete-button").click(function (){
     })
 })
 
+
+$(document).ready(function(){
+    $("#searchInput").on("keyup", function() {
+        var value = $(this).val().toLowerCase();
+        $("#table-IR > tbody tr").filter(function() {
+            $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+        });
+    });
+})
+
+
 $("#update-button").click(function (){
     $("#table-IR > tbody input:checked").each(function (){
         var id = $(this).val();
