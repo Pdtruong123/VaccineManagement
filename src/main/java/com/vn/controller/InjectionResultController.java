@@ -6,12 +6,11 @@ import com.vn.model.Vaccine;
 import com.vn.service.CustomerService;
 import com.vn.service.InjectionResultService;
 import com.vn.service.VaccineService;
-import com.vn.util.DataInjectionPrevention;
+import com.vn.util.DataInjectionResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -75,7 +74,8 @@ public class InjectionResultController {
 
     @GetMapping("/add/injection-result")
     public String addInjectionResultPage(Model model) {
-        model.addAttribute("preventionList", DataInjectionPrevention.preventionData);
+        model.addAttribute("preventionList", DataInjectionResult.preventionData);
+        model.addAttribute("placeOfInjectionList", DataInjectionResult.placeOfInjection);
         model.addAttribute("vaccineList", vaccineService.findAll());
         model.addAttribute("injectionResult", new InjectionResult());
         model.addAttribute("customer", customerService.findAllCustomer());

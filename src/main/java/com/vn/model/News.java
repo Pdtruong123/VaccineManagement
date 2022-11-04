@@ -18,7 +18,7 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @NoArgsConstructor
 
-public class News {
+public class News extends BaseModel{
 
 	@Id
 	@Column(name = "news_id", length = 36)
@@ -44,7 +44,4 @@ public class News {
 	@JoinColumn(name = "news_type_id")
 	private NewsType newType;
 
-	@Transient
-	@DateTimeFormat(pattern = "yyyy-MM-dd")
-	private LocalDate postDate;
 }

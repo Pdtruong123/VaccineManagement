@@ -211,7 +211,7 @@
                             <form action="${pageContext.request.contextPath}/search/news" method="post">
                                 <div class="input-group ">
                                     <input id="searchInput" type="search" class="form-control border-right-0 border-top-0 border-left-0 form-select"
-                                           placeholder="Search" aria-label="Search" aria-describedby="search-addon" name="searchInjectionResult" />
+                                           placeholder="Search" aria-label="Search" aria-describedby="search-addon" name="searchNews" />
                                     <button type="submit" class="input-group-text border-0 bg-white" id="search-addon">
                                         <i class="fas fa-search"></i>
                                     </button>
@@ -220,7 +220,7 @@
                         </div>
                     </div>
                     <div class="mt-3">
-                        <table class="table table-bordered" id="">
+                        <table class="table table-bordered" id="news-tb">
                             <thead>
                             <tr class="bg-info text-white text-center">
                                 <td><input class="form-check mx-auto" type="checkbox" id="checkAll"></td>
@@ -233,7 +233,7 @@
                             <c:forEach items="${newsList.content}" var="result">
                                 <tr>
                                     <td><input class="form-check mx-auto" type="checkbox" value="${result.id}" name="id"></td>
-                                    <td>${result.title}</td>
+                                    <td><a href="${pageContext.request.contextPath}/news-list/${result.title}">${result.title}</a></td>
                                     <td>${result.content}</td>
                                     <td>${result.postDate}</td>
                                 </tr>
@@ -279,5 +279,7 @@
         </div>
     </div>
 </div>
+<script src="${pageContext.request.contextPath}/js/DeleteNews.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </body>
 </html>

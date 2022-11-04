@@ -25,4 +25,14 @@ public class NewsServiceImpl implements NewsService {
     public News save(News news) {
         return newsRepository.save(news);
     }
+
+    @Override
+    public Page<News> findContainElements(String keyword, Pageable pageable) {
+        return newsRepository.findContainElements(keyword, pageable);
+    }
+
+    @Override
+    public void deleteNews(String id) {
+        newsRepository.deleteById(id);
+    }
 }

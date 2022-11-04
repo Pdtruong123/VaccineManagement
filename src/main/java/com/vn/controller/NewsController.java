@@ -4,6 +4,7 @@ import com.vn.model.News;
 import com.vn.service.NewsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.Banner;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.time.LocalDate;
 
@@ -23,6 +25,9 @@ public class NewsController {
 
     @Autowired
     NewsService newsService;
+
+    @Autowired
+    HttpServletRequest request;
 
     @GetMapping("/news-list")
     public String newsListPage(Model model, @RequestParam(value = "p",defaultValue = "0") Integer p,
@@ -47,6 +52,25 @@ public class NewsController {
         news.setPostDate(LocalDate.now());
         newsService.save(news);
         redirectAttributes.addFlashAttribute("success","Add news successfully!");
-        return "/add/news";
+        return "redirect:/add/news";
+    }
+
+    @PostMapping("/search/news")
+    public String searchNews(Model model, @RequestParam(value = "p",defaultValue = "0") Integer p,
+                             @RequestParam(value = "size", defaultValue = "5") Integer size){
+        String keyword = request.getParameter("searchNews");
+        Pageable pageable = PageRequest.of(p,size);
+        Page<News> page = newsService.findContainElements(keyword, pageable);
+        if (page.isEmpty()) {
+            model.addAttribute("error", "No data found!");
+        }
+        model.addAttribute("newsList", page);
+        return "news-list";
+    }
+
+    @PostMapping("/delete/news")
+    public String deleteNews(@RequestParam String id){
+        newsService.deleteNews(id);
+        return "redirect:/news-list";
     }
 }
