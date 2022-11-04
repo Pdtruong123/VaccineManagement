@@ -1,5 +1,4 @@
 
-
 $("#checkAll").change(function (){
     if(this.checked){
         $("#news-tb input").each(function (){
