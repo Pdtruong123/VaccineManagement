@@ -108,12 +108,23 @@ public class InjectionResultController {
     public String updatePage(Model model, @PathVariable String id) {
         InjectionResult injectionResult = injectionResultService.findById(id);
         model.addAttribute("injectionResult", injectionResult);
+        model.addAttribute("customer", customerService.findAllCustomer());
+        model.addAttribute("preventionList", DataInjectionResult.preventionData);
+        model.addAttribute("vaccineList", vaccineService.findAll());
+        model.addAttribute("placeOfInjectionList", DataInjectionResult.placeOfInjection);
         return "update-injection-result";
     }
 
     @PostMapping("/update/injection-result")
-    public String updateInjectionResult(){
-        return "";
+    public String updateInjectionResult(Model model,
+                                        @Valid @ModelAttribute("injectionResult") InjectionResult injectionResult,
+                                        BindingResult bindingResult, RedirectAttributes redirectAttributes ){
+        if(bindingResult.hasErrors()){
+            return "update-injection-result";
+        }
+        injectionResultService.save(injectionResult);
+        redirectAttributes.addFlashAttribute("success", "Successful operation");
+        return "redirect:/injection-result-list";
     }
 
 }

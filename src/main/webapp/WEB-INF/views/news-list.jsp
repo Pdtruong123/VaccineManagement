@@ -27,6 +27,7 @@
             integrity="sha512-rstIgDs0xPgmG6RX1Aba4KV5cWJbAMcvRCVmglpam9SoHZiUCyQVDdH2LPlxoHtrv17XWblE/V/PP+Tr04hbtA=="
             crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <link rel="stylesheet" href="../../asserts/css/style.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/news.css">
     <title>News List</title>
 </head>
 <body>
@@ -193,6 +194,7 @@
         </div>
         <div class="col-sm-9 bg-light right">
             <div class="h5 mt-3 text-center text-secondary font-weight-bold mb-3">NEWS LIST</div>
+            <div class="h4 text-success font-weight-bold ml-3">${success}</div>
             <div class="card mx-3">
                 <div class="card-body">
                     <div class="row">
@@ -233,9 +235,10 @@
                             <c:forEach items="${newsList.content}" var="result">
                                 <tr>
                                     <td><input class="form-check mx-auto" type="checkbox" value="${result.id}" name="id"></td>
-                                    <td><a href="${pageContext.request.contextPath}/news-list/${result.title}">${result.title}</a></td>
-                                    <td class="content">${result.content}</td>
-                                    <td>${result.postDate}</td>
+                                    <td class="title-row"><a class="link-col" href="#">${result.title}</a></td>
+                                    <td hidden class="content-row"><input type="hidden">${result.content}</td>
+                                    <td class="preview-row">${result.preview}</td>
+                                    <td class="postdate-row">${result.postDate}</td>
                                 </tr>
                             </c:forEach>
                             </tbody>

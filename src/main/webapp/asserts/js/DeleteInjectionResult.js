@@ -52,7 +52,7 @@ $("#update-button").click(function (){
         }
     })
     if(count==0){
-        alert("No data to make inactive!");
+        alert("No injection result be chosen!");
         return false;
     }
 
@@ -61,7 +61,6 @@ $("#update-button").click(function (){
         return false;
     }
     if(count==1){
-        alert(id);
         window.location.href="/update/injection-result/"+id;
         return false;
     }

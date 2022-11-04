@@ -194,6 +194,7 @@
         </div>
         <div class="col-sm-9 bg-light right">
             <div class="h5 mt-3 text-center text-secondary font-weight-bold mb-3">Injection Result List</div>
+            <div class="h4 text-success font-weight-bold ml-3">${success}</div>
             <div class="card mx-3">
                 <div class="card-body">
                     <div class="row">

@@ -10,10 +10,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
@@ -80,6 +77,24 @@ public class NewsController {
     @PostMapping("/delete/news")
     public String deleteNews(@RequestParam String id){
         newsService.deleteNews(id);
+        return "redirect:/news-list";
+    }
+
+    @GetMapping("/update/news/{id}")
+    public String updateNewsPage(Model model, @PathVariable String id){
+        News news = newsService.findById(id);
+        model.addAttribute("news", news);
+        return "update-news";
+    }
+
+    @PostMapping("/update/news")
+    public String updateNews(@Valid @ModelAttribute("news") News news, BindingResult bindingResult, RedirectAttributes redirectAttributes){
+        if(bindingResult.hasErrors()){
+            return "update-news";
+        }
+        news.setPostDate(LocalDate.now());
+        newsService.save(news);
+        redirectAttributes.addFlashAttribute("success", "Update News Successfully!");
         return "redirect:/news-list";
     }
 }
