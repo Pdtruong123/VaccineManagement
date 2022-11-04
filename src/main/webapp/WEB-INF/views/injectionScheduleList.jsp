@@ -240,7 +240,7 @@
                             <tbody>
                             <c:forEach items="${listInjectionPage.content}" var="listPage">
                                 <tr>
-                                    <td><a>${listPage.vaccine.vaccineName}</a></td>
+                                    <td><a href="">${listPage.vaccine.vaccineName}</a></td>
                                     <td>From ${listPage.startDate} to ${listPage.endDate}</td>
                                     <td>${listPage.place}</td>
                                     <td>${listPage.status}</td>

@@ -1,5 +1,6 @@
 package com.vn.model;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
 import javax.persistence.Column;
@@ -18,7 +19,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 
-public class Employee {
+public class Employee implements Serializable {
 
 	@Id
 	@Column(name ="employee_id", length = 36)
