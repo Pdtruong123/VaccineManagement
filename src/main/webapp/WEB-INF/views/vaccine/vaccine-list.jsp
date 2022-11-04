@@ -241,7 +241,8 @@
 			<div
 					class="h5 mt-3 text-center text-secondary font-weight-bold mb-3">LIST
 					VACCINE</div>
-					<span class="msg">${msgAdd}</span>
+					<span class="msg">${msg}</span>
+					
 				<div class="card-body">
 					<div class="row">
 						<div class="col-sm-3 form-inline">
@@ -287,7 +288,7 @@
 							<c:forEach items="${vaccineList.content}" var="result">
 								<tr>
 									<td><input type="checkbox" value="${result.id}" name="id"></td>
-									<td>${result.id}</td>
+									<td><a href="${pageContext.request.contextPath}/vaccine/update/${result.id}">${result.id}</td>
 									<td>${result.vaccineName}</td>
 									<td>${result.vaccineType.vaccineTypeName}</td>
 									<td>${result.numberOfInjection}</td>
@@ -336,13 +337,11 @@
 							<a href="${pageContext.request.contextPath}/vaccine/add"
 								class="text-white">Create Vaccine</a>
 						</button>
-						<button class="btn btn-warning" type="submit">
-							<a href="${pageContext.request.contextPath}/vaccine/update"
-								class="text-white">Update Vaccine</a>
+						<button class="btn btn-warning" type="submit" onclick="updateButton()">
+							Update Vaccine
 						</button>
 						<button class="btn btn-danger" type="submit" id="make-in-active-button">Make In-Active</button>
 					</div>
-					<span class="msg">${msg}</span>
 				</div>
 
 			</div>

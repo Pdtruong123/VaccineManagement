@@ -9,7 +9,6 @@ $("#checkAll").change(function (){
         })
     }
 })
-$('td .status').css("color", "red");
 $("#make-in-active-button").click(function (){
 	var count=0;
 	var countInActive=0;
@@ -55,5 +54,30 @@ $("#make-in-active-button").click(function (){
     })
 })
 
-
+function updateButton(){
+	var count=0;
+	var id;
+	$("#table-IR input").each(function (){
+        if(this.checked) {
+		count ++;
+		id = $(this).val();
+		}
+        })
+	if(count==0){
+			alert("No data to make inactive!");
+			return false;
+		}
+		
+	if(count>1){
+			alert("Invalid data - Please recheck your selects!");
+			return false;
+		}
+	if(count==1){
+			alert(id);
+			window.location.href="/vaccine/update/"+id;
+			return false;
+		}
+		
+		
+}
 

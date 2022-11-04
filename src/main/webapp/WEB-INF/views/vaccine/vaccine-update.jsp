@@ -44,7 +44,7 @@
 <script src="../../asserts/js/loadFileName.js"></script>
 <script src="../../asserts/js/previewImg.js"></script>
 <link rel="stylesheet" href="../../asserts/css/style.css">
-<title>Create</title>
+<title>Update</title>
 <style type="text/css">
 .a {
 	width: 100%;
@@ -255,20 +255,19 @@
 			</div>
 			<div class="col-sm-9 bg-light right">
 				<div
-					class="h5 mt-3 text-center text-secondary font-weight-bold mb-3">CREATE
+					class="h5 mt-3 text-center text-secondary font-weight-bold mb-3">Update
 					VACCINE</div>
 				<div class="card mx-3">
 					<div class="card-body">
-						<form:form action="${pageContext.request.contextPath}/vaccine/add" method="post" modelAttribute="vaccineDto" id="formAdd" >
+						<form:form action="${pageContext.request.contextPath}/vaccine/update" method="post" modelAttribute="vaccineDto" id="formAdd" >
 							<div class="form-row">
 								<div class="form-group col-sm-8">
 									<label class="font-weight-bold" for="vaccine-code">Vaccine
 										Id <span class="text-danger">(*)</span>:
 									</label>
-									<form:input path="id" type="text" id="vaccine-id" placeholder="A123" class="form-control"/>
+									<form:input path="id" id="vaccine-id" placeholder="123" class="form-control" onchange="onchangeId()"/>
 									<form:errors path="id" cssClass="error"/>
 									<span class="error">${msgId}</span>
-
 								</div>
 								<div class="form-group col-sm-2 ml-2">
 									<label class="font-weight-bold" for="vaccine-active">Active
@@ -382,7 +381,7 @@
 
 		</div>
 	</div>
-	<script src="${pageContext.request.contextPath}/js/CreateVaccine.js"></script>
+	<script src="${pageContext.request.contextPath}/js/UpdateVaccine.js"></script>
 		
 </body>
 </html>

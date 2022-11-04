@@ -73,9 +73,13 @@ public class VaccineServiceImpl implements VaccineService {
 		vaccine.setTimeEndNextInjection(vaccineDTO.getTimeEndNextInjection());
 		vaccine.setOrigin(vaccineDTO.getOrigin());
 		
-		System.out.println(vaccine.getStatus());
-		vaccineRepository.save(vaccine);
-		return vaccine;
+		if (vaccine.getTimeBeginNextInjection().isAfter(vaccine.getTimeEndNextInjection())) {
+			return null;
+		}else {
+			vaccineRepository.save(vaccine);
+			return vaccine;
+		}
+		
 		
 		
 	}
@@ -95,5 +99,46 @@ public class VaccineServiceImpl implements VaccineService {
 		}
 		
 		
+	}
+
+
+	@Override
+	public Vaccine findVaccineById(String id) {
+		Optional<Vaccine> vaccineOptional = vaccineRepository.findById(id);
+		if (vaccineOptional.isEmpty()) {
+			return null;
+		}else {
+			Vaccine vaccine = vaccineOptional.get();
+			return vaccine;
+		}
+		
+		
+	}
+
+
+	@Override
+	public Vaccine update(@Valid VaccineDTO vaccineDTO) {
+		if (vaccineDTO.getTimeBeginNextInjection().isAfter(vaccineDTO.getTimeEndNextInjection())) {
+			return null;
+		}
+		Optional<Vaccine> vaccineOptional = vaccineRepository.findById(vaccineDTO.getId());
+		if (vaccineOptional.isEmpty()) {
+			return null;
+		}else {
+			Vaccine vaccine = vaccineOptional.get();
+			vaccine.setId(vaccineDTO.getId());
+			vaccine.setStatus(vaccineDTO.getStatus());
+			vaccine.setVaccineName(vaccineDTO.getVaccineName());
+			vaccine.setVaccineType(vaccineDTO.getVaccineType());
+			vaccine.setNumberOfInjection(vaccineDTO.getNumberOfInjection());
+			vaccine.setUsage(vaccineDTO.getUsage());
+			vaccine.setIndication(vaccineDTO.getIndication());
+			vaccine.setContraindication(vaccineDTO.getContraindication());
+			vaccine.setTimeBeginNextInjection(vaccineDTO.getTimeBeginNextInjection());
+			vaccine.setTimeEndNextInjection(vaccineDTO.getTimeEndNextInjection());
+			vaccine.setOrigin(vaccineDTO.getOrigin());
+			vaccineRepository.save(vaccine);
+			return vaccine;
+		}	
 	}
 }
