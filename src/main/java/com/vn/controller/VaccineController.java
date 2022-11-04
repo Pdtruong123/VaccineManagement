@@ -46,47 +46,52 @@ public class VaccineController {
 	public String viewListVaccine(Model model,
 			@RequestParam(name = "p", required = false, defaultValue = "0") Integer p,
 			@RequestParam(name = "size", required = false, defaultValue = "2") Integer size,
+			@RequestParam(name ="search", required = false) String nameSearch,
 			@ModelAttribute("msg") String msg) {
+		
+		if (nameSearch==null) {
+			Pageable pageable = PageRequest.of(p, size);
+			Page<Vaccine> vaccines = vaccineService.findAll(pageable);
+			model.addAttribute("vaccineList", vaccines);
 
-		Pageable pageable = PageRequest.of(p, size);
-		Page<Vaccine> vaccines = vaccineService.findAll(pageable);
-		model.addAttribute("vaccineList", vaccines);
+			if (size * (vaccines.getNumber() + 1) > vaccines.getTotalElements()) {
+				model.addAttribute("firstElement", size * p + 1);
+				model.addAttribute("lastElement", vaccines.getTotalElements());
+			} else {
+				model.addAttribute("firstElement", size * p + 1);
+				model.addAttribute("lastElement", size * (p + 1));
+			}
+			model.addAttribute("nameSearch",nameSearch);
+			model.addAttribute("msg", msg);
+			return "vaccine/vaccine-list";
+		}else {
+			Pageable pageable = PageRequest.of(p, size);
+			Page<Vaccine> vaccines = vaccineService.findByVaccineNameContaining(nameSearch,pageable);
+			model.addAttribute("vaccineList", vaccines);
 
-		if (size * (vaccines.getNumber() + 1) > vaccines.getTotalElements()) {
-			model.addAttribute("firstElement", size * p + 1);
-			model.addAttribute("lastElement", vaccines.getTotalElements());
-		} else {
-			model.addAttribute("firstElement", size * p + 1);
-			model.addAttribute("lastElement", size * (p + 1));
+			if (size * (vaccines.getNumber() + 1) > vaccines.getTotalElements()) {
+				model.addAttribute("firstElement", size * p + 1);
+				model.addAttribute("lastElement", vaccines.getTotalElements());
+			} else {
+				model.addAttribute("firstElement", size * p + 1);
+				model.addAttribute("lastElement", size * (p + 1));
+			}
+			model.addAttribute("nameSearch",nameSearch);
+			model.addAttribute("msg", msg);
+			return "vaccine/vaccine-list";
 		}
-		model.addAttribute("msg", msg);
-		return "vaccine/vaccine-list";
+		
+		
+		
+		
 	}
 
 	@PostMapping(value = "/vaccine/search")
-	public String searchVaccine(Model model, @RequestParam(name = "p", required = false, defaultValue = "0") Integer p,
-			@RequestParam(name = "size", required = false, defaultValue = "5") Integer size,
-			RedirectAttributes redirectAttributes) {
+	public String searchVaccine(Model model) {
 
 		String name = request.getParameter("searchVaccine");
-		Pageable pageable = PageRequest.of(p, size);
-		Page<Vaccine> vaccines = vaccineService.findByVaccineNameContaining(name, pageable);
-
-		if (vaccines.isEmpty()) {
-			model.addAttribute("msg", "No data found!");
-		}
-		model.addAttribute("vaccineList", vaccines);
-
-		if (size * (vaccines.getNumber() + 1) > vaccines.getTotalElements()) {
-			model.addAttribute("firstElement", size * p + 1);
-			model.addAttribute("lastElement", vaccines.getTotalElements());
-		} else {
-			model.addAttribute("firstElement", size * p + 1);
-			model.addAttribute("lastElement", size * (p + 1));
-
-		}
-		redirectAttributes.addFlashAttribute("msg", "Create vaccine successfull!");
-		return "vaccine/vaccine-list";
+		
+		return "redirect:/vaccine/list/?search="+name+"";
 	}
 
 	@GetMapping(value = "/vaccine/add")

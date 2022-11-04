@@ -250,14 +250,14 @@
 								class="form-select mx-2 border-right-0 border-top-0 border-left-0"
 								id="inlineFormCustomSelect" name="showNumberList" onchange="location = this.value;">
 								<option selected></option>
-								<option value="${pageContext.request.contextPath}/vaccine/list?size=5">5</option>
-								<option value="${pageContext.request.contextPath}/vaccine/list?size=10">10</option>
-								<option value="${pageContext.request.contextPath}/vaccine/list?size=15">15</option>
+								<option value="${pageContext.request.contextPath}/vaccine/list?size=5&search=${nameSearch}">5</option>
+								<option value="${pageContext.request.contextPath}/vaccine/list?size=10&search=${nameSearch}">10</option>
+								<option value="${pageContext.request.contextPath}/vaccine/list?size=15&search=${nameSearch}">15</option>
 							</select> <span>entities</span>
 						</div>
 						<div class="col-sm-6"></div>
 						<div class="col-sm-3">
-							<form action="${pageContext.request.contextPath}/vaccine/search?size=${vaccineList.size}", method="post">
+							<form action="${pageContext.request.contextPath}/vaccine/search/" method="post">
 								<div class="input-group ">
 									<input type="search"
 										class="form-control border-right-0 border-top-0 border-left-0 form-select"
@@ -314,16 +314,16 @@
 							<nav aria-label="Page">
 								<ul class="pagination">
 									<li class="page-item"><a class="page-link"
-										href="/vaccine/list?p=${vaccineList.number - 1}&size=${vaccineList.size}"
+										href="/vaccine/list?p=${vaccineList.number - 1}&size=${vaccineList.size}&search=${nameSearch}"
 										aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
 											<span class="sr-only">Previous</span>
 									</a></li>
 									<li class="page-item"><a class="page-link"
-										href="/vaccine/list?p=0&size=${vaccineList.size}">1</a></li>
+										href="/vaccine/list?p=0&size=${vaccineList.size}&search=${nameSearch}">1</a></li>
 									<li class="page-item"><a class="page-link"
-										href="/vaccine/list?p=1&size=${vaccineList.size}">2</a></li>
+										href="/vaccine/list?p=1&size=${vaccineList.size}&search=${nameSearch}">2</a></li>
 									<li class="page-item"><a class="page-link"
-										href="/vaccine/list?p=${vaccineList.number + 1}&size=${vaccineList.size}"
+										href="/vaccine/list?p=${vaccineList.number + 1}&size=${vaccineList.size}&search=${nameSearch}"
 										aria-label="Next"> <span aria-hidden="true">&raquo;</span>
 											<span class="sr-only">Next</span>
 									</a></li>
