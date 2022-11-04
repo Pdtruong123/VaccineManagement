@@ -76,4 +76,10 @@
 .pagination-list{
     border: none;
 }
+.error {
+	color: red;
+ }
+.msg {
+	color: blue;
+ }
 
