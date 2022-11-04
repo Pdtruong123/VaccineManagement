@@ -12,7 +12,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 
-import org.springframework.format.annotation.NumberFormat;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -30,7 +29,6 @@ public class Vaccine {
 
 	@Id
 	@Column(name = "vaccine_id", length = 36)
-	@NumberFormat
 	private String id;
 	
 	@Column(length = 200)
