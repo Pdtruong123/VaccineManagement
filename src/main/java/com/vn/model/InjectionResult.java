@@ -1,5 +1,6 @@
 package com.vn.model;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
 import javax.persistence.*;
@@ -27,8 +28,8 @@ import org.springframework.format.annotation.DateTimeFormat;
 @StartBeforeEndDateValid
 @StartDateAfterNowValid
 
-public class InjectionResult implements StartEndDateable {
-
+public class InjectionResult implements StartEndDateable, Serializable {
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "injectionId")
 	@GenericGenerator(name = "injectionId", strategy = "com.vn.model.StringSuffixSequenceGenerator",
