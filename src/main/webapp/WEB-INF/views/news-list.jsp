@@ -234,7 +234,7 @@
                                 <tr>
                                     <td><input class="form-check mx-auto" type="checkbox" value="${result.id}" name="id"></td>
                                     <td><a href="${pageContext.request.contextPath}/news-list/${result.title}">${result.title}</a></td>
-                                    <td>${result.content}</td>
+                                    <td class="content">${result.content}</td>
                                     <td>${result.postDate}</td>
                                 </tr>
                             </c:forEach>
@@ -244,7 +244,7 @@
                     <div class="h5 text-right text-danger">${error}</div>
                     <div class="row mt-4">
                         <div class="col-sm-3">
-                            <span>Showing 1 to <%--${newsList.numberofElements}--%> of <%--${newsList.totalElements}--%> entities</span>
+                            <span>Showing ${firstElement} to ${lastElement} of ${newsList.totalElements} entities</span>
                         </div>
                         <div class="col-sm-6"></div>
                         <div class="col-sm-3">

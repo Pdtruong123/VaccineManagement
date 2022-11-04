@@ -33,7 +33,16 @@ public class NewsController {
     public String newsListPage(Model model, @RequestParam(value = "p",defaultValue = "0") Integer p,
                                @RequestParam(value = "size", defaultValue = "5") Integer size){
         Pageable pageable = PageRequest.of(p, size);
-        model.addAttribute("newsList", newsService.findAllNews(pageable));
+        Page<News> news = newsService.findAllNews(pageable);
+        model.addAttribute("newsList", news);
+
+        if ((long) size * (news.getNumber() + 1) > news.getTotalElements()) {
+            model.addAttribute("firstElement", size * p + 1);
+            model.addAttribute("lastElement", news.getTotalElements());
+        } else {
+            model.addAttribute("firstElement", size * p + 1);
+            model.addAttribute("lastElement", size * (p + 1));
+        }
         return "news-list";
     }
 

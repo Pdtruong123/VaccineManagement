@@ -252,7 +252,7 @@
                     <div class="h5 text-right text-danger">${error}</div>
                     <div class="row mt-4">
                         <div class="col-sm-3">
-                            <span>Showing 1 to ${size} of ${total} entities</span>
+                            <span>Showing ${firstElement} to ${lastElement} of ${injectionResultList.totalElements} entities</span>
                         </div>
                         <div class="col-sm-6"></div>
                         <div class="col-sm-3">

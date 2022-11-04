@@ -38,18 +38,19 @@ public class InjectionResultController {
 
 
     @GetMapping("/injection-result-list")
-    public String viewPage(Model model, @RequestParam(value = "p", defaultValue = "0") Optional<Integer> p,
+    public String viewPage(Model model, @RequestParam(value = "p", defaultValue = "0") Integer p,
                            @RequestParam(value = "size", defaultValue = "5") Integer size) {
-        Pageable pageable = PageRequest.of(p.orElse(0), size);
+        Pageable pageable = PageRequest.of(p, size);
         Page<InjectionResult> page = injectionResultService.findAll(pageable);
         model.addAttribute("injectionResultList", page);
-        Integer total = injectionResultService.countElement();
 
-        if (size >= total) {
-            size = total;
+        if ((long) size * (page.getNumber() + 1) > page.getTotalElements()) {
+            model.addAttribute("firstElement", size * p + 1);
+            model.addAttribute("lastElement", page.getTotalElements());
+        } else {
+            model.addAttribute("firstElement", size * p + 1);
+            model.addAttribute("lastElement", size * (p + 1));
         }
-        model.addAttribute("size", size);
-        model.addAttribute("total", total);
         return "injection-result-list";
     }
 
@@ -62,13 +63,16 @@ public class InjectionResultController {
         if (page.isEmpty()) {
             model.addAttribute("error", "No data found!");
         }
-        int total = injectionResultService.countContainElement(keyword);
-        if (size >= total) {
-            size = total;
+
+        if ((long) size * (page.getNumber() + 1) > page.getTotalElements()) {
+            model.addAttribute("firstElement", size * p + 1);
+            model.addAttribute("lastElement", page.getTotalElements());
+        } else {
+            model.addAttribute("firstElement", size * p + 1);
+            model.addAttribute("lastElement", size * (p + 1));
         }
-        model.addAttribute("size", size);
         model.addAttribute("injectionResultList", page);
-        model.addAttribute("total", total);
+
         return "injection-result-list";
     }
 
@@ -100,42 +104,16 @@ public class InjectionResultController {
         return "redirect:/injection-result-list";
     }
 
-    @GetMapping("/update/injection-result")
-    public String update(Model model) {
-        model.addAttribute("preventionList", injectionResultService.findAllPrevention());
-        model.addAttribute("vaccineList", vaccineService.findAll());
+    @GetMapping("/update/injection-result/{id}")
+    public String updatePage(Model model, @PathVariable String id) {
+        InjectionResult injectionResult = injectionResultService.findById(id);
+        model.addAttribute("injectionResult", injectionResult);
         return "update-injection-result";
     }
 
     @PostMapping("/update/injection-result")
-    @ResponseBody
-    public JSON_InjectionResult updatePage(Model model, @RequestParam String id) {
-        InjectionResult injectionResult = injectionResultService.findById(id);
-        JSON_InjectionResult json_injectionResult = new JSON_InjectionResult();
-
-        json_injectionResult.setId(injectionResult.getId());
-        json_injectionResult.setPrevention(injectionResult.getPrevention());
-        json_injectionResult.setNumberOfInjection(injectionResult.getNumberOfInjection());
-        json_injectionResult.setInjectionDate(injectionResult.getInjectionDate());
-        json_injectionResult.setNextInjectionDate(injectionResult.getNextInjectionDate());
-        json_injectionResult.setInjectionPlace(injectionResult.getInjectionPlace());
-        Vaccine vaccine = new Vaccine();
-        vaccine.setVaccineName(injectionResult.getVaccine().getVaccineName());
-        json_injectionResult.setVaccine(vaccine);
-
-
-       /* model.addAttribute("updateInjectionResult", injectionResult);
-        model.addAttribute("preventionList", injectionResultService.findAllPrevention());
-        model.addAttribute("vaccineList", vaccineService.findAll());*/
-        return json_injectionResult;
+    public String updateInjectionResult(){
+        return "";
     }
-
-/*    @GetMapping("/add/injection-result")
-    public String addInjectionResultPage(Model model){
-        model.addAttribute("preventionList", injectionResultService.findAllPrevention());
-        model.addAttribute("vaccineList", vaccineService.findAll());
-        return "create-injection-result";
-    }*/
-
 
 }
