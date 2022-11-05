@@ -27,6 +27,7 @@
             integrity="sha512-rstIgDs0xPgmG6RX1Aba4KV5cWJbAMcvRCVmglpam9SoHZiUCyQVDdH2LPlxoHtrv17XWblE/V/PP+Tr04hbtA=="
             crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <link rel="stylesheet" href="../../asserts/css/style.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/news.css">
     <title>News List</title>
 </head>
 <body>
@@ -193,6 +194,7 @@
         </div>
         <div class="col-sm-9 bg-light right">
             <div class="h5 mt-3 text-center text-secondary font-weight-bold mb-3">NEWS LIST</div>
+            <div class="h4 text-success font-weight-bold ml-3">${success}</div>
             <div class="card mx-3">
                 <div class="card-body">
                     <div class="row">
@@ -211,7 +213,7 @@
                             <form action="${pageContext.request.contextPath}/search/news" method="post">
                                 <div class="input-group ">
                                     <input id="searchInput" type="search" class="form-control border-right-0 border-top-0 border-left-0 form-select"
-                                           placeholder="Search" aria-label="Search" aria-describedby="search-addon" name="searchInjectionResult" />
+                                           placeholder="Search" aria-label="Search" aria-describedby="search-addon" name="searchNews" />
                                     <button type="submit" class="input-group-text border-0 bg-white" id="search-addon">
                                         <i class="fas fa-search"></i>
                                     </button>
@@ -220,7 +222,7 @@
                         </div>
                     </div>
                     <div class="mt-3">
-                        <table class="table table-bordered" id="">
+                        <table class="table table-bordered" id="news-tb">
                             <thead>
                             <tr class="bg-info text-white text-center">
                                 <td><input class="form-check mx-auto" type="checkbox" id="checkAll"></td>
@@ -233,9 +235,10 @@
                             <c:forEach items="${newsList.content}" var="result">
                                 <tr>
                                     <td><input class="form-check mx-auto" type="checkbox" value="${result.id}" name="id"></td>
-                                    <td>${result.title}</td>
-                                    <td>${result.content}</td>
-                                    <td>${result.postDate}</td>
+                                    <td class="title-row"><a class="link-col" href="#">${result.title}</a></td>
+                                    <td hidden class="content-row"><input type="hidden">${result.content}</td>
+                                    <td class="preview-row">${result.preview}</td>
+                                    <td class="postdate-row">${result.postDate}</td>
                                 </tr>
                             </c:forEach>
                             </tbody>
@@ -244,7 +247,7 @@
                     <div class="h5 text-right text-danger">${error}</div>
                     <div class="row mt-4">
                         <div class="col-sm-3">
-                            <span>Showing 1 to <%--${newsList.numberofElements}--%> of <%--${newsList.totalElements}--%> entities</span>
+                            <span>Showing ${firstElement} to ${lastElement} of ${newsList.totalElements} entities</span>
                         </div>
                         <div class="col-sm-6"></div>
                         <div class="col-sm-3">
@@ -279,5 +282,7 @@
         </div>
     </div>
 </div>
+<script src="${pageContext.request.contextPath}/js/DeleteNews.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </body>
 </html>

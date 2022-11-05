@@ -15,9 +15,8 @@ public interface InjectionResultRepository extends JpaRepository<InjectionResult
     @Query("select distinct i.prevention from InjectionResult i")
     List<String> findAllPrevention();
 
-    @Query("select i from InjectionResult i where i.id like %:searchParam% or i.prevention like %:searchParam% or i.vaccine.vaccineName like %:searchParam%")
+    @Query(value = "select i from InjectionResult i where i.id like %:searchParam% " +
+            "or i.prevention like %:searchParam% or i.vaccine.vaccineName like %:searchParam% or i.customer.fullName like %:searchParam%")
     Page<InjectionResult> findContainElement(String searchParam, Pageable pageable);
 
-    @Query("select count(i) from InjectionResult i where i.id like %:searchParam% or i.prevention like %:searchParam% or i.vaccine.vaccineName like %:searchParam%")
-    int countContainElement(String searchParam);
 }
