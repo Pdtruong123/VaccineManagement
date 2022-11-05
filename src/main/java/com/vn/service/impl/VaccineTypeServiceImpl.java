@@ -75,11 +75,12 @@ public class VaccineTypeServiceImpl implements VaccineTypeService  {
 		vaccineType.setVaccineTypeStatus(vaccineTypeDTO.getVaccineTypeStatus());
 		vaccineType.setDescription(vaccineTypeDTO.getDescription());
 		vaccineType.setImageFile(vaccineTypeDTO.getImageFile());
-		if (vaccineTypeDTO.getImageUrl() == null) {
+
+		if("1".equals(vaccineTypeDTO.getCustomFileInputHidden())){
+			vaccineType.setImageUrl(null);
+		} else if (vaccineTypeDTO.getImageUrl() == null) {
 			vaccineType.setImageUrl(vaccineType1.getImageUrl());
-//		} else if(vaccineTypeDTO.getImageUrl().equals("")){
-//			vaccineType.setImageUrl(null);
-		}else {
+		} else {
 			vaccineType.setImageUrl(vaccineTypeDTO.getImageUrl());
 		}
 		return vaccineTypeRepository.save(vaccineType).getId();
@@ -100,6 +101,5 @@ public class VaccineTypeServiceImpl implements VaccineTypeService  {
 	public Page<VaccineType> findByVaccineTypeNameContaining(String name, Pageable pageable) {
 		return vaccineTypeRepository.findByVaccineTypeNameContaining(name,pageable);
 	}
-
 
 }

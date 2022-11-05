@@ -76,4 +76,9 @@
 .pagination-list{
     border: none;
 }
-
+td .des{
+    max-width: 200px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}

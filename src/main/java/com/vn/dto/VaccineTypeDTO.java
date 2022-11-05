@@ -1,5 +1,6 @@
 package com.vn.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.springframework.web.multipart.MultipartFile;
 
 import lombok.AllArgsConstructor;
@@ -24,5 +25,7 @@ public class VaccineTypeDTO {
 	private String imageUrl;
 
 	private Boolean vaccineTypeStatus = true;
+
+	private String customFileInputHidden;
 	
 }
