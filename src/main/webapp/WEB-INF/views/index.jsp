@@ -142,12 +142,12 @@
                         </div>
                         <div  class="mt-3 collapse" id="injectResult" data-parent="#accordion">
                             <div class="ml-4 text-sub">
-                                <a class="text-reset text-decoration-none" href="#">
+                                <a class="text-reset text-decoration-none" href="#" id="IR-list">
                                     <span class="ml-2">Injection Result List</span>
                                 </a>
                             </div>
                             <div class="ml-4 mt-2 text-sub">
-                                <a class="text-reset text-decoration-none " href="#">
+                                <a class="text-reset text-decoration-none " href="#" >
                                     <span class="ml-2">Create Injection Result</span>
                                 </a>
                             </div>
@@ -190,18 +190,17 @@
                         </div>
                     </div>
                 </div>
-
-
-
             </div>
 
         </div>
-        <div class="col-sm-9 bg-light right">
-            <div class="h2 mt-5 text-center text-success">Home Page</div>
+        <div class="col-sm-9 bg-light right" id="right-section">
+
 
         </div>
 
     </div>
 </div>
+<script src="${pageContext.request.contextPath}/js/LoadPageAjax.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </body>
 </html>

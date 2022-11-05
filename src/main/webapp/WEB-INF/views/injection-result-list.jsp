@@ -192,100 +192,106 @@
                 </div>
             </div>
         </div>
-        <div class="col-sm-9 bg-light right">
-            <div class="h5 mt-3 text-center text-secondary font-weight-bold mb-3">Injection Result List</div>
-            <div class="h4 text-success font-weight-bold ml-3">${success}</div>
-            <div class="card mx-3">
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-sm-3 form-inline" >
-                            <span>Show</span>
-                            <select class="form-select mx-2 border-right-0 border-top-0 border-left-0" id="inlineFormCustomSelect" name="showNumberList" onchange="location = this.value;">
-                                <option selected></option>
-                                <option value="${pageContext.request.contextPath}/injection-result-list?size=5">5</option>
-                                <option value="${pageContext.request.contextPath}/injection-result-list?size=10">10</option>
-                                <option value="${pageContext.request.contextPath}/injection-result-list?size=15">15</option>
-                            </select>
-                            <span>entities</span>
-                        </div>
-                        <div class="col-sm-6"></div>
-                        <div class="col-sm-3">
-                            <form action="${pageContext.request.contextPath}/search/injection-result" method="post">
-                                <div class="input-group ">
-                                    <input id="searchInput" type="search" class="form-control border-right-0 border-top-0 border-left-0 form-select"
-                                           placeholder="Search" aria-label="Search" aria-describedby="search-addon" name="searchInjectionResult" />
-                                    <button type="submit" class="input-group-text border-0 bg-white" id="search-addon">
-                                        <i class="fas fa-search"></i>
-                                    </button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                    <div class="mt-3">
-                        <table class="table table-bordered" id="table-IR">
-                            <thead>
-                            <tr class="bg-info text-white text-center">
-                                <td><input class="form-check mx-auto" type="checkbox" id="checkAll"></td>
-                                <th>Customer</th>
-                                <th>Vaccine Name</th>
-                                <th>Prevention</th>
-                                <th>Injection</th>
-                                <th>Date Of Injection</th>
-                                <th>Next Injection Date</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <c:forEach items="${injectionResultList.content}" var="result">
-                            <tr>
-                                <td><input class="form-check mx-auto" type="checkbox" value="${result.id}" name="id"></td>
-                                    <td>${result.id}-${result.customer.fullName}-${result.customer.dateOfBirth}</td>
-                                    <td>${result.vaccine.vaccineName}</td>
-                                    <td>${result.prevention}</td>
-                                    <td>${result.numberOfInjection}</td>
-                                    <td>${result.injectionDate}</td>
-                                    <td>${result.nextInjectionDate}</td>
+                                <div class="col-sm-9 bg-light right">
+                                    <div class="h5 mt-3 text-center text-secondary font-weight-bold mb-3">Injection Result List</div>
+                                    <div class="h4 text-success font-weight-bold ml-3">${success}</div>
+                                    <div class="card mx-3">
+                                        <div class="card-body">
+                                            <div class="row">
+                                                <div class="col-sm-3 form-inline" >
+                                                    <span>Show</span>
+                                                    <select class="form-select mx-2 border-right-0 border-top-0 border-left-0" id="inlineFormCustomSelect" name="showNumberList" onchange="location = this.value;">
+                                                        <option selected></option>
+                                                        <option value="${pageContext.request.contextPath}/injection-result-list?size=5">5</option>
+                                                        <option value="${pageContext.request.contextPath}/injection-result-list?size=10">10</option>
+                                                        <option value="${pageContext.request.contextPath}/injection-result-list?size=15">15</option>
+                                                    </select>
+                                                    <span>entities</span>
+                                                </div>
+                                                <div class="col-sm-6"></div>
+                                                <div class="col-sm-3">
+                                                    <form action="${pageContext.request.contextPath}/search/injection-result" method="post">
+                                                        <div class="input-group ">
+                                                            <input id="searchInput" type="search" class="form-control border-right-0 border-top-0 border-left-0 form-select"
+                                                                   placeholder="Search" aria-label="Search" aria-describedby="search-addon" name="searchInjectionResult" />
+                                                            <button type="submit" class="input-group-text border-0 bg-white" id="search-addon">
+                                                                <i class="fas fa-search"></i>
+                                                            </button>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                            <div class="mt-3">
+                                                <table class="table table-bordered" id="table-IR">
+                                                    <thead>
+                                                    <tr class="bg-info text-white text-center">
+                                                        <td><input class="form-check mx-auto" type="checkbox" id="checkAll"></td>
+                                                        <th>Customer</th>
+                                                        <th>Vaccine Name</th>
+                                                        <th>Prevention</th>
+                                                        <th>Injection</th>
+                                                        <th>Date Of Injection</th>
+                                                        <th>Next Injection Date</th>
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                    <c:forEach items="${injectionResultList.content}" var="result">
+                                                        <tr>
+                                                            <td><input class="form-check mx-auto" type="checkbox" value="${result.id}" name="id"></td>
+                                                            <td>${result.id}-${result.customer.fullName}-${result.customer.dateOfBirth}</td>
+                                                            <td>${result.vaccine.vaccineName}</td>
+                                                            <td>${result.prevention}</td>
+                                                            <td>${result.numberOfInjection}</td>
+                                                            <td>${result.injectionDate}</td>
+                                                            <td>${result.nextInjectionDate}</td>
 
-                            </tr>
-                            </c:forEach>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div class="h5 text-right text-danger">${error}</div>
-                    <div class="row mt-4">
-                        <div class="col-sm-3">
-                            <span>Showing ${firstElement} to ${lastElement} of ${injectionResultList.totalElements} entities</span>
+                                                        </tr>
+                                                    </c:forEach>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                            <div class="h5 text-right text-danger">${error}</div>
+                                            <div class="row mt-4">
+                                                <div class="col-sm-3">
+                                                    <span>Showing ${firstElement} to ${lastElement} of ${injectionResultList.totalElements} entities</span>
+                                                </div>
+                                                <div class="col-sm-6"></div>
+                                                <div class="col-sm-3">
+                                                    <nav aria-label="Page">
+                                                        <ul class="pagination">
+                                                            <li class="page-item">
+                                                                <a class="page-link pagination-list" href="/injection-result-list?p=${injectionResultList.number -1}" aria-label="Previous">
+                                                                    <span aria-hidden="true">&laquo;</span>
+                                                                    <span class="sr-only">Previous</span>
+                                                                </a>
+                                                            </li>
+                                                            <li class="page-item"><a class="page-link pagination-list" href="/injection-result-list?p=0">1</a></li>
+                                                            <li class="page-item"><a class="page-link pagination-list" href="/injection-result-list?p=1">2</a></li>
+                                                            <li class="page-item"><a class="page-link pagination-list" href="/injection-result-list?p=2">3</a></li>
+                                                            <li class="page-item">
+                                                                <a class="page-link pagination-list" href="/injection-result-list?p=${injectionResultList.number +1}" aria-label="Next">
+                                                                    <span aria-hidden="true">&raquo;</span>
+                                                                    <span class="sr-only">Next</span>
+                                                                </a>
+                                                            </li>
+                                                        </ul>
+                                                    </nav>
+                                                </div>
+                                            </div>
+                                            <div class="">
+                                                <button class="btn btn-success mr-1" type="submit"><a href="${pageContext.request.contextPath}/add/injection-result" class="text-white text-decoration-none">Create Injection Result</a></button>
+                                                <button class="btn btn-warning mr-1 text-white" type="submit" id="update-button">Update Injection Result</button>
+                                                <button class="btn btn-danger" type="submit" id="delete-button">Delete Injection Result</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                         </div>
-                        <div class="col-sm-6"></div>
-                        <div class="col-sm-3">
-                            <nav aria-label="Page">
-                                <ul class="pagination">
-                                    <li class="page-item">
-                                        <a class="page-link pagination-list" href="/injection-result-list?p=${injectionResultList.number -1}" aria-label="Previous">
-                                            <span aria-hidden="true">&laquo;</span>
-                                            <span class="sr-only">Previous</span>
-                                        </a>
-                                    </li>
-                                    <li class="page-item"><a class="page-link pagination-list" href="/injection-result-list?p=0">1</a></li>
-                                    <li class="page-item"><a class="page-link pagination-list" href="/injection-result-list?p=1">2</a></li>
-                                    <li class="page-item"><a class="page-link pagination-list" href="/injection-result-list?p=2">3</a></li>
-                                    <li class="page-item">
-                                        <a class="page-link pagination-list" href="/injection-result-list?p=${injectionResultList.number +1}" aria-label="Next">
-                                            <span aria-hidden="true">&raquo;</span>
-                                            <span class="sr-only">Next</span>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </nav>
-                        </div>
-                    </div>
-                    <div class="">
-                        <button class="btn btn-success mr-1" type="submit"><a href="${pageContext.request.contextPath}/add/injection-result" class="text-white text-decoration-none">Create Injection Result</a></button>
-                        <button class="btn btn-warning mr-1 text-white" type="submit" id="update-button">Update Injection Result</button>
-                        <button class="btn btn-danger" type="submit" id="delete-button">Delete Injection Result</button>
                     </div>
                 </div>
             </div>
         </div>
+
     </div>
 </div>
 <script src="${pageContext.request.contextPath}/js/DeleteInjectionResult.js"></script>
