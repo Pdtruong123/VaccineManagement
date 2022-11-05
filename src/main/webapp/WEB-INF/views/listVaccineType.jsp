@@ -203,9 +203,9 @@
                             <select class="form-select mx-2 border-right-0 border-top-0 border-left-0" id="inlineFormCustomSelect"
                                     name="showNumberList" onchange="location = this.value;">
                                 <option selected></option>
-                                <option value="${pageContext.request.contextPath}/vaccineType/list?size=5">5</option>
-                                <option value="${pageContext.request.contextPath}/vaccineType/list?size=10">10</option>
-                                <option value="${pageContext.request.contextPath}/vaccineType/list?size=15">15</option>
+                                <option value="${pageContext.request.contextPath}/vaccineType/list?size=5&search=${nameSearch}">5</option>
+                                <option value="${pageContext.request.contextPath}/vaccineType/list?size=10&search=${nameSearch}">10</option>
+                                <option value="${pageContext.request.contextPath}/vaccineType/list?size=15&search=${nameSearch}">15</option>
                             </select>
                             <span>entities</span>
                         </div>
@@ -226,7 +226,7 @@
                         <table class="table table-bordered">
                             <thead>
                             <tr class="bg-info text-white text-center">
-                                <td><input class="form-check mx-auto" type="checkbox" id=""></td>
+                                <th><input class="form-check mx-auto" type="checkbox" id=""></th>
                                 <th>Code</th>
                                 <th>Vaccine Type Name</th>
                                 <th>Description</th>
@@ -236,13 +236,13 @@
                             <tbody>
                             <c:forEach items="${vaccineTypeList.content}" var="element" varStatus="status">
                             <tr>
-                                <td><input class="form-check mx-auto" type="checkbox" id=""></td>
+                                <td><input class="form-check mx-auto" type="checkbox" name="ids" value="${element.id}"></td>
                                 <td>
                                     <a href="${pageContext.request.contextPath}/vaccineType/update/${element.id}">${element.id}</a>
 
                                 </td>
                                 <td>${element.vaccineTypeName}</td>
-                                <td>${element.description}</td>
+                                <td class="des">${element.description}</td>
 								<c:choose>
 									<c:when test="${element.vaccineTypeStatus}">
 										<td>Active</td>
@@ -262,23 +262,24 @@
                     <div><span class="text-danger">${msg}</span></div>
                     <div class="row mt-4">
                         <div class="col-sm-3">
-                            <span>Showing ${vaccineTypeList.size} to ${vaccineTypeList.totalElements} of ${vaccineTypeList.totalElements} entities</span>
+                            <span>Showing ${firstElement} to ${lastElement} of ${vaccineTypeList.totalElements} entities</span>
                         </div>
                         <div class="col-sm-6"></div>
                         <div class="col-sm-3">
                             <nav aria-label="Page">
                                 <ul class="pagination">
                                     <li class="page-item">
-                                        <a class="page-link pagination-list" href="/vaccineType/list?p=${vaccineTypeList.number - 1}" aria-label="Previous">
+                                        <a class="page-link pagination-list"
+                                           href="/vaccineType/list?p=${vaccineTypeList.number - 1}&size=${vaccineTypeList.size}&search=${nameSearch}" aria-label="Previous">
                                             <span aria-hidden="true">&laquo;</span>
                                             <span class="sr-only">Previous</span>
                                         </a>
                                     </li>
-                                    <li class="page-item"><a class="page-link pagination-list" href="/vaccineType/list?p=0">1</a></li>
-                                    <li class="page-item"><a class="page-link pagination-list" href="/vaccineType/list?p=1">2</a></li>
-                                    <li class="page-item"><a class="page-link pagination-list" href="/vaccineType/list?p=2">3</a></li>
+                                    <li class="page-item"><a class="page-link pagination-list" href="/vaccineType/list?p=0&size=${vaccineTypeList.size}&search=${nameSearch}">1</a></li>
+                                    <li class="page-item"><a class="page-link pagination-list" href="/vaccineType/list?p=1&size=${vaccineTypeList.size}&search=${nameSearch}">2</a></li>
+                                    <li class="page-item"><a class="page-link pagination-list" href="/vaccineType/list?p=2&size=${vaccineTypeList.size}&search=${nameSearch}">3</a></li>
                                     <li class="page-item">
-                                        <a class="page-link pagination-list" href="/vaccineType/list?p=${vaccineTypeList.number + 1}" aria-label="Next">
+                                        <a class="page-link pagination-list" href="/vaccineType/list?p=${vaccineTypeList.number + 1}&size=${vaccineTypeList.size}&search=${nameSearch}" aria-label="Next">
                                             <span aria-hidden="true">&raquo;</span>
                                             <span class="sr-only">Next</span>
                                         </a>
@@ -289,7 +290,7 @@
                     </div>
                     <div class="">
                         <a class="btn btn-sm btn-success" href="${pageContext.request.contextPath}/vaccineType/add">New Vaccine Type</a>
-                        <a class="btn btn-sm btn-warning ml-2" href="#">Make In-Active</a>
+                        <a class="btn btn-sm btn-warning ml-2" href="${pageContext.request.contextPath}/vaccineType/update/satus?ids=ids">Make In-Active</a>
                     </div>
                 </div>
             </div>

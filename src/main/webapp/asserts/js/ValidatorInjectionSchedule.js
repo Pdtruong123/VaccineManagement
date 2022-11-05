@@ -1,23 +1,21 @@
-$(document).ready(function (){
-    $.validator.addMethod("validaDate",function (value,element) {
-        var startDate=$('startDate').val();
-        var endDate=$('endDate').val();
+$(document).ready(function () {
+        $.validator.addMethod("greaterToday", function (value, element) {
+            return Date.now() <= Date.parse(value);
+        }, "Please input Date of vaccination with value greater or equal the current date");
 
-        var d1 = startDate.split('/');
-        d1 = new Date(d1.pop(), d1.pop() - 1, d1.pop());
-
-        var d2 = endDate.split('/');
-        d2 = new Date(d2.pop(), d2.pop() - 1, d2.pop());
-        return d2>d1;
-    },"The end date must be greater than the start date");
+        $.validator.addMethod("endDate", function (value, element) {
+            var startDate = $('.startDate').val();
+            return Date.parse(startDate) < Date.parse(value) || value == "";
+        }, "Please input Next date of vaccination with value greater than Date of vaccination");
     $('#form-Schedule').validate({
         rules:{
             startDate:{
-                required:true
+                required:true,
+                greaterToday:true,
             },
             endDate:{
                 required: true,
-                validaDate:true
+                endDate:true
             },
             place:{
                 required:true
@@ -28,3 +26,5 @@ $(document).ready(function (){
         }
     })
 })
+
+

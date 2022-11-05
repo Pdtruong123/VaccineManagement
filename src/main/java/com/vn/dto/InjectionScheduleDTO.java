@@ -8,6 +8,8 @@ import java.util.Date;
 
 @Data
 public class InjectionScheduleDTO {
+
+    String id;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate startDate;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
@@ -15,4 +17,5 @@ public class InjectionScheduleDTO {
     private String place;
     private String note;
     private String vaccineID;
+    private String vaccineName;
 }

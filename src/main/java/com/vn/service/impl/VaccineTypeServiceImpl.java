@@ -4,6 +4,7 @@ import java.nio.file.Path;
 import java.util.List;
 
 import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
 
 import com.vn.model.Vaccine;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +25,9 @@ public class VaccineTypeServiceImpl implements VaccineTypeService  {
 	
 	@Autowired
     ServletContext context;
+
+	@Autowired
+	HttpServletRequest httpServletRequest;
 	
 	@Override
 	public String save(VaccineTypeDTO vaccineTypeDTO) {
@@ -39,17 +43,14 @@ public class VaccineTypeServiceImpl implements VaccineTypeService  {
 				e.printStackTrace();
 			}
 		}
-			
 		VaccineType vaccineType = new VaccineType();
 		vaccineType.setId(vaccineTypeDTO.getId());
 		vaccineType.setVaccineTypeName(vaccineTypeDTO.getVaccineTypeName());
-		vaccineType.setVaccineTypeStatus(vaccineTypeDTO.getVaccineTypeStatus());
 		vaccineType.setDescription(vaccineTypeDTO.getDescription());
 		vaccineType.setImageFile(vaccineTypeDTO.getImageFile());
 		vaccineType.setImageUrl(vaccineTypeDTO.getImageUrl());
 
     	return   vaccineTypeRepository.save(vaccineType).getId();
-		
 	}
 
 	@Override
@@ -67,19 +68,27 @@ public class VaccineTypeServiceImpl implements VaccineTypeService  {
 				e.printStackTrace();
 			}
 		}
-		VaccineType vaccineType1 = vaccineTypeRepository.getById(vaccineTypeDTO.getId());
+		VaccineType vaccineTypeToGetImageCurrent = vaccineTypeRepository.getById(vaccineTypeDTO.getId());
 
 		VaccineType vaccineType = new VaccineType();
 		vaccineType.setId(vaccineTypeDTO.getId());
 		vaccineType.setVaccineTypeName(vaccineTypeDTO.getVaccineTypeName());
-		vaccineType.setVaccineTypeStatus(vaccineTypeDTO.getVaccineTypeStatus());
+
+		String status = httpServletRequest.getParameter("vaccineTypeStatus");
+		if("active".equals(status)){
+			vaccineType.setVaccineTypeStatus(true);
+		}else {
+			vaccineType.setVaccineTypeStatus(false);
+		}
+
 		vaccineType.setDescription(vaccineTypeDTO.getDescription());
 		vaccineType.setImageFile(vaccineTypeDTO.getImageFile());
-		if (vaccineTypeDTO.getImageUrl() == null) {
-			vaccineType.setImageUrl(vaccineType1.getImageUrl());
-//		} else if(vaccineTypeDTO.getImageUrl().equals("")){
-//			vaccineType.setImageUrl(null);
-		}else {
+
+		if("1".equals(vaccineTypeDTO.getCustomFileInputHidden())){
+			vaccineType.setImageUrl(null);
+		} else if (vaccineTypeDTO.getImageUrl() == null) {
+			vaccineType.setImageUrl(vaccineTypeToGetImageCurrent.getImageUrl());
+		} else {
 			vaccineType.setImageUrl(vaccineTypeDTO.getImageUrl());
 		}
 		return vaccineTypeRepository.save(vaccineType).getId();
