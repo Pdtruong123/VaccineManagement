@@ -17,5 +17,5 @@ public interface VaccineTypeRepository extends JpaRepository<VaccineType, String
     Page<VaccineType> findByVaccineTypeNameContaining(String name, Pageable pageable);
 
     @Query("Update VaccineType vt set vt.vaccineTypeStatus =:status WHERE vt.id IN :ids")
-    void upteStatus(@Param("ids") List<String> ids, @Param("status") boolean inactive);
+    void upDateStatus(@Param("ids") List<String> ids, @Param("status") boolean inactive);
 }

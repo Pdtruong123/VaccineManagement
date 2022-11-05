@@ -194,92 +194,129 @@
             </div>
         </div>
         <div class="col-sm-9 bg-light right">
-            <div class="h5 mt-3 text-center text-secondary font-weight-bold mb-3">VACCINE TYPE LIST</div>
+            <div class="h5 mt-3 text-center text-secondary font-weight-bold mb-3">REPORT INJECTION RESULT</div>
             <div class="card mx-3">
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-sm-3 form-inline" >
-                            <span>Show</span>
-                            <select class="form-select mx-2 border-right-0 border-top-0 border-left-0" id="inlineFormCustomSelect"
-                                    name="showNumberList" onchange="location = this.value;">
-                                <option selected></option>
-                                <option value="${pageContext.request.contextPath}/vaccineType/list?size=5&search=${nameSearch}">5</option>
-                                <option value="${pageContext.request.contextPath}/vaccineType/list?size=10&search=${nameSearch}">10</option>
-                                <option value="${pageContext.request.contextPath}/vaccineType/list?size=15&search=${nameSearch}">15</option>
-                            </select>
-                            <span>entities</span>
-                        </div>
-                        <div class="col-sm-6"></div>
-                        <div class="col-sm-3">
-                            <form action="${pageContext.request.contextPath}/vaccineType/search", method="post">
-                                <div class="input-group ">
-                                    <input type="search" class="form-control border-right-0 border-top-0 border-left-0 form-select"
-                                           placeholder="Search" aria-label="Search" aria-describedby="search-addon" name="searchVaccineType" />
-                                    <button type="submit" class="input-group-text border-0 bg-white" id="search-addon">
-                                          <i class="fas fa-search"></i>
-                                    </button>
+                <div class="card-body shadow">
+                    <div class="border-bottom">
+                        <form class="mb-3" action="">
+                            <div class="form-row">
+                                <div class="form-group col-sm-4">
+                                    <label class="font-weight-bold" for="">Display Type: </label>
+                                    <div class="mt-2">
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+                                            <label class="form-check-label" for="inlineRadio1">Report</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+                                            <label class="form-check-label" for="inlineRadio2">Chart</label>
+                                        </div>
+                                    </div>
                                 </div>
-                            </form>
-                        </div>
+                                <div class="form-group col-sm-6">
+                                    <label class="font-weight-bold" for="">Inject Date: </label>
+                                    <div>
+                                        <div class="form-check form-check-inline">
+                                            <label class="form-check-label" for="inlineRadio1">From:</label>
+                                            <input class="form-control form-check-input ml-2" type="date" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <label class="form-check-label" for="inlineRadio2">To:</label>
+                                            <input class="form-control form-check-input ml-2" type="date" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row mt-2">
+                                <div class="form-group col-sm-4">
+                                    <label class="font-weight-bold" for="prevention">Prevention: </label>
+                                    <div class="form-inline">
+                                        <input type="text" class="form-control w-75" placeholder="Enter name" id="prevention">
+                                    </div>
+                                </div>
+                                <div class="form-group col-sm-4">
+                                    <label class="font-weight-bold" for="">VaccineType: </label>
+                                    <div>
+                                        <select class="form-control" aria-label="Default select example">
+                                            <option selected>Select Vaccine Type: </option>
+                                            <option value="1">One</option>
+                                            <option value="2">Two</option>
+                                            <option value="3">Three</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group col-sm-3 ml-5">
+                                    <label class="font-weight-bold ml-2" for="">Action: </label>
+                                    <div class="form-inline">
+                                        <button type="reset" class="btn  btn-primary ml-2">Reset</button>
+                                        <button type="submit" class="btn  btn-primary ml-3">Filter</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </form>
                     </div>
-                    <div class="mt-3">
-                        <table class="table table-bordered">
+
+
+                    <div class="mt-4">
+                        <table class="table table-bordered table-striped">
                             <thead>
                             <tr class="bg-info text-white text-center">
-                                <th><input class="form-check mx-auto" type="checkbox" id=""></th>
-                                <th>Code</th>
-                                <th>Vaccine Type Name</th>
-                                <th>Description</th>
-                                <th>Status</th>
+                                <th>No</th>
+                                <th>Vaccine</th>
+                                <th>Prevention</th>
+                                <th>Customer Name</th>
+                                <th>Date of Inject</th>
+                                <th>Num of Inject</th>
                             </tr>
                             </thead>
                             <tbody>
-                            <c:forEach items="${vaccineTypeList.content}" var="element" varStatus="status">
                             <tr>
-                                <td><input class="form-check mx-auto" type="checkbox" name="ids" value="${element.id}"></td>
-                                <td>
-                                    <a href="${pageContext.request.contextPath}/vaccineType/update/${element.id}">${element.id}</a>
-
-                                </td>
-                                <td>${element.vaccineTypeName}</td>
-                                <td class="des">${element.description}</td>
-								<c:choose>
-									<c:when test="${element.vaccineTypeStatus}">
-										<td>Active</td>
-									</c:when>
-									<c:otherwise>
-										<td>In-Active</td>
-									</c:otherwise>
-								</c:choose>
-								
-                                
+                                <td>1</td>
+                                <td>John</td>
+                                <td>John</td>
+                                <td>Doe</td>
+                                <td>john@example.com</td>
+                                <td>john@example.com</td>
                             </tr>
-                            </c:forEach>
-                            
+                            <tr>
+                                <td>1</td>
+                                <td>John</td>
+                                <td>Mary</td>
+                                <td>Moe</td>
+                                <td>mary@example.com</td>
+                                <td>john@example.com</td>
+                            </tr>
+                            <tr>
+                                <td>1</td>
+                                <td>John</td>
+                                <td>July</td>
+                                <td>Dooley</td>
+                                <td>july@example.com</td>
+                                <td>john@example.com</td>
+                            </tr>
                             </tbody>
                         </table>
                     </div>
-                    <div><span class="text-danger">${msg}</span></div>
                     <div class="row mt-4">
                         <div class="col-sm-3">
-                            <span>Showing ${firstElement} to ${lastElement} of ${vaccineTypeList.totalElements} entities</span>
+                            <span>Showing 1 to 5 of 12 entities</span>
                         </div>
                         <div class="col-sm-6"></div>
                         <div class="col-sm-3">
                             <nav aria-label="Page">
                                 <ul class="pagination">
                                     <li class="page-item">
-                                        <a class="page-link pagination-list"
-                                           href="/vaccineType/list?p=${vaccineTypeList.number - 1}&size=${vaccineTypeList.size}&search=${nameSearch}" aria-label="Previous">
+                                        <a class="page-link pagination-list" href="#" aria-label="Previous">
                                             <span aria-hidden="true">&laquo;</span>
                                             <span class="sr-only">Previous</span>
                                         </a>
                                     </li>
-                                    <li class="page-item"><a class="page-link pagination-list" href="/vaccineType/list?p=0&size=${vaccineTypeList.size}&search=${nameSearch}">1</a></li>
-                                    <li class="page-item"><a class="page-link pagination-list" href="/vaccineType/list?p=1&size=${vaccineTypeList.size}&search=${nameSearch}">2</a></li>
-                                    <li class="page-item"><a class="page-link pagination-list" href="/vaccineType/list?p=2&size=${vaccineTypeList.size}&search=${nameSearch}">3</a></li>
+                                    <li class="page-item"><a class="page-link pagination-list" href="#">1</a></li>
+                                    <li class="page-item"><a class="page-link pagination-list" href="#">2</a></li>
+                                    <li class="page-item"><a class="page-link pagination-list" href="#">3</a></li>
                                     <li class="page-item">
-                                        <a class="page-link pagination-list" href="/vaccineType/list?p=${vaccineTypeList.number + 1}&size=${vaccineTypeList.size}&search=${nameSearch}" aria-label="Next">
+                                        <a class="page-link pagination-list" href="#" aria-label="Next">
                                             <span aria-hidden="true">&raquo;</span>
                                             <span class="sr-only">Next</span>
                                         </a>
@@ -288,10 +325,7 @@
                             </nav>
                         </div>
                     </div>
-                    <div class="">
-                        <a class="btn btn-sm btn-success" href="${pageContext.request.contextPath}/vaccineType/add">New Vaccine Type</a>
-                        <a class="btn btn-sm btn-warning ml-2" href="${pageContext.request.contextPath}/vaccineType/update/satus?ids=ids">Make In-Active</a>
-                    </div>
+
                 </div>
             </div>
         </div>
