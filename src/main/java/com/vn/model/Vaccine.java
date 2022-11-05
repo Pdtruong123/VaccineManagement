@@ -23,7 +23,6 @@ import lombok.Setter;
 @NoArgsConstructor
 //@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class,property = "id")
 public class Vaccine implements Serializable{
-
     @Id
     @Column(name = "vaccine_id", length = 36)
     private String id;
@@ -58,9 +57,8 @@ public class Vaccine implements Serializable{
 
     @OneToMany(mappedBy = "vaccine")
     private Set<InjectionResult> injectionResults;
-
+    @JsonBackReference
     @OneToMany(mappedBy = "vaccine")
-    @JsonManagedReference
     private Set<InjectionSchedule> injectionSchedules;
 
     @Transient
