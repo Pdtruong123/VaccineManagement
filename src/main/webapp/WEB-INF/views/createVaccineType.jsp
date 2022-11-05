@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-         pageEncoding="ISO-8859-1"%>
- <%@ taglib uri="http://www.springframework.org/tags/form"  prefix="form"%>
+         pageEncoding="ISO-8859-1" %>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
@@ -21,15 +21,17 @@
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Open+Sans|Sofia|Trirong">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+          integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"/>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"
             integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js"
             integrity="sha512-rstIgDs0xPgmG6RX1Aba4KV5cWJbAMcvRCVmglpam9SoHZiUCyQVDdH2LPlxoHtrv17XWblE/V/PP+Tr04hbtA=="
             crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="../../asserts/js/loadFileName.js"></script>
-    <script src="../../asserts/js/previewImg.js"></script>
-    <link rel="stylesheet" href="../../asserts/css/style.css">
+    <script src="${pageContext.request.contextPath}/js/loadFileName.js"></script>
+    <script src="${pageContext.request.contextPath}/js/previewImg.js"></script>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
     <title>Create</title>
 </head>
 
@@ -40,7 +42,7 @@
     </nav>
     <div class="row">
         <div class="col-sm-3 border-right left" id="accordion">
-            <div class="list-group list-group-flush" >
+            <div class="list-group list-group-flush">
                 <div class="list-group-item text-white profile">
                     <div><img class="img-admin" src="../../asserts/img/admin.png"></div>
                     <div class="mt-1">Admin</div>
@@ -48,12 +50,12 @@
                 </div>
                 <div class="menu">
                     <div class="list-group-item text font-weight-bold act">Home</div>
-                    <div class="list-group-item" >
-                        <div class="row text act" data-toggle="collapse" data-target="#employee" >
+                    <div class="list-group-item">
+                        <div class="row text act" data-toggle="collapse" data-target="#employee">
                             <div class="col-sm-10 font-weight-bold ">Employee Management</div>
                             <div class="col-sm-2"><i class="fa-solid fa-plus"></i></div>
                         </div>
-                        <div  class="mt-3 collapse" id="employee" data-parent="#accordion">
+                        <div class="mt-3 collapse" id="employee" data-parent="#accordion">
                             <div class="ml-4 text-sub">
                                 <a class="text-reset text-decoration-none " href="#">
                                     <span class="ml-2">Employee List</span>
@@ -66,12 +68,12 @@
                             </div>
                         </div>
                     </div>
-                    <div class="list-group-item" >
+                    <div class="list-group-item">
                         <div class="row text act" data-toggle="collapse" data-target="#customer">
                             <div class="col-sm-10 font-weight-bold ">Customer Management</div>
                             <div class="col-sm-2"><i class="fa-solid fa-plus"></i></div>
                         </div>
-                        <div  class="mt-3 collapse" id="customer"  data-parent="#accordion">
+                        <div class="mt-3 collapse" id="customer" data-parent="#accordion">
                             <div class="ml-4 text-sub">
                                 <a class="text-reset text-decoration-none " href="#">
                                     <span class="ml-2">Customer List</span>
@@ -84,30 +86,32 @@
                             </div>
                         </div>
                     </div>
-                    <div class="list-group-item" >
+                    <div class="list-group-item">
                         <div class="row text act" data-toggle="collapse" data-target="#vaccineType1">
                             <div class="col-sm-10 font-weight-bold ">Vaccine Type Management</div>
                             <div class="col-sm-2"><i class="fa-solid fa-plus"></i></div>
                         </div>
-                        <div  class="mt-3 collapse" id="vaccineType1" data-parent="#accordion">
+                        <div class="mt-3 collapse" id="vaccineType1" data-parent="#accordion">
                             <div class="ml-4 text-sub">
-                                <a class="text-reset text-decoration-none" href="${pageContext.request.contextPath}/vaccineType/list">
+                                <a class="text-reset text-decoration-none"
+                                   href="${pageContext.request.contextPath}/vaccineType/list">
                                     <span class="ml-2">Vaccine Type List</span>
                                 </a>
                             </div>
                             <div class="ml-4 mt-2 text-sub">
-                                <a class="text-reset text-decoration-none" href="${pageContext.request.contextPath}/vaccineType/add">
+                                <a class="text-reset text-decoration-none"
+                                   href="${pageContext.request.contextPath}/vaccineType/add">
                                     <span class="ml-2">Create Vaccine Type</span>
                                 </a>
                             </div>
                         </div>
                     </div>
-                    <div class="list-group-item" >
+                    <div class="list-group-item">
                         <div class="row text act" data-toggle="collapse" data-target="#vaccine">
                             <div class="col-sm-10 font-weight-bold ">Vaccine Management</div>
                             <div class="col-sm-2"><i class="fa-solid fa-plus"></i></div>
                         </div>
-                        <div  class="mt-3 collapse" id="vaccine" data-parent="#accordion">
+                        <div class="mt-3 collapse" id="vaccine" data-parent="#accordion">
                             <div class="ml-4 text-sub">
                                 <a class="text-reset text-decoration-none" href="#">
                                     <span class="ml-2">Vaccine List</span>
@@ -120,12 +124,12 @@
                             </div>
                         </div>
                     </div>
-                    <div class="list-group-item" >
+                    <div class="list-group-item">
                         <div class="row text act" data-toggle="collapse" data-target="#inject">
                             <div class="col-sm-10 font-weight-bold ">Injection Schedule</div>
                             <div class="col-sm-2"><i class="fa-solid fa-plus"></i></div>
                         </div>
-                        <div  class="mt-3 collapse" id="inject" data-parent="#accordion">
+                        <div class="mt-3 collapse" id="inject" data-parent="#accordion">
                             <div class="ml-4 text-sub">
                                 <a class="text-reset text-decoration-none " href="#">
                                     <span class="ml-2">Injection Schedule List</span>
@@ -138,12 +142,12 @@
                             </div>
                         </div>
                     </div>
-                    <div class="list-group-item" >
+                    <div class="list-group-item">
                         <div class="row text act" data-toggle="collapse" data-target="#injectResult">
                             <div class="col-sm-10 font-weight-bold ">Injection Result</div>
                             <div class="col-sm-2"><i class="fa-solid fa-plus"></i></div>
                         </div>
-                        <div  class="mt-3 collapse" id="injectResult" data-parent="#accordion">
+                        <div class="mt-3 collapse" id="injectResult" data-parent="#accordion">
                             <div class="ml-4 text-sub">
                                 <a class="text-reset text-decoration-none" href="#">
                                     <span class="ml-2">Injection Result List</span>
@@ -156,12 +160,12 @@
                             </div>
                         </div>
                     </div>
-                    <div class="list-group-item" >
+                    <div class="list-group-item">
                         <div class="row text act" data-toggle="collapse" data-target="#news">
                             <div class="col-sm-10 font-weight-bold ">News</div>
                             <div class="col-sm-2"><i class="fa-solid fa-plus"></i></div>
                         </div>
-                        <div  class="mt-3 collapse" id="news" data-parent="#accordion">
+                        <div class="mt-3 collapse" id="news" data-parent="#accordion">
                             <div class="ml-4 text-sub">
                                 <a class="text-reset text-decoration-none " href="#">
                                     <span class="ml-2">News List</span>
@@ -174,12 +178,12 @@
                             </div>
                         </div>
                     </div>
-                    <div class="list-group-item" >
+                    <div class="list-group-item">
                         <div class="row text act" data-toggle="collapse" data-target="#report">
                             <div class="col-sm-10 font-weight-bold ">Report</div>
                             <div class="col-sm-2"><i class="fa-solid fa-plus"></i></div>
                         </div>
-                        <div  class="mt-3 collapse" id="report" data-parent="#accordion">
+                        <div class="mt-3 collapse" id="report" data-parent="#accordion">
                             <div class="ml-4 text-sub">
                                 <a class="text-reset text-decoration-none " href="#">
                                     <span class="ml-2">Report Customer</span>
@@ -199,92 +203,27 @@
             <div class="h5 mt-3 text-center text-secondary font-weight-bold mb-3">CREATE VACCINE TYPE</div>
             <div class="card mx-3">
                 <div class="card-body">
-                	<div class="h5 text-danger">${message}</div>
+                    <div class="h5 text-danger">${message}</div>
                     <c:if test="${empty vaccineType.id}">
-                    <form:form action="${pageContext.request.contextPath}/vaccineType/add" modelAttribute="vaccineType" enctype="multipart/form-data">
-                        <div class="form-row">
-                            <div class="form-group col-sm-5">
-                                <label class="font-weight-bold" for="typecode">Vaccine Type Code <span class="text-danger">(*)</span> :</label>
-                                <div class="form-inline">
-                                    <i class="fa-solid fa-fill h5"></i>
-                                    <input type="text" class="form-control ml-2" placeholder="Enter code" name="id" id="typecode" required>
-                                </div>
-
-                            </div>
-                            <div class="form-group col-sm-5">
-                                <label class="font-weight-bold" for="typename">Vaccine Type Name <span class="text-danger">(*)</span> :</label>
-                                <div class="form-inline">
-                                    <i class="fa-solid fa-fill h5"></i>
-                                    <input type="text" class="form-control ml-2" placeholder="Enter name" name="vaccineTypeName" id="typename" required>
-                                </div>
-                            </div>
-                            <div class="form-group col-sm-2">
-                                <label class="font-weight-bold" for="typeactive">Active <span class="text-danger">(*)</span> :</label>
-                                <div class="form-inline">
-                                    <i class="fa-solid fa-fill h5"></i>
-                                    <input class="form-check ml-4 checkbox-lg" type="checkbox" name="vaccineTypeStatus" id="typeactive" checked disabled>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group mt-2">
-                            <label class="font-weight-bold" for="description">Description :</label>
-                            <div class="row">
-                                <div class="col-sm-1 d-flex align-self-center">
-                                    <i class="fa-solid fa-file-prescription h5 "></i>
-                                </div>
-                                <div class="col-sm-11">
-                                    <textarea class="form-control" rows="3" name="description" id="description"></textarea>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group mt-2">
-                            <label class="font-weight-bold">Image :</label>
-                            <div class="row">
-                                <div class="col-sm-1">
-                                    <i class="fa-solid fa-image mt-2 h5"></i>
-                                </div>
-                                <div class="custom-file mb-3 col-sm-5">
-                                    <input type="file" class="custom-file-input" name="imageFile" accept="image/*" id="file-input">
-                                    <label class="custom-file-label" for="customFile">Choose file</label>
-                                </div>
-                            </div>
-                            <div class="img-upload">
-                                <img id="img-preview" src="${pageContext.request.contextPath}/img/admin.png" />
-                            </div>
-                        </div>
-                        <div class="mt-5">
-                            <button type="submit" class="btn btn-sm btn-success">Submit</button>
-                            <button type="reset" class="btn btn-sm btn-primary ml-2">Reset</button>
-                            <a class="btn btn-sm btn-warning ml-2" href="#">Cancel</a>
-                        </div>
-
-                    </form:form>
-                    </c:if>
-
-                    <c:if test="${not empty vaccineType.id}">
-                        <form:form action="${pageContext.request.contextPath}/vaccineType/update" modelAttribute="vaccineType" enctype="multipart/form-data">
+                        <form:form action="${pageContext.request.contextPath}/vaccineType/add"
+                                   modelAttribute="vaccineType" enctype="multipart/form-data">
                             <div class="form-row">
-                                <div class="form-group col-sm-5">
-                                    <label class="font-weight-bold" for="typecode">Vaccine Type Code :</label>
+                                <div class="form-group col-sm-6">
+                                    <label class="font-weight-bold" for="typename">Vaccine Type Name <span
+                                            class="text-danger">(*)</span> :</label>
                                     <div class="form-inline">
-                                        <i class="fa-solid fa-fill h5"></i>
-                                        <input type="text" class="form-control ml-2" placeholder="Enter code" value="${vaccineType.id}" name="id" id="typecode" disabled>
-                                        <input type="hidden" class="form-control ml-2" placeholder="Enter code" value="${vaccineType.id}" name="id" id="typecode">
-                                    </div>
-
-                                </div>
-                                <div class="form-group col-sm-5">
-                                    <label class="font-weight-bold" for="typename">Vaccine Type Name <span class="text-danger">(*)</span> :</label>
-                                    <div class="form-inline">
-                                        <i class="fa-solid fa-fill h5"></i>
-                                        <input type="text" class="form-control ml-2" placeholder="Enter name" value="${vaccineType.vaccineTypeName}" name="vaccineTypeName" id="typename" required>
+                                        <i class="fa-solid fa-fill h5 mr-4"></i>
+                                        <input type="text" class="form-control ml-5 w-75" placeholder="Enter name"
+                                               name="vaccineTypeName" id="typename" required>
                                     </div>
                                 </div>
-                                <div class="form-group col-sm-2">
-                                    <label class="font-weight-bold" for="typeactive">Active <span class="text-danger">(*)</span> :</label>
+                                <div class="form-group col-sm-6">
+                                    <label class="font-weight-bold" for="typeactive">Active <span class="text-danger">(*)</span>
+                                        :</label>
                                     <div class="form-inline">
                                         <i class="fa-solid fa-fill h5"></i>
-                                        <input class="form-check ml-4 checkbox-lg" type="checkbox" name="vaccineTypeStatus" id="typeactive" >
+                                        <input class="form-check ml-4 checkbox-lg" type="checkbox"
+                                               name="vaccineTypeStatus" id="typeactive" checked disabled>
                                     </div>
                                 </div>
                             </div>
@@ -295,7 +234,8 @@
                                         <i class="fa-solid fa-file-prescription h5 "></i>
                                     </div>
                                     <div class="col-sm-11">
-                                        <textarea class="form-control" rows="3" name="description" id="description">${vaccineType.description}</textarea>
+                                        <textarea class="form-control" rows="3" name="description"
+                                                  id="description"></textarea>
                                     </div>
                                 </div>
                             </div>
@@ -305,18 +245,86 @@
                                     <div class="col-sm-1">
                                         <i class="fa-solid fa-image mt-2 h5"></i>
                                     </div>
-                                    <div class="custom-file mb-3 col-sm-5">
-                                        <input type="file" class="custom-file-input" name="imageFile"  accept="image/*" id="file-input">
+                                    <div class="custom-file mb-3 ml-3 col-sm-5">
+                                        <input type="file" class="custom-file-input" name="imageFile" accept="image/*"
+                                               id="file-input">
                                         <label class="custom-file-label" for="customFile">Choose file</label>
                                     </div>
                                 </div>
                                 <div class="img-upload">
-                                   <c:if test="${empty vaccineType.imageUrl}">
-                                       <span class="ml-5 text-danger">Not image found !!!</span>
-                                   </c:if>
-                                        <a class="delete-img">Delete</a>
-                                        <img id="img-preview" src="${pageContext.request.contextPath}/img/imgvaccine/${vaccineType.imageUrl}" />
+                                    <img id="img-preview" src="${pageContext.request.contextPath}/img/admin.png"/>
+                                </div>
+                            </div>
+                            <div class="mt-5">
+                                <button type="submit" class="btn btn-sm btn-success">Submit</button>
+                                <button type="reset" class="btn btn-sm btn-primary ml-2">Reset</button>
+                                <a class="btn btn-sm btn-warning ml-2" href="#">Cancel</a>
+                            </div>
 
+                        </form:form>
+                    </c:if>
+
+                    <c:if test="${not empty vaccineType.id}">
+                        <form:form action="${pageContext.request.contextPath}/vaccineType/update"
+                                   modelAttribute="vaccineType" enctype="multipart/form-data">
+                            <div class="form-row">
+                                <input type="hidden" class="form-control ml-2" placeholder="Enter code"
+                                       value="${vaccineType.id}" name="id" id="typecode">
+                                <div class="form-group col-sm-6">
+                                    <label class="font-weight-bold" for="typename">Vaccine Type Name <span
+                                            class="text-danger">(*)</span> :</label>
+                                    <div class="form-inline">
+                                        <i class="fa-solid fa-fill h5 mr-4"></i>
+                                        <input type="text" class="form-control ml-5 w-75" placeholder="Enter name"
+                                               value="${vaccineType.vaccineTypeName}" name="vaccineTypeName"
+                                               id="typename" required>
+                                    </div>
+                                </div>
+                                <div class="form-group col-sm-6">
+                                    <label class="font-weight-bold" for="typeactive">Active <span class="text-danger">(*)</span>
+                                        :</label>
+                                    <div class="form-inline">
+                                        <i class="fa-solid fa-fill h5"></i>
+                                        <input class="form-check ml-4 checkbox-lg" type="checkbox"
+                                               name="vaccineTypeStatus" id="typeactive">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group mt-2">
+                                <label class="font-weight-bold" for="description">Description :</label>
+                                <div class="row">
+                                    <div class="col-sm-1 d-flex align-self-center">
+                                        <i class="fa-solid fa-file-prescription h5 "></i>
+                                    </div>
+                                    <div class="col-sm-11">
+                                        <textarea class="form-control" rows="3" name="description"
+                                                  id="description">${vaccineType.description}</textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group mt-2">
+                                <label class="font-weight-bold">Image :</label>
+                                <div class="row">
+                                    <div class="col-sm-1">
+                                        <i class="fa-solid fa-image mt-2 h5"></i>
+                                    </div>
+                                    <div class="custom-file mb-3 ml-3 col-sm-5">
+                                        <input type="file" class="custom-file-input" name="imageFile" accept="image/*"
+                                               id="file-input">
+                                        <input type="hidden" class="custom-file-input_hidden"
+                                               name="customFileInputHidden">
+                                        <label class="custom-file-label" for="customFile">Choose file</label>
+                                    </div>
+                                </div>
+                                <div class="img-upload">
+                                    <c:if test="${empty vaccineType.imageUrl}">
+                                        <span class="ml-5 text-danger text-img font-weight-bold">Not image founded !!!</span>
+                                    </c:if>
+                                    <img id="img-preview"
+                                         src="${pageContext.request.contextPath}/img/imgvaccine/${vaccineType.imageUrl}"/>
+                                    <c:if test="${not empty vaccineType.imageUrl}">
+                                        <a class="btn btn-sm btn-danger ml-5 delete-img text-white">Delete</a>
+                                    </c:if>
                                 </div>
                             </div>
                             <div class="mt-5">
