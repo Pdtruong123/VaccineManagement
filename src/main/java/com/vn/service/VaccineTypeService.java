@@ -19,6 +19,8 @@ public interface VaccineTypeService {
 	Page<VaccineType> findAll(Pageable pageable);
 
 	Page<VaccineType> findByVaccineTypeNameContaining(String string, Pageable pageable);
+	
+	List<VaccineType> findAll();
 
 
 

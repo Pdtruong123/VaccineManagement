@@ -208,13 +208,6 @@
                         <form:form action="${pageContext.request.contextPath}/vaccineType/add"
                                    modelAttribute="vaccineType" enctype="multipart/form-data">
                             <div class="form-row">
-                                    <%--                            <div class="form-group col-sm-5">--%>
-                                    <%--                                <label class="font-weight-bold" for="typecode">Vaccine Type Code <span class="text-danger">(*)</span> :</label>--%>
-                                    <%--                                <div class="form-inline">--%>
-                                    <%--                                    <i class="fa-solid fa-fill h5"></i>--%>
-                                    <%--                                    <input type="text" class="form-control ml-2" placeholder="Enter code" name="id" id="typecode" required>--%>
-                                    <%--                                </div>--%>
-                                    <%--                            </div>--%>
                                 <div class="form-group col-sm-6">
                                     <label class="font-weight-bold" for="typename">Vaccine Type Name <span
                                             class="text-danger">(*)</span> :</label>
@@ -277,17 +270,6 @@
                             <div class="form-row">
                                 <input type="hidden" class="form-control ml-2" placeholder="Enter code"
                                        value="${vaccineType.id}" name="id" id="typecode">
-
-
-                                    <%--<div class="form-group col-sm-5">
-                                        <label class="font-weight-bold" for="typecode">Vaccine Type Code :</label>
-                                        <div class="form-inline">
-                                            <i class="fa-solid fa-fill h5"></i>
-                                            <input type="text" class="form-control ml-2" placeholder="Enter code" value="${vaccineType.id}" name="id" id="typecode" disabled>
-                                            <input type="hidden" class="form-control ml-2" placeholder="Enter code" value="${vaccineType.id}" name="id" id="typecode">
-                                        </div>
-
-                                    </div>--%>
                                 <div class="form-group col-sm-6">
                                     <label class="font-weight-bold" for="typename">Vaccine Type Name <span
                                             class="text-danger">(*)</span> :</label>

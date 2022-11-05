@@ -102,4 +102,11 @@ public class VaccineTypeServiceImpl implements VaccineTypeService  {
 		return vaccineTypeRepository.findByVaccineTypeNameContaining(name,pageable);
 	}
 
+	@Override
+	public List<VaccineType> findAll() {
+		// TODO Auto-generated method stub
+		return vaccineTypeRepository.findAll();
+	}
+
+
 }

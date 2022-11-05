@@ -138,7 +138,7 @@
 									</a>
 								</div>
 								<div class="ml-4 mt-2 text-sub">
-									<a class="text-reset text-decoration-none " href="#"> <span
+									<a class="text-reset text-decoration-none " href="${pageContext.request.contextPath}/vaccine/add"> <span
 										class="ml-2">Create Vaccine</span>
 									</a>
 								</div>
@@ -238,6 +238,11 @@
 
 			</div>
 			<div class="col-sm-9 bg-light right">
+			<div
+					class="h5 mt-3 text-center text-secondary font-weight-bold mb-3">LIST
+					VACCINE</div>
+					<span class="msg">${msg}</span>
+					
 				<div class="card-body">
 					<div class="row">
 						<div class="col-sm-3 form-inline">
@@ -245,14 +250,14 @@
 								class="form-select mx-2 border-right-0 border-top-0 border-left-0"
 								id="inlineFormCustomSelect" name="showNumberList" onchange="location = this.value;">
 								<option selected></option>
-								<option value="${pageContext.request.contextPath}/vaccine/list?size=5">5</option>
-								<option value="${pageContext.request.contextPath}/vaccine/list?size=10">10</option>
-								<option value="${pageContext.request.contextPath}/vaccine/list?size=15">15</option>
+								<option value="${pageContext.request.contextPath}/vaccine/list?size=5&search=${nameSearch}">5</option>
+								<option value="${pageContext.request.contextPath}/vaccine/list?size=10&search=${nameSearch}">10</option>
+								<option value="${pageContext.request.contextPath}/vaccine/list?size=15&search=${nameSearch}">15</option>
 							</select> <span>entities</span>
 						</div>
 						<div class="col-sm-6"></div>
 						<div class="col-sm-3">
-							<form action="${pageContext.request.contextPath}/vaccine/search", method="post">
+							<form action="${pageContext.request.contextPath}/vaccine/search/" method="post">
 								<div class="input-group ">
 									<input type="search"
 										class="form-control border-right-0 border-top-0 border-left-0 form-select"
@@ -283,16 +288,16 @@
 							<c:forEach items="${vaccineList.content}" var="result">
 								<tr>
 									<td><input type="checkbox" value="${result.id}" name="id"></td>
-									<td>${result.id}</td>
+									<td><a href="${pageContext.request.contextPath}/vaccine/update/${result.id}">${result.id}</td>
 									<td>${result.vaccineName}</td>
 									<td>${result.vaccineType.vaccineTypeName}</td>
 									<td>${result.numberOfInjection}</td>
 									<td>${result.origin}</td>
 									<c:if test="${result.status=='true'}">
-									<td>Active</td>
+									<td id="status" class="status" value="Active">Active</td>
 									</c:if>
-									<c:if test="${!result.status=='true'}">
-									<td>In-Active</td>
+									<c:if test="${result.status=='false'}">
+									<td id="status" class="status" value="In-Active">In-Active</td>
 									</c:if>
 									
 								</tr>
@@ -301,23 +306,24 @@
 					</table>
 					<div class="row mt-4">
 						<div class="col-sm-3">
-							<span>Showing ${vaccineList.size} to ${vaccineList.totalElements} of 5 entities</span>
+						
+							<span>Showing ${firstElement} to ${lastElement} of ${vaccineList.totalElements} entities</span>
 						</div>
 						<div class="col-sm-6"></div>
 						<div class="col-sm-3">
 							<nav aria-label="Page">
 								<ul class="pagination">
 									<li class="page-item"><a class="page-link"
-										href="/vaccine/list?p=${vaccineList.number - 1}"
+										href="/vaccine/list?p=${vaccineList.number - 1}&size=${vaccineList.size}&search=${nameSearch}"
 										aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
 											<span class="sr-only">Previous</span>
 									</a></li>
 									<li class="page-item"><a class="page-link"
-										href="/vaccine/list?p=0">1</a></li>
+										href="/vaccine/list?p=0&size=${vaccineList.size}&search=${nameSearch}">1</a></li>
 									<li class="page-item"><a class="page-link"
-										href="/vaccine/list?p=1">2</a></li>
+										href="/vaccine/list?p=1&size=${vaccineList.size}&search=${nameSearch}">2</a></li>
 									<li class="page-item"><a class="page-link"
-										href="/vaccine/list?p=${vaccineList.number + 1}"
+										href="/vaccine/list?p=${vaccineList.number + 1}&size=${vaccineList.size}&search=${nameSearch}"
 										aria-label="Next"> <span aria-hidden="true">&raquo;</span>
 											<span class="sr-only">Next</span>
 									</a></li>
@@ -331,20 +337,17 @@
 							<a href="${pageContext.request.contextPath}/vaccine/add"
 								class="text-white">Create Vaccine</a>
 						</button>
-						<button class="btn btn-warning" type="submit">
-							<a href="${pageContext.request.contextPath}/vaccine/update"
-								class="text-white">Update Vaccine</a>
+						<button class="btn btn-warning" type="submit" onclick="updateButton()">
+							Update Vaccine
 						</button>
-						<button class="btn btn-danger" type="submit" id="delete-button">Delete
-							Vaccine</button>
+						<button class="btn btn-danger" type="submit" id="make-in-active-button">Make In-Active</button>
 					</div>
-					<span class="msg">${msg}</span>
 				</div>
 
 			</div>
 		</div>
 
-		<script src="${pageContext.request.contextPath}/js/DeleteVaccine.js"></script>
+		<script src="${pageContext.request.contextPath}/js/ListVaccine.js"></script>
 		<script
 			src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
 			integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
