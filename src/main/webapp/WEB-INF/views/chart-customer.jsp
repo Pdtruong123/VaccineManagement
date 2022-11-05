@@ -27,8 +27,10 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js"
             integrity="sha512-rstIgDs0xPgmG6RX1Aba4KV5cWJbAMcvRCVmglpam9SoHZiUCyQVDdH2LPlxoHtrv17XWblE/V/PP+Tr04hbtA=="
             crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+    <script src="${pageContext.request.contextPath}/js/chart.js"></script>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
-    <title>List</title>
+    <title>Customer Chart</title>
 </head>
 
 <body>
@@ -194,114 +196,48 @@
             </div>
         </div>
         <div class="col-sm-9 bg-light right">
-            <div class="h5 mt-3 text-center text-secondary font-weight-bold mb-3">VACCINE TYPE LIST</div>
-            <div class="card mx-3">
+            <div class="h5 mt-3 text-center text-secondary font-weight-bold mb-3">REPORT CUSTOMER</div>
+            <div class="card mx-3 shadow">
                 <div class="card-body">
-                    <div class="row">
-                        <div class="col-sm-3 form-inline" >
-                            <span>Show</span>
-                            <select class="form-select mx-2 border-right-0 border-top-0 border-left-0" id="inlineFormCustomSelect"
-                                    name="showNumberList" onchange="location = this.value;">
-                                <option selected></option>
-                                <option value="${pageContext.request.contextPath}/vaccineType/list?size=5&search=${nameSearch}">5</option>
-                                <option value="${pageContext.request.contextPath}/vaccineType/list?size=10&search=${nameSearch}">10</option>
-                                <option value="${pageContext.request.contextPath}/vaccineType/list?size=15&search=${nameSearch}">15</option>
-                            </select>
-                            <span>entities</span>
-                        </div>
-                        <div class="col-sm-6"></div>
-                        <div class="col-sm-3">
-                            <form action="${pageContext.request.contextPath}/vaccineType/search", method="post">
-                                <div class="input-group ">
-                                    <input type="search" class="form-control border-right-0 border-top-0 border-left-0 form-select"
-                                           placeholder="Search" aria-label="Search" aria-describedby="search-addon" name="searchVaccineType" />
-                                    <button type="submit" class="input-group-text border-0 bg-white" id="search-addon">
-                                          <i class="fas fa-search"></i>
-                                    </button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                    <div class="mt-3">
-                        <table class="table table-bordered">
-                            <thead>
-                            <tr class="bg-info text-white text-center">
-                                <th><input class="form-check mx-auto" type="checkbox" id=""></th>
-                                <th>Code</th>
-                                <th>Vaccine Type Name</th>
-                                <th>Description</th>
-                                <th>Status</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <c:forEach items="${vaccineTypeList.content}" var="element" varStatus="status">
-                            <tr>
-                                <td><input class="form-check mx-auto" type="checkbox" name="ids" value="${element.id}"></td>
-                                <td>
-                                    <a href="${pageContext.request.contextPath}/vaccineType/update/${element.id}">${element.id}</a>
-
-                                </td>
-                                <td>${element.vaccineTypeName}</td>
-                                <td class="des">${element.description}</td>
-								<c:choose>
-									<c:when test="${element.vaccineTypeStatus}">
-										<td>Active</td>
-									</c:when>
-									<c:otherwise>
-										<td>In-Active</td>
-									</c:otherwise>
-								</c:choose>
-								
-                                
-                            </tr>
-                            </c:forEach>
-                            
-                            </tbody>
-                        </table>
-                    </div>
-                    <div><span class="text-danger">${msg}</span></div>
-                    <div class="row mt-4">
-                        <div class="col-sm-3">
-                            <span>Showing ${firstElement} to ${lastElement} of ${vaccineTypeList.totalElements} entities</span>
-                        </div>
-                        <div class="col-sm-6"></div>
-                        <div class="col-sm-3">
-                            <nav aria-label="Page">
-                                <ul class="pagination">
-                                    <li class="page-item">
-                                        <a class="page-link pagination-list"
-                                           href="/vaccineType/list?p=${vaccineTypeList.number - 1}&size=${vaccineTypeList.size}&search=${nameSearch}" aria-label="Previous">
-                                            <span aria-hidden="true">&laquo;</span>
-                                            <span class="sr-only">Previous</span>
-                                        </a>
-                                    </li>
-                                    <li class="page-item"><a class="page-link pagination-list" href="/vaccineType/list?p=0&size=${vaccineTypeList.size}&search=${nameSearch}">1</a></li>
-                                    <li class="page-item"><a class="page-link pagination-list" href="/vaccineType/list?p=1&size=${vaccineTypeList.size}&search=${nameSearch}">2</a></li>
-                                    <li class="page-item"><a class="page-link pagination-list" href="/vaccineType/list?p=2&size=${vaccineTypeList.size}&search=${nameSearch}">3</a></li>
-                                    <li class="page-item">
-                                        <a class="page-link pagination-list" href="/vaccineType/list?p=${vaccineTypeList.number + 1}&size=${vaccineTypeList.size}&search=${nameSearch}" aria-label="Next">
-                                            <span aria-hidden="true">&raquo;</span>
-                                            <span class="sr-only">Next</span>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </nav>
-                        </div>
-                    </div>
                     <div class="">
-                        <a class="btn btn-sm btn-success" href="${pageContext.request.contextPath}/vaccineType/add">New Vaccine Type</a>
-                        <a class="btn btn-sm btn-warning ml-2" href="${pageContext.request.contextPath}/vaccineType/update/satus?ids=ids">Make In-Active</a>
+                        <div class="form-row">
+                            <div class="form-group col-sm-3">
+                                <label class="font-weight-bold" for="">Display Type: </label>
+                                <div class="mt-2">
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+                                        <label class="form-check-label" for="inlineRadio1">Report</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+                                        <label class="form-check-label" for="inlineRadio2">Chart</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-sm-3">
+                                <label class="font-weight-bold" for="">Select Year: </label>
+                                <div>
+                                    <select class="form-control" aria-label="Default select example">
+                                        <option selected value="1">2019</option>
+                                        <option value="1">2020</option>
+                                        <option value="2">2021</option>
+                                        <option value="3">2022</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
+            </div>
+            <div class="card mx-3 mt-4 shadow">
+                <div class="font-weight-bold h6 mt-3 ml-3">REPORT CUSTOMER CHART</div>
+                <div class="mx-3 border-top">
+                    <canvas class="mt-3" id="myChart" ></canvas>
+                </div>
+
             </div>
         </div>
     </div>
 </div>
-
-<script
-        src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
-        integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
 </body>
 </html>

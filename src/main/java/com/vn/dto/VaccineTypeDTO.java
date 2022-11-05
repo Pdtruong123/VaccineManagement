@@ -24,7 +24,7 @@ public class VaccineTypeDTO {
 	
 	private String imageUrl;
 
-	private Boolean vaccineTypeStatus = true;
+	private String vaccineTypeStatus ;
 
 	private String customFileInputHidden;
 	

@@ -285,8 +285,8 @@
                                         :</label>
                                     <div class="form-inline">
                                         <i class="fa-solid fa-fill h5"></i>
-                                        <input class="form-check ml-4 checkbox-lg" type="checkbox"
-                                               name="vaccineTypeStatus" id="typeactive">
+                                        <input class="form-check ml-4 checkbox-lg check-status" type="checkbox"
+                                               name="vaccineTypeStatus" id="typeactive" value="active">
                                     </div>
                                 </div>
                             </div>
