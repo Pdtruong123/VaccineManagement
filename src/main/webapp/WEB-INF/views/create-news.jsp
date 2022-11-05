@@ -198,7 +198,7 @@
             </div>
         </div>
         <div class="col-sm-9 bg-light right">
-            <h1 class="h5 mt-3 text-center text-secondary font-weight-bold mb-3">CREATE INJECTION RESULT</h1>
+            <h1 class="h5 mt-3 text-center text-secondary font-weight-bold mb-3">CREATE NEWS</h1>
             <div class="h4 text-success font-weight-bold ml-3">${success}</div>
             <div class="card mx-3">
                 <div class="card-body">

@@ -1,10 +1,6 @@
 $(document).ready(function () {
     $.validator.addMethod("greaterThanToday", function (value, element) {
-        var now = new Date();
-        if (!/Invalid|NaN/.test(new Date(value))) {
-            return new Date(value) >= now;
-        }
-        return isNaN(value) || (parseFloat(value) >= now);
+        return Date.now() <= Date.parse(value);
     }, "Please input Date of vaccination with value greater or equal the current date");
     $.validator.addMethod("endDate", function (value, element) {
         var startDate = $('#dateOfInjection').val();
@@ -17,9 +13,8 @@ $(document).ready(function () {
 
     $("#IR-form").validate({
         rules: {
-            id: {
-                required: true,
-                maxLength: 36
+            customer: {
+                checkSelect: true,
             },
             prevention: {
                 required: true
@@ -40,7 +35,7 @@ $(document).ready(function () {
                 endDate: true
             },
             injectionPlace: {
-                required: true,
+                checkSelect: true,
                 maxLength: 255
             },
             prevention: {

@@ -29,6 +29,9 @@ public class VaccineTypeController {
     private VaccineTypeService vaccineTypeService;
 
     @Autowired
+    private VaccineTypeRepository vaccineTypeRepository;
+
+    @Autowired
     HttpServletRequest request;
 
     @GetMapping(value = "/vaccineType/list")
@@ -91,4 +94,14 @@ public class VaccineTypeController {
         return "redirect:/vaccineType/list";
 
     }
+
+//    @PostMapping("/api/update/satus")
+//    public String updateVaccineTypeStatus(@RequestParam(value = "ids") List<String> ids,  @RequestParam(value = "status", defaultValue = "false") Boolean inactive) {
+//
+//        vaccineTypeRepository.upteStatus(ids, inactive);
+//
+//        return "redirect:/vaccineType/list";
+//
+//    }
+
 }

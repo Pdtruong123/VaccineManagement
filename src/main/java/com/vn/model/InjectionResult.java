@@ -5,8 +5,12 @@ import java.time.LocalDate;
 
 import javax.persistence.*;
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.constraints.Future;
 import javax.validation.constraints.NotBlank;
 
+import com.vn.annotation.StartBeforeEndDateValid;
+import com.vn.annotation.StartDateAfterNowValid;
+import com.vn.annotation.StartEndDateable;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -21,9 +25,11 @@ import org.springframework.format.annotation.DateTimeFormat;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@StartBeforeEndDateValid
+@StartDateAfterNowValid
 
-public class InjectionResult implements Serializable {
-
+public class InjectionResult implements StartEndDateable, Serializable {
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "injectionId")
 	@GenericGenerator(name = "injectionId", strategy = "com.vn.model.StringSuffixSequenceGenerator",
@@ -40,6 +46,7 @@ public class InjectionResult implements Serializable {
 
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Column(name = "injection_date")
+	@Future(message = "")
 	private LocalDate injectionDate;
 
 

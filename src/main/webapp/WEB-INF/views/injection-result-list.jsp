@@ -194,6 +194,7 @@
         </div>
         <div class="col-sm-9 bg-light right">
             <div class="h5 mt-3 text-center text-secondary font-weight-bold mb-3">Injection Result List</div>
+            <div class="h4 text-success font-weight-bold ml-3">${success}</div>
             <div class="card mx-3">
                 <div class="card-body">
                     <div class="row">
@@ -252,7 +253,7 @@
                     <div class="h5 text-right text-danger">${error}</div>
                     <div class="row mt-4">
                         <div class="col-sm-3">
-                            <span>Showing 1 to ${size} of ${total} entities</span>
+                            <span>Showing ${firstElement} to ${lastElement} of ${injectionResultList.totalElements} entities</span>
                         </div>
                         <div class="col-sm-6"></div>
                         <div class="col-sm-3">

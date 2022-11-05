@@ -76,4 +76,17 @@
 .pagination-list{
     border: none;
 }
+.error {
+	color: red;
+ }
+.msg {
+	color: blue;
+ }
 
+
+td .des{
+    max-width: 200px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}

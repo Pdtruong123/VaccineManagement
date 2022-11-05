@@ -226,7 +226,7 @@
                         <table class="table table-bordered">
                             <thead>
                             <tr class="bg-info text-white text-center">
-                                <td><input class="form-check mx-auto" type="checkbox" id=""></td>
+                                <th><input class="form-check mx-auto" type="checkbox" id=""></th>
                                 <th>Code</th>
                                 <th>Vaccine Type Name</th>
                                 <th>Description</th>
@@ -242,7 +242,7 @@
 
                                 </td>
                                 <td>${element.vaccineTypeName}</td>
-                                <td>${element.description}</td>
+                                <td class="des">${element.description}</td>
 								<c:choose>
 									<c:when test="${element.vaccineTypeStatus}">
 										<td>Active</td>
