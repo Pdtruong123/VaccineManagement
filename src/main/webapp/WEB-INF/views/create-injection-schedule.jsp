@@ -202,13 +202,12 @@
                 <div class="head-title card-header">
                     <h4 class="text-center">CREATE INJECTION SCHEDULE</h4>
                 </div>
-                <form:form modelAttribute="injection" action="${pageContext.request.contextPath}/add/injectionSchedule"
-                           method="post" id="form-Schedule">
+                <form id="form-injectionSchedule">
                     <div class="card-body">
                         <div class="mt-1 row">
                             <div class="col-sm-4">
                                 <label>Vaccine</label><label class="lbls">(*)</label>
-                                <select name="vaccineID" class="form-control">
+                                <select id="vaccineID" class="form-control">
                                     <c:forEach items="${listVaccine}" var="listvaccine">
                                         <option value="${listvaccine.id}">${listvaccine.vaccineName}</option>
                                     </c:forEach>
@@ -216,31 +215,31 @@
                             </div>
                             <div class="col-sm-4">
                                 <label>From</label><label class="lbls">(*)</label>
-                                <form:input path="startDate" type="date" name="startDate" class="form-control"/>
+                                <input type="date" name="startDate" class="form-control"/>
                             </div>
                             <div class="col-sm-4">
                                 <label>To</label><label class="lbls">(*)</label>
-                                <form:input path="endDate" type="date" name="endDate" class="form-control"/>
+                                <input type="date" name="endDate" class="form-control"/>
                             </div>
                         </div>
                         <div class="mt-2 row">
                             <div class="col-sm-5">
                                 <label>Place</label><label class="lbls">(*)</label>
-                                <form:textarea path="place" name="place" class="form-control"></form:textarea>
+                                <textarea name="place" class="form-control"></textarea>
                             </div>
                             <div class="col-sm-7">
                                 <label>Note:</label>
-                                <form:textarea path="note" name="note" class="form-control"></form:textarea>
+                                <textarea name="note" class="form-control"></textarea>
                             </div>
 
                         </div>
                         <div class="pt-3">
-                            <button type="submit" id="btnSubmit" class="btn btn-primary">Save</button>
+                            <button type="submit" id="btnSave" class="btn btn-primary">Save</button>
                             <button type="submit" class="btn btn-danger ml-4">Reset</button>
                             <button type="reset" class="btn btn-warning ml-4">Cancle</button>
                         </div>
                     </div>
-                </form:form>
+                </form>
             </div>
         </div>
 
@@ -249,5 +248,6 @@
 </div>
 </div>
 <script src="${pageContext.request.contextPath}/js/ValidatorInjectionSchedule.js"></script>
+<script src="${pageContext.request.contextPath}/js/InjectionScheduleApi.js"></script>
 </body>
 </html>

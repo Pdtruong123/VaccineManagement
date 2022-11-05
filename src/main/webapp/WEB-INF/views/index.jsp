@@ -196,12 +196,11 @@
             </div>
 
         </div>
-        <div class="col-sm-9 bg-light right">
-            <div class="h2 mt-5 text-center text-success">Home Page</div>
-
+        <div class="col-sm-9 bg-light right" id="mainIndex">
         </div>
 
     </div>
 </div>
+<script src="${pageContext.request.contextPath}/js/InjectionScheduleApi.js"></script>
 </body>
 </html>

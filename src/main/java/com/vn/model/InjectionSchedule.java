@@ -52,9 +52,9 @@ public class InjectionSchedule implements Serializable {
     private LocalDate startDate;
 
     //    @JsonIgnore
+    @JsonManagedReference
     @ManyToOne
     @JoinColumn(name = "vaccine_id")
-    @JsonBackReference
     private Vaccine vaccine;
 
     @Transient
