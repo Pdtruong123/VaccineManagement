@@ -59,11 +59,4 @@ public class InjectionScheduleController {
 ////        injectionScheduleService.save(injectionScheduleDTO);
 //        return "redirect:/injectionScheduleList";
 //    }
-    @GetMapping("/listInjectionSchedule")
-    public String listInjectionSchedule(Model model, @RequestParam("l")Optional<Integer> l){
-        org.springframework.data.domain.Pageable pageable= PageRequest.of(l.orElse(0),5);
-        Page<InjectionSchedule> page= injectionScheduleReponsitory.findAll(pageable);
-        model.addAttribute("listInjectionPage",page);
-        return "injectionScheduleList";
-    }
 }
