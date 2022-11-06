@@ -1,4 +1,4 @@
-﻿package com.vn.api;
+package com.vn.api;
 
 import com.vn.dto.InjectionScheduleDTO;
 import com.vn.model.InjectionSchedule;
@@ -8,15 +8,14 @@ import com.vn.repository.VaccineRepository;
 import com.vn.service.InjectionScheduleService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.web.bind.annotation.*;
 
-import java.beans.BeanProperty;
+import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/schedule")
@@ -31,24 +30,17 @@ public class InjectionScheduleApi {
     VaccineRepository vaccineReponsitory;
 
 
-    @PostMapping("/add/injection")
-    public InjectionScheduleDTO createInjection(InjectionScheduleDTO injectionScheduleDTO){
+    @PostMapping("/api/create")
+    public InjectionScheduleDTO createInjection(@Valid @RequestBody InjectionScheduleDTO injectionScheduleDTO){
         return injectionScheduleService.save(injectionScheduleDTO);
     }
 
-    @GetMapping("/list")
-    public List<InjectionSchedule> getList(){
-        return injectionScheduleReponsitory.findAll();
-    }
-    @GetMapping("/lisvaccine")
-    public List<Vaccine> getList1(){
-        return vaccineReponsitory.findAll();
-    }
     @GetMapping("/api/list")
-    public List<InjectionScheduleDTO> getListApi(){
+    public List<InjectionScheduleDTO> getListApi(@RequestParam("l") Optional<Integer> l){
         List<InjectionScheduleDTO> result = new ArrayList<>();
+        org.springframework.data.domain.Pageable pageable= PageRequest.of(l.orElse(0),5);
 
-        List<InjectionSchedule> entities = injectionScheduleReponsitory.findAll();
+        Page<InjectionSchedule> entities =  injectionScheduleReponsitory.findAll(pageable);
         if(entities != null) {
             entities.forEach(x->{
                 InjectionScheduleDTO scheduleDTO= new InjectionScheduleDTO();
