@@ -232,7 +232,7 @@
             <div class="card mx-3 mt-4 shadow">
                 <div class="font-weight-bold h6 mt-3 ml-3">REPORT CUSTOMER CHART</div>
                 <div class="mx-3 border-top">
-                    <canvas class="mt-3" id="myChart" style="width:100%; height: 370px;"></canvas>
+                    <canvas class="mt-3" id="myChart"></canvas>
                 </div>
 
             </div>

@@ -202,9 +202,9 @@
                                                     <span>Show</span>
                                                     <select class="form-select mx-2 border-right-0 border-top-0 border-left-0" id="inlineFormCustomSelect" name="showNumberList" onchange="location = this.value;">
                                                         <option selected></option>
-                                                        <option value="${pageContext.request.contextPath}/injection-result-list?size=5">5</option>
-                                                        <option value="${pageContext.request.contextPath}/injection-result-list?size=10">10</option>
-                                                        <option value="${pageContext.request.contextPath}/injection-result-list?size=15">15</option>
+                                                        <option value="${pageContext.request.contextPath}/injection-result-list?size=5&search=${keyword}">5</option>
+                                                        <option value="${pageContext.request.contextPath}/injection-result-list?size=10&search=${keyword}">10</option>
+                                                        <option value="${pageContext.request.contextPath}/injection-result-list?size=15&search=${keyword}">15</option>
                                                     </select>
                                                     <span>entities</span>
                                                 </div>
@@ -260,16 +260,16 @@
                                                     <nav aria-label="Page">
                                                         <ul class="pagination">
                                                             <li class="page-item">
-                                                                <a class="page-link pagination-list" href="/injection-result-list?p=${injectionResultList.number -1}" aria-label="Previous">
+                                                                <a class="page-link pagination-list" href="/injection-result-list?p=${injectionResultList.number -1}&search=${keyword}" aria-label="Previous">
                                                                     <span aria-hidden="true">&laquo;</span>
                                                                     <span class="sr-only">Previous</span>
                                                                 </a>
                                                             </li>
-                                                            <li class="page-item"><a class="page-link pagination-list" href="/injection-result-list?p=0">1</a></li>
-                                                            <li class="page-item"><a class="page-link pagination-list" href="/injection-result-list?p=1">2</a></li>
-                                                            <li class="page-item"><a class="page-link pagination-list" href="/injection-result-list?p=2">3</a></li>
+                                                            <li class="page-item"><a class="page-link pagination-list" href="/injection-result-list?p=0&search=${keyword}">1</a></li>
+                                                            <li class="page-item"><a class="page-link pagination-list" href="/injection-result-list?p=1&search=${keyword}">2</a></li>
+                                                            <li class="page-item"><a class="page-link pagination-list" href="/injection-result-list?p=2&search=${keyword}">3</a></li>
                                                             <li class="page-item">
-                                                                <a class="page-link pagination-list" href="/injection-result-list?p=${injectionResultList.number +1}" aria-label="Next">
+                                                                <a class="page-link pagination-list" href="/injection-result-list?p=${injectionResultList.number +1}&search=${keyword}" aria-label="Next">
                                                                     <span aria-hidden="true">&raquo;</span>
                                                                     <span class="sr-only">Next</span>
                                                                 </a>

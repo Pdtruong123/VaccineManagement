@@ -16,7 +16,9 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import java.util.Optional;
 
 @Controller
 public class InjectionResultController {
@@ -34,43 +36,51 @@ public class InjectionResultController {
     CustomerService customerService;
 
 
-    @GetMapping("/injection-result-list")
-    public String viewPage(Model model, @RequestParam(value = "p", defaultValue = "0") Integer p,
-                           @RequestParam(value = "size", defaultValue = "5") Integer size) {
-        Pageable pageable = PageRequest.of(p, size);
-        Page<InjectionResult> page = injectionResultService.findAll(pageable);
-        model.addAttribute("injectionResultList", page);
 
-        if ((long) size * (page.getNumber() + 1) > page.getTotalElements()) {
-            model.addAttribute("firstElement", size * p + 1);
-            model.addAttribute("lastElement", page.getTotalElements());
-        } else {
-            model.addAttribute("firstElement", size * p + 1);
-            model.addAttribute("lastElement", size * (p + 1));
-        }
-        return "injection-result-list";
+    @GetMapping("/injection-result-list")
+    public String viewPage(Model model, @RequestParam(value = "p", defaultValue = "0", required = false) Integer p,
+                           @RequestParam(value = "size", defaultValue = "5", required = false) Integer size,
+                           @RequestParam(value = "search", required = false) String keyword) {
+       if(keyword==null){
+           Pageable pageable = PageRequest.of(p, size);
+           Page<InjectionResult> page = injectionResultService.findAll(pageable);
+           model.addAttribute("injectionResultList", page);
+
+           if ((long) size * (page.getNumber() + 1) > page.getTotalElements()) {
+               model.addAttribute("firstElement", size * p + 1);
+               model.addAttribute("lastElement", page.getTotalElements());
+           } else {
+               model.addAttribute("firstElement", size * p + 1);
+               model.addAttribute("lastElement", size * (p + 1));
+           }
+           model.addAttribute("keyword", keyword);
+           return "injection-result-list";
+       } else{
+           Pageable pageable = PageRequest.of(p, size);
+           Page<InjectionResult> page = injectionResultService.findContainElement(keyword, pageable);
+           if (page.isEmpty()) {
+               model.addAttribute("error", "No data found!");
+           }
+
+           if ((long) size * (page.getNumber() + 1) > page.getTotalElements()) {
+               model.addAttribute("firstElement", size * p + 1);
+               model.addAttribute("lastElement", page.getTotalElements());
+           } else {
+               model.addAttribute("firstElement", size * p + 1);
+               model.addAttribute("lastElement", size * (p + 1));
+           }
+           model.addAttribute("injectionResultList", page);
+           model.addAttribute("keyword", keyword);
+           return "injection-result-list";
+       }
+
     }
 
     @PostMapping("/search/injection-result")
     public String searchInjectionResult(Model model, @RequestParam(value = "p", defaultValue = "0") Integer p,
                                         @RequestParam(value = "size", defaultValue = "5") Integer size) {
         String keyword = request.getParameter("searchInjectionResult");
-        Pageable pageable = PageRequest.of(p, size);
-        Page<InjectionResult> page = injectionResultService.findContainElement(keyword, pageable);
-        if (page.isEmpty()) {
-            model.addAttribute("error", "No data found!");
-        }
-
-        if ((long) size * (page.getNumber() + 1) > page.getTotalElements()) {
-            model.addAttribute("firstElement", size * p + 1);
-            model.addAttribute("lastElement", page.getTotalElements());
-        } else {
-            model.addAttribute("firstElement", size * p + 1);
-            model.addAttribute("lastElement", size * (p + 1));
-        }
-        model.addAttribute("injectionResultList", page);
-
-        return "injection-result-list";
+        return "redirect:/injection-result-list?search=" + keyword;
     }
 
     @GetMapping("/add/injection-result")

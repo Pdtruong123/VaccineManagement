@@ -8,6 +8,6 @@ public class HomeController {
 
     @GetMapping("/home")
     public String homePage(){
-        return "index";
+        return "report-inject-result";
     }
 }
