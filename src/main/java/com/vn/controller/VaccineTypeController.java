@@ -53,7 +53,7 @@ public class VaccineTypeController {
                 model.addAttribute("lastElement", size * (p + 1));
             }
             model.addAttribute("nameSearch",nameSearch);
-            return "listVaccineType";
+                return "vaccineType/list-vaccine-type";
         }else {
             Pageable pageable = PageRequest.of(p, size);
             Page<VaccineType> vaccineTypes = vaccineTypeService.findByVaccineTypeNameContaining(nameSearch,pageable);
@@ -67,7 +67,7 @@ public class VaccineTypeController {
                 model.addAttribute("lastElement", size * (p + 1));
             }
             model.addAttribute("nameSearch",nameSearch);
-            return "listVaccineType";
+            return "vaccineType/list-vaccine-type";
         }
     }
 
@@ -81,7 +81,7 @@ public class VaccineTypeController {
     @GetMapping("/vaccineType/add")
     public String createVaccineType(Model model){
     	model.addAttribute("member",new VaccineTypeDTO());
-        return "createVaccineType";
+        return "vaccineType/create-vaccine-type";
     }
 
     @PostMapping("/vaccineType/add")
@@ -90,7 +90,7 @@ public class VaccineTypeController {
     		
             model.addAttribute("message","Create Vaccine Type Failed !!!");
     		
-            return "createVaccineType";
+            return "vaccineType/create-vaccine-type";
         }
     	vaccineTypeService.save(vaccineTypeDTO);
         return "redirect:/vaccineType/list";
@@ -102,7 +102,7 @@ public class VaccineTypeController {
         VaccineType v = vaccineTypeService.findById(id);
         model.addAttribute("vaccineType", v);
 
-        return "createVaccineType";
+        return "vaccineType/create-vaccine-type";
     }
     @PostMapping("/vaccineType/update")
     public String updateVaccineType(@ModelAttribute("vaccineType") VaccineTypeDTO vaccineTypeDTO,  Model model ) {
@@ -112,33 +112,26 @@ public class VaccineTypeController {
 
     }
 
-    @PostMapping("/vaccineType/update/satus")
+    @PostMapping("/vaccineType/update/status")
     public String updateVaccineTypeStatus(@RequestParam(value = "ids") List<String> ids,  @RequestParam(value = "status", defaultValue = "false") Boolean inactive) {
 
-        vaccineTypeRepository.upDateStatus(ids, inactive);
+        vaccineTypeService.upDateStatus(ids, inactive);
 
         return "redirect:/vaccineType/list";
-    }
 
-    @GetMapping("/report/inject")
-    public String reportInject(Model model){
+   }
 
-        return "report-inject-result";
-    }
-    @GetMapping("/report/cus")
-    public String reportCus(Model model){
+//    @GetMapping(value ="/vaccineType/ajax")
+//    public String ajaxVaccineType( Model model) {
+//
+//        return "vaccineType/index-ajax";
+//   }
 
-        return "report-customer";
-    }
-    @GetMapping("/char/cus")
-    public String chartCus(Model model){
+//    @GetMapping(value ="/vaccineType/ajax/list/1")
+//    public String ajaxListVaccineType( Model model) {
+//
+//        return "vaccineType/list-ajax";
+//    }
 
-        return "chart-customer";
-    }
-    @GetMapping("/char/inject")
-    public String chartInject(Model model){
-
-        return "chart-inject-result";
-    }
 
 }

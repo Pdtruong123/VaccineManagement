@@ -29,8 +29,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js"
             integrity="sha512-rstIgDs0xPgmG6RX1Aba4KV5cWJbAMcvRCVmglpam9SoHZiUCyQVDdH2LPlxoHtrv17XWblE/V/PP+Tr04hbtA=="
             crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="${pageContext.request.contextPath}/js/loadFileName.js"></script>
-    <script src="${pageContext.request.contextPath}/js/previewImg.js"></script>
+    <script src="${pageContext.request.contextPath}/js/VaccineType-JQerry.js"></script>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
     <title>Create</title>
 </head>
@@ -38,13 +37,13 @@
 <body>
 <div class="container-fluid ">
     <nav class="row topnavbar py-1">
-        <a href="index.html" class="navbar-brand ml-3 mr-auto"><img class="img" src="../../asserts/img/logo.png"></a>
+        <a href="index.html" class="navbar-brand ml-3 mr-auto"><img class="img" src="../../../asserts/img/logo.png"></a>
     </nav>
     <div class="row">
         <div class="col-sm-3 border-right left" id="accordion">
             <div class="list-group list-group-flush">
                 <div class="list-group-item text-white profile">
-                    <div><img class="img-admin" src="../../asserts/img/admin.png"></div>
+                    <div><img class="img-admin" src="../../../asserts/img/admin.png"></div>
                     <div class="mt-1">Admin</div>
                     <div class="mt-1">admin@fsoft.com.vn</div>
                 </div>
@@ -285,8 +284,17 @@
                                         :</label>
                                     <div class="form-inline">
                                         <i class="fa-solid fa-fill h5"></i>
-                                        <input class="form-check ml-4 checkbox-lg check-status" type="checkbox"
-                                               name="vaccineTypeStatus" id="typeactive" value="active">
+                                        <c:choose>
+                                            <c:when test="${vaccineType.vaccineTypeStatus}">
+                                                <input class="form-check ml-4 checkbox-lg check-status" type="checkbox"
+                                                       name="vaccineTypeStatus" id="typeactive" checked value="active">
+                                            </c:when>
+                                            <c:otherwise>
+                                                <input class="form-check ml-4 checkbox-lg check-status" type="checkbox"
+                                                       name="vaccineTypeStatus" id="typeactive" value="active">
+                                            </c:otherwise>
+                                        </c:choose>
+
                                     </div>
                                 </div>
                             </div>
@@ -330,7 +338,7 @@
                             <div class="mt-5">
                                 <button type="submit" class="btn btn-sm btn-success">Submit</button>
                                 <button type="reset" class="btn btn-sm btn-primary ml-2">Reset</button>
-                                <a class="btn btn-sm btn-warning ml-2" href="#">Cancel</a>
+                                <a class="btn btn-sm btn-warning ml-2" id="back" href="" >Cancel</a>
                             </div>
 
                         </form:form>

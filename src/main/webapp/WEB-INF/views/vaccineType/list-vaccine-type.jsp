@@ -27,6 +27,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js"
             integrity="sha512-rstIgDs0xPgmG6RX1Aba4KV5cWJbAMcvRCVmglpam9SoHZiUCyQVDdH2LPlxoHtrv17XWblE/V/PP+Tr04hbtA=="
             crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="${pageContext.request.contextPath}/js/VaccineType-JQerry.js"></script>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
     <title>List</title>
 </head>
@@ -223,10 +224,10 @@
                         </div>
                     </div>
                     <div class="mt-3">
-                        <table class="table table-bordered">
+                        <table class="table table-bordered" id="table-IR">
                             <thead>
                             <tr class="bg-info text-white text-center">
-                                <th><input class="form-check mx-auto" type="checkbox" id=""></th>
+                                <th><input class="form-check mx-auto" type="checkbox" id="checkAll"></th>
                                 <th>Code</th>
                                 <th>Vaccine Type Name</th>
                                 <th>Description</th>
@@ -242,7 +243,7 @@
 
                                 </td>
                                 <td>${element.vaccineTypeName}</td>
-                                <td class="des">${element.description}</td>
+                                <td >${element.description}</td>
 								<c:choose>
 									<c:when test="${element.vaccineTypeStatus}">
 										<td>Active</td>
@@ -251,8 +252,6 @@
 										<td>In-Active</td>
 									</c:otherwise>
 								</c:choose>
-								
-                                
                             </tr>
                             </c:forEach>
                             
@@ -290,7 +289,7 @@
                     </div>
                     <div class="">
                         <a class="btn btn-sm btn-success" href="${pageContext.request.contextPath}/vaccineType/add">New Vaccine Type</a>
-                        <a class="btn btn-sm btn-warning ml-2" href="${pageContext.request.contextPath}/vaccineType/update/satus?ids=ids">Make In-Active</a>
+                        <a class="btn btn-sm btn-warning ml-2" id="in-active" >Make In-Active</a>
                     </div>
                 </div>
             </div>

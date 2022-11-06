@@ -5,6 +5,8 @@ import java.util.Set;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.vn.util.GenerateID;
 import org.hibernate.annotations.GenericGenerator;
 import org.springframework.web.multipart.MultipartFile;
@@ -52,6 +54,7 @@ public class VaccineType implements Serializable {
     @Column
     private Boolean vaccineTypeStatus = true;
 
+    @JsonManagedReference
     @OneToMany(mappedBy = "vaccineType", cascade = CascadeType.ALL)
     private Set<Vaccine> vaccines;
 }
