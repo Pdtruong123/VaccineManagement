@@ -2,6 +2,7 @@ package com.vn.service.impl;
 
 import java.nio.file.Path;
 import java.util.List;
+import java.util.Optional;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
@@ -16,6 +17,7 @@ import com.vn.dto.VaccineTypeDTO;
 import com.vn.model.VaccineType;
 import com.vn.repository.VaccineTypeRepository;
 import com.vn.service.VaccineTypeService;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class VaccineTypeServiceImpl implements VaccineTypeService  {
@@ -116,5 +118,9 @@ public class VaccineTypeServiceImpl implements VaccineTypeService  {
 		return vaccineTypeRepository.findAll();
 	}
 
-
+	@Override
+	@Transactional
+	public void upDateStatus(List<String> ids, Boolean inactive) {
+		vaccineTypeRepository.upDateStatus(ids, inactive);
+	}
 }
