@@ -4,12 +4,17 @@ import com.vn.model.Employee;
 import com.vn.service.EmployeeService;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.activation.MimeType;
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 
@@ -18,10 +23,13 @@ public class EmployeeController {
     @Autowired
      EmployeeService employeeService;
 
+    @Autowired
+    HttpServletRequest request;
+
     // display list of employees
     @GetMapping("/employee/list")
     public String viewHomePage(Model model) {
-        model.addAttribute("listEmployees",employeeService.getAllEmployees());
+        model.addAttribute("employeeList",employeeService.getAllEmployees());
 
         return "employee-list";
 
@@ -48,6 +56,20 @@ public class EmployeeController {
         redirectAttributes.addFlashAttribute("success","Add employee successfully!");
         return "redirect:/add/employee";
 
+    }
+
+    @PostMapping("/search/employee")
+    public String searchEmployee(Model model, @RequestParam(value = "p",defaultValue = "0") Integer p,
+                             @RequestParam(value = "size", defaultValue = "5") Integer size){
+
+        String keyword = request.getParameter("searchEmployee");
+        Pageable pageable = PageRequest.of(p,size);
+        Page<Employee> page = employeeService.findContainElements(keyword, pageable);
+        if (page.isEmpty()) {
+            model.addAttribute("error", "No data found!");
+        }
+        model.addAttribute("employeeList", page);
+        return "employee-list";
     }
 
     //delete employees

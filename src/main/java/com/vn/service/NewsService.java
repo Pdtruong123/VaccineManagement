@@ -9,4 +9,7 @@ import java.util.List;
 public interface NewsService {
     Page<News> findAllNews(Pageable pageable);
     News save(News news);
+    Page<News> findContainElements(String keyword, Pageable pageable);
+    void deleteNews(String id);
+    News findById(String id);
 }

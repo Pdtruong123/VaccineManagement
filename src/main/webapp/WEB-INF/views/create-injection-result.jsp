@@ -263,9 +263,12 @@
                         <div class="row m-4">
                             <div class="col-sm-4 form-group">
                                 <label class="font-weight-bold" for="placeOfinjection">Place of injection:</label>
-                                <form:input type="text" class="form-control" placeholder="--Select place of injection--"
-                                            id="placeOfinjection" path="injectionPlace"
-                                            value="${injectionResult.injectionPlace}"/>
+                                <form:select path="injectionPlace" id="placeOfinjection" class="form-control">
+                                    <option label="--Select place of injection--" selected value=""/>
+                                    <c:forEach items="${placeOfInjectionList}" var="place">
+                                        <option value="${place}" label="${place}"/>
+                                    </c:forEach>
+                                </form:select>
                                 <form:errors path="injectionPlace"></form:errors>
                             </div>
                             <div class="col-sm-4"></div>

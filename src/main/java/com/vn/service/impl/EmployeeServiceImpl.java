@@ -4,6 +4,8 @@ import com.vn.model.Employee;
 import com.vn.repository.EmployeeRepository;
 import com.vn.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -36,5 +38,10 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     public void deleteEmployee(Integer id) {
         employeeRepository.deleteById(id);
+    }
+
+    @Override
+    public Page<Employee> findContainElements(String keyword, Pageable pageable) {
+        return employeeRepository.findContainElements(keyword, pageable);
     }
 }

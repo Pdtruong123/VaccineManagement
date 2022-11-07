@@ -9,9 +9,8 @@ import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import java.time.LocalDate;
-
 import java.io.Serializable;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "News")
@@ -20,7 +19,7 @@ import java.io.Serializable;
 @AllArgsConstructor
 @NoArgsConstructor
 
-public class News implements Serializable {
+public class News extends BaseModel implements Serializable {
 
 	@Id
 	@Column(name = "news_id", length = 36)
@@ -46,7 +45,4 @@ public class News implements Serializable {
 	@JoinColumn(name = "news_type_id")
 	private NewsType newType;
 
-	@Transient
-	@DateTimeFormat(pattern = "yyyy-MM-dd")
-	private LocalDate postDate;
 }
