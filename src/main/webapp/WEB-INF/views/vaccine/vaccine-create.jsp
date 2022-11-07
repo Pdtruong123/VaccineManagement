@@ -372,7 +372,7 @@
 							<div class="mt-5">
 								<button type="submit" class="btn btn-sm btn-success" onclick="return submitValidate()">Submit</button>
 								<button type="reset" class="btn btn-sm btn-primary ml-2">Reset</button>
-								<a class="btn btn-sm btn-warning ml-2" href="#">Cancel</a>
+								<a class="btn btn-sm btn-warning ml-2" href="${pageContext.request.contextPath}/vaccine/list">Cancel</a>
 							</div>
 
 						</form:form>
