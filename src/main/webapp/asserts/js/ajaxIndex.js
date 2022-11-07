@@ -2,7 +2,7 @@ $(document).ready(function() {
     $(document).on("click", "#listSchedule", function () {
         $.ajax({
             method: "GET",
-            url: "http://localhost:8080/lisst",
+            url: "http://localhost:8080/schedule/api/list",
             success: function (res) {
                 $("#mainIndex").html(res)
             },
