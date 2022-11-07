@@ -11,4 +11,8 @@ public interface InjectionResultService {
     List<String> findAllPrevention();
     InjectionResult save(InjectionResult injectionResult);
     void deleteInjectionResult(String id);
+    InjectionResult findById(String id);
+    Integer countElement();
+    Page<InjectionResult> findContainElement(String searchParam, Pageable pageable);
+    int countContainElement(String searchParam);
 }
