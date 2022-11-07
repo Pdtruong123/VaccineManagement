@@ -18,19 +18,29 @@ $(document).ready(function () {
             console.log(err);
         }
     })
-    $.ajax({
-        url: 'http://localhost:8080/schedule/api/create',
-        type: 'POST',
-        dataType: 'JSON',
-        data: {
-
-        },
-        success: function (res) {
-
-        },
-        error: function (err) {
-            console.log(err);
-        }
+    $("#btnSave").on("click", function () {
+        var vaccineId = $("#vaccineID").val();
+        var startDate = $(".startDate").val();
+        var endDate = $(".endDate").val();
+        var place = $(".place").val();
+        var note = $(".note").val();
+        $.ajax({
+            url: 'http://localhost:8080/schedule/api/create',
+            type: 'POST',
+            dataType: 'JSON',
+            data: {
+                vaccineID: vaccineId,
+                startDate: startDate,
+                endDate: endDate,
+                place: place,
+                note: note
+            },
+            success: function (res) {
+                console.log(res);
+            },
+            error: function (err) {
+                console.log(err);
+            }
+        })
     })
-
 })

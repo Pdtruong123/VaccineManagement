@@ -36,9 +36,9 @@ public class InjectionScheduleApi {
     }
 
     @GetMapping("/api/list")
-    public List<InjectionScheduleDTO> getListApi(@RequestParam("l") Optional<Integer> l){
+    public List<InjectionScheduleDTO> getListApi(@RequestParam("paging") Optional<Integer> l){
         List<InjectionScheduleDTO> result = new ArrayList<>();
-        org.springframework.data.domain.Pageable pageable= PageRequest.of(l.orElse(0),5);
+        org.springframework.data.domain.Pageable pageable= PageRequest.of(l.orElse(0),2);
 
         Page<InjectionSchedule> entities =  injectionScheduleReponsitory.findAll(pageable);
         if(entities != null) {
