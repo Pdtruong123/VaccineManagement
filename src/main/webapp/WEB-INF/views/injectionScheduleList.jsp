@@ -60,9 +60,9 @@
                 <div class="col-sm-3">
                     <nav aria-label="Page">
                         <ul class="pagination">
-                            <li class="page-item">
+                            <li class="page-item-previous">
                                 <a class="page-link pagination-list"
-                                   href="/listInjectionSchedule?l=${listInjectionPage.number+-1}"
+                                   href=""
                                    aria-label="Previous">
                                     <span aria-hidden="true">&laquo;</span>
                                     <span class="sr-only">Previous</span>
@@ -71,7 +71,7 @@
                             <li class="page-item"><a class="page-link pagination-list" href="">1</a></li>
                             <li class="page-item"><a class="page-link pagination-list" href="">2</a></li>
                             <li class="page-item"><a class="page-link pagination-list" href="">3</a></li>
-                            <li class="page-item">
+                            <li class="page-item-next">
                                 <a class="page-link pagination-list" href="" aria-label="Next">
                                     <span aria-hidden="true">&raquo;</span>
                                     <span class="sr-only">Next</span>
