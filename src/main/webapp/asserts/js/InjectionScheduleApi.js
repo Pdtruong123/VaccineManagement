@@ -19,7 +19,7 @@ $(document).ready(function () {
         }
     })
     $("#btnSave").on("click", function () {
-        var vaccineId = $(".vaccineID").val();
+        var vaccineId = $("#vaccineID").val();
         var startDate = $(".startDate").val();
         var endDate = $(".endDate").val();
         var place = $(".place").val();
@@ -35,9 +35,6 @@ $(document).ready(function () {
                 place: place,
                 note: note
             },
-            // headers:{
-            //     'Content-Type': 'application/json'
-            // },
             success: function (res) {
                 console.log(res);
             },
@@ -46,26 +43,4 @@ $(document).ready(function () {
             }
         })
     })
-    $(document).on("click", ".page-item", function () {
-        var pageItem = $(".page-item").text();
-        $.ajax({
-            url: 'http://localhost:8080/schedule/api/list?=' + pageItem,
-            type: 'GET',
-            dataType: 'JSON',
-            success: function (res) {
-                const vaccineNameApi = res.map(item => {
-                    return "<tr><td><a href=\"\">" + item.vaccineName + "</a></td>\n" +
-                        "                                    <td>From " + item.startDate + " to " + item.endDate + "</td>\n" +
-                        "                                    <td>" + item.place + "</td>\n" +
-                        "                                    <td>" + item.note + "</td>\n" +
-                        "                                    <td>" + item.status + "</td>" +
-                        "</tr>"
-                })
-                $("#bodyList").html(vaccineNameApi);
-            },
-            error: function (err) {
-                console.log(err);
-            }
-        })
-    })
-}
+})
