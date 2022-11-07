@@ -5,7 +5,9 @@ import com.vn.model.Vaccine;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -18,6 +20,10 @@ public interface VaccineRepository extends JpaRepository<Vaccine, String> {
     List<String> findAllVaccineName();
 
 	Page<Vaccine> findByVaccineNameContaining(String name, Pageable pageable);
+	
+	@Modifying
+    @Query("Update Vaccine v set v.status =:status WHERE v.id IN :ids")
+    void updateStatus(@Param("ids") List<String> ids, @Param("status") boolean status);
 	
 	
 

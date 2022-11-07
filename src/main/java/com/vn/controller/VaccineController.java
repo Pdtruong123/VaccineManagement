@@ -136,9 +136,9 @@ public class VaccineController {
 	}
 
 	@PostMapping(value = "/vaccine/update/makeInActive")
-	public String updateInActive(@RequestParam String id) {
+	public String updateInActive(@RequestParam List<String> ids) {
 		Boolean status = false;
-		vaccineService.updateInActive(status, id);
+		vaccineService.updateStatus(ids,status);
 		return "redirect:/vaccine/list";
 	}
 	

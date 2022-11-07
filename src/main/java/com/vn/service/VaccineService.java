@@ -29,4 +29,6 @@ public interface VaccineService {
 
 	Vaccine update(@Valid VaccineDTO vaccineDTO);
 
+	void updateStatus(List<String> ids, Boolean status);
+
 }
