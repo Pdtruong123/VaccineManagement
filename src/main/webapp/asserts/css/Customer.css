@@ -1,0 +1,79 @@
+* {
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+    font-family: 'Open Sans', sans-serif;
+}
+.container-fluid{
+    font-size: 14px;
+}
+::placeholder {
+    font-size: 14px;
+    color: #f2eaea;
+    opacity: 1; /* Firefox */
+}
+
+.topnavbar{
+    background-color: #72b696;
+}
+.left{
+    margin: 0;
+    padding: 0;
+}
+.right{
+    margin: 0;
+    padding: 0;
+}
+.img{
+    width: 80px;
+}
+.img-admin{
+
+    width: 60px;
+}
+
+.profile {
+    background: linear-gradient(45deg, rgb(172, 175, 6), rgb(219, 9, 156));
+}
+.text:hover{
+    color: rgba(5, 121, 111, 0.918);
+    font-weight: 500;
+    cursor: pointer;
+}
+.text-sub{
+    height: 20px;
+}
+.text-sub:hover{
+    color: rgba(5, 121, 111, 0.918);
+    font-weight: 600;
+
+}
+.text-sub:hover::before{
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    content:"\f054";
+
+
+}
+.menu{
+    height: auto;
+    overflow: auto;
+}
+.checkbox-lg{
+    scale: 1.4;
+}
+.img-upload{
+    height: 100px;
+}
+#img-preview{
+    margin-left: 80px;
+    height: 120px;
+}
+.form-select{
+    border-radius: 0;
+    box-shadow: none !important;
+}
+.pagination-list{
+    border: none;
+}
+
