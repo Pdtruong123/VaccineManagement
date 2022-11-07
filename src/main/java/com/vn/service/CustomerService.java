@@ -2,19 +2,27 @@ package com.vn.service;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+
 import com.vn.model.Customer;
 
 public interface CustomerService {
-	
 	Customer create(Customer customer);
 
-	Customer findById(Integer id);
+	Customer findById(String id);
 
-	Customer save(Customer customer);
-
-	boolean delete(Integer id);
-
-	List<Customer> findAll();
+	void delete(String id);
 	
+    List<Customer> findAllCustomer();
+    
+    Page<Customer> findAll(Pageable pageable);
 
+    Integer countElement();
+    
+    Page<Customer> findContainElement(String searchParam, Pageable pageable);
+    
+    int countContainElement(String searchParam);
+    
+    void deleteCustomer(String id);
 }

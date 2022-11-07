@@ -1,60 +1,79 @@
 package com.vn.service.impl;
 
 import java.util.List;
+import java.util.Optional;
 
-import javax.persistence.TypedQuery;
-
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.vn.model.Customer;
+import com.vn.repository.CustomerRepository;
 import com.vn.service.CustomerService;
 
 @Service
 public class CustomerServiceImpl implements CustomerService {
+
 	@Autowired
-	private SessionFactory factory;
-	
+	CustomerRepository customerRepository;
+
 	@Override
 	public Customer create(Customer customer) {
-		Session session = factory.getCurrentSession();
-		session.save(customer);
+		customerRepository.save(customer);
 		return customer;
 	}
 
 	@Override
-	public Customer findById(Integer id) {
-		Session session = factory.getCurrentSession();
-		Customer m = session.get(Customer.class, id);
-		return m;
+	public Customer findById(String id) {
+
+		Optional<Customer> optional = customerRepository.findById(id);
+		if (optional.isPresent()) {
+			Customer customer = optional.get();
+			return customer;
+
+		} else {
+			return null;
+		}
+
 	}
 
 	@Override
-	public Customer save(Customer customer) {
-		Session session = factory.getCurrentSession();
-		session.update(customer);
-		return customer;
+	public void delete(String id) {
+		customerRepository.deleteById(id);
+
 	}
 
 	@Override
-	public boolean delete(Integer id) {
-		Session session = factory.getCurrentSession();
-		Customer customer = session.load(Customer.class, id);
-		session.delete(customer);
-		return true;
+	public List<Customer> findAllCustomer() {
+		return customerRepository.findAll();
 	}
 
 	@Override
-	public List<Customer> findAll() {
-		List<Customer> customers = null;
-		Session session = factory.getCurrentSession();
-		TypedQuery<Customer>  q = session.createQuery("SELECT c FROM Customer c",Customer.class );
-		customers = q.getResultList();
-		return customers;
+	public Page<Customer> findAll(Pageable pageable) {
+		return customerRepository.findAll(pageable);
 	}
 
-	
+	@Override
+	public Integer countElement() {
+		return (int) customerRepository.count();
+	}
+
+	@Override
+	public Page<Customer> findContainElement(String searchParam, Pageable pageable) {
+		return customerRepository.findContainElement(searchParam, pageable);
+		
+	}
+
+	@Override
+	public int countContainElement(String searchParam) {
+		return customerRepository.countContainElement(searchParam);
+	}
+
+	@Override
+	public void deleteCustomer(String id) {
+		customerRepository.deleteById(id);
+		
+	}
 
 }

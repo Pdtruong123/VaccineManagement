@@ -41,7 +41,7 @@
 	crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="../../asserts/js/loadFileName.js"></script>
 <script src="../../asserts/js/previewImg.js"></script>
-<link rel="stylesheet" href="../../asserts/css/style.css">
+<link rel="stylesheet" href="../../asserts/css/Customer.css">
 <title>Register Customer Information</title>
 </head>
 <body>
@@ -95,12 +95,12 @@
 							</div>
 							<div class="mt-3 collapse" id="customer" data-parent="#accordion">
 								<div class="ml-4 text-sub">
-									<a class="text-reset text-decoration-none " href="#"> <span
+									<a class="text-reset text-decoration-none " href="${pageContext.request.contextPath}/injectionCustomerList"> <span
 										class="ml-2">Customer List</span>
 									</a>
 								</div>
 								<div class="ml-4 mt-2 text-sub">
-									<a class="text-reset text-decoration-none " href="#"> <span
+									<a class="text-reset text-decoration-none " href="${pageContext.request.contextPath}/registerCustomer"> <span
 										class="ml-2">Create Customer</span>
 									</a>
 								</div>
@@ -244,48 +244,48 @@
 				<div
 					class="h5 mt-3 text-center text-secondary font-weight-bold mb-3">REGISTER
 					CUSTOMER INFORMATION</div>
-				<form:form action="${pageContext.request.contextPath}/registerCustomer"
-							method="post" modelAttribute="customer" id="registerForm">
+				<form:form
+					action="${pageContext.request.contextPath}/registerCustomer"
+					method="post" modelAttribute="customer" id="registerForm">
 					<div class="card mx-3">
 						<div class="card-body">
 							<div class="font-weight-bold my-2">Personal Information</div>
 							<div class="form-row">
+								<div><form:input path="id" type="hidden"
+											class="form-control ml-2" value="${customer.id}"
+											id="id" /></div>
 								<div class="form-group col-sm-4">
 									<label class="font-weight-bold" for="fullName">Full
 										Name <span class="text-danger">(*)</span> :
 									</label>
 									<div class="form-inline">
-										<i class="fa-solid fa-fill h5"></i> <input type="text"
-											class="form-control ml-2" value="${customer.id}"
-											id="fullName" name="fullName" required>
+										<i class="fa-solid fa-fill h5"></i>
+										<form:input path="fullName" type="text"
+											class="form-control ml-2" value="${customer.fullName}"
+											id="fullName" />
 									</div>
 
 								</div>
 								<div class="form-group col-sm-4">
-									<label class="font-weight-bold" for="DOB">Date Of
-										Birth <span class="text-danger">(*)</span> :
-									</label>
-									<div class="form-inline">
-										<i class="fa-solid fa-fill h5"></i> <input type="date"
-											class="form-control ml-2" value="${customer.dateOfBirth}"
-											id="DOB" name="dateOfBirth" required>
-									</div>
-								</div>
-								<div class="form-group col-sm-3">
-									<label class="font-weight-bold" for="gender">Gender
-
+									<label class="font-weight-bold" for="DOB">Date Of Birth
+										<span class="text-danger">(*)</span> :
 									</label>
 									<div class="form-inline">
 										<i class="fa-solid fa-fill h5"></i>
+										<form:input path="dateOfBirth" type="date"
+											class="form-control ml-2" value="${customer.dateOfBirth}"
+											id="DOB" />
+									</div>
+								</div>
+								<div class="form-group col-sm-3">
+									<label class="font-weight-bold" for="gender">Gender </label>
+									<div class="form-inline">
+										<i class="fa-solid fa-fill h5"></i>
 										<div class="form-check form-check-inline">
-											<input class="form-check-input" type="radio"
-												name="gender" id="gender" value="${customer.gender}">
-											<label class="form-check-label" for="inlineRadio1">Male</label>
+											<form:radiobutton path="gender" value="0" />Male
 										</div>
 										<div class="form-check form-check-inline">
-											<input class="form-check-input" type="radio"
-												name="gender" id="gender" value="${customer.gender}">
-											<label class="form-check-label" for="inlineRadio2">Female</label>
+											<form:radiobutton path="gender" value="1" />Female
 										</div>
 									</div>
 								</div>
@@ -297,19 +297,21 @@
 										Card <span class="text-danger">(*)</span> :
 									</label>
 									<div class="form-inline">
-										<i class="fa-solid fa-fill h5"></i> <input type="text"
+										<i class="fa-solid fa-fill h5"></i>
+										<form:input type="text" path="identityCard"
 											class="form-control ml-2" value="${customer.identityCard}"
-											id="idCard" name="identityCard" required>
+											id="idCard" />
 									</div>
 								</div>
 								<div class="form-group col-sm-4">
-									<label class="font-weight-bold" for="address">Address
-										<span class="text-danger">(*)</span> :
+									<label class="font-weight-bold" for="address">Address <span
+										class="text-danger">(*)</span> :
 									</label>
 									<div class="form-inline">
-										<i class="fa-solid fa-fill h5"></i> <input type="text"
+										<i class="fa-solid fa-fill h5"></i>
+										<form:input type="text" path="address"
 											class="form-control ml-2" value="${customer.address}"
-											id="address" name="address" required>
+											id="address" />
 									</div>
 								</div>
 
@@ -327,9 +329,10 @@
 										<span class="text-danger">(*)</span> :
 									</label>
 									<div class="form-inline">
-										<i class="fa-solid fa-fill h5"></i> <input type="text"
+										<i class="fa-solid fa-fill h5"></i>
+										<form:input type="text" path="userName"
 											class="form-control ml-2" value="${customer.userName}"
-											id="userName" name="userName" required>
+											id="userName" />
 									</div>
 
 								</div>
@@ -338,9 +341,10 @@
 										<span class="text-danger">(*)</span> :
 									</label>
 									<div class="form-inline">
-										<i class="fa-solid fa-fill h5"></i> <input type="text"
+										<i class="fa-solid fa-fill h5"></i>
+										<form:input type="text" path="password"
 											class="form-control ml-2" value="${customer.password}"
-											id="typename" name="password" required>
+											id="password" />
 									</div>
 								</div>
 								<div class="form-group col-sm-4">
@@ -348,9 +352,9 @@
 										Confirm <span class="text-danger">(*)</span> :
 									</label>
 									<div class="form-inline">
-										<i class="fa-solid fa-fill h5"></i> <input type="text"
-											class="form-control ml-2"
-											id="rePassword" name="rePassword" >
+										<i class="fa-solid fa-fill h5"></i>
+										<form:input type="text" path="rePassword"
+											class="form-control ml-2" id="rePassword" />
 									</div>
 								</div>
 							</div>
@@ -361,9 +365,10 @@
 										class="text-danger">(*)</span> :
 									</label>
 									<div class="form-inline">
-										<i class="fa-solid fa-fill h5"></i> <input type="email"
+										<i class="fa-solid fa-fill h5"></i>
+										<form:input type="email" path="email"
 											class="form-control ml-2" value="${customer.email}"
-											id="email" name="email" required>
+											id="email" />
 									</div>
 								</div>
 								<div class="form-group col-sm-4">
@@ -371,21 +376,20 @@
 										class="text-danger">(*)</span> :
 									</label>
 									<div class="form-inline">
-										<i class="fa-solid fa-fill h5"></i> <input type="text"
-											class="form-control ml-2" value="${customer.phone}"
-											id="phone" name="phone" required>
+										<i class="fa-solid fa-fill h5"></i>
+										<form:input type="text" path="phone" class="form-control ml-2"
+											value="${customer.phone}" id="phone" />
 									</div>
 								</div>
-
 
 							</div>
 
 							<div class="mt-5">
-								<button type="submit" class="btn btn-sm btn-success" > Save </button>
+								<button type="submit" class="btn btn-sm btn-success">
+									Save</button>
 								<button type="reset" class="btn btn-sm btn-primary ml-2">Reset</button>
 								<a class="btn btn-sm btn-warning ml-2" href="#">Cancel</a>
 							</div>
-							<p>${messSave}</p>
 						</div>
 					</div>
 				</form:form>

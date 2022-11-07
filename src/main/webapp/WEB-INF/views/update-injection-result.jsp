@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-         pageEncoding="ISO-8859-1"%>
+         pageEncoding="ISO-8859-1" %>
+<%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -25,12 +27,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js"
             integrity="sha512-rstIgDs0xPgmG6RX1Aba4KV5cWJbAMcvRCVmglpam9SoHZiUCyQVDdH2LPlxoHtrv17XWblE/V/PP+Tr04hbtA=="
             crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="../../asserts/js/loadFileName.js"></script>
-    <script src="../../asserts/js/previewImg.js"></script>
     <link rel="stylesheet" href="../../asserts/css/style.css">
-    <title>Create</title>
+    <title>List</title>
 </head>
-
 <body>
 <div class="container-fluid ">
     <nav class="row topnavbar py-1">
@@ -89,13 +88,13 @@
                         </div>
                         <div  class="mt-3 collapse" id="vaccineType" data-parent="#accordion">
                             <div class="ml-4 text-sub">
-                                <a class="text-reset text-decoration-none" href="#">
+                                <a class="text-reset text-decoration-none" href="${pageContext.request.contextPath}/listVaccineType">
                                     <span class="ml-2">Vaccine Type List</span>
                                 </a>
                             </div>
                             <div class="ml-4 mt-2 text-sub">
-                                <a class="text-reset text-decoration-none" href="#">
-                                    <span class="ml-2">Vaccine Type Employee</span>
+                                <a class="text-reset text-decoration-none" href="${pageContext.request.contextPath}/createVaccineType">
+                                    <span class="ml-2">Create Vaccine Type</span>
                                 </a>
                             </div>
                         </div>
@@ -107,7 +106,7 @@
                         </div>
                         <div  class="mt-3 collapse" id="vaccine" data-parent="#accordion">
                             <div class="ml-4 text-sub">
-                                <a class="text-reset text-decoration-none" href="#">
+                                <a class="text-reset text-decoration-none" href="${pageContext.request.contextPath}/vaccine/list">
                                     <span class="ml-2">Vaccine List</span>
                                 </a>
                             </div>
@@ -191,74 +190,88 @@
                         </div>
                     </div>
                 </div>
+
+
+
             </div>
+
         </div>
         <div class="col-sm-9 bg-light right">
-            <div class="h5 mt-3 text-center text-secondary font-weight-bold mb-3">CREATE VACCINE TYPE</div>
+            <h1 class="h5 mt-3 text-center text-secondary font-weight-bold mb-3">CREATE INJECTION RESULT</h1>
             <div class="card mx-3">
                 <div class="card-body">
-                    <form action="">
-                        <div class="form-row">
-                            <div class="form-group col-sm-5">
-                                <label class="font-weight-bold" for="typecode">Vaccine Type Code <span class="text-danger">(*)</span> :</label>
-                                <div class="form-inline">
-                                    <i class="fa-solid fa-fill h5"></i>
-                                    <input type="text" class="form-control ml-2" placeholder="Enter code" id="typecode" required>
-                                </div>
+            <form:form action="${pageContext.request.contextPath}/update/injection-result" method="post" modelAttribute="injectionResult">
+                <form:input type="hidden" id="id" path="id" value="${injectionResult.id}"/>
+                <div class="row m-4">
+                    <div class="col form-group">
+                        <label for="customer">Customer:</label>
+                        <form:select path="customer" id="customer" class="form-control">
+                            <option label="${injectionResult.customer.fullName}-${injectionResult.customer.dateOfBirth}" selected value="${injectionResult.customer.id}"/>
+                            <c:forEach items="${customer}" var="cus">
+                                <option value="${cus.id}" label="${cus.fullName}-${cus.dateOfBirth}"/>
+                            </c:forEach>
+                        </form:select>
+                        <form:errors path="customer"></form:errors>
+                    </div>
+                    <div class="col form-group">
+                        <label for="prevention">Prevention:</label>
+                        <select name="prevention" id="prevention" class="form-control">
+                            <option label="${injectionResult.prevention}" selected value="${injectionResult.prevention}"/>
+                            <c:forEach items="${preventionList}" var="pre">
+                                <option value="${pre}" label="${pre}" />
+                            </c:forEach>
+                        </select>
 
-                            </div>
-                            <div class="form-group col-sm-5">
-                                <label class="font-weight-bold" for="typename">Vaccine Type Name <span class="text-danger">(*)</span> :</label>
-                                <div class="form-inline">
-                                    <i class="fa-solid fa-fill h5"></i>
-                                    <input type="text" class="form-control ml-2" placeholder="Enter name" id="typename" required>
-                                </div>
-                            </div>
-                            <div class="form-group col-sm-2">
-                                <label class="font-weight-bold" for="typeactive">Active <span class="text-danger">(*)</span> :</label>
-                                <div class="form-inline">
-                                    <i class="fa-solid fa-fill h5"></i>
-                                    <input class="form-check ml-4 checkbox-lg" type="checkbox" id="typeactive" required>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group mt-2">
-                            <label class="font-weight-bold" for="description">Description :</label>
-                            <div class="row">
-                                <div class="col-sm-1 d-flex align-self-center">
-                                    <i class="fa-solid fa-file-prescription h5 "></i>
-                                </div>
-                                <div class="col-sm-11">
-                                    <textarea class="form-control" rows="3" id="description"></textarea>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group mt-2">
-                            <label class="font-weight-bold">Image :</label>
-                            <div class="row">
-                                <div class="col-sm-1">
-                                    <i class="fa-solid fa-image mt-2 h5"></i>
-                                </div>
-                                <div class="custom-file mb-3 col-sm-5">
-                                    <input type="file" class="custom-file-input" accept="image/*" id="file-input" name="filename">
-                                    <label class="custom-file-label" for="customFile">Choose file</label>
-                                </div>
-                            </div>
-                            <div class="img-upload">
-                                <img id="img-preview" src="../../asserts/img/admin.png" />
-                            </div>
-                        </div>
-                        <div class="mt-5">
-                            <button type="submit" class="btn btn-sm btn-success">Submit</button>
-                            <button type="reset" class="btn btn-sm btn-primary ml-2">Reset</button>
-                            <a class="btn btn-sm btn-warning ml-2" href="#">Cancel</a>
-                        </div>
-
-                    </form>
+                    </div>
+                    <div class="col form-group">
+                        <label for="vaccineT">Vaccine type:</label>
+                        <select class="form-control" id="vaccineT" name="vaccine">
+                            <option label="${injectionResult.vaccine.vaccineName}" selected value="${injectionResult.vaccine.id}"/>
+                            <c:forEach items="${vaccineList}" var="vaccines">
+                                <option value="${vaccines.id}" label="${vaccines.vaccineName}" />
+                            </c:forEach>
+                        </select>
+                    </div>
                 </div>
-            </div>
-        </div>
+                <div class="row m-4">
+                    <div class="col form-group">
+                        <label for="injection">Injection:</label>
+                        <form:input type="text" class="form-control" placeholder="" id="injection" path="numberOfInjection"/>
 
+                    </div>
+                    <div class="col form-group">
+                        <label for="dateOfInjection">Date of injection:</label>
+                        <form:input type="date" class="form-control" placeholder="" id="dateOfInjection" path="injectionDate"/>
+                    </div>
+                    <div class="col form-group">
+                        <label for="nextOfInjection">Next injection appoinment:</label>
+                        <form:input type="date" class="form-control" placeholder="" id="nextOfInjection" path="nextInjectionDate"/>
+
+                    </div>
+                </div>
+                <div class="row m-4">
+                    <div class="col form-group">
+                        <label for="placeOfinjection">Place of injection:</label>
+                        <form:select path="injectionPlace" id="placeOfinjection" class="form-control">
+                            <option label="${injectionResult.injectionPlace}" selected value="${injectionResult.injectionPlace}"/>
+                            <c:forEach items="${placeOfInjectionList}" var="place">
+                                <option value="${place}" label="${place}"/>
+                            </c:forEach>
+                        </form:select>
+
+                    </div>
+                    <div class="col"></div>
+                    <div class="col"></div>
+                </div>
+                <div class="form-button ml-4">
+                    <button class="btn btn-success ml-3 mr-1" type="submit">Save</button>
+                    <button class="btn btn-primary mr-1" type="reset">Reset</button>
+                    <button class="btn btn-warning" type="submit"><a href="${pageContext.request.contextPath}/injection-result-list" class="text-white text-decoration-none">Cancel</a></button>
+                </div>
+            </form:form>
+        </div>
+        </div>
+        </div>
     </div>
 </div>
 </body>
