@@ -257,7 +257,7 @@
                             <div class="mt-5">
                                 <button type="submit" class="btn btn-sm btn-success">Submit</button>
                                 <button type="reset" class="btn btn-sm btn-primary ml-2">Reset</button>
-                                <a class="btn btn-sm btn-warning ml-2" href="#">Cancel</a>
+                                <a class="btn btn-sm btn-warning ml-2" id="back" href="#">Cancel</a>
                             </div>
 
                         </form:form>
