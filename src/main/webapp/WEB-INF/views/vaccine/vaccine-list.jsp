@@ -248,11 +248,11 @@
 						<div class="col-sm-3 form-inline">
 							<span>Show</span> <select
 								class="form-select mx-2 border-right-0 border-top-0 border-left-0"
-								id="inlineFormCustomSelect" name="showNumberList" onchange="location = this.value;">
-								<option selected></option>
-								<option value="${pageContext.request.contextPath}/vaccine/list?size=5&search=${nameSearch}">5</option>
-								<option value="${pageContext.request.contextPath}/vaccine/list?size=10&search=${nameSearch}">10</option>
-								<option value="${pageContext.request.contextPath}/vaccine/list?size=15&search=${nameSearch}">15</option>
+								id="inlineFormCustomSelect" name="showNumberList" onchange="location = this.value;" va>
+								
+								<option  value="${pageContext.request.contextPath}/vaccine/list?size=5&search=${nameSearch}" ${param.size == '5' ? 'selected' : ''}>5</option>
+								<option value="${pageContext.request.contextPath}/vaccine/list?size=10&search=${nameSearch}" ${param.size == '10' ? 'selected' : ''}>10</option>
+								<option value="${pageContext.request.contextPath}/vaccine/list?size=15&search=${nameSearch}" ${param.size == '15' ? 'selected' : ''}>15</option>
 							</select> <span>entities</span>
 						</div>
 						<div class="col-sm-6"></div>
@@ -262,7 +262,7 @@
 									<input type="search"
 										class="form-control border-right-0 border-top-0 border-left-0 form-select"
 										placeholder="Search" aria-label="Search"
-										aria-describedby="search-addon" / name="searchVaccine">
+										aria-describedby="search-addon" / name="searchVaccine" value="${nameSearch}">
 									<button type="submit"
 										class="input-group-text border-0 bg-white" id="search-addon">
 										<i class="fas fa-search"></i>

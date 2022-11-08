@@ -45,7 +45,7 @@ public class VaccineController {
 	@GetMapping(value = "/vaccine/list")
 	public String viewListVaccine(Model model,
 			@RequestParam(name = "p", required = false, defaultValue = "0") Integer p,
-			@RequestParam(name = "size", required = false, defaultValue = "2") Integer size,
+			@RequestParam(name = "size", required = false, defaultValue = "5") Integer size,
 			@RequestParam(name ="search", required = false) String nameSearch,
 			@ModelAttribute("msg") String msg) {
 		
@@ -53,7 +53,7 @@ public class VaccineController {
 			Pageable pageable = PageRequest.of(p, size);
 			Page<Vaccine> vaccines = vaccineService.findAll(pageable);
 			model.addAttribute("vaccineList", vaccines);
-
+			
 			if (size * (vaccines.getNumber() + 1) > vaccines.getTotalElements()) {
 				model.addAttribute("firstElement", size * p + 1);
 				model.addAttribute("lastElement", vaccines.getTotalElements());
@@ -61,8 +61,10 @@ public class VaccineController {
 				model.addAttribute("firstElement", size * p + 1);
 				model.addAttribute("lastElement", size * (p + 1));
 			}
+			
 			model.addAttribute("nameSearch",nameSearch);
 			model.addAttribute("msg", msg);
+		
 			return "vaccine/vaccine-list";
 		}else {
 			Pageable pageable = PageRequest.of(p, size);
@@ -76,8 +78,10 @@ public class VaccineController {
 				model.addAttribute("firstElement", size * p + 1);
 				model.addAttribute("lastElement", size * (p + 1));
 			}
+			
 			model.addAttribute("nameSearch",nameSearch);
 			model.addAttribute("msg", msg);
+		
 			return "vaccine/vaccine-list";
 		}
 		
@@ -97,8 +101,8 @@ public class VaccineController {
 	@GetMapping(value = "/vaccine/add")
 	public String viewAddVaccine(Model model) {
 		List<VaccineType> vaccineTypeList = new ArrayList<>();
-		vaccineTypeList = vaccineTypeService.findAll();
-
+		vaccineTypeList = vaccineTypeService.findAllActice();
+		
 		model.addAttribute("vaccineTypeList", vaccineTypeList);
 		model.addAttribute("vaccineDto", new VaccineDTO());
 
@@ -112,7 +116,7 @@ public class VaccineController {
 			return "vaccine/vaccine-create";
 		}
 		List<VaccineType> vaccineTypeList = new ArrayList<>();
-		vaccineTypeList = vaccineTypeService.findAll();
+		vaccineTypeList = vaccineTypeService.findAllActice();
 		if (vaccineService.hasVaccineById(vaccineDTO.getId())) {
 
 			model.addAttribute("vaccineTypeList", vaccineTypeList);
@@ -142,16 +146,16 @@ public class VaccineController {
 		return "redirect:/vaccine/list";
 	}
 	
-	@GetMapping(value = "/vaccine/update/{id}")
-	public String showUpdateVaccine(Model model,@PathVariable("id") String id,RedirectAttributes redirectAttributes) {
+	@GetMapping(value = "/vaccine/update/")
+	public String showUpdateVaccine(Model model,@RequestParam(name = "idUpdate", required = true) String idUpdate,RedirectAttributes redirectAttributes) {
 		
-		Vaccine vaccine = vaccineService.findVaccineById(id);
+		Vaccine vaccine = vaccineService.findVaccineById(idUpdate);
 		if (vaccine==null) {
 			redirectAttributes.addFlashAttribute("msg","Id is not exists!");
 			return "redirect:/vaccine/list";
 		}
 		List<VaccineType> vaccineTypeList = new ArrayList<>();
-		vaccineTypeList = vaccineTypeService.findAll();
+		vaccineTypeList = vaccineTypeService.findAllActice();
 		
 		
 		VaccineDTO vaccineDTO = new VaccineDTO();
@@ -169,7 +173,7 @@ public class VaccineController {
 		
 		model.addAttribute("vaccineTypeList", vaccineTypeList);
 		model.addAttribute("vaccineDto", vaccineDTO);
-		return "vaccine/vaccine-update";
+		return "vaccine/vaccine-create";
 	}
 	@PostMapping(value = "/vaccine/update")
 	public String updateVaccine(Model model, @Valid @ModelAttribute("vaccineDto") VaccineDTO vaccineDTO,
@@ -177,11 +181,19 @@ public class VaccineController {
 		if (bindingResult.hasErrors()) {
 			return "vaccine/vaccine-update";
 		}
-		Vaccine vaccine = vaccineService.update(vaccineDTO);
 		List<VaccineType> vaccineTypeList = new ArrayList<>();
-		vaccineTypeList = vaccineTypeService.findAll();
-		
+		vaccineTypeList = vaccineTypeService.findAllActice();
+		Vaccine vaccine = vaccineService.findVaccineById(vaccineDTO.getId());
 		if (vaccine==null) {
+			model.addAttribute("msgId","Id is not exists!");
+			model.addAttribute("vaccineTypeList", vaccineTypeList);
+			model.addAttribute("vaccineDto", vaccineDTO);
+			return "/vaccine/vaccine-create";
+		}
+		Vaccine vaccineUpdate = vaccineService.update(vaccineDTO);
+		
+		
+		if (vaccineUpdate==null) {
 			model.addAttribute("vaccineTypeList", vaccineTypeList);
 			model.addAttribute("vaccineDto", vaccineDTO);
 			model.addAttribute("msgTime", "Time to start next vaccination must be less than end time!");
