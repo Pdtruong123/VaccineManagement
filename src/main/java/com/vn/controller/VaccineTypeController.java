@@ -75,10 +75,11 @@ public class VaccineTypeController {
     }
 
     @PostMapping(value = "/vaccineType/search")
-    public String searchVaccineType(Model model) {
-
+    public ModelAndView searchVaccineType() {
         String name = request.getParameter("searchVaccineType");
-        return "redirect:/vaccineType/list/?search="+name+"";
+        ModelAndView model = new ModelAndView("redirect:/vaccineType/list/?search="+name);
+
+        return model;
     }
 
     @GetMapping("/vaccineType/add")
@@ -93,8 +94,8 @@ public class VaccineTypeController {
         ModelAndView modelError = new ModelAndView("createVaccineType");
         ModelAndView model = new ModelAndView("redirect:/vaccineType/list");
         if(bindingResult.hasErrors()){
-    		
-            model.addObject("message","Create Vaccine Type Failed !!!");
+
+            modelError.addObject("message","Create Vaccine Type Failed !!!");
     		
             return modelError;
         }
@@ -103,41 +104,30 @@ public class VaccineTypeController {
     }
 
     @GetMapping(value ="/vaccineType/update/{id}")
-    public String updateVaccineType(@PathVariable("id") String id, @ModelAttribute("vaccineType") VaccineType vaccineType, Model model) {
-
+    public ModelAndView updateVaccineType(@PathVariable("id") String id, @ModelAttribute("vaccineType") VaccineType vaccineType) {
+        ModelAndView model = new ModelAndView("createVaccineType");
         VaccineType v = vaccineTypeService.findById(id);
-        model.addAttribute("vaccineType", v);
+        model.addObject("vaccineType", v);
 
-        return "vaccineType/create-vaccine-type";
+        return model;
     }
     @PostMapping("/vaccineType/update")
-    public String updateVaccineType(@ModelAttribute("vaccineType") VaccineTypeDTO vaccineTypeDTO,  Model model ) {
-
+    public ModelAndView updateVaccineType(@ModelAttribute("vaccineType") VaccineTypeDTO vaccineTypeDTO) {
+        ModelAndView model = new ModelAndView("redirect:/vaccineType/list");
         vaccineTypeService.update(vaccineTypeDTO);
-        return "redirect:/vaccineType/list";
+        return model;
 
     }
 
     @PostMapping("/vaccineType/update/status")
-    public String updateVaccineTypeStatus(@RequestParam(value = "ids") List<String> ids,  @RequestParam(value = "status", defaultValue = "false") Boolean inactive) {
-
+    public ModelAndView updateVaccineTypeStatus(@RequestParam(value = "ids") List<String> ids,  @RequestParam(value = "status", defaultValue = "false") Boolean inactive) {
+        ModelAndView model = new ModelAndView("redirect:/vaccineType/list");
         vaccineTypeService.upDateStatus(ids, inactive);
 
-        return "redirect:/vaccineType/list";
+        return model;
 
    }
 
-//    @GetMapping(value ="/vaccineType/ajax")
-//    public String ajaxVaccineType( Model model) {
-//
-//        return "vaccineType/index-ajax";
-//   }
-
-//    @GetMapping(value ="/vaccineType/ajax/list/1")
-//    public String ajaxListVaccineType( Model model) {
-//
-//        return "vaccineType/list-ajax";
-//    }
 
 
 }
