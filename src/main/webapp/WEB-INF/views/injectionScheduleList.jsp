@@ -38,18 +38,9 @@
                         <th>Note</th>
                     </tr>
                     </thead>
-                    <tbody id="bodyList">
+                   <tbody id="bodyList">
 
-                    <%--                            <c:forEach items="${listInjectionPage.content}" var="listPage">--%>
-                    <%--                                <tr>--%>
-                    <%--                                    <td><a href="">${listPage.vaccine.vaccineName}</a></td>--%>
-                    <%--                                    <td>From ${listPage.startDate} to ${listPage.endDate}</td>--%>
-                    <%--                                    <td>${listPage.place}</td>--%>
-                    <%--                                    <td>${listPage.status}</td>--%>
-                    <%--                                    <td>${listPage.description}</td>--%>
-                    <%--                                </tr>--%>
-                    <%--                            </c:forEach>--%>
-                    </tbody>
+                </tbody>
                 </table>
             </div>
             <div class="row mt-4">
@@ -60,19 +51,19 @@
                 <div class="col-sm-3">
                     <nav aria-label="Page">
                         <ul class="pagination">
-                            <li class="page-item-previous">
+                            <li class="page-item-pre">
                                 <a class="page-link pagination-list"
-                                   href=""
+                                   href="#"
                                    aria-label="Previous">
                                     <span aria-hidden="true">&laquo;</span>
                                     <span class="sr-only">Previous</span>
                                 </a>
                             </li>
-                            <li class="page-item"><a class="page-link pagination-list" href="">1</a></li>
-                            <li class="page-item"><a class="page-link pagination-list" href="">2</a></li>
-                            <li class="page-item"><a class="page-link pagination-list" href="">3</a></li>
+                            <li class="page-item"><a class="page-link pagination-list" href="#">1</a></li>
+                            <li class="page-item"><a class="page-link pagination-list" href="#">2</a></li>
+                            <li class="page-item"><a class="page-link pagination-list" href="#">3</a></li>
                             <li class="page-item-next">
-                                <a class="page-link pagination-list" href="" aria-label="Next">
+                                <a class="page-link pagination-list" href="#" aria-label="Next">
                                     <span aria-hidden="true">&raquo;</span>
                                     <span class="sr-only">Next</span>
                                 </a>
