@@ -81,7 +81,7 @@ public class InjectionResultController {
 
     @PostMapping("/search/injection-result")
     public ModelAndView searchInjectionResult(@RequestParam(value = "p", defaultValue = "0") Integer p,
-                                        @RequestParam(value = "size", defaultValue = "5") Integer size, RedirectAttributes redirectAttributes) {
+                                        @RequestParam(value = "size", defaultValue = "5") Integer size) {
         String keyword = request.getParameter("searchInjectionResult");
         ModelAndView model = new ModelAndView("redirect:/injection-result-list?search=" + keyword);
         return model;

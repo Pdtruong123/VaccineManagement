@@ -25,4 +25,5 @@ public interface InjectionResultRepository extends JpaRepository<InjectionResult
     Page<InjectionResult> findElementReport(String prevention, String vaccineType, LocalDate startDate, LocalDate endDate,
                                             Pageable pageable);
 
+
 }

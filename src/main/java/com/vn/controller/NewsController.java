@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
@@ -27,74 +28,100 @@ public class NewsController {
     HttpServletRequest request;
 
     @GetMapping("/news-list")
-    public String newsListPage(Model model, @RequestParam(value = "p",defaultValue = "0") Integer p,
-                               @RequestParam(value = "size", defaultValue = "5") Integer size){
-        Pageable pageable = PageRequest.of(p, size);
-        Page<News> news = newsService.findAllNews(pageable);
-        model.addAttribute("newsList", news);
+    public ModelAndView newsListPage(@RequestParam(value = "p",defaultValue = "0") Integer p,
+                               @RequestParam(value = "size", defaultValue = "5") Integer size,
+                               @RequestParam(value = "search", required = false) String keyword){
+        ModelAndView model = new ModelAndView("newsList");
+        if(keyword==null){
+            Pageable pageable = PageRequest.of(p, size);
 
-        if ((long) size * (news.getNumber() + 1) > news.getTotalElements()) {
-            model.addAttribute("firstElement", size * p + 1);
-            model.addAttribute("lastElement", news.getTotalElements());
-        } else {
-            model.addAttribute("firstElement", size * p + 1);
-            model.addAttribute("lastElement", size * (p + 1));
+            Page<News> news = newsService.findAllNews(pageable);
+            model.addObject("newsList", news);
+
+            if ((long) size * (news.getNumber() + 1) > news.getTotalElements()) {
+                model.addObject("firstElement", size * p + 1);
+                model.addObject("lastElement", news.getTotalElements());
+            } else {
+                model.addObject("firstElement", size * p + 1);
+                model.addObject("lastElement", size * (p + 1));
+            }
+            model.addObject("keyword", keyword);
+            return model;
+        } else{
+            Pageable pageable = PageRequest.of(p,size);
+            Page<News> news = newsService.findContainElements(keyword, pageable);
+            if (news.isEmpty()) {
+                model.addObject("error", "No data found!");
+            }
+            if ((long) size * (news.getNumber() + 1) > news.getTotalElements()) {
+                model.addObject("firstElement", size * p + 1);
+                model.addObject("lastElement", news.getTotalElements());
+            } else {
+                model.addObject("firstElement", size * p + 1);
+                model.addObject("lastElement", size * (p + 1));
+            }
+            model.addObject("newsList", news);
+            model.addObject("keyword", keyword);
+            return model;
         }
-        return "news-list";
+
     }
 
     @GetMapping("add/news")
-    public String addNewsPage(Model model){
-        model.addAttribute("news", new News());
-        return "create-news";
+    public ModelAndView addNewsPage(){
+        ModelAndView model = new ModelAndView("addNews");
+        model.addObject("news", new News());
+        return model;
     }
 
     @PostMapping("/add/news")
-    public String addNews(@Valid @ModelAttribute("news") News news, RedirectAttributes redirectAttributes,
+    public ModelAndView addNews(@Valid @ModelAttribute("news") News news, RedirectAttributes redirectAttributes,
                           BindingResult bindingResult){
+        ModelAndView model = new ModelAndView("redirect:/add/news");
+        ModelAndView modelError = new ModelAndView("addNews");
         if(bindingResult.hasErrors()){
-            return "create-news";
+            return modelError;
         }
         news.setPostDate(LocalDate.now());
         newsService.save(news);
         redirectAttributes.addFlashAttribute("success","Add news successfully!");
-        return "redirect:/add/news";
+        return model;
     }
 
     @PostMapping("/search/news")
-    public String searchNews(Model model, @RequestParam(value = "p",defaultValue = "0") Integer p,
+    public ModelAndView searchNews(@RequestParam(value = "p",defaultValue = "0") Integer p,
                              @RequestParam(value = "size", defaultValue = "5") Integer size){
         String keyword = request.getParameter("searchNews");
-        Pageable pageable = PageRequest.of(p,size);
-        Page<News> page = newsService.findContainElements(keyword, pageable);
-        if (page.isEmpty()) {
-            model.addAttribute("error", "No data found!");
-        }
-        model.addAttribute("newsList", page);
-        return "news-list";
+        ModelAndView model = new ModelAndView("redirect:/news-list?search="+ keyword);
+
+        return model;
     }
 
     @PostMapping("/delete/news")
-    public String deleteNews(@RequestParam String id){
+    public ModelAndView deleteNews(@RequestParam String id){
         newsService.deleteNews(id);
-        return "redirect:/news-list";
+        ModelAndView model = new ModelAndView("redirect:/news-list");
+        return model;
     }
 
     @GetMapping("/update/news/{id}")
-    public String updateNewsPage(Model model, @PathVariable String id){
+    public ModelAndView updateNewsPage(@PathVariable String id){
+        ModelAndView model = new ModelAndView("update-news");
         News news = newsService.findById(id);
-        model.addAttribute("news", news);
-        return "update-news";
+        model.addObject("news", news);
+        return model;
     }
 
     @PostMapping("/update/news")
-    public String updateNews(@Valid @ModelAttribute("news") News news, BindingResult bindingResult, RedirectAttributes redirectAttributes){
+    public ModelAndView updateNews(@Valid @ModelAttribute("news") News news, BindingResult bindingResult, RedirectAttributes redirectAttributes){
+        ModelAndView modelError = new ModelAndView("update-news");
+        ModelAndView model = new ModelAndView("redirect:/news-list");
         if(bindingResult.hasErrors()){
-            return "update-news";
+            return modelError;
         }
         news.setPostDate(LocalDate.now());
         newsService.save(news);
         redirectAttributes.addFlashAttribute("success", "Update News Successfully!");
-        return "redirect:/news-list";
+        return model;
     }
 }

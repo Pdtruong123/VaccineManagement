@@ -63,6 +63,50 @@
     </definition>
     <!-- End Of Feature Injection Result-->
 
+    <!--Start Of Feature News-->
+    <definition name="newsList" extends="base.definition">
+        <put-attribute name="title" value="News List" />
+        <put-attribute name="body"
+                       value="/WEB-INF/views/News/news-list.jsp" />
+    </definition>
+
+    <definition name="addNews" extends="base.definition">
+        <put-attribute name="title" value="Add News Page" />
+        <put-attribute name="body"
+                       value="/WEB-INF/views/News/create-news.jsp" />
+    </definition>
+
+    <definition name="redirect:/add/news" extends="base.definition">
+        <put-attribute name="title" value="Add News" />
+        <put-attribute name="body"
+                       value="/WEB-INF/views/News/create-news.jsp" />
+    </definition>
+
+    <definition name="redirect:/news-list?search=" extends="base.definition">
+        <put-attribute name="title" value="Search News" />
+        <put-attribute name="body"
+                       value="/WEB-INF/views/News/news-list.jsp" />
+    </definition>
+
+    <definition name="redirect:/news-list" extends="base.definition">
+        <put-attribute name="title" value="Delete News" />
+        <put-attribute name="body"
+                       value="/WEB-INF/views/News/news-list.jsp" />
+    </definition>
+
+    <definition name="update-news" extends="base.definition">
+        <put-attribute name="title" value="Update News" />
+        <put-attribute name="body"
+                       value="/WEB-INF/views/News/update-news.jsp" />
+    </definition>
+
+    <definition name="redirect:/news-list" extends="base.definition">
+        <put-attribute name="title" value="Update News" />
+        <put-attribute name="body"
+                       value="/WEB-INF/views/News/news-list.jsp" />
+    </definition>
+
+    <!--End Of Feature News-->
 
 </tiles-definitions>
 
