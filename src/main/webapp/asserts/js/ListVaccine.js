@@ -39,7 +39,6 @@ $("#make-in-active-button").click(function (){
             var id = $(this).val();
             ids.push(id);
         });
-      alert(ids);
        var thisResult = $("#table-IR input:checked");
        var c = confirm('Are you sure to make in-active id:'+ids);
        if(c) {
@@ -68,7 +67,7 @@ function updateButton(){
 		}
         })
 	if(count==0){
-			alert("No data to make inactive!");
+			alert("No data to Update!");
 			return false;
 		}
 		
@@ -78,7 +77,7 @@ function updateButton(){
 		}
 	if(count==1){
 			alert(id);
-			window.location.href="/vaccine/update/"+id;
+			window.location.href="/vaccine/update/?idUpdate="+id;
 			return false;
 		}
 		
