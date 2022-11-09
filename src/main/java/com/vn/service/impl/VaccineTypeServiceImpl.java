@@ -114,7 +114,7 @@ public class VaccineTypeServiceImpl implements VaccineTypeService  {
 
 	@Override
 	public List<VaccineType> findAll() {
-		// TODO Auto-generated method stub
+		
 		return vaccineTypeRepository.findAll();
 	}
 
@@ -122,5 +122,11 @@ public class VaccineTypeServiceImpl implements VaccineTypeService  {
 	@Transactional
 	public void upDateStatus(List<String> ids, Boolean inactive) {
 		vaccineTypeRepository.upDateStatus(ids, inactive);
+	}
+
+	@Override
+	public List<VaccineType> findAllActice() {
+		Boolean status = true;
+		return vaccineTypeRepository.findByVaccineTypeStatus(status);
 	}
 }
