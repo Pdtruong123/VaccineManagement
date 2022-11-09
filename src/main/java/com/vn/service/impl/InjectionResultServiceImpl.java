@@ -8,6 +8,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -41,6 +42,14 @@ public class InjectionResultServiceImpl implements InjectionResultService {
     @Override
     public Page<InjectionResult> findContainElement(String searchParam, Pageable pageable) {
         return injectionResultRepository.findContainElement(searchParam, pageable);
+    }
+
+    @Override
+    public Page<InjectionResult> findElementReport(String prevention, String vaccineType, LocalDate startDate, LocalDate endDate, Pageable pageable) {
+        if(prevention==null){
+
+        }
+        return injectionResultRepository.findElementReport(prevention, vaccineType, startDate, endDate, pageable);
     }
 
 
