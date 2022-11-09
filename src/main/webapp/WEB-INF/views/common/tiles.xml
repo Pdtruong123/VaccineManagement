@@ -24,11 +24,11 @@
                        value="/WEB-INF/views/products/list-vaccine-type.jsp" />
     </definition>
 
-<!--    <definition name="detailProductPage" extends="base.definition">-->
-<!--        <put-attribute name="title" value="Detail Product" />-->
-<!--        <put-attribute name="body"-->
-<!--                       value="/WEB-INF/views/products/detail_product.jsp" />-->
-<!--    </definition>-->
+    <definition name="injectionResultList" extends="base.definition">
+        <put-attribute name="title" value="Injection Result List" />
+        <put-attribute name="body"
+                       value="/WEB-INF/views/InjectionResult/injection-result-list.jsp" />
+    </definition>
 
 </tiles-definitions>
 
