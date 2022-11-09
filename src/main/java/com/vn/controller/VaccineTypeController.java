@@ -21,6 +21,7 @@ import com.vn.dto.VaccineTypeDTO;
 import com.vn.model.VaccineType;
 import com.vn.repository.VaccineTypeRepository;
 import com.vn.service.VaccineTypeService;
+import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class VaccineTypeController {
@@ -35,39 +36,41 @@ public class VaccineTypeController {
     HttpServletRequest request;
 
     @GetMapping(value = "/vaccineType/list")
-    public String viewListVaccineType(Model model,
+    public ModelAndView viewListVaccineType(
                                       @RequestParam(name ="p", required = false, defaultValue = "0") Integer p,
                                       @RequestParam(name ="size",required = false, defaultValue = "5") Integer size,
                                       @RequestParam(name ="search", required = false) String nameSearch
                                       ) {
+        ModelAndView model = new ModelAndView("listVaccineType");
         if (nameSearch==null) {
             Pageable pageable = PageRequest.of(p, size);
             Page<VaccineType> vaccineTypes = vaccineTypeService.findAll(pageable);
-            model.addAttribute("vaccineTypeList", vaccineTypes);
+            model.addObject("vaccineTypeList", vaccineTypes);
 
             if (size * (vaccineTypes.getNumber() + 1) > vaccineTypes.getTotalElements()) {
-                model.addAttribute("firstElement", size * p + 1);
-                model.addAttribute("lastElement", vaccineTypes.getTotalElements());
+                model.addObject("firstElement", size * p + 1);
+                model.addObject("lastElement", vaccineTypes.getTotalElements());
             } else {
-                model.addAttribute("firstElement", size * p + 1);
-                model.addAttribute("lastElement", size * (p + 1));
+                model.addObject("firstElement", size * p + 1);
+                model.addObject("lastElement", size * (p + 1));
             }
-            model.addAttribute("nameSearch",nameSearch);
-            return "listVaccineType";
+            model.addObject("nameSearch",nameSearch);
+            model.addObject("size",size);
+                return model;
         }else {
             Pageable pageable = PageRequest.of(p, size);
             Page<VaccineType> vaccineTypes = vaccineTypeService.findByVaccineTypeNameContaining(nameSearch,pageable);
-            model.addAttribute("vaccineTypeList", vaccineTypes);
+            model.addObject("vaccineTypeList", vaccineTypes);
 
             if (size * (vaccineTypes.getNumber() + 1) > vaccineTypes.getTotalElements()) {
-                model.addAttribute("firstElement", size * p + 1);
-                model.addAttribute("lastElement", vaccineTypes.getTotalElements());
+                model.addObject("firstElement", size * p + 1);
+                model.addObject("lastElement", vaccineTypes.getTotalElements());
             } else {
-                model.addAttribute("firstElement", size * p + 1);
-                model.addAttribute("lastElement", size * (p + 1));
+                model.addObject("firstElement", size * p + 1);
+                model.addObject("lastElement", size * (p + 1));
             }
-            model.addAttribute("nameSearch",nameSearch);
-            return "listVaccineType";
+            model.addObject("nameSearch",nameSearch);
+            return model;
         }
     }
 
@@ -81,7 +84,7 @@ public class VaccineTypeController {
     @GetMapping("/vaccineType/add")
     public String createVaccineType(Model model){
     	model.addAttribute("member",new VaccineTypeDTO());
-        return "createVaccineType";
+        return "vaccineType/create-vaccine-type";
     }
 
     @PostMapping("/vaccineType/add")
@@ -90,7 +93,7 @@ public class VaccineTypeController {
     		
             model.addAttribute("message","Create Vaccine Type Failed !!!");
     		
-            return "createVaccineType";
+            return "vaccineType/create-vaccine-type";
         }
     	vaccineTypeService.save(vaccineTypeDTO);
         return "redirect:/vaccineType/list";
@@ -102,7 +105,7 @@ public class VaccineTypeController {
         VaccineType v = vaccineTypeService.findById(id);
         model.addAttribute("vaccineType", v);
 
-        return "createVaccineType";
+        return "vaccineType/create-vaccine-type";
     }
     @PostMapping("/vaccineType/update")
     public String updateVaccineType(@ModelAttribute("vaccineType") VaccineTypeDTO vaccineTypeDTO,  Model model ) {
@@ -112,33 +115,26 @@ public class VaccineTypeController {
 
     }
 
-    @PostMapping("/vaccineType/update/satus")
+    @PostMapping("/vaccineType/update/status")
     public String updateVaccineTypeStatus(@RequestParam(value = "ids") List<String> ids,  @RequestParam(value = "status", defaultValue = "false") Boolean inactive) {
 
-        vaccineTypeRepository.upDateStatus(ids, inactive);
+        vaccineTypeService.upDateStatus(ids, inactive);
 
         return "redirect:/vaccineType/list";
-    }
 
-    @GetMapping("/report/inject")
-    public String reportInject(Model model){
+   }
 
-        return "report-inject-result";
-    }
-    @GetMapping("/report/cus")
-    public String reportCus(Model model){
+//    @GetMapping(value ="/vaccineType/ajax")
+//    public String ajaxVaccineType( Model model) {
+//
+//        return "vaccineType/index-ajax";
+//   }
 
-        return "report-customer";
-    }
-    @GetMapping("/char/cus")
-    public String chartCus(Model model){
+//    @GetMapping(value ="/vaccineType/ajax/list/1")
+//    public String ajaxListVaccineType( Model model) {
+//
+//        return "vaccineType/list-ajax";
+//    }
 
-        return "chart-customer";
-    }
-    @GetMapping("/char/inject")
-    public String chartInject(Model model){
-
-        return "chart-inject-result";
-    }
 
 }

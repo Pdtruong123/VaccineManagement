@@ -22,6 +22,5 @@ public interface VaccineTypeService {
 	
 	List<VaccineType> findAll();
 
-
-
+    void upDateStatus(List<String> ids, Boolean inactive);
 }

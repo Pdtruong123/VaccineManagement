@@ -34,18 +34,8 @@ public class InjectionScheduleController {
     @Autowired
     InjectionScheduleService injectionScheduleService;
 
-//    @GetMapping("/add/injectionSchedule")
-//    public String listInjection(Model model) {
-//        model.addAttribute("injection",new InjectionScheduleDTO());
-//        List<InjectionSchedule> scheduleList= injectionScheduleReponsitory.findAll();
-//        model.addAttribute("listInjection", scheduleList);
-//        List<Vaccine> vaccineList= vaccineReponsitory.findAll();
-//        model.addAttribute("listVaccine",vaccineList);
-//        return "create-injection-schedule";
-//    }
-
-    @GetMapping("/schedule/add/injection")
-    public String getAdd(Model model){
+    @GetMapping("/add/injectionSchedule")
+    public String listInjection(Model model) {
         model.addAttribute("injection",new InjectionScheduleDTO());
         List<InjectionSchedule> scheduleList= injectionScheduleReponsitory.findAll();
         model.addAttribute("listInjection", scheduleList);
@@ -53,17 +43,23 @@ public class InjectionScheduleController {
         model.addAttribute("listVaccine",vaccineList);
         return "create-injection-schedule";
     }
+    @GetMapping("/lisst")
+    public String getlist(){
+        return "injectionScheduleList";
+    }
+////    @GetMapping("/schedule/add/injection")
+////    public String getAdd(Model model){
+////        model.addAttribute("injection",new InjectionScheduleDTO());
+////        List<InjectionSchedule> scheduleList= injectionScheduleReponsitory.findAll();
+////        model.addAttribute("listInjection", scheduleList);
+////        List<Vaccine> vaccineList= vaccineReponsitory.findAll();
+////        model.addAttribute("listVaccine",vaccineList);
+////        return "create-injection-schedule";
+////    }
 
-//        @PostMapping("/add/injectionSchedule")
-//    public String addInjection(@Valid @ModelAttribute("injection") InjectionScheduleDTO injectionScheduleDTO, BindingResult bindingResult) {
-////        injectionScheduleService.save(injectionScheduleDTO);
-//        return "redirect:/injectionScheduleList";
-//    }
-    @GetMapping("/listInjectionSchedule")
-    public String listInjectionSchedule(Model model, @RequestParam("l")Optional<Integer> l){
-        org.springframework.data.domain.Pageable pageable= PageRequest.of(l.orElse(0),5);
-        Page<InjectionSchedule> page= injectionScheduleReponsitory.findAll(pageable);
-        model.addAttribute("listInjectionPage",page);
+        @PostMapping("/add/injectionSchedule")
+    public String addInjection(@Valid @ModelAttribute("injection") InjectionScheduleDTO injectionScheduleDTO, BindingResult bindingResult) {
+        injectionScheduleService.save(injectionScheduleDTO);
         return "injectionScheduleList";
     }
 }

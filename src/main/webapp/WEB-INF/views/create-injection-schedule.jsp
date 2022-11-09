@@ -2,12 +2,12 @@
          pageEncoding="ISO-8859-1" %>
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="ISO-8859-1">
-    <title>Injection ADD</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -31,11 +31,13 @@
             integrity="sha512-rstIgDs0xPgmG6RX1Aba4KV5cWJbAMcvRCVmglpam9SoHZiUCyQVDdH2LPlxoHtrv17XWblE/V/PP+Tr04hbtA=="
             crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <link rel="stylesheet" href="../../asserts/css/style.css">
+    <title>List</title>
 </head>
+
 <body>
 <div class="container-fluid ">
     <nav class="row topnavbar py-1">
-        <a href="index.html" class="navbar-brand ml-3 mr-auto"><img class="img" src="../../asserts/img/logo.png"></a>
+        <a href="index.html" class="navbar-brand ml-3 mr-auto"><img class="img" src=".../../asserts/img/logo.png"></a>
     </nav>
     <div class="row">
         <div class="col-sm-3 border-right left" id="accordion">
@@ -108,7 +110,8 @@
                         </div>
                         <div class="mt-3 collapse" id="vaccine" data-parent="#accordion">
                             <div class="ml-4 text-sub">
-                                <a class="text-reset text-decoration-none" href="#">
+                                <a class="text-reset text-decoration-none"
+                                   href="${pageContext.request.contextPath}/vaccine/list">
                                     <span class="ml-2">Vaccine List</span>
                                 </a>
                             </div>
@@ -192,44 +195,41 @@
                         </div>
                     </div>
                 </div>
-
-
             </div>
-
         </div>
         <div class="col-sm-9 bg-light right">
             <div class="card">
                 <div class="head-title card-header">
                     <h4 class="text-center">CREATE INJECTION SCHEDULE</h4>
                 </div>
-                <form id="form-injectionSchedule">
+                <form:form id="form-injectionSchedule" method="POST" modelAttribute="injection">
                     <div class="card-body">
                         <div class="mt-1 row">
                             <div class="col-sm-4">
                                 <label>Vaccine</label><label class="lbls">(*)</label>
-                                <select id="vaccineID" class="form-control">
+                                <form:select path="vaccineID" id="vaccineID" class="form-control">
                                     <c:forEach items="${listVaccine}" var="listvaccine">
-                                        <option value="${listvaccine.id}">${listvaccine.vaccineName}</option>
+                                        <option name="vaccineID" value="${listvaccine.id}">${listvaccine.vaccineName}</option>
                                     </c:forEach>
-                                </select>
+                                </form:select>
                             </div>
                             <div class="col-sm-4">
                                 <label>From</label><label class="lbls">(*)</label>
-                                <input type="date" name="startDate" class="form-control"/>
+                                <form:input path="startDate" type="date" class="form-control startDate"/>
                             </div>
                             <div class="col-sm-4">
                                 <label>To</label><label class="lbls">(*)</label>
-                                <input type="date" name="endDate" class="form-control"/>
+                                <form:input path="endDate" type="date"  class="form-control endDate"/>
                             </div>
                         </div>
                         <div class="mt-2 row">
                             <div class="col-sm-5">
                                 <label>Place</label><label class="lbls">(*)</label>
-                                <textarea name="place" class="form-control"></textarea>
+                                <form:textarea path="place"  class="form-control place"></form:textarea>
                             </div>
                             <div class="col-sm-7">
                                 <label>Note:</label>
-                                <textarea name="note" class="form-control"></textarea>
+                                <form:textarea path="note"  class="form-control note"></form:textarea>
                             </div>
 
                         </div>
@@ -239,15 +239,7 @@
                             <button type="reset" class="btn btn-warning ml-4">Cancle</button>
                         </div>
                     </div>
-                </form>
+                </form:form>
             </div>
-        </div>
-
-    </div>
-
-</div>
-</div>
-<script src="${pageContext.request.contextPath}/js/ValidatorInjectionSchedule.js"></script>
-<script src="${pageContext.request.contextPath}/js/InjectionScheduleApi.js"></script>
-</body>
-</html>
+            <script src="${pageContext.request.contextPath}/js/ValidatorInjectionSchedule.js"></script>
+            <script src="${pageContext.request.contextPath}/js/InjectionScheduleApi.js"></script>

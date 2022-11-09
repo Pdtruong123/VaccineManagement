@@ -31,16 +31,21 @@ $("#make-in-active-button").click(function (){
 			alert("Invalid data - Please recheck your selects!");
 			return false;
 		}
-    $("#table-IR > tbody input:checked").each(function (){
 		
-       var id = $(this).val();
-      alert(id);
-       var thisResult = $(this);
-       var c = confirm('Are you sure to make in-active?');
+    
+		
+      let ids = [];
+        $("#table-IR input:checked").each(function (){
+            var id = $(this).val();
+            ids.push(id);
+        });
+      alert(ids);
+       var thisResult = $("#table-IR input:checked");
+       var c = confirm('Are you sure to make in-active id:'+ids);
        if(c) {
            $.ajax({
                type: "POST",
-               url: "/vaccine/update/makeInActive?id=" + id,
+               url: "/vaccine/update/makeInActive?ids=" + ids,
                success: function (){
                    thisResult.closest('tr').find("td:eq(6)").text("In-Active");
                    alert("Update In-Active Successfully!")
@@ -50,8 +55,7 @@ $("#make-in-active-button").click(function (){
                }
            })
         }
-        return false;
-    })
+    
 })
 
 function updateButton(){
