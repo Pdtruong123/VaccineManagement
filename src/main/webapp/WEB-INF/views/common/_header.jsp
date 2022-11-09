@@ -36,8 +36,6 @@
         <a href="index.html" class="navbar-brand ml-3 mr-auto"><img class="img" src="../../asserts/img/logo.png"></a>
     </nav>
 
-
-
 </body>
 </html>
 
