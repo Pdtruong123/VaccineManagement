@@ -1,5 +1,5 @@
 $(document).ready(function(){
-    $("#formAdd").validate({
+    $("#formUpdate").validate({
         rules: {
             id: {
                 required: true,
@@ -69,17 +69,17 @@ function submitValidate(){
 	var dateEnd = new Date($("#vaccine-time-end-injection").val());
 	
 	if(dateStart < dateEnd){
-		if ($("#formAdd").valid()) {
+		if ($("#formUpdate").valid()) {
 		return true;
         }else{
             return false;
         }
 	}else{
-		alert(false);
+		
 		var x = $("#col-time-begin").html();
 		x+="<span class='error'>Time begin is before time end</span>";
 		$("#col-time-begin").html(x);
-		alert(x);
+		
 		return false;
 		
 		}

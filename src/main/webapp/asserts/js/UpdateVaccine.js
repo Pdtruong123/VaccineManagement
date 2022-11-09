@@ -75,10 +75,11 @@ function submitValidate(){
             return false;
         }
 	}else{
-		alert(false);
+		
 		var x = $("#col-time-begin").html();
 		x+="<span class='error'>Time begin is before time end</span>";
 		$("#col-time-begin").html(x);
+		
 		return false;
 		
 		}

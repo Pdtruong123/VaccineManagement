@@ -114,7 +114,7 @@
                                 </a>
                             </div>
                             <div class="ml-4 mt-2 text-sub">
-                                <a class="text-reset text-decoration-none " href="#">
+                                <a class="text-reset text-decoration-none " href="${pageContext.request.contextPath}/vaccine/add">
                                     <span class="ml-2">Create Vaccine</span>
                                 </a>
                             </div>

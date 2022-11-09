@@ -150,6 +150,7 @@ public class VaccineController {
 	public String showUpdateVaccine(Model model,@RequestParam(name = "idUpdate", required = true) String idUpdate,RedirectAttributes redirectAttributes) {
 		
 		Vaccine vaccine = vaccineService.findVaccineById(idUpdate);
+		
 		if (vaccine==null) {
 			redirectAttributes.addFlashAttribute("msg","Id is not exists!");
 			return "redirect:/vaccine/list";
@@ -162,7 +163,7 @@ public class VaccineController {
 		vaccineDTO.setId(vaccine.getId());
 		vaccineDTO.setStatus(vaccine.getStatus());
 		vaccineDTO.setVaccineName(vaccine.getVaccineName());
-		
+		vaccineDTO.setVaccineType(vaccine.getVaccineType());
 		vaccineDTO.setNumberOfInjection(vaccine.getNumberOfInjection());
 		vaccineDTO.setUsage(vaccine.getUsage());
 		vaccineDTO.setIndication(vaccine.getIndication());
@@ -172,7 +173,7 @@ public class VaccineController {
 		vaccineDTO.setOrigin(vaccine.getOrigin());
 		
 		model.addAttribute("vaccineTypeList", vaccineTypeList);
-		model.addAttribute("vaccineDto", vaccineDTO);
+		model.addAttribute("vaccineUpdate", vaccineDTO);
 		return "vaccine/vaccine-create";
 	}
 	@PostMapping(value = "/vaccine/update")
@@ -187,7 +188,8 @@ public class VaccineController {
 		if (vaccine==null) {
 			model.addAttribute("msgId","Id is not exists!");
 			model.addAttribute("vaccineTypeList", vaccineTypeList);
-			model.addAttribute("vaccineDto", vaccineDTO);
+			model.addAttribute("vaccineUpdate", vaccineDTO);
+			
 			return "/vaccine/vaccine-create";
 		}
 		Vaccine vaccineUpdate = vaccineService.update(vaccineDTO);
@@ -195,8 +197,8 @@ public class VaccineController {
 		
 		if (vaccineUpdate==null) {
 			model.addAttribute("vaccineTypeList", vaccineTypeList);
-			model.addAttribute("vaccineDto", vaccineDTO);
-			model.addAttribute("msgTime", "Time to start next vaccination must be less than end time!");
+		model.addAttribute("msgTime", "Time to start next vaccination must be less than end time!");
+			model.addAttribute("vaccineUpdate", vaccineDTO);
 			return "vaccine/vaccine-create";
 		}
 		
