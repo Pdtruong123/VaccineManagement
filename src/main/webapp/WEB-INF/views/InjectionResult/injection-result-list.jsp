@@ -41,15 +41,15 @@
             <div class="col-sm-3 form-inline">
                 <span>Show</span>
                 <select class="form-select mx-2 border-right-0 border-top-0 border-left-0" id="inlineFormCustomSelect"
-                        name="showNumberList" onchange="location = this.value;this.option = selected">
-                    <option selected></option>
-                    <option value="${pageContext.request.contextPath}/injection-result-list?size=5&search=${keyword}">
+                        name="showNumberList" onchange="location = this.value;">
+
+                    <option value="${pageContext.request.contextPath}/injection-result-list?size=5&search=${keyword}" ${param.size == '5' ? 'selected' : ''}>
                         5
                     </option>
-                    <option value="${pageContext.request.contextPath}/injection-result-list?size=10&search=${keyword}">
+                    <option value="${pageContext.request.contextPath}/injection-result-list?size=10&search=${keyword}" ${param.size == '10' ? 'selected' : ''}>
                         10
                     </option>
-                    <option value="${pageContext.request.contextPath}/injection-result-list?size=15&search=${keyword}">
+                    <option value="${pageContext.request.contextPath}/injection-result-list?size=15&search=${keyword}" ${param.size == '15' ? 'selected' : ''}>
                         15
                     </option>
                 </select>
