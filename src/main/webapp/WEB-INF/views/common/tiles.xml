@@ -12,23 +12,23 @@
         <put-attribute name="body" value="" />
     </definition>
 
-<!--    <definition name="homePage" extends="base.definition">-->
-<!--        <put-attribute name="title" value="Home Page" />-->
-<!--        <put-attribute name="body"-->
-<!--                       value="/WEB-INF/views/index.jsp" />-->
-<!--    </definition>-->
+    <definition name="homePage" extends="base.definition">
+        <put-attribute name="title" value="Home Page" />
+        <put-attribute name="body"
+                       value="/WEB-INF/views/index.jsp" />
+    </definition>
 
     <definition name="listVaccineType" extends="base.definition">
         <put-attribute name="title" value="Vaccine Type List" />
         <put-attribute name="body"
-                       value="/WEB-INF/views/products/list-vaccine-type.jsp" />
+                       value="/WEB-INF/views/products/vaccineType/list-vaccine-type.jsp" />
     </definition>
 
-<!--    <definition name="detailProductPage" extends="base.definition">-->
-<!--        <put-attribute name="title" value="Detail Product" />-->
-<!--        <put-attribute name="body"-->
-<!--                       value="/WEB-INF/views/products/detail_product.jsp" />-->
-<!--    </definition>-->
+    <definition name="createVaccineType" extends="base.definition">
+        <put-attribute name="title" value="Create Vaccine Type" />
+        <put-attribute name="body"
+                       value="/WEB-INF/views/products/vaccineType/create-vaccine-type.jsp" />
+    </definition>
 
 </tiles-definitions>
 

@@ -82,21 +82,24 @@ public class VaccineTypeController {
     }
 
     @GetMapping("/vaccineType/add")
-    public String createVaccineType(Model model){
-    	model.addAttribute("member",new VaccineTypeDTO());
-        return "vaccineType/create-vaccine-type";
+    public ModelAndView createVaccineType(){
+        ModelAndView model = new ModelAndView("createVaccineType");
+    	model.addObject("member",new VaccineTypeDTO());
+        return model;
     }
 
     @PostMapping("/vaccineType/add")
-    public String register(@Valid @ModelAttribute("vaccineType") VaccineTypeDTO vaccineTypeDTO, BindingResult bindingResult, Model model) {
-    	if(bindingResult.hasErrors()){
+    public ModelAndView register(@Valid @ModelAttribute("vaccineType") VaccineTypeDTO vaccineTypeDTO, BindingResult bindingResult) {
+        ModelAndView modelError = new ModelAndView("createVaccineType");
+        ModelAndView model = new ModelAndView("redirect:/vaccineType/list");
+        if(bindingResult.hasErrors()){
     		
-            model.addAttribute("message","Create Vaccine Type Failed !!!");
+            model.addObject("message","Create Vaccine Type Failed !!!");
     		
-            return "vaccineType/create-vaccine-type";
+            return modelError;
         }
     	vaccineTypeService.save(vaccineTypeDTO);
-        return "redirect:/vaccineType/list";
+        return model;
     }
 
     @GetMapping(value ="/vaccineType/update/{id}")
