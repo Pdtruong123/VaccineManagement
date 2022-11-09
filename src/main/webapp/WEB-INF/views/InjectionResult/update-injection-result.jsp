@@ -30,103 +30,91 @@
             integrity="sha512-rstIgDs0xPgmG6RX1Aba4KV5cWJbAMcvRCVmglpam9SoHZiUCyQVDdH2LPlxoHtrv17XWblE/V/PP+Tr04hbtA=="
             crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <link rel="stylesheet" href="../../../asserts/css/style.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/InjectionResult.css">
+    <title>List</title>
 </head>
 <body>
-
 <h1 class="h5 mt-3 text-center text-secondary font-weight-bold mb-3">CREATE INJECTION RESULT</h1>
-<div class="h4 text-success font-weight-bold ml-3">${success}</div>
 <div class="card mx-3">
     <div class="card-body">
-        <form:form action="${pageContext.request.contextPath}/add/injection-result" method="post"
-                   modelAttribute="injectionResult" id="IR-form">
+        <form:form action="${pageContext.request.contextPath}/update/injection-result" method="post"
+                   modelAttribute="injectionResult">
             <form:input type="hidden" id="id" path="id" value="${injectionResult.id}"/>
             <div class="row m-4">
-                <div class="col-sm-4 form-group">
-                    <label class="font-weight-bold" for="customer">Customer</label>
-                    <span class="text-danger">(*):</span>
+                <div class="col form-group">
+                    <label for="customer">Customer:</label>
                     <form:select path="customer" id="customer" class="form-control">
-                        <option label="--Select Customer" selected value=""/>
+                        <option label="${injectionResult.customer.fullName}-${injectionResult.customer.dateOfBirth}"
+                                selected value="${injectionResult.customer.id}"/>
                         <c:forEach items="${customer}" var="cus">
                             <option value="${cus.id}" label="${cus.fullName}-${cus.dateOfBirth}"/>
                         </c:forEach>
                     </form:select>
-                    <form:errors path="id"></form:errors>
+                    <form:errors path="customer"></form:errors>
                 </div>
-                <div class="col-sm-4 form-group">
-                    <label class="font-weight-bold" for="prevention">Prevention</label>
-                    <span class="text-danger">(*):</span>
-                    <form:select path="prevention" id="prevention" class="form-control">
-                        <option label="--Select Prevention" selected value=""/>
+                <div class="col form-group">
+                    <label for="prevention">Prevention:</label>
+                    <select name="prevention" id="prevention" class="form-control">
+                        <option label="${injectionResult.prevention}" selected value="${injectionResult.prevention}"/>
                         <c:forEach items="${preventionList}" var="pre">
                             <option value="${pre}" label="${pre}"/>
                         </c:forEach>
-                    </form:select>
-                    <form:errors path="prevention"></form:errors>
+                    </select>
+
                 </div>
-                <div class="col-sm-4 form-group">
-                    <label class="font-weight-bold" for="vaccineType">Vaccine type</label>
-                    <span class="text-danger">(*):</span>
-                    <form:select class="form-control" id="vaccineType" path="vaccine">
-                        <option label="--Select Vaccine Type" value="" selected/>
+                <div class="col form-group">
+                    <label for="vaccineT">Vaccine type:</label>
+                    <select class="form-control" id="vaccineT" name="vaccine">
+                        <option label="${injectionResult.vaccine.vaccineName}" selected
+                                value="${injectionResult.vaccine.id}"/>
                         <c:forEach items="${vaccineList}" var="vaccines">
                             <option value="${vaccines.id}" label="${vaccines.vaccineName}"/>
                         </c:forEach>
-                    </form:select>
+                    </select>
                 </div>
             </div>
             <div class="row m-4">
-                <div class="col-sm-4 form-group">
-                    <label class="font-weight-bold" for="injection">Injection:</label>
+                <div class="col form-group">
+                    <label for="injection">Injection:</label>
                     <form:input type="text" class="form-control" placeholder="" id="injection"
-                                path="numberOfInjection" value="${injectionResult.numberOfInjection}"/>
-                    <form:errors path="numberOfInjection"></form:errors>
+                                path="numberOfInjection"/>
+
                 </div>
-                <div class="col-sm-4 form-group">
-                    <label class="font-weight-bold" for="dateOfInjection">Date of injection:</label>
+                <div class="col form-group">
+                    <label for="dateOfInjection">Date of injection:</label>
                     <form:input type="date" class="form-control" placeholder="" id="dateOfInjection"
-                                path="injectionDate" value="${injectionResult.injectionDate}"/>
-                    <form:errors path="injectionDate"></form:errors>
+                                path="injectionDate"/>
                 </div>
-                <div class="col-sm-4 form-group">
-                    <label class="font-weight-bold" for="nextOfInjection">Next injection appoinment:</label>
+                <div class="col form-group">
+                    <label for="nextOfInjection">Next injection appoinment:</label>
                     <form:input type="date" class="form-control" placeholder="" id="nextOfInjection"
-                                path="nextInjectionDate" value="${injectionResult.nextInjectionDate}"/>
-                    <form:errors path="nextInjectionDate"></form:errors>
+                                path="nextInjectionDate"/>
+
                 </div>
             </div>
             <div class="row m-4">
-                <div class="col-sm-4 form-group">
-                    <label class="font-weight-bold" for="placeOfinjection">Place of injection:</label>
+                <div class="col form-group">
+                    <label for="placeOfinjection">Place of injection:</label>
                     <form:select path="injectionPlace" id="placeOfinjection" class="form-control">
-                        <option label="--Select place of injection--" selected value=""/>
+                        <option label="${injectionResult.injectionPlace}" selected
+                                value="${injectionResult.injectionPlace}"/>
                         <c:forEach items="${placeOfInjectionList}" var="place">
                             <option value="${place}" label="${place}"/>
                         </c:forEach>
                     </form:select>
-                    <form:errors path="injectionPlace"></form:errors>
+
                 </div>
-                <div class="col-sm-4"></div>
-                <div class="col-sm-4"></div>
+                <div class="col"></div>
+                <div class="col"></div>
             </div>
-            <div class="form-button">
-                <button class="btn btn-success mr-1" type="submit">Save</button>
+            <div class="form-button ml-4">
+                <button class="btn btn-success ml-3 mr-1" type="submit">Save</button>
                 <button class="btn btn-primary mr-1" type="reset">Reset</button>
-                <button class="btn btn-warning text-white" type="submit"><a
+                <button class="btn btn-warning" type="submit"><a
                         href="${pageContext.request.contextPath}/injection-result-list"
                         class="text-white text-decoration-none">Cancel</a></button>
             </div>
         </form:form>
     </div>
 </div>
-
-<script src="${pageContext.request.contextPath}/js/ValidateInjectionResult.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
-        integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
-        crossorigin="anonymous" referrerpolicy="no-referrer">
-</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js"
-        integrity="sha512-rstIgDs0xPgmG6RX1Aba4KV5cWJbAMcvRCVmglpam9SoHZiUCyQVDdH2LPlxoHtrv17XWblE/V/PP+Tr04hbtA=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </body>
 </html>

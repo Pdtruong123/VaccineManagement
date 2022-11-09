@@ -80,32 +80,36 @@ public class InjectionResultController {
     }
 
     @PostMapping("/search/injection-result")
-    public String searchInjectionResult(Model model, @RequestParam(value = "p", defaultValue = "0") Integer p,
+    public ModelAndView searchInjectionResult(@RequestParam(value = "p", defaultValue = "0") Integer p,
                                         @RequestParam(value = "size", defaultValue = "5") Integer size, RedirectAttributes redirectAttributes) {
         String keyword = request.getParameter("searchInjectionResult");
-        return "redirect:/injection-result-list?search=" + keyword;
+        ModelAndView model = new ModelAndView("redirect:/injection-result-list?search=" + keyword);
+        return model;
     }
 
     @GetMapping("/add/injection-result")
-    public String addInjectionResultPage(Model model) {
-        model.addAttribute("preventionList", DataInjectionResult.preventionData);
-        model.addAttribute("placeOfInjectionList", DataInjectionResult.placeOfInjection);
-        model.addAttribute("vaccineList", vaccineService.findAll());
-        model.addAttribute("injectionResult", new InjectionResult());
-        model.addAttribute("customer", customerService.findAllCustomer());
+    public ModelAndView addInjectionResultPage() {
+        ModelAndView model = new ModelAndView("createInjectionResult");
+        model.addObject("preventionList", DataInjectionResult.preventionData);
+        model.addObject("placeOfInjectionList", DataInjectionResult.placeOfInjection);
+        model.addObject("vaccineList", vaccineService.findAll());
+        model.addObject("injectionResult", new InjectionResult());
+        model.addObject("customer", customerService.findAllCustomer());
 
-        return "create-injection-result";
+        return model;
     }
 
     @PostMapping("/add/injection-result")
-    public String addInjectionResult(@Valid @ModelAttribute(value = "injectionResult") InjectionResult injectionResult,
+    public ModelAndView addInjectionResult(@Valid @ModelAttribute(value = "injectionResult") InjectionResult injectionResult,
                                      BindingResult bindingResult, RedirectAttributes redirectAttributes) {
+        ModelAndView modelError = new ModelAndView("createInjectionResult");
+        ModelAndView model = new ModelAndView("redirect:/add/injection-result");
         if (bindingResult.hasErrors()) {
-            return "create-injection-result";
+            return modelError;
         }
         injectionResultService.save(injectionResult);
         redirectAttributes.addFlashAttribute("success", "Successful operation");
-        return "redirect:/add/injection-result";
+        return model;
     }
 
     @PostMapping("/delete/injection-result")
@@ -115,26 +119,28 @@ public class InjectionResultController {
     }
 
     @GetMapping("/update/injection-result/{id}")
-    public String updatePage(Model model, @PathVariable String id) {
+    public ModelAndView updatePage(@PathVariable String id) {
+        ModelAndView model = new ModelAndView("update-injection-result");
         InjectionResult injectionResult = injectionResultService.findById(id);
-        model.addAttribute("injectionResult", injectionResult);
-        model.addAttribute("customer", customerService.findAllCustomer());
-        model.addAttribute("preventionList", DataInjectionResult.preventionData);
-        model.addAttribute("vaccineList", vaccineService.findAll());
-        model.addAttribute("placeOfInjectionList", DataInjectionResult.placeOfInjection);
-        return "update-injection-result";
+        model.addObject("injectionResult", injectionResult);
+        model.addObject("customer", customerService.findAllCustomer());
+        model.addObject("preventionList", DataInjectionResult.preventionData);
+        model.addObject("vaccineList", vaccineService.findAll());
+        model.addObject("placeOfInjectionList", DataInjectionResult.placeOfInjection);
+        return model;
     }
 
     @PostMapping("/update/injection-result")
-    public String updateInjectionResult(Model model,
-                                        @Valid @ModelAttribute("injectionResult") InjectionResult injectionResult,
+    public ModelAndView updateInjectionResult(@Valid @ModelAttribute("injectionResult") InjectionResult injectionResult,
                                         BindingResult bindingResult, RedirectAttributes redirectAttributes ){
+        ModelAndView modelError = new ModelAndView("update-injection-result");
+        ModelAndView model = new ModelAndView("redirect:/injection-result-list");
         if(bindingResult.hasErrors()){
-            return "update-injection-result";
+            return modelError;
         }
         injectionResultService.save(injectionResult);
         redirectAttributes.addFlashAttribute("success", "Successful operation");
-        return "redirect:/injection-result-list";
+        return model;
     }
 
 }

@@ -141,12 +141,12 @@
                 </div>
                 <div class="mt-3 collapse" id="injectResult" data-parent="#accordion">
                     <div class="ml-4 text-sub">
-                        <a class="text-reset text-decoration-none" href="#">
+                        <a class="text-reset text-decoration-none" href="${pageContext.request.contextPath}/injection-result-list">
                             <span class="ml-2">Injection Result List</span>
                         </a>
                     </div>
                     <div class="ml-4 mt-2 text-sub">
-                        <a class="text-reset text-decoration-none " href="#">
+                        <a class="text-reset text-decoration-none " href=""${pageContext.request.contextPath}/add/injection-result">
                             <span class="ml-2">Create Injection Result</span>
                         </a>
                     </div>
