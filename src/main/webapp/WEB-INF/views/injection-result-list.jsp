@@ -200,7 +200,8 @@
                                             <div class="row">
                                                 <div class="col-sm-3 form-inline" >
                                                     <span>Show</span>
-                                                    <select class="form-select mx-2 border-right-0 border-top-0 border-left-0" id="inlineFormCustomSelect" name="showNumberList" onchange="location = this.value;">
+                                                    <select class="form-select mx-2 border-right-0 border-top-0 border-left-0" id="inlineFormCustomSelect"
+                                                            name="showNumberList" onchange="location = this.value;this.option = selected">
                                                         <option selected></option>
                                                         <option value="${pageContext.request.contextPath}/injection-result-list?size=5&search=${keyword}">5</option>
                                                         <option value="${pageContext.request.contextPath}/injection-result-list?size=10&search=${keyword}">10</option>

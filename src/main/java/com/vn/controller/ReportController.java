@@ -17,11 +17,15 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.time.LocalDate;
 
 @Controller
 public class ReportController {
+
+    @Autowired
+    HttpSession session;
 
     @Autowired
     VaccineService vaccineService;
@@ -31,6 +35,8 @@ public class ReportController {
 
     @Autowired
     InjectionResultService injectionResultService;
+
+
 
     @GetMapping("report/injection-result")
     public String injectionResultReportPage(Model model, @RequestParam(value = "p", defaultValue = "0") Integer p,
@@ -58,6 +64,7 @@ public class ReportController {
 
         Pageable pageable = PageRequest.of(p, size);
 
+
         Page<InjectionResult> injectionResults = injectionResultService.findElementReport(prevention, vaccineType, startDate,endDate,pageable);
         model.addAttribute("injectionResultList", injectionResults);
         if ((long) size * (injectionResults.getNumber() + 1) > injectionResults.getTotalElements()) {
@@ -68,5 +75,10 @@ public class ReportController {
             model.addAttribute("lastElement", size * (p + 1));
         }
         return "report-inject-result";
+    }
+
+    @GetMapping("/chart/injection-result")
+    public String chartPage(){
+        return "chart-inject-result";
     }
 }

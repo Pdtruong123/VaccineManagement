@@ -209,7 +209,7 @@
                                         <label class="form-check-label" for="inlineRadio1">Report</label>
                                     </div>
                                     <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+                                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2" checked>
                                         <label class="form-check-label" for="inlineRadio2">Chart</label>
                                     </div>
                                 </div>
@@ -239,5 +239,6 @@
         </div>
     </div>
 </div>
+<script src="${pageContext.request.contextPath}/js/ChartConvertReport.js"></script>
 </body>
 </html>

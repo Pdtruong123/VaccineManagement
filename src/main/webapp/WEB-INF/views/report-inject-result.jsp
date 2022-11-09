@@ -204,7 +204,7 @@
                                     <label class="font-weight-bold" for="">Display Type: </label>
                                     <div class="mt-2">
                                         <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+                                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1" checked>
                                             <label class="form-check-label" for="inlineRadio1">Report</label>
                                         </div>
                                         <div class="form-check form-check-inline">
@@ -318,7 +318,7 @@
         </div>
     </div>
 </div>
-
+<script src="${pageContext.request.contextPath}/js/ChartConvertReport.js"></script>
 <script
         src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
         integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
