@@ -25,4 +25,7 @@ public interface CustomerService {
     int countContainElement(String searchParam);
     
     void deleteCustomer(String id);
+
+
+
 }

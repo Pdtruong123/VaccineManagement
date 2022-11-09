@@ -12,7 +12,12 @@
     color: #f2eaea;
     opacity: 1; /* Firefox */
 }
-
+.card-body{
+    padding: 0;
+}
+.form-row{
+    padding-left: 18px;
+}
 .topnavbar{
     background-color: #72b696;
 }
@@ -75,5 +80,20 @@
 }
 .pagination-list{
     border: none;
+}
+
+.fs-20{
+    font-size: 20px;
+    border-bottom: 1px solid #ebebeb;
+    padding: 18px;
+}
+
+.pt-15{
+    padding-top: 15px;
+}
+
+.p-btn{
+    padding-left: 18px;
+    padding-bottom: 48px;
 }
 

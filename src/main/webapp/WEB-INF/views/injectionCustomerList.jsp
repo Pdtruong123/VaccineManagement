@@ -259,7 +259,7 @@
                             <nav aria-label="Page">
                                 <ul class="pagination">
                                     <li class="page-item">
-                                        <a class="page-link pagination-list" href="/injection-result-list?p=${injectionCustomerList.number -1}" aria-label="Previous">
+                                        <a class="page-link pagination-list" href="/injectionCustomerList?p=${injectionCustomerList.number -1}" aria-label="Previous">
                                             <span aria-hidden="true">&laquo;</span>
                                             <span class="sr-only">Previous</span>
                                         </a>
@@ -268,7 +268,7 @@
                                     <li class="page-item"><a class="page-link pagination-list" href="/injectionCustomerList?p=1">2</a></li>
                                     <li class="page-item"><a class="page-link pagination-list" href="/injectionCustomerList?p=2">3</a></li>
                                     <li class="page-item">
-                                        <a class="page-link pagination-list" href="/injection-result-list?p=${injectionCustomerList.number +1}" aria-label="Next">
+                                        <a class="page-link pagination-list" href="/injectionCustomerList?p=${injectionCustomerList.number +1}" aria-label="Next">
                                             <span aria-hidden="true">&raquo;</span>
                                             <span class="sr-only">Next</span>
                                         </a>
@@ -279,7 +279,7 @@
                     </div>
                     <div class="">
                         <button class="btn btn-success mr-1" type="submit"><a href="${pageContext.request.contextPath}/registerCustomer" class="text-white text-decoration-none">Register</a></button>
-                        <button class="btn btn-warning mr-1 text-white" type="submit" id="update-button">Update Customer</button>
+                        <button class="btn btn-warning mr-1 text-white" type="submit" id="update-button" onclick="updateButton()">Update Customer</button>
                         <button class="btn btn-danger" type="submit" id="delete-button">Delete Customer</button>
                     </div>
                 </div>
@@ -287,7 +287,7 @@
         </div>
     </div>
 </div>
-<script src="${pageContext.request.contextPath}/js/DeleteInjectionResult.js"></script>
+<script src="${pageContext.request.contextPath}/js/CustomerCreate.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </body>
 </html>
