@@ -21,6 +21,7 @@ import com.vn.dto.VaccineTypeDTO;
 import com.vn.model.VaccineType;
 import com.vn.repository.VaccineTypeRepository;
 import com.vn.service.VaccineTypeService;
+import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class VaccineTypeController {
@@ -35,39 +36,41 @@ public class VaccineTypeController {
     HttpServletRequest request;
 
     @GetMapping(value = "/vaccineType/list")
-    public String viewListVaccineType(Model model,
+    public ModelAndView viewListVaccineType(
                                       @RequestParam(name ="p", required = false, defaultValue = "0") Integer p,
                                       @RequestParam(name ="size",required = false, defaultValue = "5") Integer size,
                                       @RequestParam(name ="search", required = false) String nameSearch
                                       ) {
+        ModelAndView model = new ModelAndView("listVaccineType");
         if (nameSearch==null) {
             Pageable pageable = PageRequest.of(p, size);
             Page<VaccineType> vaccineTypes = vaccineTypeService.findAll(pageable);
-            model.addAttribute("vaccineTypeList", vaccineTypes);
+            model.addObject("vaccineTypeList", vaccineTypes);
 
             if (size * (vaccineTypes.getNumber() + 1) > vaccineTypes.getTotalElements()) {
-                model.addAttribute("firstElement", size * p + 1);
-                model.addAttribute("lastElement", vaccineTypes.getTotalElements());
+                model.addObject("firstElement", size * p + 1);
+                model.addObject("lastElement", vaccineTypes.getTotalElements());
             } else {
-                model.addAttribute("firstElement", size * p + 1);
-                model.addAttribute("lastElement", size * (p + 1));
+                model.addObject("firstElement", size * p + 1);
+                model.addObject("lastElement", size * (p + 1));
             }
-            model.addAttribute("nameSearch",nameSearch);
-                return "vaccineType/list-vaccine-type";
+            model.addObject("nameSearch",nameSearch);
+            model.addObject("size",size);
+                return model;
         }else {
             Pageable pageable = PageRequest.of(p, size);
             Page<VaccineType> vaccineTypes = vaccineTypeService.findByVaccineTypeNameContaining(nameSearch,pageable);
-            model.addAttribute("vaccineTypeList", vaccineTypes);
+            model.addObject("vaccineTypeList", vaccineTypes);
 
             if (size * (vaccineTypes.getNumber() + 1) > vaccineTypes.getTotalElements()) {
-                model.addAttribute("firstElement", size * p + 1);
-                model.addAttribute("lastElement", vaccineTypes.getTotalElements());
+                model.addObject("firstElement", size * p + 1);
+                model.addObject("lastElement", vaccineTypes.getTotalElements());
             } else {
-                model.addAttribute("firstElement", size * p + 1);
-                model.addAttribute("lastElement", size * (p + 1));
+                model.addObject("firstElement", size * p + 1);
+                model.addObject("lastElement", size * (p + 1));
             }
-            model.addAttribute("nameSearch",nameSearch);
-            return "vaccineType/list-vaccine-type";
+            model.addObject("nameSearch",nameSearch);
+            return model;
         }
     }
 

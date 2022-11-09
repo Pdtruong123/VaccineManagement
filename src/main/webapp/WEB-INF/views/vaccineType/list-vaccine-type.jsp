@@ -203,7 +203,7 @@
                             <span>Show</span>
                             <select class="form-select mx-2 border-right-0 border-top-0 border-left-0" id="inlineFormCustomSelect"
                                     name="showNumberList" onchange="location = this.value;">
-                                <option selected></option>
+                                <option ></option>
                                 <option value="${pageContext.request.contextPath}/vaccineType/list?size=5&search=${nameSearch}">5</option>
                                 <option value="${pageContext.request.contextPath}/vaccineType/list?size=10&search=${nameSearch}">10</option>
                                 <option value="${pageContext.request.contextPath}/vaccineType/list?size=15&search=${nameSearch}">15</option>
@@ -215,7 +215,7 @@
                             <form action="${pageContext.request.contextPath}/vaccineType/search", method="post">
                                 <div class="input-group ">
                                     <input type="search" class="form-control border-right-0 border-top-0 border-left-0 form-select"
-                                           placeholder="Search" aria-label="Search" aria-describedby="search-addon" name="searchVaccineType" />
+                                           placeholder="Search" aria-label="Search" value="${nameSearch}" aria-describedby="search-addon" name="searchVaccineType" />
                                     <button type="submit" class="input-group-text border-0 bg-white" id="search-addon">
                                           <i class="fas fa-search"></i>
                                     </button>
