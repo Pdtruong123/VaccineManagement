@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
          pageEncoding="ISO-8859-1"%>
-
             <div class="list-group list-group-flush" >
                 <div class="list-group-item text-white profile">
                     <div><img class="img-admin" src="../../asserts/img/admin.png"></div>
@@ -155,6 +154,6 @@
                     </div>
                 </div>
             </div>
-        </div>
+
 
 
