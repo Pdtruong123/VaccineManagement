@@ -31,24 +31,17 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
     <title><tiles:getAsString name="title" /></title>
 </head>
-
 <body>
-
 <div class="container-fluid ">
     <tiles:insertAttribute name="header" />
     <div class="row">
-
         <div class="col-sm-3 border-right left" id="accordion">
             <tiles:insertAttribute name="menu" />
         </div>
-
         <div class="col-sm-9 bg-light right" id="mainIndex">
             <tiles:insertAttribute name="body" />
         </div>
-
-
     </div>
 </div>
-
 </body>
 </html>
