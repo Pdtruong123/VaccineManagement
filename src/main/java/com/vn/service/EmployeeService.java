@@ -3,19 +3,12 @@ package com.vn.service;
 import com.vn.model.Employee;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.stereotype.Service;
-
-import java.util.List;
-
 
 public interface EmployeeService {
-    List<Employee> getAllEmployees();
-    void save(Employee employee);
-    Employee findById(Integer id);
-
-    void deleteEmployee(Integer id);
+    Page<Employee> findAllEmployee(Pageable pageable);
+    Employee save(Employee employee);
     Page<Employee> findContainElements(String keyword, Pageable pageable);
-
-
+    void deleteEmployee(String id);
+    Employee findById(String id);
 
 }

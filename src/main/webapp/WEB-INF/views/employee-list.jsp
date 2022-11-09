@@ -193,27 +193,26 @@
         </div>
         <div class="col-sm-9 bg-light right">
             <div class="h5 mt-3 text-center text-secondary font-weight-bold mb-3">EMPLOYEE LIST</div>
+            <div class="h4 text-success font-weight-bold ml-3">${success}</div>
             <div class="card mx-3">
                 <div class="card-body">
-
                     <div class="row">
                         <div class="col-sm-3 form-inline" >
                             <span>Show</span>
-                            <select class="form-select mx-2 border-right-0 border-top-0 border-left-0"
-                                    id="inlineFormCustomSelect">
+                            <select class="form-select mx-2 border-right-0 border-top-0 border-left-0" id="inlineFormCustomSelect" name="showNumberList" onchange="location = this.value;">
                                 <option selected></option>
-                                <option value="1">5</option>
-                                <option value="2">10</option>
-                                <option value="3">15</option>
+                                <option value="${pageContext.request.contextPath}/employee-list?size=5">5</option>
+                                <option value="${pageContext.request.contextPath}/employee-list?size=10">10</option>
+                                <option value="${pageContext.request.contextPath}/employee-list?size=15">15</option>
                             </select>
                             <span>entities</span>
                         </div>
                         <div class="col-sm-6"></div>
                         <div class="col-sm-3">
-                            <form action="#">
+                            <form action="${pageContext.request.contextPath}/search/employee" method="post">
                                 <div class="input-group ">
-                                    <input type="search" class="form-control border-right-0 border-top-0 border-left-0 form-select"
-                                           placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
+                                    <input id="searchInput" type="search" class="form-control border-right-0 border-top-0 border-left-0 form-select"
+                                           placeholder="Search" aria-label="Search" aria-describedby="search-addon" name="searchNews" />
                                     <button type="submit" class="input-group-text border-0 bg-white" id="search-addon">
                                         <i class="fas fa-search"></i>
                                     </button>
@@ -222,13 +221,13 @@
                         </div>
                     </div>
                     <div class="mt-3">
-                        <table class="table table-bordered">
+                        <table class="table table-bordered" id="news-tb">
                             <thead>
                             <tr class="bg-info text-white text-center">
-                                <td><input class="form-check mx-auto" type="checkbox" id=""></td>
+                                <th><input type="checkbox" id="checkAll"></th>
                                 <th>Employee ID</th>
                                 <th>Employee Name</th>
-                                <th>Date of Birth</th>
+                                <th>Date Of Birth</th>
                                 <th>Gender</th>
                                 <th>Phone</th>
                                 <th>Address</th>
@@ -236,78 +235,41 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr>
-                                <td><input class="form-check mx-auto" type="checkbox" id=""></td>
-                                <td>10101010</td>
-                                <td>Ta Quang S</td>
-                                <td>12/12/1999</td>
-                                <td>Male</td>
-                                <td>0984747622</td>
-                                <td>TTH</td>
-                                <td>img</td>
-                            </tr>
-                            <tr>
-                                <td><input class="form-check mx-auto" type="checkbox" id=""></td>
-                                <td>20202020</td>
-                                <td>Nghiem Lien H</td>
-                                <td>12/08/2001</td>
-                                <td>Female</td>
-                                <td>0966973091</td>
-                                <td>DN</td>
-                                <td>img</td>
-                            </tr>
-                            <tr>
-                                <td><input class="form-check mx-auto" type="checkbox" id=""></td>
-                                <td>30303030</td>
-                                <td>Ta Minh K</td>
-                                <td>12/12/2022</td>
-                                <td>Male</td>
-                                <td>0903207747</td>
-                                <td>HN</td>
-                                <td>img</td>
-                            </tr>
-                            <tr>
-                                <td><input class="form-check mx-auto" type="checkbox" id=""></td>
-                                <td>30303030</td>
-                                <td>Ta Minh D</td>
-                                <td>12/12/2009</td>
-                                <td>Male</td>
-                                <td>0903200000</td>
-                                <td>HN</td>
-                                <td>img</td>
-                            </tr>
-                            <tr>
-                                <td><input class="form-check mx-auto" type="checkbox" id=""></td>
-                                <td>30303030</td>
-                                <td>Ta Minh S</td>
-                                <td>12/12/2020</td>
-                                <td>Female</td>
-                                <td>0903201111</td>
-                                <td>HN</td>
-                                <td>img</td>
-                            </tr>
+                            <c:forEach items="${employeeList.content}" var="result">
+                                <tr>
+                                    <td><input type="checkbox" value="${result.id}" name="id"></td>
+                                    <td><a href="${pageContext.request.contextPath}/employee/update/${result.id}">${result.id}</a></td>
+                                    <td>${result.employeeName}</td>
+                                    <td>${result.dateOfBirth}</td>
+                                    <td>${result.gender}</td>
+                                    <td>${result.phone}</td>
+                                    <td>${result.address}</td>
+                                    <td>${result.image}</td>
+                                </tr>
+                            </c:forEach>
                             </tbody>
                         </table>
                     </div>
+                    <div class="h5 text-right text-danger">${error}</div>
                     <div class="row mt-4">
                         <div class="col-sm-3">
-                            <span>Showing 1 to 5 of 12 entities</span>
+                            <span>Showing ${firstElement} to ${lastElement} of ${employeeList.totalElements} entities</span>
                         </div>
                         <div class="col-sm-6"></div>
                         <div class="col-sm-3">
                             <nav aria-label="Page">
                                 <ul class="pagination">
                                     <li class="page-item">
-                                        <a class="page-link pagination-list" href="#" aria-label="Previous">
+                                        <a class="page-link pagination-list" href="/employee-list?p=${employeeList.number -1}" aria-label="Previous">
                                             <span aria-hidden="true">&laquo;</span>
                                             <span class="sr-only">Previous</span>
                                         </a>
                                     </li>
-                                    <li class="page-item"><a class="page-link pagination-list" href="#">1</a></li>
-                                    <li class="page-item"><a class="page-link pagination-list" href="#">2</a></li>
-                                    <li class="page-item"><a class="page-link pagination-list" href="#">3</a></li>
+                                    <li class="page-item"><a class="page-link pagination-list" href="/employee-list?p=0">1</a></li>
+                                    <li class="page-item"><a class="page-link pagination-list" href="/employee-list?p=1">2</a></li>
+                                    <li class="page-item"><a class="page-link pagination-list" href="/employee-list?p=2">3</a></li>
                                     <li class="page-item">
-                                        <a class="page-link pagination-list" href="#" aria-label="Next">
+                                        <a class="page-link pagination-list" href="/employee-list?p=${employeeList.number +1}" aria-label="Next">
                                             <span aria-hidden="true">&raquo;</span>
                                             <span class="sr-only">Next</span>
                                         </a>
@@ -318,13 +280,15 @@
                     </div>
                     <div class="">
                         <button class="btn btn-success mr-1" type="submit"><a href="${pageContext.request.contextPath}/add/employee" class="text-white text-decoration-none">New Employee</a></button>
-                        <button class="btn btn-warning mr-1 text-white" type="submit" id="update-button"><a href="${pageContext.request.contextPath}/update/employee" class="text-white text-decoration-none">Update Employee</a></button>
-                        <button class="btn btn-danger" type="submit" id="delete-button"><a href="${pageContext.request.contextPath}/delete/employee" class="text-white text-decoration-none">Delete Employee</a></button>
+                        <button class="btn btn-warning mr-1 text-white" type="submit" id="update-button">Update Employee</button>
+                        <button class="btn btn-danger" type="submit" id="delete-button">Delete Employee</button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+<script src="${pageContext.request.contextPath}/js/DeleteEmployee.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </body>
-</html>
+</html>>

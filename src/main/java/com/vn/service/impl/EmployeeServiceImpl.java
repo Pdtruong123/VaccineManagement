@@ -8,40 +8,36 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.Optional;
+
 
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
     @Autowired
     private EmployeeRepository employeeRepository;
 
-    @Override
-    public List<Employee> getAllEmployees() {
 
-        return employeeRepository.findAll();
+    @Override
+    public Page<Employee> findAllEmployee(Pageable pageable) {
+        return employeeRepository.findAll(pageable);
     }
 
     @Override
-    public void save(Employee employee) {
-        this.employeeRepository.save(employee);
-
-    }
-
-    @Override
-    public Employee findById(Integer id) {
-        return employeeRepository.findById(id).get();
-    }
-
-
-
-    @Override
-    public void deleteEmployee(Integer id) {
-        employeeRepository.deleteById(id);
+    public Employee save(Employee employee) {
+        return employeeRepository.save(employee);
     }
 
     @Override
     public Page<Employee> findContainElements(String keyword, Pageable pageable) {
         return employeeRepository.findContainElements(keyword, pageable);
+    }
+
+    @Override
+    public void deleteEmployee(String id) {
+        employeeRepository.deleteById(id);
+    }
+
+    @Override
+    public Employee findById(String id) {
+        return employeeRepository.findById(id).get();
     }
 }
