@@ -1,6 +1,7 @@
 $(document).ready(function () {
     Pageging();
     create();
+    search();
  })
 
 
@@ -102,6 +103,25 @@ function create() {
         })
     })
 }
-function search() {
-
+function searchOnchange(val) {
+    // var search=$('.dataSearch').val();
+        $.ajax({
+            url: 'http://localhost:8080/schedule/api/search?search='+val,
+            type: 'GET',
+            dataType: 'JSON',
+            success: function (res) {
+                const vaccineNameApi = res.map(item => {
+                    return "<tr><td><a href=\"#\">" + item.vaccineName + "</a></td>\n" +
+                        "                                    <td>From " + item.startDate + " to " + item.endDate + "</td>\n" +
+                        "                                    <td>" + item.place + "</td>\n" +
+                        "                                    <td>" + item.note + "</td>\n" +
+                        "                                    <td>" + item.status + "</td>" +
+                        "</tr>"
+                })
+                $("#bodyList").html(vaccineNameApi);
+            },
+            error: function (err) {
+                console.log(err);
+            }
+        })
 }
