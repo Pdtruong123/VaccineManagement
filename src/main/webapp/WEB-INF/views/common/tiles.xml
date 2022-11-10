@@ -6,107 +6,124 @@
 <tiles-definitions>
     <!-- Base Define -->
     <definition name="base.definition" template="/WEB-INF/views/common/classic.jsp">
-        <put-attribute name="title" value="" />
-        <put-attribute name="header" value="/WEB-INF/views/common/_header.jsp" />
-        <put-attribute name="menu" value="/WEB-INF/views/common/_menu.jsp" />
-        <put-attribute name="body" value="" />
+        <put-attribute name="title" value=""/>
+        <put-attribute name="header" value="/WEB-INF/views/common/_header.jsp"/>
+        <put-attribute name="menu" value="/WEB-INF/views/common/_menu.jsp"/>
+        <put-attribute name="body" value=""/>
     </definition>
 
-<!--    <definition name="homePage" extends="base.definition">-->
-<!--        <put-attribute name="title" value="Home Page" />-->
-<!--        <put-attribute name="body"-->
-<!--                       value="/WEB-INF/views/index.jsp" />-->
-<!--    </definition>-->
+    <definition name="homePage" extends="base.definition">
+        <put-attribute name="title" value="Home Page"/>
+        <put-attribute name="body"
+                       value="/WEB-INF/views/index.jsp"/>
+    </definition>
 
     <definition name="listVaccineType" extends="base.definition">
-        <put-attribute name="title" value="Vaccine Type List" />
+        <put-attribute name="title" value="Vaccine Type List"/>
         <put-attribute name="body"
-                       value="/WEB-INF/views/products/list-vaccine-type.jsp" />
+                       value="/WEB-INF/views/products/list-vaccine-type.jsp"/>
     </definition>
 
     <!--Start Of Feature Injection Result-->
     <definition name="injectionResultList" extends="base.definition">
-        <put-attribute name="title" value="Injection Result List" />
+        <put-attribute name="title" value="Injection Result List"/>
         <put-attribute name="body"
-                       value="/WEB-INF/views/InjectionResult/injection-result-list.jsp" />
+                       value="/WEB-INF/views/InjectionResult/injection-result-list.jsp"/>
     </definition>
 
     <definition name="createInjectionResult" extends="base.definition">
-        <put-attribute name="title" value="Create Injection Result" />
+        <put-attribute name="title" value="Create Injection Result"/>
         <put-attribute name="body"
-                       value="/WEB-INF/views/InjectionResult/create-injection-result.jsp" />
+                       value="/WEB-INF/views/InjectionResult/create-injection-result.jsp"/>
     </definition>
 
     <definition name="redirect:/injection-result-list?search=" extends="base.definition">
-        <put-attribute name="title" value="Create Injection Result" />
+        <put-attribute name="title" value="Create Injection Result"/>
         <put-attribute name="body"
-                       value="/WEB-INF/views/InjectionResult/injection-result-list.jsp" />
+                       value="/WEB-INF/views/InjectionResult/injection-result-list.jsp"/>
     </definition>
 
     <definition name="redirect:/add/injection-result" extends="base.definition">
-        <put-attribute name="title" value="Create Injection Result" />
+        <put-attribute name="title" value="Create Injection Result"/>
         <put-attribute name="body"
-                       value="/WEB-INF/views/InjectionResult/create-injection-result.jsp" />
+                       value="/WEB-INF/views/InjectionResult/create-injection-result.jsp"/>
     </definition>
 
 
     <definition name="update-injection-result" extends="base.definition">
-        <put-attribute name="title" value="Update Injection Result" />
+        <put-attribute name="title" value="Update Injection Result"/>
         <put-attribute name="body"
-                       value="/WEB-INF/views/InjectionResult/update-injection-result.jsp" />
+                       value="/WEB-INF/views/InjectionResult/update-injection-result.jsp"/>
     </definition>
 
     <definition name="redirect:/injection-result-list" extends="base.definition">
-        <put-attribute name="title" value="Update Injection Result" />
+        <put-attribute name="title" value="Update Injection Result"/>
         <put-attribute name="body"
-                       value="/WEB-INF/views/InjectionResult/injection-result-list.jsp" />
+                       value="/WEB-INF/views/InjectionResult/injection-result-list.jsp"/>
     </definition>
     <!-- End Of Feature Injection Result-->
 
     <!--Start Of Feature News-->
     <definition name="newsList" extends="base.definition">
-        <put-attribute name="title" value="News List" />
+        <put-attribute name="title" value="News List"/>
         <put-attribute name="body"
-                       value="/WEB-INF/views/News/news-list.jsp" />
+                       value="/WEB-INF/views/News/news-list.jsp"/>
     </definition>
 
     <definition name="addNews" extends="base.definition">
-        <put-attribute name="title" value="Add News Page" />
+        <put-attribute name="title" value="Add News Page"/>
         <put-attribute name="body"
-                       value="/WEB-INF/views/News/create-news.jsp" />
+                       value="/WEB-INF/views/News/create-news.jsp"/>
     </definition>
 
     <definition name="redirect:/add/news" extends="base.definition">
-        <put-attribute name="title" value="Add News" />
+        <put-attribute name="title" value="Add News"/>
         <put-attribute name="body"
-                       value="/WEB-INF/views/News/create-news.jsp" />
+                       value="/WEB-INF/views/News/create-news.jsp"/>
     </definition>
 
     <definition name="redirect:/news-list?search=" extends="base.definition">
-        <put-attribute name="title" value="Search News" />
+        <put-attribute name="title" value="Search News"/>
         <put-attribute name="body"
-                       value="/WEB-INF/views/News/news-list.jsp" />
+                       value="/WEB-INF/views/News/news-list.jsp"/>
     </definition>
 
     <definition name="redirect:/news-list" extends="base.definition">
-        <put-attribute name="title" value="Delete News" />
+        <put-attribute name="title" value="Delete News"/>
         <put-attribute name="body"
-                       value="/WEB-INF/views/News/news-list.jsp" />
+                       value="/WEB-INF/views/News/news-list.jsp"/>
     </definition>
 
     <definition name="update-news" extends="base.definition">
-        <put-attribute name="title" value="Update News" />
+        <put-attribute name="title" value="Update News"/>
         <put-attribute name="body"
-                       value="/WEB-INF/views/News/update-news.jsp" />
+                       value="/WEB-INF/views/News/update-news.jsp"/>
     </definition>
 
     <definition name="redirect:/news-list" extends="base.definition">
-        <put-attribute name="title" value="Update News" />
+        <put-attribute name="title" value="Update News"/>
         <put-attribute name="body"
-                       value="/WEB-INF/views/News/news-list.jsp" />
+                       value="/WEB-INF/views/News/news-list.jsp"/>
     </definition>
+
 
     <!--End Of Feature News-->
 
+    <!-- Start InjectioSchedule-->
+    <definition name="ListSchedule" extends="base.definition">
+        <put-attribute name="title" value="List Schedule"/>
+        <put-attribute name="body"
+                       value="/WEB-INF/views/InjectionSchedule/injectionScheduleList.jsp"/>
+    </definition>
+    <definition name="createSchedule" extends="base.definition">
+        <put-attribute name="title" value="Create Schedule"/>
+        <put-attribute name="body"
+                       value="/WEB-INF/views/InjectionSchedule/create-injection-schedule.jsp"/>
+    </definition>
+    <definition name="redirect:/lisst" extends="base.definition">
+        <put-attribute name="title" value="Create Schedule"/>
+        <put-attribute name="body"
+                       value="/WEB-INF/views/InjectionSchedule/injectionScheduleList.jsp"/>
+    </definition>
 </tiles-definitions>
 
