@@ -18,9 +18,9 @@
                     <form action="#">
                         <div class="input-group ">
                             <input type="search"
-                                   class="form-control border-right-0 border-top-0 border-left-0 form-select"
-                                   placeholder="Search" aria-label="Search" aria-describedby="search-addon"/>
-                            <button type="submit" class="input-group-text border-0 bg-white" id="search-addon">
+                                   class="dataSearch form-control border-right-0 border-top-0 border-left-0 form-select"
+                                   placeholder="Search" aria-label="Search" aria-describedby="search-addon" onchange="searchOnchange(this.value)"/>
+                            <button class="input-group-text border-0 bg-white" id="search-addon">
                                 <i class="fas fa-search"></i>
                             </button>
                         </div>

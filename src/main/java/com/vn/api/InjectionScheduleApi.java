@@ -56,25 +56,25 @@ public class InjectionScheduleApi {
         }
         return result;
     }
-//    @GetMapping("/api/search")
-//    public List<InjectionScheduleDTO> searchList(@RequestParam ("search")String search){
-//        List<InjectionScheduleDTO> result = new ArrayList<>();
-//        org.springframework.data.domain.Pageable pageable= PageRequest.of(0,5);
-//        Page<InjectionSchedule> entities=injectionScheduleReponsitory.findByName(search,pageable);
-//        if(entities != null) {
-//            entities.forEach(x->{
-//                InjectionScheduleDTO scheduleDTO= new InjectionScheduleDTO();
-//                BeanUtils.copyProperties(x, scheduleDTO, "status");
-//
-//                scheduleDTO.setVaccineID(x.getVaccine().getId());
-//                scheduleDTO.setVaccineName(x.getVaccine().getVaccineName());
-//                scheduleDTO.setNote(x.getDescription());
-//                scheduleDTO.setStatus(x.getStatus());
-//
-//                result.add(scheduleDTO);
-//            });
-//        }
-//        return result;
-//    }
+    @GetMapping("/api/search")
+    public List<InjectionScheduleDTO> searchList(@RequestParam ("search")String search){
+        List<InjectionScheduleDTO> result = new ArrayList<>();
+        org.springframework.data.domain.Pageable pageable= PageRequest.of(0,5);
+        Page<InjectionSchedule> entities=injectionScheduleReponsitory.findByName(search,pageable);
+        if(entities != null) {
+            entities.forEach(x->{
+                InjectionScheduleDTO scheduleDTO= new InjectionScheduleDTO();
+                BeanUtils.copyProperties(x, scheduleDTO, "status");
+
+                scheduleDTO.setVaccineID(x.getVaccine().getId());
+                scheduleDTO.setVaccineName(x.getVaccine().getVaccineName());
+                scheduleDTO.setNote(x.getDescription());
+                scheduleDTO.setStatus(x.getStatus());
+
+                result.add(scheduleDTO);
+            });
+        }
+        return result;
+    }
 }
 

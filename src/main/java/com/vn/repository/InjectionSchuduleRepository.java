@@ -12,5 +12,6 @@ import java.util.List;
 
 @Repository
 public interface InjectionSchuduleRepository extends JpaRepository<InjectionSchedule, String> {
-//    Page<InjectionSchedule> findByName(String search, Pageable pageable);
+    @Query(value = "SELECT c FROM InjectionSchedule c WHERE c.place LIKE %:search%")
+    Page<InjectionSchedule> findByName(String search, Pageable pageable);
 }
