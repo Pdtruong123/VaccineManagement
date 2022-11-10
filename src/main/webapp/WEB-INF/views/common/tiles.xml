@@ -24,11 +24,89 @@
                        value="/WEB-INF/views/products/list-vaccine-type.jsp" />
     </definition>
 
-<!--    <definition name="detailProductPage" extends="base.definition">-->
-<!--        <put-attribute name="title" value="Detail Product" />-->
-<!--        <put-attribute name="body"-->
-<!--                       value="/WEB-INF/views/products/detail_product.jsp" />-->
-<!--    </definition>-->
+    <!--Start Of Feature Injection Result-->
+    <definition name="injectionResultList" extends="base.definition">
+        <put-attribute name="title" value="Injection Result List" />
+        <put-attribute name="body"
+                       value="/WEB-INF/views/InjectionResult/injection-result-list.jsp" />
+    </definition>
+
+    <definition name="createInjectionResult" extends="base.definition">
+        <put-attribute name="title" value="Create Injection Result" />
+        <put-attribute name="body"
+                       value="/WEB-INF/views/InjectionResult/create-injection-result.jsp" />
+    </definition>
+
+    <definition name="redirect:/injection-result-list?search=" extends="base.definition">
+        <put-attribute name="title" value="Create Injection Result" />
+        <put-attribute name="body"
+                       value="/WEB-INF/views/InjectionResult/injection-result-list.jsp" />
+    </definition>
+
+    <definition name="redirect:/add/injection-result" extends="base.definition">
+        <put-attribute name="title" value="Create Injection Result" />
+        <put-attribute name="body"
+                       value="/WEB-INF/views/InjectionResult/create-injection-result.jsp" />
+    </definition>
+
+
+    <definition name="update-injection-result" extends="base.definition">
+        <put-attribute name="title" value="Update Injection Result" />
+        <put-attribute name="body"
+                       value="/WEB-INF/views/InjectionResult/update-injection-result.jsp" />
+    </definition>
+
+    <definition name="redirect:/injection-result-list" extends="base.definition">
+        <put-attribute name="title" value="Update Injection Result" />
+        <put-attribute name="body"
+                       value="/WEB-INF/views/InjectionResult/injection-result-list.jsp" />
+    </definition>
+    <!-- End Of Feature Injection Result-->
+
+    <!--Start Of Feature News-->
+    <definition name="newsList" extends="base.definition">
+        <put-attribute name="title" value="News List" />
+        <put-attribute name="body"
+                       value="/WEB-INF/views/News/news-list.jsp" />
+    </definition>
+
+    <definition name="addNews" extends="base.definition">
+        <put-attribute name="title" value="Add News Page" />
+        <put-attribute name="body"
+                       value="/WEB-INF/views/News/create-news.jsp" />
+    </definition>
+
+    <definition name="redirect:/add/news" extends="base.definition">
+        <put-attribute name="title" value="Add News" />
+        <put-attribute name="body"
+                       value="/WEB-INF/views/News/create-news.jsp" />
+    </definition>
+
+    <definition name="redirect:/news-list?search=" extends="base.definition">
+        <put-attribute name="title" value="Search News" />
+        <put-attribute name="body"
+                       value="/WEB-INF/views/News/news-list.jsp" />
+    </definition>
+
+    <definition name="redirect:/news-list" extends="base.definition">
+        <put-attribute name="title" value="Delete News" />
+        <put-attribute name="body"
+                       value="/WEB-INF/views/News/news-list.jsp" />
+    </definition>
+
+    <definition name="update-news" extends="base.definition">
+        <put-attribute name="title" value="Update News" />
+        <put-attribute name="body"
+                       value="/WEB-INF/views/News/update-news.jsp" />
+    </definition>
+
+    <definition name="redirect:/news-list" extends="base.definition">
+        <put-attribute name="title" value="Update News" />
+        <put-attribute name="body"
+                       value="/WEB-INF/views/News/news-list.jsp" />
+    </definition>
+
+    <!--End Of Feature News-->
 
 </tiles-definitions>
 

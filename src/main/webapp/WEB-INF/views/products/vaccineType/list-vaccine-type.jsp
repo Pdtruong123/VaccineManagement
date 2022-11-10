@@ -2,7 +2,7 @@
          pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://www.springframework.org/tags/form"  prefix="form"%>
-
+<script src="${pageContext.request.contextPath}/js/VaccineType-JQerry.js"></script>
 
             <div class="h5 mt-3 text-center text-secondary font-weight-bold mb-3">VACCINE TYPE LIST</div>
             <div class="card mx-3">
@@ -63,7 +63,7 @@
 								</c:choose>
                             </tr>
                             </c:forEach>
-                            
+
                             </tbody>
                         </table>
                     </div>
