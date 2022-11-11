@@ -12,10 +12,9 @@
                             <span>Show</span>
                             <select class="form-select mx-2 border-right-0 border-top-0 border-left-0" id="inlineFormCustomSelect"
                                     name="showNumberList" onchange="location = this.value;">
-                                <option ></option>
-                                <option value="${pageContext.request.contextPath}/vaccineType/list?size=5&search=${nameSearch}">5</option>
-                                <option value="${pageContext.request.contextPath}/vaccineType/list?size=10&search=${nameSearch}">10</option>
-                                <option value="${pageContext.request.contextPath}/vaccineType/list?size=15&search=${nameSearch}">15</option>
+                                <option value="${pageContext.request.contextPath}/vaccineType/list?size=5&search=${nameSearch}" ${param.size == '5' ? 'selected' : ''}>5</option>
+                                <option value="${pageContext.request.contextPath}/vaccineType/list?size=10&search=${nameSearch}" ${param.size == '10' ? 'selected' : ''}>10</option>
+                                <option value="${pageContext.request.contextPath}/vaccineType/list?size=15&search=${nameSearch}" ${param.size == '15' ? 'selected' : ''}>15</option>
                             </select>
                             <span>entities</span>
                         </div>

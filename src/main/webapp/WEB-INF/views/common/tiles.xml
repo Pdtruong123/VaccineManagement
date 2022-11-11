@@ -12,17 +12,27 @@
         <put-attribute name="body" value=""/>
     </definition>
 
+    <!--Home Page-->
     <definition name="homePage" extends="base.definition">
         <put-attribute name="title" value="Home Page"/>
         <put-attribute name="body"
                        value="/WEB-INF/views/index.jsp"/>
     </definition>
+    <!--End Home Page-->
 
+   <!-- Vaccine Type-->
     <definition name="listVaccineType" extends="base.definition">
         <put-attribute name="title" value="Vaccine Type List"/>
         <put-attribute name="body"
-                       value="/WEB-INF/views/products/list-vaccine-type.jsp"/>
+                       value="/WEB-INF/views/vaccineType/list-vaccine-type.jsp"/>
     </definition>
+
+    <definition name="createVaccineType" extends="base.definition">
+        <put-attribute name="title" value="Create Vaccine Type"/>
+        <put-attribute name="body"
+                       value="/WEB-INF/views/vaccineType/create-vaccine-type.jsp"/>
+    </definition>
+    <!-- End Vaccine Type-->
 
     <!--Start Of Feature Injection Result-->
     <definition name="injectionResultList" extends="base.definition">
@@ -76,23 +86,23 @@
                        value="/WEB-INF/views/News/create-news.jsp"/>
     </definition>
 
-    <definition name="redirect:/add/news" extends="base.definition">
-        <put-attribute name="title" value="Add News"/>
-        <put-attribute name="body"
-                       value="/WEB-INF/views/News/create-news.jsp"/>
-    </definition>
+<!--    <definition name="redirect:/add/news" extends="base.definition">-->
+<!--        <put-attribute name="title" value="Add News"/>-->
+<!--        <put-attribute name="body"-->
+<!--                       value="/WEB-INF/views/News/create-news.jsp"/>-->
+<!--    </definition>-->
 
-    <definition name="redirect:/news-list?search=" extends="base.definition">
-        <put-attribute name="title" value="Search News"/>
-        <put-attribute name="body"
-                       value="/WEB-INF/views/News/news-list.jsp"/>
-    </definition>
+<!--    <definition name="redirect:/news-list?search=" extends="base.definition">-->
+<!--        <put-attribute name="title" value="Search News"/>-->
+<!--        <put-attribute name="body"-->
+<!--                       value="/WEB-INF/views/News/news-list.jsp"/>-->
+<!--    </definition>-->
 
-    <definition name="redirect:/news-list" extends="base.definition">
-        <put-attribute name="title" value="Delete News"/>
-        <put-attribute name="body"
-                       value="/WEB-INF/views/News/news-list.jsp"/>
-    </definition>
+<!--    <definition name="redirect:/news-list" extends="base.definition">-->
+<!--        <put-attribute name="title" value="Delete News"/>-->
+<!--        <put-attribute name="body"-->
+<!--                       value="/WEB-INF/views/News/news-list.jsp"/>-->
+<!--    </definition>-->
 
     <definition name="update-news" extends="base.definition">
         <put-attribute name="title" value="Update News"/>
@@ -100,11 +110,11 @@
                        value="/WEB-INF/views/News/update-news.jsp"/>
     </definition>
 
-    <definition name="redirect:/news-list" extends="base.definition">
-        <put-attribute name="title" value="Update News"/>
-        <put-attribute name="body"
-                       value="/WEB-INF/views/News/news-list.jsp"/>
-    </definition>
+<!--    <definition name="redirect:/news-list" extends="base.definition">-->
+<!--        <put-attribute name="title" value="Update News"/>-->
+<!--        <put-attribute name="body"-->
+<!--                       value="/WEB-INF/views/News/news-list.jsp"/>-->
+<!--    </definition>-->
 
 
     <!--End Of Feature News-->
@@ -142,5 +152,47 @@
         <put-attribute name="body"
                        value="/WEB-INF/views/vaccine/vaccine-create.jsp"/>
     </definition>
+
+    <!--Report-->
+    <!--Report Inject-->
+    <definition name="reportInject" extends="base.definition">
+        <put-attribute name="title" value="Report Injection Result"/>
+        <put-attribute name="body"
+                       value="/WEB-INF/views/report/reportInject/report-inject-result.jsp"/>
+    </definition>
+
+    <definition name="chartInject" extends="base.definition">
+        <put-attribute name="title" value="Chart Injection Result"/>
+        <put-attribute name="body"
+                       value="/WEB-INF/views/report/reportInject/chart-inject-result.jsp"/>
+    </definition>
+
+    <!--Report Customer-->
+    <definition name="reportCustomer" extends="base.definition">
+        <put-attribute name="title" value="Report Customer"/>
+        <put-attribute name="body"
+                       value="/WEB-INF/views/report/reportCustomer/report-customer.jsp"/>
+    </definition>
+
+    <definition name="chartCustomer" extends="base.definition">
+        <put-attribute name="title" value="Chart Customer"/>
+        <put-attribute name="body"
+                       value="/WEB-INF/views/report/reportCustomer/chart-customer.jsp"/>
+    </definition>
+
+    <!--Report Vacciner-->
+    <definition name="reportVaccine" extends="base.definition">
+        <put-attribute name="title" value="Report Vaccine"/>
+        <put-attribute name="body"
+                       value="/WEB-INF/views/report/reportVaccine/report-vaccine.jsp"/>
+    </definition>
+
+    <definition name="chartVaccine" extends="base.definition">
+        <put-attribute name="title" value="Chart Vaccine"/>
+        <put-attribute name="body"
+                       value="/WEB-INF/views/report/reportVaccine/chart-vaccine.jsp"/>
+    </definition>
+
+    <!--End Report-->
 </tiles-definitions>
 
