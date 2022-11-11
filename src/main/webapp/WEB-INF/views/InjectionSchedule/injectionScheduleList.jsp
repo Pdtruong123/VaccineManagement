@@ -74,7 +74,6 @@
             </div>
             <div class="">
                 <a class="btn btn-sm btn-success" href="${pageContext.request.contextPath}/add/injectionSchedule">New Injection Schedule</a>
-                <a class="btn btn-sm btn-warning ml-2" href="#">Update Injection Schedule</a>
             </div>
         </div>
     </div>

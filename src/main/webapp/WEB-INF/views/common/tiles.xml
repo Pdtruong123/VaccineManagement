@@ -47,30 +47,13 @@
                        value="/WEB-INF/views/InjectionResult/create-injection-result.jsp"/>
     </definition>
 
-    <definition name="redirect:/injection-result-list?search=" extends="base.definition">
-        <put-attribute name="title" value="Create Injection Result"/>
-        <put-attribute name="body"
-                       value="/WEB-INF/views/InjectionResult/injection-result-list.jsp"/>
-    </definition>
-
-    <definition name="redirect:/add/injection-result" extends="base.definition">
-        <put-attribute name="title" value="Create Injection Result"/>
-        <put-attribute name="body"
-                       value="/WEB-INF/views/InjectionResult/create-injection-result.jsp"/>
-    </definition>
-
-
     <definition name="update-injection-result" extends="base.definition">
         <put-attribute name="title" value="Update Injection Result"/>
         <put-attribute name="body"
                        value="/WEB-INF/views/InjectionResult/update-injection-result.jsp"/>
     </definition>
 
-    <definition name="redirect:/injection-result-list" extends="base.definition">
-        <put-attribute name="title" value="Update Injection Result"/>
-        <put-attribute name="body"
-                       value="/WEB-INF/views/InjectionResult/injection-result-list.jsp"/>
-    </definition>
+
     <!-- End Of Feature Injection Result-->
 
     <!--Start Of Feature News-->
@@ -91,7 +74,6 @@
         <put-attribute name="body"
                        value="/WEB-INF/views/News/update-news.jsp"/>
     </definition>
-
     <!--End Of Feature News-->
 
     <!-- Start InjectioSchedule-->
@@ -109,6 +91,11 @@
         <put-attribute name="title" value="Create Schedule"/>
         <put-attribute name="body"
                        value="/WEB-INF/views/InjectionSchedule/injectionScheduleList.jsp"/>
+    </definition>
+    <definition name="update" extends="base.definition">
+        <put-attribute name="title" value="Update Schedule"/>
+        <put-attribute name="body"
+                       value="/WEB-INF/views/InjectionSchedule/update-Schedule.jsp"/>
     </definition>
 
     <!--Start Of Feature Vaccine Management-->
