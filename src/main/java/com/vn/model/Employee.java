@@ -6,6 +6,7 @@ import java.time.LocalDate;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 
@@ -19,6 +20,7 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Table(name ="employee")
 public class Employee implements Serializable {
 
 	@Id
@@ -49,8 +51,7 @@ public class Employee implements Serializable {
 	
 	@Column(length = 100)
 	private String position;
-	
-	private String userName;
+
 	
 	@Column(name = "working_place")
 	private String workingPlace;

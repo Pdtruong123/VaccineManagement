@@ -41,8 +41,7 @@
             integrity="sha512-rstIgDs0xPgmG6RX1Aba4KV5cWJbAMcvRCVmglpam9SoHZiUCyQVDdH2LPlxoHtrv17XWblE/V/PP+Tr04hbtA=="
             crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <link rel="stylesheet" href="../../asserts/css/style.css">
-    <link rel="stylesheet"
-          href="${pageContext.request.contextPath}/css/employee.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/employee.css">
 </head>
 <body>
 <div class="container-fluid ">

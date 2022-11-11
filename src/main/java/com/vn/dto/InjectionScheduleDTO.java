@@ -18,5 +18,5 @@ public class InjectionScheduleDTO {
     private String note;
     private String vaccineID;
     private String vaccineName;
-   private String status;
+    private String status;
 }

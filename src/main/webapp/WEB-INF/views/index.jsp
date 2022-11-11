@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
          pageEncoding="ISO-8859-1"%>
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html>
 <head>
@@ -114,7 +115,7 @@
                                 </a>
                             </div>
                             <div class="ml-4 mt-2 text-sub">
-                                <a class="text-reset text-decoration-none " href="#">
+                                <a class="text-reset text-decoration-none " href="${pageContext.request.contextPath}/vaccine/add">
                                     <span class="ml-2">Create Vaccine</span>
                                 </a>
                             </div>
@@ -208,3 +209,8 @@
 <script src="${pageContext.request.contextPath}/js/ajaxIndex.js"></script>
 </body>
 </html>
+=======
+<div class="h5 text-center text-secondary font-weight-bold mt-5">
+    WELCOME TO VACCINE MANAGEMENT SYSTEM
+</div>
+>>>>>>> 72b00f6824fc32e141ec3df03b2aba39e0b1db05

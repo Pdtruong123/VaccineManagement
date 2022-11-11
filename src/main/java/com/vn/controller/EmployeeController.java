@@ -1,6 +1,7 @@
 package com.vn.controller;
 
 import com.vn.model.Employee;
+import com.vn.model.News;
 import com.vn.service.EmployeeService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,11 +12,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.activation.MimeType;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+import java.time.LocalDate;
 
 
 @Controller
@@ -50,8 +53,9 @@ public class EmployeeController {
     }
 
     @PostMapping("/add/employee")
-    public String addEmployee(@Valid @ModelAttribute("employee") Employee employee, RedirectAttributes redirectAttributes,
-                              BindingResult bindingResult){
+    public String addEmployee(@Valid @ModelAttribute("employee") Employee employee
+                              , RedirectAttributes redirectAttributes
+                              ,BindingResult bindingResult){
         if(bindingResult.hasErrors()){
             return "create-employee";
         }
@@ -80,22 +84,28 @@ public class EmployeeController {
         return "redirect:/employee-list";
     }
 
-    @GetMapping("/update/news/{id}")
-    public String updateEmployeePage(Model model, @PathVariable String id){
+    @GetMapping("/update/employee/{id}")
+    public ModelAndView updateEmployeePage(@PathVariable String id){
+        ModelAndView model = new ModelAndView("update-employee");
         Employee employee = employeeService.findById(id);
-        model.addAttribute("employee", employee);
-        return "update-employee";
+        model.addObject("employee", employee);
+        return model;
     }
 
     @PostMapping("/update/employee")
-    public String updateEmployee(@Valid @ModelAttribute("employee") Employee employee, BindingResult bindingResult, RedirectAttributes redirectAttributes){
+    public ModelAndView updateEmployee(@Valid @ModelAttribute("employee") Employee employee
+            , BindingResult bindingResult
+            , RedirectAttributes redirectAttributes){
+        ModelAndView modelError = new ModelAndView("update-employee");
+        ModelAndView model = new ModelAndView("redirect:/employee-list");
         if(bindingResult.hasErrors()){
-            return "update-employee";
+            return modelError;
         }
 
+
         employeeService.save(employee);
-        redirectAttributes.addFlashAttribute("success", "Update employee Successfully!");
-        return "redirect:/employee-list";
+        redirectAttributes.addFlashAttribute("success", "Update Employee Successfully!");
+        return model;
     }
 
 }
