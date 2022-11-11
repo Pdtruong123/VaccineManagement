@@ -12,11 +12,11 @@
         <put-attribute name="body" value="" />
     </definition>
 
-<!--    <definition name="homePage" extends="base.definition">-->
-<!--        <put-attribute name="title" value="Home Page" />-->
-<!--        <put-attribute name="body"-->
-<!--                       value="/WEB-INF/views/index.jsp" />-->
-<!--    </definition>-->
+    <definition name="homePage" extends="base.definition">
+        <put-attribute name="title" value="Home Page" />
+        <put-attribute name="body"
+                       value="/WEB-INF/views/index.jsp" />
+    </definition>
 
     <definition name="listVaccineType" extends="base.definition">
         <put-attribute name="title" value="Vaccine Type List" />
