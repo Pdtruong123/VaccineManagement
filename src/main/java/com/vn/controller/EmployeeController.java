@@ -43,7 +43,7 @@ public class EmployeeController {
         return "employee-list";
     }
 
-    @GetMapping("add/employee")
+    @GetMapping("/add/employee")
     public String addEmployeePage(Model model){
         model.addAttribute("employee", new Employee());
         return "create-employee";

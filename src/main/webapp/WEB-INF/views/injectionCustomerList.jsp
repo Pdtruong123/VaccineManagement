@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
          pageEncoding="ISO-8859-1" %>
-<%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -29,6 +28,7 @@
             crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <link rel="stylesheet" href="../../asserts/css/style.css">
     <title>List</title>
+
 </head>
 <body>
 <div class="container-fluid ">
@@ -70,12 +70,12 @@
                         </div>
                         <div  class="mt-3 collapse" id="customer"  data-parent="#accordion">
                             <div class="ml-4 text-sub">
-                                <a class="text-reset text-decoration-none " href="#">
+                                <a class="text-reset text-decoration-none " href="${pageContext.request.contextPath}/injectionCustomerList">
                                     <span class="ml-2">Customer List</span>
                                 </a>
                             </div>
                             <div class="ml-4 mt-2 text-sub">
-                                <a class="text-reset text-decoration-none " href="#">
+                                <a class="text-reset text-decoration-none " href="${pageContext.request.contextPath}/registerCustomer">
                                     <span class="ml-2">Create Customer</span>
                                 </a>
                             </div>
@@ -88,13 +88,13 @@
                         </div>
                         <div  class="mt-3 collapse" id="vaccineType" data-parent="#accordion">
                             <div class="ml-4 text-sub">
-                                <a class="text-reset text-decoration-none" href="${pageContext.request.contextPath}/listVaccineType">
+                                <a class="text-reset text-decoration-none" href="#">
                                     <span class="ml-2">Vaccine Type List</span>
                                 </a>
                             </div>
                             <div class="ml-4 mt-2 text-sub">
-                                <a class="text-reset text-decoration-none" href="${pageContext.request.contextPath}/createVaccineType">
-                                    <span class="ml-2">Create Vaccine Type</span>
+                                <a class="text-reset text-decoration-none" href="#">
+                                    <span class="ml-2">Vaccine Type Employee</span>
                                 </a>
                             </div>
                         </div>
@@ -142,12 +142,12 @@
                         </div>
                         <div  class="mt-3 collapse" id="injectResult" data-parent="#accordion">
                             <div class="ml-4 text-sub">
-                                <a class="text-reset text-decoration-none" href="#">
+                                <a class="text-reset text-decoration-none" href="${pageContext.request.contextPath}/injection-result-list">
                                     <span class="ml-2">Injection Result List</span>
                                 </a>
                             </div>
                             <div class="ml-4 mt-2 text-sub">
-                                <a class="text-reset text-decoration-none " href="#">
+                                <a class="text-reset text-decoration-none " href="${pageContext.request.contextPath}/add/injection-result">
                                     <span class="ml-2">Create Injection Result</span>
                                 </a>
                             </div>
@@ -190,89 +190,107 @@
                         </div>
                     </div>
                 </div>
-
-
-
             </div>
-
         </div>
         <div class="col-sm-9 bg-light right">
-            <h1 class="h5 mt-3 text-center text-secondary font-weight-bold mb-3">CREATE INJECTION RESULT</h1>
+            <div class="h5 mt-3 text-center text-secondary font-weight-bold mb-3">Injection Customer List</div>
             <div class="card mx-3">
                 <div class="card-body">
-            <form:form action="${pageContext.request.contextPath}/update/injection-result" method="post" modelAttribute="injectionResult">
-                <form:input type="hidden" id="id" path="id" value="${injectionResult.id}"/>
-                <div class="row m-4">
-                    <div class="col form-group">
-                        <label for="customer">Customer:</label>
-                        <form:select path="customer" id="customer" class="form-control">
-                            <option label="${injectionResult.customer.fullName}-${injectionResult.customer.dateOfBirth}" selected value="${injectionResult.customer.id}"/>
-                            <c:forEach items="${customer}" var="cus">
-                                <option value="${cus.id}" label="${cus.fullName}-${cus.dateOfBirth}"/>
-                            </c:forEach>
-                        </form:select>
-                        <form:errors path="customer"></form:errors>
+                    <div class="row">
+                        <div class="col-sm-3 form-inline" >
+                            <span>Show</span>
+                            <select class="form-select mx-2 border-right-0 border-top-0 border-left-0" id="inlineFormCustomSelect" name="showNumberList" onchange="location = this.value;">
+                                <option selected></option>
+                                <option value="${pageContext.request.contextPath}/injectionCustomerList?size=5">5</option>
+                                <option value="${pageContext.request.contextPath}/injectionCustomerList?size=10">10</option>
+                                <option value="${pageContext.request.contextPath}/injectionCustomerList?size=15">15</option>
+                            </select>
+                            <span>entries</span>
+                        </div>
+                        <div class="col-sm-6"></div>
+                        <div class="col-sm-3">
+                            <form action="${pageContext.request.contextPath}/search/injectionCustomerList" method="post">
+                                <div class="input-group ">
+                                    <input id="searchInput" type="search" class="form-control border-right-0 border-top-0 border-left-0 form-select"
+                                           placeholder="Search" aria-label="Search" aria-describedby="search-addon" name="searchInjectionCustomerList" />
+                                    <button type="submit" class="input-group-text border-0 bg-white" id="search-addon">
+                                        <i class="fas fa-search"></i>
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
                     </div>
-                    <div class="col form-group">
-                        <label for="prevention">Prevention:</label>
-                        <select name="prevention" id="prevention" class="form-control">
-                            <option label="${injectionResult.prevention}" selected value="${injectionResult.prevention}"/>
-                            <c:forEach items="${preventionList}" var="pre">
-                                <option value="${pre}" label="${pre}" />
-                            </c:forEach>
-                        </select>
+                    <div class="mt-3">
+                        <table class="table table-bordered" id="table-IC">
+                            <thead>
+                            <tr class="bg-info text-white text-center">
+                                <td><input class="form-check mx-auto" type="checkbox" id="checkAll"></td>
+                                <th>Full Name</th>
+                                <th>Date of Birth</th>
+                                <th>Gender</th>
+                                <th>Address</th>
+                                <th>Identity Card</th>
+                                <th>Phone</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <c:forEach items="${injectionCustomerList.content}" var="result">
+                            <tr>
+                                <td><input class="form-check mx-auto" type="checkbox" value="${result.id}" name="id"></td>
+                                    <td>${result.fullName}</td>
+                                    <td>${result.dateOfBirth}</td>
+                                    <td>${result.gender}</td>
+                                    <td>${result.address}</td>
+                                    <td>${result.identityCard}</td>
+                                    <td>${result.phone}</td>
 
-                    </div>
-                    <div class="col form-group">
-                        <label for="vaccineT">Vaccine type:</label>
-                        <select class="form-control" id="vaccineT" name="vaccine">
-                            <option label="${injectionResult.vaccine.vaccineName}" selected value="${injectionResult.vaccine.id}"/>
-                            <c:forEach items="${vaccineList}" var="vaccines">
-                                <option value="${vaccines.id}" label="${vaccines.vaccineName}" />
+                            </tr>
                             </c:forEach>
-                        </select>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="h5 text-right text-danger">${error}</div>
+                    <div class="row mt-4">
+                        <div class="col-sm-3">
+                            <span>Showing 1 to ${size} of ${total} entries</span>
+                        </div>
+                        <div class="col-sm-6"></div>
+                        <div class="col-sm-3">
+                            <nav aria-label="Page">
+                                <ul class="pagination">
+                                    <li class="page-item">
+                                        <a class="page-link pagination-list" href="/injectionCustomerList?p=${injectionCustomerList.number -1}" aria-label="Previous">
+                                            <span aria-hidden="true">&laquo;</span>
+                                            <span class="sr-only">Previous</span>
+                                        </a>
+                                    </li>
+                                    <li class="page-item"><a class="page-link pagination-list" href="/injectionCustomerList?p=0">1</a></li>
+                                    <li class="page-item"><a class="page-link pagination-list" href="/injectionCustomerList?p=1">2</a></li>
+                                    <li class="page-item"><a class="page-link pagination-list" href="/injectionCustomerList?p=2">3</a></li>
+                                    <li class="page-item">
+                                        <a class="page-link pagination-list" href="/injectionCustomerList?p=${injectionCustomerList.number +1}" aria-label="Next">
+                                            <span aria-hidden="true">&raquo;</span>
+                                            <span class="sr-only">Next</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                    <div class="">
+                        <button class="btn btn-success mr-1" type="submit"><a href="${pageContext.request.contextPath}/registerCustomer" class="text-white text-decoration-none">Register</a></button>
+                        <button class="btn btn-warning mr-1 text-white" type="submit" id="update-button">Update Customer</button>
+                        <button class="btn btn-danger" type="submit" id="delete-button">Delete Customer</button>
                     </div>
                 </div>
-                <div class="row m-4">
-                    <div class="col form-group">
-                        <label for="injection">Injection:</label>
-                        <form:input type="text" class="form-control" placeholder="" id="injection" path="numberOfInjection"/>
-
-                    </div>
-                    <div class="col form-group">
-                        <label for="dateOfInjection">Date of injection:</label>
-                        <form:input type="date" class="form-control" placeholder="" id="dateOfInjection" path="injectionDate"/>
-                    </div>
-                    <div class="col form-group">
-                        <label for="nextOfInjection">Next injection appoinment:</label>
-                        <form:input type="date" class="form-control" placeholder="" id="nextOfInjection" path="nextInjectionDate"/>
-
-                    </div>
-                </div>
-                <div class="row m-4">
-                    <div class="col form-group">
-                        <label for="placeOfinjection">Place of injection:</label>
-                        <form:select path="injectionPlace" id="placeOfinjection" class="form-control">
-                            <option label="${injectionResult.injectionPlace}" selected value="${injectionResult.injectionPlace}"/>
-                            <c:forEach items="${placeOfInjectionList}" var="place">
-                                <option value="${place}" label="${place}"/>
-                            </c:forEach>
-                        </form:select>
-
-                    </div>
-                    <div class="col"></div>
-                    <div class="col"></div>
-                </div>
-                <div class="form-button ml-4">
-                    <button class="btn btn-success ml-3 mr-1" type="submit">Save</button>
-                    <button class="btn btn-primary mr-1" type="reset">Reset</button>
-                    <button class="btn btn-warning" type="submit"><a href="${pageContext.request.contextPath}/injection-result-list" class="text-white text-decoration-none">Cancel</a></button>
-                </div>
-            </form:form>
-        </div>
-        </div>
+            </div>
         </div>
     </div>
 </div>
+<script src="../../asserts/js/CustomerCreate.js"></script>
+<script
+        src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js"
+        integrity="sha512-rstIgDs0xPgmG6RX1Aba4KV5cWJbAMcvRCVmglpam9SoHZiUCyQVDdH2LPlxoHtrv17XWblE/V/PP+Tr04hbtA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </body>
 </html>

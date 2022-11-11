@@ -65,11 +65,24 @@ $(document).ready(function(){
 })
 
 function submitValidate(){
-    if ($("#formAdd").valid()) {
-        return true
+	var dateStart =	new Date($("#vaccine-time-next-injection").val());
+	var dateEnd = new Date($("#vaccine-time-end-injection").val());
+	
+	if(dateStart < dateEnd){
+		if ($("#formAdd").valid()) {
+		return true;
         }else{
-            return false
+            return false;
         }
+	}else{
+		
+		$("#timeError").html("<span class='error'>Time begin is before time end</span>");
+		
+		return false;
+		
+		}
+	
+    
     }
 function onchangeId(){
 	alert("Vaacine Id can't change to update!")
