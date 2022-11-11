@@ -61,7 +61,9 @@ public class InjectionScheduleController {
         return modelAndView;
     }
     @GetMapping("update/injectionSchedule")
-    public ModelAndView update(){
+    public ModelAndView update(@RequestParam String id,Model model){
+        InjectionSchedule injectionSchedule= injectionScheduleReponsitory.findById(id).orElse(null);
+        model.addAttribute("updateSchedule",injectionSchedule);
         ModelAndView modelAndView= new ModelAndView("update");
         return modelAndView;
     }

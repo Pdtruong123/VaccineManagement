@@ -135,6 +135,11 @@
         <put-attribute name="body"
                        value="/WEB-INF/views/InjectionSchedule/injectionScheduleList.jsp"/>
     </definition>
+    <definition name="update" extends="base.definition">
+        <put-attribute name="title" value="Update Schedule"/>
+        <put-attribute name="body"
+                       value="/WEB-INF/views/InjectionSchedule/update-Schedule.jsp"/>
+    </definition>
 
     <!--Start Of Feature Vaccine Management-->
     <definition name="vaccineList" extends="base.definition">
