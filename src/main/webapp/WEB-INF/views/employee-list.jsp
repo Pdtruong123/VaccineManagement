@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-         pageEncoding="ISO-8859-1"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib uri="http://www.springframework.org/tags/form"  prefix="form"%>
+         pageEncoding="ISO-8859-1" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -27,20 +26,19 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js"
             integrity="sha512-rstIgDs0xPgmG6RX1Aba4KV5cWJbAMcvRCVmglpam9SoHZiUCyQVDdH2LPlxoHtrv17XWblE/V/PP+Tr04hbtA=="
             crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
-    <title>List</title>
+    <link rel="stylesheet" href="../../asserts/css/style.css">
+    <title>Employee List</title>
 </head>
-
 <body>
 <div class="container-fluid ">
     <nav class="row topnavbar py-1">
-        <a href="index.html" class="navbar-brand ml-3 mr-auto"><img class="img" src="${pageContext.request.contextPath}/img/logo.png"></a>
+        <a href="index.html" class="navbar-brand ml-3 mr-auto"><img class="img" src="../../asserts/img/logo.png"></a>
     </nav>
     <div class="row">
         <div class="col-sm-3 border-right left" id="accordion">
             <div class="list-group list-group-flush" >
                 <div class="list-group-item text-white profile">
-                    <div><img class="img-admin" src="${pageContext.request.contextPath}/img/admin.png"></div>
+                    <div><img class="img-admin" src="../../asserts/img/admin.png"></div>
                     <div class="mt-1">Admin</div>
                     <div class="mt-1">admin@fsoft.com.vn</div>
                 </div>
@@ -89,13 +87,13 @@
                         </div>
                         <div  class="mt-3 collapse" id="vaccineType" data-parent="#accordion">
                             <div class="ml-4 text-sub">
-                                <a class="text-reset text-decoration-none" href="${pageContext.request.contextPath}/vaccineType/list">
+                                <a class="text-reset text-decoration-none" href="#">
                                     <span class="ml-2">Vaccine Type List</span>
                                 </a>
                             </div>
                             <div class="ml-4 mt-2 text-sub">
-                                <a class="text-reset text-decoration-none" href="${pageContext.request.contextPath}/vaccineType/add">
-                                    <span class="ml-2">Create Vaccine Type</span>
+                                <a class="text-reset text-decoration-none" href="#">
+                                    <span class="ml-2">Vaccine Type Employee</span>
                                 </a>
                             </div>
                         </div>
@@ -107,7 +105,7 @@
                         </div>
                         <div  class="mt-3 collapse" id="vaccine" data-parent="#accordion">
                             <div class="ml-4 text-sub">
-                                <a class="text-reset text-decoration-none" href="#">
+                                <a class="text-reset text-decoration-none" href="${pageContext.request.contextPath}/vaccine/list">
                                     <span class="ml-2">Vaccine List</span>
                                 </a>
                             </div>
@@ -143,12 +141,12 @@
                         </div>
                         <div  class="mt-3 collapse" id="injectResult" data-parent="#accordion">
                             <div class="ml-4 text-sub">
-                                <a class="text-reset text-decoration-none" href="#">
+                                <a class="text-reset text-decoration-none" href="${pageContext.request.contextPath}/injection-result-list">
                                     <span class="ml-2">Injection Result List</span>
                                 </a>
                             </div>
                             <div class="ml-4 mt-2 text-sub">
-                                <a class="text-reset text-decoration-none " href="#">
+                                <a class="text-reset text-decoration-none " href="${pageContext.request.contextPath}/add/injection-result">
                                     <span class="ml-2">Create Injection Result</span>
                                 </a>
                             </div>
@@ -194,116 +192,84 @@
             </div>
         </div>
         <div class="col-sm-9 bg-light right">
-            <div class="h5 mt-3 text-center text-secondary font-weight-bold mb-3">REPORT INJECTION RESULT</div>
+            <div class="h5 mt-3 text-center text-secondary font-weight-bold mb-3">EMPLOYEE LIST</div>
+            <div class="h4 text-success font-weight-bold ml-3">${success}</div>
             <div class="card mx-3">
-                <div class="card-body shadow">
-                    <div class="border-bottom">
-                        <form class="mb-3" action="${pageContext.request.contextPath}/search/report/injection-result" method="post">
-                            <div class="form-row">
-                                <div class="form-group col-sm-4">
-                                    <label class="font-weight-bold" for="">Display Type: </label>
-                                    <div class="mt-2">
-                                        <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1" checked>
-                                            <label class="form-check-label" for="inlineRadio1">Report</label>
-                                        </div>
-                                        <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
-                                            <label class="form-check-label" for="inlineRadio2">Chart</label>
-                                        </div>
-                                    </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-sm-3 form-inline" >
+                            <span>Show</span>
+                            <select class="form-select mx-2 border-right-0 border-top-0 border-left-0" id="inlineFormCustomSelect" name="showNumberList" onchange="location = this.value;">
+                                <option selected></option>
+                                <option value="${pageContext.request.contextPath}/employee-list?size=5">5</option>
+                                <option value="${pageContext.request.contextPath}/employee-list?size=10">10</option>
+                                <option value="${pageContext.request.contextPath}/employee-list?size=15">15</option>
+                            </select>
+                            <span>entities</span>
+                        </div>
+                        <div class="col-sm-6"></div>
+                        <div class="col-sm-3">
+                            <form action="${pageContext.request.contextPath}/search/employee" method="post">
+                                <div class="input-group ">
+                                    <input id="searchInput" type="search" class="form-control border-right-0 border-top-0 border-left-0 form-select"
+                                           placeholder="Search" aria-label="Search" aria-describedby="search-addon" name="searchNews" />
+                                    <button type="submit" class="input-group-text border-0 bg-white" id="search-addon">
+                                        <i class="fas fa-search"></i>
+                                    </button>
                                 </div>
-                                <div class="form-group col-sm-6">
-                                    <label class="font-weight-bold" for="">Inject Date: </label>
-                                    <div>
-                                        <div class="form-check form-check-inline">
-                                            <label class="form-check-label" for="inlineRadio1">From:</label>
-                                            <input class="form-control form-check-input ml-2" type="date" name="startDate" id="startDate" value="option1">
-                                        </div>
-                                        <div class="form-check form-check-inline">
-                                            <label class="form-check-label" for="inlineRadio2">To:</label>
-                                            <input class="form-control form-check-input ml-2" type="date" name="endDate" id="endDate" value="option2">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-row mt-2">
-                                <div class="form-group col-sm-4">
-                                    <label class="font-weight-bold" for="prevention">Prevention: </label>
-                                    <div class="form-inline">
-                                        <input type="text" class="form-control w-75" placeholder="Enter prevention" id="prevention" name="prevention" value="${param.prevention}"/>
-                                    </div>
-                                </div>
-                                <div class="form-group col-sm-4">
-                                    <label class="font-weight-bold" for="">VaccineType: </label>
-                                    <div>
-                                        <select class="form-control" id="vaccineName" name="vaccine">
-                                            <option label="--Select Vaccine Type" value="" selected/>
-                                            <c:forEach items="${vaccineList}" var="vaccines">
-                                                <option value="${vaccines.vaccineName}" label="${vaccines.vaccineName}"/>
-                                            </c:forEach>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="form-group col-sm-3 ml-5">
-                                    <label class="font-weight-bold ml-2" for="">Action: </label>
-                                    <div class="form-inline">
-                                        <button type="reset" class="btn btn-primary ml-2">Reset</button>
-                                        <button type="submit" class="btn btn-primary ml-3">Filter</button>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </form>
+                            </form>
+                        </div>
                     </div>
-
-
-                    <div class="mt-4">
-                        <table class="table table-bordered table-striped">
+                    <div class="mt-3">
+                        <table class="table table-bordered" id="employee-tb">
                             <thead>
                             <tr class="bg-info text-white text-center">
-                                <th>No.</th>
-                                <th>Vaccine</th>
-                                <th>Prevention</th>
-                                <th>Customer Name</th>
-                                <th>Date of Inject</th>
-                                <th>Num of Inject</th>
+                                <th><input type="checkbox" id="checkAll"></th>
+                                <th>Employee ID</th>
+                                <th>Employee Name</th>
+                                <th>Date Of Birth</th>
+                                <th>Gender</th>
+                                <th>Phone</th>
+                                <th>Address</th>
+                                <th>Image</th>
                             </tr>
                             </thead>
                             <tbody>
-                            <c:forEach items="${injectionResultList.content}" var="injection" varStatus="loop">
-                                <%! int count = 1; %>
+                            <c:forEach items="${employeeList.content}" var="result">
                                 <tr>
-                                    <td>${loop.count}</td>
-                                    <td>${injection.vaccine.vaccineName}</td>
-                                    <td>${injection.prevention}</td>
-                                    <td>${injection.customer.fullName}</td>
-                                    <td>${injection.injectionDate}</td>
-                                    <td>${injection.numberOfInjection}</td>
+                                    <td><input type="checkbox" value="${result.id}" name="id"></td>
+                                    <td><a href="${pageContext.request.contextPath}/employee/update/${result.id}">${result.id}</a></td>
+                                    <td>${result.employeeName}</td>
+                                    <td>${result.dateOfBirth}</td>
+                                    <td>${result.gender}</td>
+                                    <td>${result.phone}</td>
+                                    <td>${result.address}</td>
+                                    <td>${result.image}</td>
                                 </tr>
                             </c:forEach>
                             </tbody>
                         </table>
                     </div>
+                    <div class="h5 text-right text-danger">${error}</div>
                     <div class="row mt-4">
                         <div class="col-sm-3">
-                            <span>Showing ${firstElement} to ${lastElement} of ${injectionResultList.totalElements} entities</span>
+                            <span>Showing ${firstElement} to ${lastElement} of ${employeeList.totalElements} entities</span>
                         </div>
                         <div class="col-sm-6"></div>
                         <div class="col-sm-3">
                             <nav aria-label="Page">
                                 <ul class="pagination">
                                     <li class="page-item">
-                                        <a class="page-link pagination-list" href="#" aria-label="Previous">
+                                        <a class="page-link pagination-list" href="/employee-list?p=${employeeList.number -1}" aria-label="Previous">
                                             <span aria-hidden="true">&laquo;</span>
                                             <span class="sr-only">Previous</span>
                                         </a>
                                     </li>
-                                    <li class="page-item"><a class="page-link pagination-list" href="${pageContext.request.contextPath}/report/injection-result?p=0">1</a></li>
-                                    <li class="page-item"><a class="page-link pagination-list" href="${pageContext.request.contextPath}/report/injection-result?p=1">2</a></li>
-                                    <li class="page-item"><a class="page-link pagination-list" href="${pageContext.request.contextPath}/report/injection-result?p=2">3</a></li>
+                                    <li class="page-item"><a class="page-link pagination-list" href="/employee-list?p=0">1</a></li>
+                                    <li class="page-item"><a class="page-link pagination-list" href="/employee-list?p=1">2</a></li>
+                                    <li class="page-item"><a class="page-link pagination-list" href="/employee-list?p=2">3</a></li>
                                     <li class="page-item">
-                                        <a class="page-link pagination-list" href="#" aria-label="Next">
+                                        <a class="page-link pagination-list" href="/employee-list?p=${employeeList.number +1}" aria-label="Next">
                                             <span aria-hidden="true">&raquo;</span>
                                             <span class="sr-only">Next</span>
                                         </a>
@@ -312,17 +278,17 @@
                             </nav>
                         </div>
                     </div>
-
+                    <div class="">
+                        <button class="btn btn-success mr-1" type="submit"><a href="${pageContext.request.contextPath}/add/employee" class="text-white text-decoration-none">New Employee</a></button>
+                        <button class="btn btn-warning mr-1 text-white" type="submit" id="update-button">Update Employee</button>
+                        <button class="btn btn-danger" type="submit" id="delete-button">Delete Employee</button>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-<script src="${pageContext.request.contextPath}/js/ChartConvertReport.js"></script>
-<script
-        src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
-        integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
+<script src="${pageContext.request.contextPath}/js/DeleteEmployee.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </body>
-</html>
+</html>>

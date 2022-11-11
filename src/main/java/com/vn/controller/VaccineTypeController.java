@@ -70,6 +70,7 @@ public class VaccineTypeController {
                 model.addObject("lastElement", size * (p + 1));
             }
             model.addObject("nameSearch",nameSearch);
+            model.addObject("size",size);
             return model;
         }
     }

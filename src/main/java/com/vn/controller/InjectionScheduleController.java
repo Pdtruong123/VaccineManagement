@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
 import java.awt.print.Pageable;
@@ -35,31 +36,33 @@ public class InjectionScheduleController {
     InjectionScheduleService injectionScheduleService;
 
     @GetMapping("/add/injectionSchedule")
-    public String listInjection(Model model) {
+    public ModelAndView listInjection(Model model) {
         model.addAttribute("injection",new InjectionScheduleDTO());
         List<InjectionSchedule> scheduleList= injectionScheduleReponsitory.findAll();
         model.addAttribute("listInjection", scheduleList);
         List<Vaccine> vaccineList= vaccineReponsitory.findAll();
         model.addAttribute("listVaccine",vaccineList);
-        return "create-injection-schedule";
+        ModelAndView modelAndView= new ModelAndView("createSchedule");
+        return modelAndView;
     }
     @GetMapping("/lisst")
-    public String getlist(){
-        return "injectionScheduleList";
+    public ModelAndView getlist(){
+        ModelAndView modelAndView= new ModelAndView("ListSchedule");
+        return modelAndView;
     }
-////    @GetMapping("/schedule/add/injection")
-////    public String getAdd(Model model){
-////        model.addAttribute("injection",new InjectionScheduleDTO());
-////        List<InjectionSchedule> scheduleList= injectionScheduleReponsitory.findAll();
-////        model.addAttribute("listInjection", scheduleList);
-////        List<Vaccine> vaccineList= vaccineReponsitory.findAll();
-////        model.addAttribute("listVaccine",vaccineList);
-////        return "create-injection-schedule";
-////    }
-
-        @PostMapping("/add/injectionSchedule")
-    public String addInjection(@Valid @ModelAttribute("injection") InjectionScheduleDTO injectionScheduleDTO, BindingResult bindingResult) {
+    @PostMapping("/add/injectionSchedule")
+    public ModelAndView addInjection(@Valid @ModelAttribute("injection") InjectionScheduleDTO injectionScheduleDTO, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()){
+            ModelAndView modelerror= new ModelAndView("createSchedule");
+            return modelerror;
+        }
         injectionScheduleService.save(injectionScheduleDTO);
-        return "injectionScheduleList";
+        ModelAndView modelAndView= new ModelAndView("redirect:/lisst");
+        return modelAndView;
+    }
+    @GetMapping("update/injectionSchedule")
+    public ModelAndView update(){
+        ModelAndView modelAndView= new ModelAndView("update");
+        return modelAndView;
     }
 }

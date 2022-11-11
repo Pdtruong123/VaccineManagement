@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.vn.dto.VaccineDTO;
@@ -41,48 +42,49 @@ public class VaccineController {
 
 	@Autowired
 	VaccineTypeService vaccineTypeService;
-
+	
+	
 	@GetMapping(value = "/vaccine/list")
-	public String viewListVaccine(Model model,
+	public ModelAndView viewListVaccine(
 			@RequestParam(name = "p", required = false, defaultValue = "0") Integer p,
 			@RequestParam(name = "size", required = false, defaultValue = "5") Integer size,
 			@RequestParam(name ="search", required = false) String nameSearch,
 			@ModelAttribute("msg") String msg) {
-		
+		ModelAndView model = new ModelAndView("vaccineList");
 		if (nameSearch==null) {
 			Pageable pageable = PageRequest.of(p, size);
 			Page<Vaccine> vaccines = vaccineService.findAll(pageable);
-			model.addAttribute("vaccineList", vaccines);
+			model.addObject("vaccineList", vaccines);
 			
 			if (size * (vaccines.getNumber() + 1) > vaccines.getTotalElements()) {
-				model.addAttribute("firstElement", size * p + 1);
-				model.addAttribute("lastElement", vaccines.getTotalElements());
+				model.addObject("firstElement", size * p + 1);
+				model.addObject("lastElement", vaccines.getTotalElements());
 			} else {
-				model.addAttribute("firstElement", size * p + 1);
-				model.addAttribute("lastElement", size * (p + 1));
+				model.addObject("firstElement", size * p + 1);
+				model.addObject("lastElement", size * (p + 1));
 			}
 			
-			model.addAttribute("nameSearch",nameSearch);
-			model.addAttribute("msg", msg);
+			model.addObject("nameSearch",nameSearch);
+			model.addObject("msg", msg);
 		
-			return "vaccine/vaccine-list";
+			return model;
 		}else {
 			Pageable pageable = PageRequest.of(p, size);
 			Page<Vaccine> vaccines = vaccineService.findByVaccineNameContaining(nameSearch,pageable);
-			model.addAttribute("vaccineList", vaccines);
+			model.addObject("vaccineList", vaccines);
 
 			if (size * (vaccines.getNumber() + 1) > vaccines.getTotalElements()) {
-				model.addAttribute("firstElement", size * p + 1);
-				model.addAttribute("lastElement", vaccines.getTotalElements());
+				model.addObject("firstElement", size * p + 1);
+				model.addObject("lastElement", vaccines.getTotalElements());
 			} else {
-				model.addAttribute("firstElement", size * p + 1);
-				model.addAttribute("lastElement", size * (p + 1));
+				model.addObject("firstElement", size * p + 1);
+				model.addObject("lastElement", size * (p + 1));
 			}
 			
-			model.addAttribute("nameSearch",nameSearch);
-			model.addAttribute("msg", msg);
+			model.addObject("nameSearch",nameSearch);
+			model.addObject("msg", msg);
 		
-			return "vaccine/vaccine-list";
+			return model;
 		}
 		
 		
@@ -91,78 +93,83 @@ public class VaccineController {
 	}
 
 	@PostMapping(value = "/vaccine/search")
-	public String searchVaccine(Model model) {
+	public ModelAndView searchVaccine() {
 
 		String name = request.getParameter("searchVaccine");
-		
-		return "redirect:/vaccine/list/?search="+name+"";
+		ModelAndView model = new ModelAndView("redirect:/vaccine/list/?search=" + name);
+		return model;
 	}
 
 	@GetMapping(value = "/vaccine/add")
-	public String viewAddVaccine(Model model) {
+	public ModelAndView viewAddVaccine() {
+		ModelAndView model = new ModelAndView("vaccineCreate");
 		List<VaccineType> vaccineTypeList = new ArrayList<>();
 		vaccineTypeList = vaccineTypeService.findAllActice();
 		
-		model.addAttribute("vaccineTypeList", vaccineTypeList);
-		model.addAttribute("vaccineDto", new VaccineDTO());
+		model.addObject("vaccineTypeList", vaccineTypeList);
+		model.addObject("vaccineDto", new VaccineDTO());
 
-		return "vaccine/vaccine-create";
+		return model;
 	}
 
 	@PostMapping(value = "/vaccine/add")
-	public String addVaccine(Model model, @Valid @ModelAttribute("vaccineDto") VaccineDTO vaccineDTO,
+	public ModelAndView addVaccine(@Valid @ModelAttribute("vaccineDto") VaccineDTO vaccineDTO,
 			BindingResult bindingResult, RedirectAttributes redirectAttributes) {
+		ModelAndView model = new ModelAndView("vaccineCreate");
 		if (bindingResult.hasErrors()) {
-			return "vaccine/vaccine-create";
+			return model;
 		}
 		List<VaccineType> vaccineTypeList = new ArrayList<>();
 		vaccineTypeList = vaccineTypeService.findAllActice();
 		if (vaccineService.hasVaccineById(vaccineDTO.getId())) {
 
-			model.addAttribute("vaccineTypeList", vaccineTypeList);
-			model.addAttribute("vaccineDto", vaccineDTO);
-			model.addAttribute("msgId", "Id is already exists!");
-			return "vaccine/vaccine-create";
+			model.addObject("vaccineTypeList", vaccineTypeList);
+			model.addObject("vaccineDto", vaccineDTO);
+			model.addObject("msgId", "Id is already exists!");
+			return model;
 		}
 
 		Vaccine vaccine = vaccineService.save(vaccineDTO);
 		if (vaccine==null) {
 			
 			
-			model.addAttribute("vaccineTypeList", vaccineTypeList);
-			model.addAttribute("vaccineDto", vaccineDTO);
-			model.addAttribute("msgTime", "Time to start next vaccination must be less than end time!");
-			return "vaccine/vaccine-create";
+			model.addObject("vaccineTypeList", vaccineTypeList);
+			model.addObject("vaccineDto", vaccineDTO);
+			model.addObject("msgTime", "Time to start next vaccination must be less than end time!");
+			return model;
 		}
 		
 		redirectAttributes.addFlashAttribute("msg", "Create vaccine successfull!");
-		return "redirect:/vaccine/list";
+		ModelAndView modelRedirectList = new ModelAndView("redirect:/vaccine/list");
+		return modelRedirectList;
 	}
 
 	@PostMapping(value = "/vaccine/update/makeInActive")
-	public String updateInActive(@RequestParam List<String> ids) {
+	public ModelAndView updateInActive(@RequestParam List<String> ids) {
 		Boolean status = false;
 		vaccineService.updateStatus(ids,status);
-		return "redirect:/vaccine/list";
+		ModelAndView modelRedirectList = new ModelAndView("redirect:/vaccine/list");
+		return modelRedirectList;
 	}
 	
 	@GetMapping(value = "/vaccine/update/")
-	public String showUpdateVaccine(Model model,@RequestParam(name = "idUpdate", required = true) String idUpdate,RedirectAttributes redirectAttributes) {
+	public ModelAndView showUpdateVaccine(@RequestParam(name = "idUpdate", required = true) String idUpdate,RedirectAttributes redirectAttributes) {
 		
 		Vaccine vaccine = vaccineService.findVaccineById(idUpdate);
+		ModelAndView modelRedirectList = new ModelAndView("redirect:/vaccine/list");
 		if (vaccine==null) {
 			redirectAttributes.addFlashAttribute("msg","Id is not exists!");
-			return "redirect:/vaccine/list";
+			return modelRedirectList;
 		}
 		List<VaccineType> vaccineTypeList = new ArrayList<>();
 		vaccineTypeList = vaccineTypeService.findAllActice();
-		
+		ModelAndView model = new ModelAndView("vaccineUpdate");
 		
 		VaccineDTO vaccineDTO = new VaccineDTO();
 		vaccineDTO.setId(vaccine.getId());
 		vaccineDTO.setStatus(vaccine.getStatus());
 		vaccineDTO.setVaccineName(vaccine.getVaccineName());
-		
+		vaccineDTO.setVaccineType(vaccine.getVaccineType());
 		vaccineDTO.setNumberOfInjection(vaccine.getNumberOfInjection());
 		vaccineDTO.setUsage(vaccine.getUsage());
 		vaccineDTO.setIndication(vaccine.getIndication());
@@ -171,36 +178,38 @@ public class VaccineController {
 		vaccineDTO.setTimeEndNextInjection(vaccine.getTimeEndNextInjection());
 		vaccineDTO.setOrigin(vaccine.getOrigin());
 		
-		model.addAttribute("vaccineTypeList", vaccineTypeList);
-		model.addAttribute("vaccineDto", vaccineDTO);
-		return "vaccine/vaccine-create";
+		model.addObject("vaccineTypeList", vaccineTypeList);
+		model.addObject("vaccineUpdate", vaccineDTO);
+		return model;
 	}
 	@PostMapping(value = "/vaccine/update")
-	public String updateVaccine(Model model, @Valid @ModelAttribute("vaccineDto") VaccineDTO vaccineDTO,
+	public ModelAndView updateVaccine( @Valid @ModelAttribute("vaccineDto") VaccineDTO vaccineDTO,
 			BindingResult bindingResult,RedirectAttributes redirectAttributes) {
+		ModelAndView model = new ModelAndView("vaccineUpdate");
 		if (bindingResult.hasErrors()) {
-			return "vaccine/vaccine-update";
+			return model;
 		}
 		List<VaccineType> vaccineTypeList = new ArrayList<>();
 		vaccineTypeList = vaccineTypeService.findAllActice();
 		Vaccine vaccine = vaccineService.findVaccineById(vaccineDTO.getId());
 		if (vaccine==null) {
-			model.addAttribute("msgId","Id is not exists!");
-			model.addAttribute("vaccineTypeList", vaccineTypeList);
-			model.addAttribute("vaccineDto", vaccineDTO);
-			return "/vaccine/vaccine-create";
+			model.addObject("msgId","Id is not exists!");
+			model.addObject("vaccineTypeList", vaccineTypeList);
+			model.addObject("vaccineUpdate", vaccineDTO);
+			
+			return model;
 		}
 		Vaccine vaccineUpdate = vaccineService.update(vaccineDTO);
 		
 		
 		if (vaccineUpdate==null) {
-			model.addAttribute("vaccineTypeList", vaccineTypeList);
-			model.addAttribute("vaccineDto", vaccineDTO);
-			model.addAttribute("msgTime", "Time to start next vaccination must be less than end time!");
-			return "vaccine/vaccine-create";
+			model.addObject("vaccineTypeList", vaccineTypeList);
+		model.addObject("msgTime", "Time to start next vaccination must be less than end time!");
+			model.addObject("vaccineUpdate", vaccineDTO);
+			return model;
 		}
-		
+		ModelAndView modelRedirectList = new ModelAndView("redirect:/vaccine/list");
 		redirectAttributes.addFlashAttribute("msg", "Update vaccine successfull!");
-		return "redirect:/vaccine/list";
+		return modelRedirectList;
 	}
 }

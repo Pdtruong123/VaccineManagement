@@ -7,6 +7,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -18,7 +19,6 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-
 public class Employee implements Serializable {
 
 	@Id
@@ -27,11 +27,12 @@ public class Employee implements Serializable {
 	
 	private String address;
 	
-	@Column(name ="date_of_birth")
+	@Column(name ="dateOfBirth")
 	private LocalDate dateOfBirth;
 	
 	@Column(length = 100)
 	@Email
+	@NotEmpty
 	private String email;
 	
 	@Column(name = "employee_name",length = 100)

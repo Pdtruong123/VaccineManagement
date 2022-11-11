@@ -89,12 +89,12 @@
             </div>
             <div class="mt-3 collapse" id="inject" data-parent="#accordion">
                 <div class="ml-4 text-sub">
-                    <a class="text-reset text-decoration-none " href="#">
+                    <a class="text-reset text-decoration-none " href="${pageContext.request.contextPath}/lisst">
                         <span class="ml-2">Injection Schedule List</span>
                     </a>
                 </div>
                 <div class="ml-4 mt-2 text-sub">
-                    <a class="text-reset text-decoration-none " href="#">
+                    <a class="text-reset text-decoration-none " href="${pageContext.request.contextPath}/add/injectionSchedule">
                         <span class="ml-2">Create Injection Schedule</span>
                     </a>
                 </div>
@@ -125,12 +125,12 @@
             </div>
             <div class="mt-3 collapse" id="news" data-parent="#accordion">
                 <div class="ml-4 text-sub">
-                    <a class="text-reset text-decoration-none " href="#">
+                    <a class="text-reset text-decoration-none " href="${pageContext.request.contextPath}/news-list">
                         <span class="ml-2">News List</span>
                     </a>
                 </div>
                 <div class="ml-4 mt-2 text-sub">
-                    <a class="text-reset text-decoration-none " href="#">
+                    <a class="text-reset text-decoration-none " href="${pageContext.request.contextPath}/add/news">
                         <span class="ml-2">Create News</span>
                     </a>
                 </div>
@@ -143,12 +143,12 @@
             </div>
             <div class="mt-3 collapse" id="report" data-parent="#accordion">
                 <div class="ml-4 text-sub">
-                    <a class="text-reset text-decoration-none " href="#">
+                    <a class="text-reset text-decoration-none " href="">
                         <span class="ml-2">Report Customer</span>
                     </a>
                 </div>
                 <div class="ml-4 mt-2 text-sub">
-                    <a class="text-reset text-decoration-none" href="#">
+                    <a class="text-reset text-decoration-none" href="${pageContext.request.contextPath}/report/injection-result">
                         <span class="ml-2">Report Vaccine</span>
                     </a>
                 </div>
