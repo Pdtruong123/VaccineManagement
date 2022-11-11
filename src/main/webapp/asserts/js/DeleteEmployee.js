@@ -1,17 +1,4 @@
-$("#employee-tb tbody tr td .link-col").click(function (){
-    var thisParent = $(this).closest("tr");
-    alert("EmployeeID: " + $(this).text()+
-        "\nEmployeeName: " + thisParent.find("td:eq(3)").text()+
-        "\nDateOfBirth: " + thisParent.find("td:eq(2)").text()+
-        "\nGender: " + thisParent.find("td:eq(4)").text()+
-        "\nPhone: " + thisParent.find("td:eq(5)").text()+
-        "\nAddress: " + thisParent.find("td:eq(6)").text()+
-        "\nImage: " + thisParent.find("td:eq(7)").text()+
-        "\nEmail: " + thisParent.find("td:eq(8)").text()+
-        "\nWorkingPlace: " + thisParent.find("td:eq(9)").text()+
-        "\nPosition: " + thisParent.find("td:eq(10)").text()
-    );
-})
+
 
 $("#checkAll").change(function (){
     if(this.checked){

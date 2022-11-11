@@ -221,7 +221,7 @@
                         </div>
                     </div>
                     <div class="mt-3">
-                        <table class="table table-bordered" id="news-tb">
+                        <table class="table table-bordered" id="employee-tb">
                             <thead>
                             <tr class="bg-info text-white text-center">
                                 <th><input type="checkbox" id="checkAll"></th>
