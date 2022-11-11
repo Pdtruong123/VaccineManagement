@@ -71,7 +71,7 @@
 						</div>
 					</div>
 					<table class="table table-striped table-bordered text-center"
-						id="table-IR">
+						id="table-VC">
 						<thead class="table-thead">
 							<tr>
 								<th><input type="checkbox" id="checkAll"></th>

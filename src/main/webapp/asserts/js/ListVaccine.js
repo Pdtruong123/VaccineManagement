@@ -1,10 +1,10 @@
 $("#checkAll").change(function (){
     if(this.checked){
-        $("#table-IR input").each(function (){
+        $("#table-VC input").each(function (){
             $(this).attr("checked", true)
         })
     } else{
-        $("#table-IR input").each(function (){
+        $("#table-VC input").each(function (){
             $(this).attr("checked", false)
         })
     }
@@ -13,7 +13,7 @@ $("#make-in-active-button").click(function (){
 	var count=0;
 	var countInActive=0;
 	var valueStatus;
-	$("#table-IR input").each(function (){
+	$("#table-VC input").each(function (){
         if(this.checked) {
 		count ++;
 		valueStatus = $(this).closest('tr').find("td:eq(6)").text();
@@ -35,11 +35,11 @@ $("#make-in-active-button").click(function (){
     
 		
       let ids = [];
-        $("#table-IR input:checked").each(function (){
+        $("#table-VC input:checked").each(function (){
             var id = $(this).val();
             ids.push(id);
         });
-       var thisResult = $("#table-IR input:checked");
+       var thisResult = $("#table-VC input:checked");
        var c = confirm('Are you sure to make in-active id:'+ids);
        if(c) {
            $.ajax({
@@ -60,7 +60,7 @@ $("#make-in-active-button").click(function (){
 function updateButton(){
 	var count=0;
 	var id;
-	$("#table-IR input").each(function (){
+	$("#table-VC input").each(function (){
         if(this.checked) {
 		count ++;
 		id = $(this).val();
