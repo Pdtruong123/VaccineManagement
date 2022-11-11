@@ -39,7 +39,6 @@ public class CustomerController {
     public String saveRegister(@ModelAttribute("customer") Customer customer, Model model) {
         customerService.create(customer);
         model.addAttribute("message", "Register successfully !!");
-
         model.addAttribute("customer", customer);
         return "registerCustomer";
     }

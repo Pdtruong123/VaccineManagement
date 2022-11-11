@@ -82,6 +82,13 @@
     border: none;
 }
 
+.gender{
+    width: auto;
+    height: 38px;
+    padding-left: 3px;
+    margin-left: 10px ;
+}
+
 .fs-20{
     font-size: 20px;
     border-bottom: 1px solid #ebebeb;
@@ -95,5 +102,9 @@
 .p-btn{
     padding-left: 18px;
     padding-bottom: 48px;
+}
+
+.error{
+    color: red;
 }
 

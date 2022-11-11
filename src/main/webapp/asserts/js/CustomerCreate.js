@@ -34,10 +34,10 @@ $(document).ready(function () {
                 minlength: 5,
                 maxlength: 20,
             },
-            rePassword: {
+            confirmPassword: {
                 required: true,
                 maxlength: 20,
-                equalTo: password
+                equalTo: "#password"
             },
             email: {
                 required: true,
@@ -128,3 +128,5 @@ function updateButton() {
         return false;
     }
 }
+
+

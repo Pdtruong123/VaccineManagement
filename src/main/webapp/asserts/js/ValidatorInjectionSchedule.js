@@ -7,7 +7,7 @@ $(document).ready(function () {
             var startDate = $('.startDate').val();
             return Date.parse(startDate) < Date.parse(value) || value == "";
         }, "Please input Next date of vaccination with value greater than Date of vaccination");
-    $('#form-Schedule').validate({
+    $('#form-injectionSchedule').validate({
         rules:{
             startDate:{
                 required:true,

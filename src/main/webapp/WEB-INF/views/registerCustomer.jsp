@@ -268,7 +268,7 @@
                                     Name <span class="text-danger">(*)</span> :
                                 </label>
                                 <div class="form-inline">
-                                    <i class="fa-solid fa-fill h5"></i>
+                                    <i class="fa-solid fa-id-badge"></i>
                                     <form:input path="fullName" type="text"
                                                 class="form-control ml-2" value="${customer.fullName}"
                                                 id="fullName"/>
@@ -280,7 +280,7 @@
                                     <span class="text-danger">(*)</span> :
                                 </label>
                                 <div class="form-inline">
-                                    <i class="fa-solid fa-fill h5"></i>
+                                    <i class="fa-regular fa-calendar"></i>
                                     <form:input path="dateOfBirth" type="date"
                                                 class="form-control ml-2" value="${customer.dateOfBirth}"
                                                 id="DOB"/>
@@ -289,12 +289,14 @@
                             <div class="form-group col-sm-3">
                                 <label class="font-weight-bold" for="gender">Gender </label>
                                 <div class="form-inline">
-                                    <i class="fa-solid fa-fill h5"></i>
-                                    <div class="form-check form-check-inline">
-                                        <form:radiobutton path="gender" id="gender" value="0"/>Male
-                                    </div>
-                                    <div class="form-check form-check-inline">
-                                        <form:radiobutton path="gender" id="gender" value="1"/>Female
+                                    <i class="fa-regular fa-face-meh-blank"></i>
+                                    <div class="gender d-flex justify-content-evenly border rounded">
+                                        <div class="form-check form-check-inline">
+                                            <form:radiobutton path="gender" id="gender" value="0"/>Male
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <form:radiobutton path="gender" id="gender" value="1"/>Female
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -306,7 +308,7 @@
                                     Card <span class="text-danger">(*)</span> :
                                 </label>
                                 <div class="form-inline">
-                                    <i class="fa-solid fa-fill h5"></i>
+                                    <i class="fa-regular fa-credit-card"></i>
                                     <form:input type="text" path="identityCard"
                                                 class="form-control ml-2" value="${customer.identityCard}"
                                                 id="idCard"/>
@@ -317,7 +319,7 @@
                                         class="text-danger">(*)</span> :
                                 </label>
                                 <div class="form-inline">
-                                    <i class="fa-solid fa-fill h5"></i>
+                                    <i class="fa-solid fa-location-dot"></i>
                                     <form:input type="text" path="address"
                                                 class="form-control ml-2" value="${customer.address}"
                                                 id="address"/>
@@ -338,7 +340,7 @@
                                     <span class="text-danger">(*)</span> :
                                 </label>
                                 <div class="form-inline">
-                                    <i class="fa-solid fa-fill h5"></i>
+                                    <i class="fa-solid fa-circle-user"></i>
                                     <form:input type="text" path="userName"
                                                 class="form-control ml-2" value="${customer.userName}"
                                                 id="userName"/>
@@ -350,7 +352,7 @@
                                     <span class="text-danger">(*)</span> :
                                 </label>
                                 <div class="form-inline">
-                                    <i class="fa-solid fa-fill h5"></i>
+                                    <i class="fa-solid fa-lock"></i>
                                     <form:input type="password" path="password"
                                                 class="form-control ml-2" value="${customer.password}"
                                                 id="password"/>
@@ -362,7 +364,7 @@
                                     Confirm <span class="text-danger">(*)</span> :
                                 </label>
                                 <div class="form-inline">
-                                    <i class="fa-solid fa-fill h5"></i>
+                                    <i class="fa-solid fa-lock"></i>
                                     <form:input type="password" path="confirmPassword"
                                                 class="form-control ml-2" id="rePassword"/>
                                 </div>
@@ -375,7 +377,7 @@
                                         class="text-danger">(*)</span> :
                                 </label>
                                 <div class="form-inline">
-                                    <i class="fa-solid fa-fill h5"></i>
+                                    <i class="fa-solid fa-envelope"></i>
                                     <form:input type="email" path="email"
                                                 class="form-control ml-2" value="${customer.email}"
                                                 id="email"/>
@@ -386,12 +388,35 @@
                                         class="text-danger">(*)</span> :
                                 </label>
                                 <div class="form-inline">
-                                    <i class="fa-solid fa-fill h5"></i>
+                                    <i class="fa-solid fa-square-phone"></i>
                                     <form:input type="text" path="phone" class="form-control ml-2"
                                                 value="${customer.phone}" id="phone"/>
                                 </div>
                             </div>
                         </div>
+
+<%--                        <div class="form-row">--%>
+<%--                            <div class="form-group col-sm-4">--%>
+<%--                                <label class="font-weight-bold" for="email">Capcha <span--%>
+<%--                                        class="text-danger">(*)</span> :--%>
+<%--                                </label>--%>
+<%--                                <div class="form-inline">--%>
+<%--                                    <i class="fa-solid fa-lock"></i>--%>
+<%--                                    <form:input type="email" path="email"--%>
+<%--                                                class="form-control ml-2" value="${customer.email}"--%>
+<%--                                                id="email"/>--%>
+<%--                                </div>--%>
+<%--                            </div>--%>
+<%--                            <div class="form-group col-sm-4">--%>
+<%--                                <label class="font-weight-bold" for="phone">Code--%>
+<%--                                </label>--%>
+<%--                                <div class="form-inline">--%>
+<%--                                    <i class="fa-solid fa-building-lock"></i>--%>
+<%--                                    <form:input type="text" path="phone" class="form-control ml-2"--%>
+<%--                                                value="${customer.phone}" id="phone"/>--%>
+<%--                                </div>--%>
+<%--                            </div>--%>
+<%--                        </div>--%>
 
                         <div class="p-btn mt-5">
                             <button type="submit" class="btn btn-sm btn-success">
@@ -400,6 +425,7 @@
                             <button type="reset" class="btn btn-sm btn-primary ml-2">Reset</button>
                             <a class="btn btn-sm btn-warning ml-2" href="#">Cancel</a>
                         </div>
+                        <p>${message}</p>
                     </div>
                 </div>
             </form:form>
@@ -407,8 +433,10 @@
 
     </div>
 </div>
-<script src="${pageContext.request.contextPath}/js/CustomerCreate.js"></script>
-<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="../../asserts/js/CustomerCreate.js"></script>
+<script
+        src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js"
+        integrity="sha512-rstIgDs0xPgmG6RX1Aba4KV5cWJbAMcvRCVmglpam9SoHZiUCyQVDdH2LPlxoHtrv17XWblE/V/PP+Tr04hbtA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </body>
 </html>

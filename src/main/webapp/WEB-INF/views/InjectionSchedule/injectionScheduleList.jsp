@@ -18,9 +18,9 @@
                     <form action="#">
                         <div class="input-group ">
                             <input type="search"
-                                   class="form-control border-right-0 border-top-0 border-left-0 form-select"
-                                   placeholder="Search" aria-label="Search" aria-describedby="search-addon"/>
-                            <button type="submit" class="input-group-text border-0 bg-white" id="search-addon">
+                                   class="dataSearch form-control border-right-0 border-top-0 border-left-0 form-select"
+                                   placeholder="Search" aria-label="Search" aria-describedby="search-addon" onchange="searchOnchange(this.value)"/>
+                            <button class="input-group-text border-0 bg-white" id="search-addon">
                                 <i class="fas fa-search"></i>
                             </button>
                         </div>
@@ -38,18 +38,9 @@
                         <th>Note</th>
                     </tr>
                     </thead>
-                    <tbody id="bodyList">
+                   <tbody id="bodyList">
 
-                    <%--                            <c:forEach items="${listInjectionPage.content}" var="listPage">--%>
-                    <%--                                <tr>--%>
-                    <%--                                    <td><a href="">${listPage.vaccine.vaccineName}</a></td>--%>
-                    <%--                                    <td>From ${listPage.startDate} to ${listPage.endDate}</td>--%>
-                    <%--                                    <td>${listPage.place}</td>--%>
-                    <%--                                    <td>${listPage.status}</td>--%>
-                    <%--                                    <td>${listPage.description}</td>--%>
-                    <%--                                </tr>--%>
-                    <%--                            </c:forEach>--%>
-                    </tbody>
+                </tbody>
                 </table>
             </div>
             <div class="row mt-4">
@@ -60,19 +51,19 @@
                 <div class="col-sm-3">
                     <nav aria-label="Page">
                         <ul class="pagination">
-                            <li class="page-item-previous">
+                            <li class="page-item-pre">
                                 <a class="page-link pagination-list"
-                                   href=""
+                                   href="#"
                                    aria-label="Previous">
                                     <span aria-hidden="true">&laquo;</span>
                                     <span class="sr-only">Previous</span>
                                 </a>
                             </li>
-                            <li class="page-item"><a class="page-link pagination-list" href="">1</a></li>
-                            <li class="page-item"><a class="page-link pagination-list" href="">2</a></li>
-                            <li class="page-item"><a class="page-link pagination-list" href="">3</a></li>
+                            <li class="page-item"><a class="page-link pagination-list" href="#">1</a></li>
+                            <li class="page-item"><a class="page-link pagination-list" href="#">2</a></li>
+                            <li class="page-item"><a class="page-link pagination-list" href="#">3</a></li>
                             <li class="page-item-next">
-                                <a class="page-link pagination-list" href="" aria-label="Next">
+                                <a class="page-link pagination-list" href="#" aria-label="Next">
                                     <span aria-hidden="true">&raquo;</span>
                                     <span class="sr-only">Next</span>
                                 </a>
@@ -82,7 +73,7 @@
                 </div>
             </div>
             <div class="">
-                <a class="btn btn-sm btn-success" href="#">New Injection Schedule</a>
+                <a class="btn btn-sm btn-success" href="${pageContext.request.contextPath}/add/injectionSchedule">New Injection Schedule</a>
                 <a class="btn btn-sm btn-warning ml-2" href="#">Update Injection Schedule</a>
             </div>
         </div>
