@@ -262,18 +262,18 @@
             <div class="col form-group">
                 <label for="name"><strong>Employee name:</strong></label>
                 <form:input type="text" class="form-control"
-                            placeholder="Nguyen Van A" id="name" path="name"
+                            placeholder="Nguyen Van A" id="name" path="employeeName"
                             value="${Employee.name}" />
             </div>
 
             <div class="col form-group">
                 <label class="form-label"><strong>Gender:</strong></label> <br>
                 <div class="form-check form-check-inline">
-                    <input type="radio" class="form-check-input" name="rdo" checked>
+                    <input type="radio" class="form-check-input" name="gender" checked>
                     <label class="form-check-label">Male</label>
                 </div>
                 <div class="form-check form-check-inline">
-                    <input type="radio" class="form-check-input" name="rdo">
+                    <input type="radio" class="form-check-input" name="gender">
                     <label class="form-check-label">Female</label>
                 </div>
 
@@ -284,7 +284,7 @@
             <div class="col form-group">
                 <label for="DoB"><strong>Date of Birth:</strong></label>
                 <form:input type="date" class="form-control"
-                            placeholder="12/12/1999" id="DoB" path="DoB"
+                            placeholder="12/12/1999" id="DoB" path="dateOfBirth"
                             value="${Employee.DoB}" />
             </div>
             <div class="col form-group">
@@ -314,7 +314,7 @@
             <div class="col form-group">
                 <label for="place"><strong>Working Place:</strong></label>
                 <form:input type="text" class="form-control"
-                            placeholder="Hong Ngoc" id="place" path="place"
+                            placeholder="Hong Ngoc" id="place" path="workingPlace"
                             value="${Employee.workingPlace}" />
             </div>
 
