@@ -43,7 +43,7 @@ public class EmployeeController {
         return "employee-list";
     }
 
-    @GetMapping("add/employee")
+    @GetMapping("/add/employee")
     public String addEmployeePage(Model model){
         model.addAttribute("employee", new Employee());
         return "create-employee";
@@ -80,7 +80,7 @@ public class EmployeeController {
         return "redirect:/employee-list";
     }
 
-    @GetMapping("/update/news/{id}")
+    @GetMapping("/update/employee/{id}")
     public String updateEmployeePage(Model model, @PathVariable String id){
         Employee employee = employeeService.findById(id);
         model.addAttribute("employee", employee);
