@@ -279,7 +279,7 @@
                     </div>
                     <div class="">
                         <button class="btn btn-success mr-1" type="submit"><a href="${pageContext.request.contextPath}/registerCustomer" class="text-white text-decoration-none">Register</a></button>
-                        <button class="btn btn-warning mr-1 text-white" type="submit" id="update-button" onclick="updateButton()">Update Customer</button>
+                        <button class="btn btn-warning mr-1 text-white" type="submit" id="update-button">Update Customer</button>
                         <button class="btn btn-danger" type="submit" id="delete-button">Delete Customer</button>
                     </div>
                 </div>

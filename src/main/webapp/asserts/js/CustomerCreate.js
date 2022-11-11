@@ -74,7 +74,6 @@ $("#delete-button").click(function (){
     $("#table-IC > tbody input:checked").each(function (){
         var id = $(this).val();
         var thisResult = $(this);
-        alert(id);
         var c = confirm('Are you sure to delete?');
 
         if(c) {
@@ -104,29 +103,28 @@ $("#checkAll").change(function (){
     }
 })
 
-function updateButton() {
-    var count = 0;
+$("#update-button").click(function (){
+    var count=0;
     var id;
-    $("#table-IC input").each(function () {
-        if (this.checked) {
-            count++;
+    $("#table-IC input").each(function (){
+        if(this.checked) {
+            count ++;
             id = $(this).val();
         }
     })
-    if (count == 0) {
-        alert("No data to make inactive!");
+    if(count==0){
+        alert("No injection result be chosen!");
         return false;
     }
 
-    if (count > 1) {
+    if(count>1){
         alert("Invalid data - Please recheck your selects!");
         return false;
     }
-    if (count == 1) {
-        alert(id);
-        window.location.href = "/injectionCustomerList" + id;
+    if(count==1){
+        window.location.href="/update/injectionCustomerList/"+id;
         return false;
     }
-}
+})
 
 

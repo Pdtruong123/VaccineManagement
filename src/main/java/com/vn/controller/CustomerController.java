@@ -79,17 +79,16 @@ public class CustomerController {
 
 
     }
-    @GetMapping(value = { "update/injectionCustomerList" })
+    @GetMapping(value = { "/update/injectionCustomerList/{id}" })
     public String edit(Model model, @PathVariable("id") String id) {
         Customer customer = customerService.findById(id);
         model.addAttribute("customer", customer);
         return "updateInjectionCustomerList";
     }
 
-    @PostMapping(value = { "update/injectionCustomerList" })
-    public String updateCustomer(@PathVariable("id") String id, BindingResult result, @Valid Customer customer) {
+    @PostMapping(value = { "/update/injectionCustomerList" })
+    public String updateCustomer(BindingResult result, @Valid Customer customer) {
         if (result.hasErrors()){
-            customer.setId(id);
             return "updateInjectionCustomerList";
         }else{
             customerService.create(customer);
