@@ -209,7 +209,7 @@
                                         <label class="form-check-label" for="inlineRadio1">Report</label>
                                     </div>
                                     <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+                                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2" checked>
                                         <label class="form-check-label" for="inlineRadio2">Chart</label>
                                     </div>
                                 </div>
@@ -232,12 +232,13 @@
             <div class="card mx-3 mt-4 shadow">
                 <div class="font-weight-bold h6 mt-3 ml-3">REPORT INJECTION CHART</div>
                 <div class="mx-3 border-top">
-                    <canvas class="mt-3" id="myChart" style="width:100%; height: 370px;"></canvas>
+                    <canvas class="mt-3" id="myChart"></canvas>
                 </div>
 
             </div>
         </div>
     </div>
 </div>
+<script src="${pageContext.request.contextPath}/js/ChartConvertReport.js"></script>
 </body>
 </html>

@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Repository
@@ -18,5 +19,11 @@ public interface InjectionResultRepository extends JpaRepository<InjectionResult
     @Query(value = "select i from InjectionResult i where i.id like %:searchParam% " +
             "or i.prevention like %:searchParam% or i.vaccine.vaccineName like %:searchParam% or i.customer.fullName like %:searchParam%")
     Page<InjectionResult> findContainElement(String searchParam, Pageable pageable);
+
+    @Query("select i from InjectionResult i where i.prevention like %:prevention% or i.vaccine.vaccineName =:vaccineType" +
+           " or i.injectionDate between :startDate and :endDate")
+    Page<InjectionResult> findElementReport(String prevention, String vaccineType, LocalDate startDate, LocalDate endDate,
+                                            Pageable pageable);
+
 
 }

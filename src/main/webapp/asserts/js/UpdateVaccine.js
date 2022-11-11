@@ -76,9 +76,7 @@ function submitValidate(){
         }
 	}else{
 		
-		var x = $("#col-time-begin").html();
-		x+="<span class='error'>Time begin is before time end</span>";
-		$("#col-time-begin").html(x);
+		$("#timeError").html("<span class='error'>Time begin is before time end</span>");
 		
 		return false;
 		

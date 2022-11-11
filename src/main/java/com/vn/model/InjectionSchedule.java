@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.time.LocalDate;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 
 import com.fasterxml.jackson.annotation.*;
 import com.vn.util.GenerateID;
@@ -32,12 +33,13 @@ public class InjectionSchedule implements Serializable {
     })
     @Column(name = "injection_schedule_id", length = 36)
     private String id;
-
+    @NotBlank
     @Column(length = 1000)
     private String description;
+    @NotBlank
     @Column(name = "end_date")
     private LocalDate endDate;
-
+    @NotBlank
     private String place;
 
     public Vaccine getVaccine() {
@@ -47,7 +49,7 @@ public class InjectionSchedule implements Serializable {
     public void setVaccine(Vaccine vaccine) {
         this.vaccine = vaccine;
     }
-
+    @NotBlank
     @Column(name = "start_date")
     private LocalDate startDate;
 
@@ -61,13 +63,13 @@ public class InjectionSchedule implements Serializable {
     private String status;
 
     public String getStatus() {
-        if (endDate.isBefore(LocalDate.now()) && vaccine.getStatus() == true) {
+        if (endDate.isBefore(LocalDate.now()) && vaccine.getStatus() != null && vaccine.getStatus() == true) {
             status = "Open";
         }
-        if (!endDate.isBefore(LocalDate.now()) && vaccine.getStatus() == true) {
+        if (!endDate.isBefore(LocalDate.now()) && vaccine.getStatus() != null && vaccine.getStatus() == true) {
             status = "Not yet";
         }
-        if (!vaccine.getStatus() && endDate.isBefore(LocalDate.now())) {
+        if (!(vaccine.getStatus() != null && vaccine.getStatus()) && endDate.isBefore(LocalDate.now())) {
             status = "Over";
         }
         return status;
