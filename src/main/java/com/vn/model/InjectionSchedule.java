@@ -5,6 +5,7 @@ import java.time.LocalDate;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.*;
 import com.vn.util.GenerateID;
@@ -36,7 +37,7 @@ public class InjectionSchedule implements Serializable {
     @NotBlank
     @Column(length = 1000)
     private String description;
-    @NotBlank
+    @NotNull
     @Column(name = "end_date")
     private LocalDate endDate;
     @NotBlank
@@ -49,7 +50,7 @@ public class InjectionSchedule implements Serializable {
     public void setVaccine(Vaccine vaccine) {
         this.vaccine = vaccine;
     }
-    @NotBlank
+   @NotNull
     @Column(name = "start_date")
     private LocalDate startDate;
 
