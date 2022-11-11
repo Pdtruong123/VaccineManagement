@@ -53,11 +53,16 @@ public class InjectionScheduleController {
     @PostMapping("/add/injectionSchedule")
     public ModelAndView addInjection(@Valid @ModelAttribute("injection") InjectionScheduleDTO injectionScheduleDTO, BindingResult bindingResult) {
         if (bindingResult.hasErrors()){
-            ModelAndView modelerror= new ModelAndView("errorcreate");
+            ModelAndView modelerror= new ModelAndView("createSchedule");
             return modelerror;
         }
         injectionScheduleService.save(injectionScheduleDTO);
         ModelAndView modelAndView= new ModelAndView("redirect:/lisst");
+        return modelAndView;
+    }
+    @GetMapping("update/injectionSchedule")
+    public ModelAndView update(){
+        ModelAndView modelAndView= new ModelAndView("update");
         return modelAndView;
     }
 }

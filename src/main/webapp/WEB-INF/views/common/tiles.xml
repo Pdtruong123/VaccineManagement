@@ -135,7 +135,7 @@
         <put-attribute name="body"
                        value="/WEB-INF/views/InjectionSchedule/injectionScheduleList.jsp"/>
     </definition>
-    
+
     <!--Start Of Feature Vaccine Management-->
     <definition name="vaccineList" extends="base.definition">
         <put-attribute name="title" value="Vaccine List"/>
@@ -194,5 +194,6 @@
     </definition>
 
     <!--End Report-->
+
 </tiles-definitions>
 
