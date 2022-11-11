@@ -76,7 +76,6 @@ function updateButton(){
 			return false;
 		}
 	if(count==1){
-			alert(id);
 			window.location.href="/vaccine/update/?idUpdate="+id;
 			return false;
 		}

@@ -16,7 +16,7 @@
     <definition name="homePage" extends="base.definition">
         <put-attribute name="title" value="Home Page"/>
         <put-attribute name="body"
-                       value="/WEB-INF/views/index.jsp"/>
+                       value="/WEB-INF/views/hello.jsp"/>
     </definition>
     <!--End Home Page-->
 
@@ -134,6 +134,23 @@
         <put-attribute name="title" value="Create Schedule"/>
         <put-attribute name="body"
                        value="/WEB-INF/views/InjectionSchedule/injectionScheduleList.jsp"/>
+    </definition>
+
+    <!--Start Of Feature Vaccine Management-->
+    <definition name="vaccineList" extends="base.definition">
+        <put-attribute name="title" value="Vaccine List"/>
+        <put-attribute name="body"
+                       value="/WEB-INF/views/vaccine/vaccine-list.jsp"/>
+    </definition>
+    <definition name="vaccineCreate" extends="base.definition">
+        <put-attribute name="title" value="Create vaccine"/>
+        <put-attribute name="body"
+                       value="/WEB-INF/views/vaccine/vaccine-create.jsp"/>
+    </definition>
+    <definition name="vaccineUpdate" extends="base.definition">
+        <put-attribute name="title" value="Update Vaccine"/>
+        <put-attribute name="body"
+                       value="/WEB-INF/views/vaccine/vaccine-create.jsp"/>
     </definition>
 
     <!--Report-->

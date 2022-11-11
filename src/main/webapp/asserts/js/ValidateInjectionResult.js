@@ -1,6 +1,6 @@
 $(document).ready(function () {
     $.validator.addMethod("greaterThanToday", function (value, element) {
-        return Date.now() <= Date.parse(value);
+        return new Date().setHours(0,0,0,0) <= Date.parse(value);
     }, "Please input Date of vaccination with value greater or equal the current date");
     $.validator.addMethod("endDate", function (value, element) {
         var startDate = $('#dateOfInjection').val();
