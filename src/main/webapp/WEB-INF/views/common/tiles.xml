@@ -142,7 +142,7 @@
                        value="/WEB-INF/views/report/reportCustomer/chart-customer.jsp"/>
     </definition>
 
-    <!--Report Vacciner-->
+    <!--Report Vaccine-->
     <definition name="reportVaccine" extends="base.definition">
         <put-attribute name="title" value="Report Vaccine"/>
         <put-attribute name="body"

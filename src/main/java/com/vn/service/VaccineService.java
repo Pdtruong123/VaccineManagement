@@ -1,8 +1,10 @@
 package com.vn.service;
 
 import com.vn.dto.VaccineDTO;
+import com.vn.model.InjectionResult;
 import com.vn.model.Vaccine;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -30,5 +32,8 @@ public interface VaccineService {
 	Vaccine update(@Valid VaccineDTO vaccineDTO);
 
 	void updateStatus(List<String> ids, Boolean status);
+
+	Page<Vaccine> findElementReport(String origin, String vaccineType, LocalDate timeBeginNextInjection, LocalDate timeEndNextInjection,
+											Pageable pageable);
 
 }
