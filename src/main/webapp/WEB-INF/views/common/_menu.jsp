@@ -145,13 +145,18 @@
             </div>
             <div class="mt-3 collapse" id="report" data-parent="#accordion">
                 <div class="ml-4 text-sub">
-                    <a class="text-reset text-decoration-none " href="">
+                    <a class="text-reset text-decoration-none " href="${pageContext.request.contextPath}/report/customer">
                         <span class="ml-2">Report Customer</span>
                     </a>
                 </div>
                 <div class="ml-4 mt-2 text-sub">
-                    <a class="text-reset text-decoration-none" href="${pageContext.request.contextPath}/report/injection-result">
+                    <a class="text-reset text-decoration-none" href="${pageContext.request.contextPath}/report/vaccine">
                         <span class="ml-2">Report Vaccine</span>
+                    </a>
+                </div>
+                <div class="ml-4 mt-2 text-sub">
+                    <a class="text-reset text-decoration-none" href="${pageContext.request.contextPath}/report/injection-result">
+                        <span class="ml-2">Report Injection Result</span>
                     </a>
                 </div>
             </div>
