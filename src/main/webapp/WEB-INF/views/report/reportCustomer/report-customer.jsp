@@ -86,7 +86,7 @@
                         <td>${result.dateOfBirth}</td>
                         <td>${result.address}</td>
                         <td>${result.identityCard}</td>
-                        <td>${result.injectionResults.numberOfInjection}</td>
+                        <td></td>
                     </tr>
                 </c:forEach>
                 </tbody>

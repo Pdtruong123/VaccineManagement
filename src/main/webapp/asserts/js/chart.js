@@ -3,8 +3,10 @@ window.onload = function() {
 
 };
 function chartReport(){
+    var abc = $('#value-chart').val()
+    console.log(abc)
     var xValues = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-    var yValues = [0.5, 1, 1, 0.5, 2, 3, 0.7, 1, 4, 3, 2.5, 3];
+    var yValues = abc;
     var barColors = "#88CDF6";
 
     new Chart("myChart", {

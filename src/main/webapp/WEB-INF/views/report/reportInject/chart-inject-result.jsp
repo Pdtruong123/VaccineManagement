@@ -31,12 +31,15 @@
                 <div class="form-group col-sm-3">
                     <label class="font-weight-bold" for="">Select Year: </label>
                     <div>
-                        <select class="form-control" aria-label="Default select example">
-                            <option selected value="1">2019</option>
-                            <option value="1">2020</option>
-                            <option value="2">2021</option>
-                            <option value="3">2022</option>
+                        <form class="mb-3" action="${pageContext.request.contextPath}/chart/injection-result" method="post">
+                        <select class="form-control" aria-label="Default select example" name="year">
+                            <option selected value="2019">2019</option>
+                            <option value="2020">2020</option>
+                            <option value="2021">2021</option>
+                            <option value="2022">2022</option>
                         </select>
+                            <button type="submit" class="btn btn-primary ml-3">OK</button>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -45,6 +48,7 @@
 </div>
 <div class="card mx-3 mt-4 shadow">
     <div class="font-weight-bold h6 mt-3 ml-3">REPORT INJECTION CHART</div>
+    <div id="value-chart">${injectValue}</div>
     <div class="mx-3 border-top">
         <canvas class="mt-3" id="myChart"></canvas>
     </div>

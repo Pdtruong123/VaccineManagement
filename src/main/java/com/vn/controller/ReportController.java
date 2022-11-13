@@ -3,6 +3,7 @@ package com.vn.controller;
 import com.vn.model.Customer;
 import com.vn.model.InjectionResult;
 import com.vn.model.Vaccine;
+import com.vn.repository.ReportRepository;
 import com.vn.service.CustomerService;
 import com.vn.service.InjectionResultService;
 import com.vn.service.VaccineService;
@@ -20,6 +21,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import java.time.LocalDate;
 import java.util.Date;
+import java.util.List;
 
 @Controller
 public class ReportController {
@@ -35,6 +37,9 @@ public class ReportController {
 
     @Autowired
     CustomerService customerService;
+
+    @Autowired
+    ReportRepository reportRepository;
 
     @GetMapping("report/injection-result")
     public ModelAndView injectionResultReportPage(@RequestParam(value = "p", defaultValue = "0") Integer p,
@@ -84,6 +89,15 @@ public class ReportController {
         return model;
     }
 
+    @PostMapping("/chart/injection-result")
+    public ModelAndView chartInjectPageByYear(@RequestParam(value ="year") String year){
+        ModelAndView model = new ModelAndView("chartInject");
+        List<Integer> injectValue = reportRepository.listValueInjectChart(year);
+        model.addObject("injectValue", injectValue);
+        System.out.println("value = "+injectValue);
+        return model;
+    }
+
     @GetMapping("report/vaccine")
     public ModelAndView vaccineReportPage(@RequestParam(value = "p", defaultValue = "0") Integer p,
                                                   @RequestParam(value = "size", defaultValue = "5") Integer size){
@@ -130,8 +144,10 @@ public class ReportController {
     @GetMapping("/chart/vaccine")
     public ModelAndView chartVaccinePage(){
         ModelAndView model = new ModelAndView("chartVaccine");
+        //listValueVaccineChart
         return model;
     }
+
 
     @GetMapping("report/customer")
     public ModelAndView customerReportPage(@RequestParam(value = "p", defaultValue = "0") Integer p,
