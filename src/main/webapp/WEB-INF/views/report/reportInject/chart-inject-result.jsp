@@ -5,6 +5,7 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
 <script src="${pageContext.request.contextPath}/js/chart.js"></script>
+<script src="${pageContext.request.contextPath}/js/Report.js"></script>
 
 
 <div class="h5 mt-3 text-center text-secondary font-weight-bold mb-3">REPORT INJECTION RESULT</div>
@@ -50,7 +51,6 @@
 
 </div>
 
-<script src="${pageContext.request.contextPath}/js/ChartConvertReport.js"></script>
 
 
 

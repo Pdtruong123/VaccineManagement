@@ -5,6 +5,7 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
 <script src="${pageContext.request.contextPath}/js/chart.js"></script>
+<script src="${pageContext.request.contextPath}/js/Report.js"></script>
 
 <div class="h5 mt-3 text-center text-secondary font-weight-bold mb-3">REPORT CUSTOMER</div>
 <div class="card mx-3 shadow">
@@ -15,13 +16,13 @@
                     <label class="font-weight-bold" for="">Display Type: </label>
                     <div class="mt-2">
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1"
+                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio5"
                                    value="option1">
                             <label class="form-check-label" for="inlineRadio1">Report</label>
                         </div>
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2"
-                                   value="option2">
+                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio6"
+                                   value="option2" checked>
                             <label class="form-check-label" for="inlineRadio2">Chart</label>
                         </div>
                     </div>

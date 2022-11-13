@@ -6,6 +6,7 @@ import com.vn.model.Vaccine;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -27,9 +28,11 @@ public interface VaccineRepository extends JpaRepository<Vaccine, String> {
     @Query("Update Vaccine v set v.status =:status WHERE v.id IN :ids")
     void updateStatus(@Param("ids") List<String> ids, @Param("status") boolean status);
 
-    @Query("select v from Vaccine v where v.origin like %:origin% AND v.vaccineType.id =:vaccineType" +
-            " AND (v.timeBeginNextInjection between :timeBeginNextInjection and :timeEndNextInjection)  " +
-            " AND (v.timeEndNextInjection between :timeBeginNextInjection and :timeEndNextInjection)")
+    @Query("""
+            select v from Vaccine v where (?1 is null OR v.origin like %?1% ) AND (?2 = '' OR v.vaccineType.id = ?2)
+             AND ((?3 is null OR ?4 is null) OR v.timeBeginNextInjection between ?3 and ?4)  
+             AND ((?3 is null OR ?4 is null) OR v.timeEndNextInjection between ?3 and ?4)
+             """)
     Page<Vaccine> findElementReport(String origin, String vaccineType, LocalDate timeBeginNextInjection, LocalDate timeEndNextInjection,
                                             Pageable pageable);
 
