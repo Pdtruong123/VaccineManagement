@@ -39,8 +39,8 @@ function Pageging() {
                         return "<tr><td><a href=\"#\">" + item.vaccineName + "</a></td>\n" +
                             "                                    <td>From " + item.startDate + " to " + item.endDate + "</td>\n" +
                             "                                    <td>" + item.place + "</td>\n" +
-                            "                                    <td>" + item.note + "</td>\n" +
-                            "                                    <td>" + item.status + "</td>" +
+                            "                                    <td>" + item.status + "</td>\n" +
+                            "                                    <td>" + item.note + "</td>" +
                             "</tr>"
                     })
                     $("#bodyList").html(vaccineNameApi);
@@ -63,8 +63,8 @@ function Pageging() {
                     return "<tr><td><a href=\"#\">" + item.vaccineName + "</a></td>\n" +
                         "                                    <td>From " + item.startDate + " to " + item.endDate + "</td>\n" +
                         "                                    <td>" + item.place + "</td>\n" +
-                        "                                    <td>" + item.note + "</td>\n" +
-                        "                                    <td>" + item.status + "</td>" +
+                        "                                    <td>" + item.status + "</td>\n" +
+                        "                                    <td>" + item.note + "</td>" +
                         "</tr>"
                 })
                 $("#bodyList").html(vaccineNameApi);
@@ -85,8 +85,8 @@ function Pageging() {
                     return "<tr><td><a href=\"#\">" + item.vaccineName + "</a></td>\n" +
                         "                                    <td>From " + item.startDate + " to " + item.endDate + "</td>\n" +
                         "                                    <td>" + item.place + "</td>\n" +
-                        "                                    <td>" + item.note + "</td>\n" +
-                        "                                    <td>" + item.status + "</td>" +
+                        "                                    <td>" + item.status + "</td>\n" +
+                        "                                    <td>" + item.note + "</td>" +
                         "</tr>"
                 })
                 $("#bodyList").html(vaccineNameApi);
@@ -146,7 +146,4 @@ function searchOnchange(val) {
         }
     })
 }
-let perPage=5;
-let currentPage=1;
-let start=0;
 
