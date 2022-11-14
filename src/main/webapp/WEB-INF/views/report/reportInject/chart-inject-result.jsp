@@ -31,15 +31,12 @@
                 <div class="form-group col-sm-3">
                     <label class="font-weight-bold" for="">Select Year: </label>
                     <div>
-                        <form class="mb-3" action="${pageContext.request.contextPath}/chart/injection-result" method="post">
-                        <select class="form-control" aria-label="Default select example" name="year">
+                        <select class="form-control" onchange="chartReport()" aria-label="Default select example" name="year" id="year-select">
                             <option selected value="2019">2019</option>
                             <option value="2020">2020</option>
                             <option value="2021">2021</option>
                             <option value="2022">2022</option>
                         </select>
-                            <button type="submit" class="btn btn-primary ml-3">OK</button>
-                        </form>
                     </div>
                 </div>
             </div>
