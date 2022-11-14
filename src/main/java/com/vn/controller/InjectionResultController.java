@@ -40,51 +40,11 @@ public class InjectionResultController {
 
 
     @GetMapping("/injection-result-list")
-    public ModelAndView viewPage(@RequestParam(value = "p", defaultValue = "0", required = false) Integer p,
-                           @RequestParam(value = "size", defaultValue = "5", required = false) Integer size,
-                           @RequestParam(value = "search", required = false) String keyword) {
+    public ModelAndView viewPage() {
         ModelAndView model = new ModelAndView("injectionResultList");
-       if(keyword==null){
-           Pageable pageable = PageRequest.of(p, size);
-           Page<InjectionResult> page = injectionResultService.findAll(pageable);
-           model.addObject("injectionResultList", page);
-
-           if ((long) size * (page.getNumber() + 1) > page.getTotalElements()) {
-               model.addObject("firstElement", size * p + 1);
-               model.addObject("lastElement", page.getTotalElements());
-           } else {
-               model.addObject("firstElement", size * p + 1);
-               model.addObject("lastElement", size * (p + 1));
-           }
-           model.addObject("keyword", keyword);
-           return model;
-       } else{
-           Pageable pageable = PageRequest.of(p, size);
-           Page<InjectionResult> page = injectionResultService.findContainElement(keyword, pageable);
-           if (page.isEmpty()) {
-               model.addObject("error", "No data found!");
-           }
-
-           if ((long) size * (page.getNumber() + 1) > page.getTotalElements()) {
-               model.addObject("firstElement", size * p + 1);
-               model.addObject("lastElement", page.getTotalElements());
-           } else {
-               model.addObject("firstElement", size * p + 1);
-               model.addObject("lastElement", size * (p + 1));
-           }
-           model.addObject("injectionResultList", page);
-           model.addObject("keyword", keyword);
-           return model;
-       }
-
-    }
-
-    @PostMapping("/search/injection-result")
-    public ModelAndView searchInjectionResult(@RequestParam(value = "p", defaultValue = "0") Integer p,
-                                        @RequestParam(value = "size", defaultValue = "5") Integer size) {
-        String keyword = request.getParameter("searchInjectionResult");
-        ModelAndView model = new ModelAndView("redirect:/injection-result-list?search=" + keyword);
+        model.addObject("injectionResultList", injectionResultService.findAll());
         return model;
+
     }
 
     @GetMapping("/add/injection-result")

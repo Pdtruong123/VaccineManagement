@@ -7,6 +7,7 @@ import javax.persistence.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.constraints.Future;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 import com.vn.annotation.StartBeforeEndDateValid;
 import com.vn.annotation.StartDateAfterNowValid;
@@ -58,9 +59,9 @@ public class InjectionResult implements StartEndDateable, Serializable {
 	@Column(name = "next_injection_date")
 	private LocalDate nextInjectionDate;
 	
-	@Column(name = "number_of_injection", length = 100)
-	@NotBlank(message = "Please fill number of injection")
-	private String numberOfInjection;
+	@Column(name = "number_of_injection")
+	@NotNull(message = "Please fill Number Of Injections")
+	private Integer numberOfInjection;
 	
 	@Column(length = 100)
 	@NotBlank(message = "Please select prevention")

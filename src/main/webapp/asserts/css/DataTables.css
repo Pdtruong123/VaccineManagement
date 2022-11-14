@@ -1,0 +1,16 @@
+.dataTables_wrapper .dataTables_filter input {
+    border: none;
+    border-bottom: 1px solid #aaa;
+    border-radius: unset;
+}
+
+.dataTables_wrapper .dataTables_length select {
+    border: none;
+    border-bottom: 1px solid #aaa;
+    border-radius: unset;
+}
+
+.dataTables_wrapper .dataTables_paginate{
+    margin-top: 10px;
+}
+

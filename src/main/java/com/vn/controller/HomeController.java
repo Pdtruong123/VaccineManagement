@@ -18,11 +18,4 @@ public class HomeController {
         ModelAndView model = new ModelAndView("homePage");
         return model;
     }
-
-    @GetMapping("/listIJ")
-    public ModelAndView fakeListPage(){
-        ModelAndView model = new ModelAndView("IJList");
-        model.addObject("injectionResultList",injectionResultService.findAll());
-        return model;
-    }
 }

@@ -19,11 +19,6 @@ public class InjectionResultServiceImpl implements InjectionResultService {
 
 
     @Override
-    public List<String> findAllPrevention() {
-        return injectionResultRepository.findAllPrevention();
-    }
-
-    @Override
     public InjectionResult save(InjectionResult injectionResult) {
         return injectionResultRepository.save(injectionResult);
     }
@@ -36,12 +31,6 @@ public class InjectionResultServiceImpl implements InjectionResultService {
     @Override
     public InjectionResult findById(String id) {
         return injectionResultRepository.findById(id).get();
-    }
-
-
-    @Override
-    public Page<InjectionResult> findContainElement(String searchParam, Pageable pageable) {
-        return injectionResultRepository.findContainElement(searchParam, pageable);
     }
 
     @Override
