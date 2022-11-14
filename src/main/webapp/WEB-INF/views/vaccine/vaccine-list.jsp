@@ -87,7 +87,7 @@
 							<c:forEach items="${vaccineList.content}" var="result">
 								<tr>
 									<td><input type="checkbox" value="${result.id}" name="id"></td>
-									<td><a href="${pageContext.request.contextPath}/vaccine/update/${result.id}">${result.id}</td>
+									<td><a href="${pageContext.request.contextPath}/vaccine/update/?idUpdate=${result.id}">${result.id}</td>
 									<td>${result.vaccineName}</td>
 									<td>${result.vaccineType.vaccineTypeName}</td>
 									<td>${result.numberOfInjection}</td>
