@@ -6,38 +6,38 @@
 
 
 
-<div class="h5 mt-3 text-center text-secondary font-weight-bold mb-3">REPORT INJECTION RESULT</div>
+<div class="h5 mt-3 text-center text-secondary font-weight-bold mb-3">REPORT VACCINE</div>
 <div class="card mx-3">
     <div class="card-body shadow">
         <div class="border-bottom">
-            <form class="mb-3" action="${pageContext.request.contextPath}/search/report/injection-result" method="post">
+            <form class="mb-3" action="${pageContext.request.contextPath}/search/report/vaccine" method="post">
                 <div class="form-row">
                     <div class="form-group col-sm-4">
                         <label class="font-weight-bold" for="">Display Type: </label>
                         <div class="mt-2">
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1"
+                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3"
                                        value="option1" checked>
-                                <label class="form-check-label" for="inlineRadio1">Report</label>
+                                <label class="form-check-label" for="inlineRadio3">Report</label>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2"
+                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio4"
                                        value="option2">
-                                <label class="form-check-label" for="inlineRadio2">Chart</label>
+                                <label class="form-check-label" for="inlineRadio4">Chart</label>
                             </div>
                         </div>
                     </div>
                     <div class="form-group col-sm-6">
-                        <label class="font-weight-bold" for="">Inject Date: </label>
+                        <label class="font-weight-bold" for="">Next Injection Date: </label>
                         <div>
                             <div class="form-check form-check-inline">
-                                <label class="form-check-label" for="inlineRadio1">From:</label>
-                                <input class="form-control form-check-input ml-2" type="date" name="startDate"
-                                       id="startDate" value="option1">
+                                <label class="form-check-label" for="beginDate">Begin:</label>
+                                <input class="form-control form-check-input ml-2" type="date" name="timeBeginNextInjection"
+                                       id="beginDate" value="option1">
                             </div>
                             <div class="form-check form-check-inline">
-                                <label class="form-check-label" for="inlineRadio2">To:</label>
-                                <input class="form-control form-check-input ml-2" type="date" name="endDate"
+                                <label class="form-check-label" for="endDate">End:</label>
+                                <input class="form-control form-check-input ml-2" type="date" name="timeEndNextInjection"
                                        id="endDate" value="option2">
                             </div>
                         </div>
@@ -45,21 +45,21 @@
                 </div>
                 <div class="form-row mt-2">
                     <div class="form-group col-sm-4">
-                        <label class="font-weight-bold" for="prevention">Prevention: </label>
-                        <div class="form-inline">
-                            <input type="text" class="form-control w-75" placeholder="Enter prevention" id="prevention"
-                                   name="prevention" value="${param.prevention}"/>
+                        <label class="font-weight-bold" for="">VaccineType: </label>
+                        <div>
+                            <select class="form-control" id="" name="vaccineType">
+                                <option label="--Select Vaccine Type" value="" selected/>
+                                <c:forEach items="${vaccineTypeList}" var="vaccineType">
+                                    <option value="${vaccineType.id}" label="${vaccineType.vaccineTypeName}"/>
+                                </c:forEach>
+                            </select>
                         </div>
                     </div>
                     <div class="form-group col-sm-4">
-                        <label class="font-weight-bold" for="">VaccineType: </label>
-                        <div>
-                            <select class="form-control" id="vaccineName" name="vaccine">
-                                <option label="--Select Vaccine Type" value="" selected/>
-                                <c:forEach items="${vaccineList}" var="vaccines">
-                                    <option value="${vaccines.vaccineName}" label="${vaccines.vaccineName}"/>
-                                </c:forEach>
-                            </select>
+                        <label class="font-weight-bold" for="origin">Origin: </label>
+                        <div class="form-inline">
+                            <input type="text" class="form-control w-75" placeholder="Enter origin" id="origin"
+                                   name="origin" value="${param.origin}"/>
                         </div>
                     </div>
                     <div class="form-group col-sm-3 ml-5">
@@ -74,29 +74,29 @@
             </form>
         </div>
 
-
         <div class="mt-4">
             <table class="table table-bordered table-striped">
                 <thead>
                 <tr class="bg-info text-white text-center">
                     <th>No.</th>
-                    <th>Vaccine</th>
-                    <th>Prevention</th>
-                    <th>Customer Name</th>
-                    <th>Date of Inject</th>
+                    <th>Vaccine Name</th>
+                    <th>Vaccine Type</th>
                     <th>Num of Inject</th>
+                    <th>Begin Next Inject Date</th>
+                    <th>End Next Inject Date</th>
+                    <th>Origin</th>
                 </tr>
                 </thead>
                 <tbody>
-                <c:forEach items="${injectionResultList.content}" var="injection" varStatus="loop">
-                    <%! int count = 1; %>
+                <c:forEach items="${vaccineList.content}" var="result" varStatus="loop">
                     <tr>
                         <td>${loop.count}</td>
-                        <td>${injection.vaccine.vaccineName}</td>
-                        <td>${injection.prevention}</td>
-                        <td>${injection.customer.fullName}</td>
-                        <td>${injection.injectionDate}</td>
-                        <td>${injection.numberOfInjection}</td>
+                        <td>${result.vaccineName}</td>
+                        <td>${result.vaccineType.vaccineTypeName}</td>
+                        <td>${result.numberOfInjection}</td>
+                        <td>${result.timeBeginNextInjection}</td>
+                        <td>${result.timeEndNextInjection}</td>
+                        <td>${result.origin}</td>
                     </tr>
                 </c:forEach>
                 </tbody>
@@ -104,29 +104,29 @@
         </div>
         <div class="row mt-4">
             <div class="col-sm-3">
-                <span>Showing ${firstElement} to ${lastElement} of ${injectionResultList.totalElements} entities</span>
+                <span>Showing ${firstElement} to ${lastElement} of ${vaccineList.totalElements} entities</span>
             </div>
             <div class="col-sm-6"></div>
             <div class="col-sm-3">
                 <nav aria-label="Page">
                     <ul class="pagination">
                         <li class="page-item">
-                            <a class="page-link pagination-list" href="#" aria-label="Previous">
+                            <a class="page-link pagination-list" href="${pageContext.request.contextPath}/report/vaccine/list?p=${vaccineList.number - 1}&size=${vaccineList.size}" aria-label="Previous">
                                 <span aria-hidden="true">&laquo;</span>
                                 <span class="sr-only">Previous</span>
                             </a>
                         </li>
                         <li class="page-item"><a class="page-link pagination-list"
-                                                 href="${pageContext.request.contextPath}/report/injection-result?p=0">1</a>
+                                                 href="${pageContext.request.contextPath}/report/vaccine?p=0">1</a>
                         </li>
                         <li class="page-item"><a class="page-link pagination-list"
-                                                 href="${pageContext.request.contextPath}/report/injection-result?p=1">2</a>
+                                                 href="${pageContext.request.contextPath}/report/vaccine?p=1">2</a>
                         </li>
                         <li class="page-item"><a class="page-link pagination-list"
-                                                 href="${pageContext.request.contextPath}/report/injection-result?p=2">3</a>
+                                                 href="${pageContext.request.contextPath}/report/vaccine?p=2">3</a>
                         </li>
                         <li class="page-item">
-                            <a class="page-link pagination-list" href="#" aria-label="Next">
+                            <a class="page-link pagination-list" href="${pageContext.request.contextPath}/report/vaccine/list?p=${vaccineList.number + 1}&size=${vaccineList.size}" aria-label="Next">
                                 <span aria-hidden="true">&raquo;</span>
                                 <span class="sr-only">Next</span>
                             </a>

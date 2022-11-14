@@ -1,6 +1,7 @@
 package com.vn.service.impl;
 
 import com.vn.dto.VaccineDTO;
+import com.vn.model.InjectionResult;
 import com.vn.model.Vaccine;
 import com.vn.repository.VaccineRepository;
 import com.vn.service.VaccineService;
@@ -10,6 +11,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -147,5 +149,11 @@ public class VaccineServiceImpl implements VaccineService {
 	@Transactional
 	public void updateStatus(List<String> ids, Boolean status) {
 		vaccineRepository.updateStatus(ids, status);
+	}
+
+	@Override
+	public Page<Vaccine> findElementReport(String origin, String vaccineType, LocalDate timeBeginNextInjection, LocalDate timeEndNextInjection,
+										   Pageable pageable) {
+		return vaccineRepository.findElementReport(origin, vaccineType, timeBeginNextInjection, timeEndNextInjection, pageable);
 	}
 }
