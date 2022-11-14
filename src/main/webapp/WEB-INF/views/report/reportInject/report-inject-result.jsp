@@ -2,9 +2,7 @@
          pageEncoding="ISO-8859-1" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
-
-
-
+<script src="${pageContext.request.contextPath}/js/Report.js"></script>
 
 <div class="h5 mt-3 text-center text-secondary font-weight-bold mb-3">REPORT INJECTION RESULT</div>
 <div class="card mx-3">
@@ -139,4 +137,3 @@
     </div>
 </div>
 
-<script src="${pageContext.request.contextPath}/js/ChartConvertReport.js"></script>

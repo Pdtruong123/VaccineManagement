@@ -20,8 +20,11 @@ public interface InjectionResultRepository extends JpaRepository<InjectionResult
             "or i.prevention like %:searchParam% or i.vaccine.vaccineName like %:searchParam% or i.customer.fullName like %:searchParam%")
     Page<InjectionResult> findContainElement(String searchParam, Pageable pageable);
 
-    @Query("select i from InjectionResult i where i.prevention like %:prevention% AND i.vaccine.id =:vaccineType" +
-           " AND (i.injectionDate between :startDate and :endDate)")
+    @Query("""
+            select i from InjectionResult i where (?1 is null OR i.prevention like %?1% )
+            AND (?2 = '' OR i.vaccine.id = ?2) 
+            AND ((?3 is null OR ?4 is null) OR i.injectionDate between ?3 and ?4)
+            """)
     Page<InjectionResult> findElementReport(String prevention, String vaccineType, LocalDate startDate, LocalDate endDate,
                                             Pageable pageable);
 

@@ -87,6 +87,15 @@ public class Customer implements Serializable {
 	@OneToMany(mappedBy = "customer")
 	private Set<InjectionResult> injectionResults;
 
+	@Transient
+	public int getCountNumberOfInjection(){
+		int total = injectionResults.stream().map(x -> {
+			return x.getNumberOfInjection();
+		}).reduce(0, (subtotal, element) -> subtotal + element);
+		return total;
+	}
+
+
 	@Override
 	public String toString() {
 		return "Customer{" +
@@ -102,8 +111,7 @@ public class Customer implements Serializable {
 				", phone='" + phone + '\'' +
 				", capcha='" + capcha + '\'' +
 				", code='" + code + '\'' +
-				", userName='" + userName+
-
+				", userName='" + userName + '\'' +
 				'}';
 	}
 }

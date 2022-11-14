@@ -1,5 +1,6 @@
 package com.vn.service;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.data.domain.Page;
@@ -25,6 +26,9 @@ public interface CustomerService {
     int countContainElement(String searchParam);
     
     void deleteCustomer(String id);
+
+    Page<Customer> findElementReport(String fullName, String address, Date dOBFrom, Date dOBTo,
+                                            Pageable pageable);
 
 
 

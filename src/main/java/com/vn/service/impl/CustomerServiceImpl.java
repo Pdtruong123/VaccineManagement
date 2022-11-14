@@ -1,8 +1,11 @@
 package com.vn.service.impl;
 
+import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
+import com.vn.model.Vaccine;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -74,6 +77,13 @@ public class CustomerServiceImpl implements CustomerService {
 	public void deleteCustomer(String id) {
 		customerRepository.deleteById(id);
 		
+	}
+
+	@Override
+	public Page<Customer> findElementReport(String fullName, String address, Date dOBFrom, Date dOBTo,
+											Pageable pageable) {
+
+		return customerRepository.findElementReport(fullName, address, dOBFrom, dOBTo, pageable);
 	}
 
 
