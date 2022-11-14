@@ -60,7 +60,7 @@ public class InjectionScheduleController {
         ModelAndView modelAndView= new ModelAndView("redirect:/lisst");
         return modelAndView;
     }
-    @GetMapping("update/injectionSchedule")
+    @GetMapping("/update/injectionSchedule")
     public ModelAndView update(@RequestParam String id,Model model){
         InjectionSchedule injectionSchedule= injectionScheduleReponsitory.findById(id).orElse(null);
         model.addAttribute("updateSchedule",injectionSchedule);

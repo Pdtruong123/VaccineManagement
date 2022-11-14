@@ -45,7 +45,7 @@
             </div>
             <div class="row mt-4">
                 <div class="col-sm-3">
-                    <span>Showing 1 to 5 of 12 entities</span>
+                    <span>Showing <span class="curren"></span> to 5 of 12 entities</span>
                 </div>
                 <div class="col-sm-6"></div>
                 <div class="col-sm-3">

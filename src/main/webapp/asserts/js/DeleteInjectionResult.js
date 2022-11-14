@@ -57,7 +57,7 @@ $("#update-button").click(function (){
     }
 
     if(count>1){
-        alert("Invalid data - Please recheck your selects!");
+        alert("Can not choose multi selects for update!");
         return false;
     }
     if(count==1){

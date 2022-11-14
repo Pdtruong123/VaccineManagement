@@ -11,14 +11,15 @@
                     <label>Vaccine</label><label class="lbls">(*)</label>
                     <form:select path="vaccineID" class="form-control">
                         <c:forEach items="${updateSchedule}" var="listvaccine">
-                            <option id="vaccineID" name="vaccineID"
+                            <option id="vaccineID"
                                     value="${listvaccine.id}">${listvaccine.vaccineName}</option>
                         </c:forEach>
                     </form:select>
                 </div>
+
                 <div class="col-sm-4">
                     <label>From</label><label class="lbls">(*)</label>
-                    <form:input path="startDate" type="date" id="startDate" class="form-control">${updateSchedule.startDate}</form:input>
+                    <form:input path="startDate" type="date" id="startDate"  class="form-control">${updateSchedule.startDate}</form:input>
                     <form:errors path="startDate"/>
                 </div>
                 <div class="col-sm-4">

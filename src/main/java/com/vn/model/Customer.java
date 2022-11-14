@@ -33,7 +33,7 @@ import lombok.Setter;
 public class Customer implements Serializable {
 
 	/**
-	 *
+	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 
@@ -90,7 +90,7 @@ public class Customer implements Serializable {
 	@Transient
 	public int getCountNumberOfInjection(){
 		int total = injectionResults.stream().map(x -> {
-			return Integer.parseInt(x.getNumberOfInjection());
+			return x.getNumberOfInjection();
 		}).reduce(0, (subtotal, element) -> subtotal + element);
 		return total;
 	}
