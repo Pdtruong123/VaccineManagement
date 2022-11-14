@@ -16,13 +16,22 @@ public class ReportApi {
     @Autowired
     ReportRepository reportRepository;
 
-    @Autowired
-    HttpServletRequest request;
-
     @GetMapping("/injection-value")
     public List<Integer> getReport(@RequestParam("year") String year){
 
         return reportRepository.listValueInjectChart(year);
+    }
+
+    @GetMapping("/vaccine-value")
+    public List<Integer> getVaccine(@RequestParam("year") String year){
+
+        return reportRepository.listValueVaccineChart(year);
+    }
+
+    @GetMapping("/customer-value")
+    public List<Integer> getCustomer(@RequestParam("year") String year){
+
+        return reportRepository.listValueCustomerChart(year);
     }
 
 }

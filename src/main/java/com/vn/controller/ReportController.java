@@ -89,16 +89,6 @@ public class ReportController {
         return model;
     }
 
-//    @PostMapping("/chart/injection-result")
-//    public ModelAndView chartInjectPageByYear(@RequestParam(value ="year") String year){
-//        ModelAndView model = new ModelAndView("chartInject");
-//        List<Integer> injectValue = reportRepository.listValueInjectChart(year);
-//        injectValue.toString();
-//        model.addObject("injectValue", injectValue);
-//
-//        System.out.println("value = "+injectValue);
-//        return model;
-//    }
 
     @GetMapping("report/vaccine")
     public ModelAndView vaccineReportPage(@RequestParam(value = "p", defaultValue = "0") Integer p,
@@ -146,7 +136,7 @@ public class ReportController {
     @GetMapping("/chart/vaccine")
     public ModelAndView chartVaccinePage(){
         ModelAndView model = new ModelAndView("chartVaccine");
-        //listValueVaccineChart
+
         return model;
     }
 
@@ -203,6 +193,5 @@ public class ReportController {
         ModelAndView model = new ModelAndView("chartCustomer");
         return model;
     }
-
 
 }
