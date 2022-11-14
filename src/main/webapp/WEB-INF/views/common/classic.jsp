@@ -38,7 +38,7 @@
             <tiles:insertAttribute name="menu"/>
         </div>
         <div class="col-sm-9 bg-light right" id="mainIndex">
-            <tiles:insertAttribute name="body" />
+            <tiles:insertAttribute name="body"/>
         </div>
     </div>
 </div>

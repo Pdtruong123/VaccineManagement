@@ -30,21 +30,21 @@
             integrity="sha512-rstIgDs0xPgmG6RX1Aba4KV5cWJbAMcvRCVmglpam9SoHZiUCyQVDdH2LPlxoHtrv17XWblE/V/PP+Tr04hbtA=="
             crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <link rel="stylesheet" href="../../../asserts/css/style.css">
-    <title>List</title>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/InjectionResult.css">
 </head>
 <body>
 <h1 class="h5 mt-3 text-center text-secondary font-weight-bold mb-3">CREATE INJECTION RESULT</h1>
 <div class="card mx-3">
     <div class="card-body">
         <form:form action="${pageContext.request.contextPath}/update/injection-result" method="post"
-                   modelAttribute="injectionResult">
-            <form:input type="hidden" id="id" path="id" value="${injectionResult.id}"/>
+                   modelAttribute="injectionResultUpdate">
+            <form:input type="hidden" id="id" path="id" value="${injectionResultUpdate.id}"/>
             <div class="row m-4">
                 <div class="col form-group">
                     <label for="customer">Customer:</label>
                     <form:select path="customer" id="customer" class="form-control">
-                        <option label="${injectionResult.customer.fullName}-${injectionResult.customer.dateOfBirth}"
-                                selected value="${injectionResult.customer.id}"/>
+                        <option label="${injectionResultUpdate.customer.fullName}-${injectionResultUpdate.customer.dateOfBirth}"
+                                selected value="${injectionResultUpdate.customer.id}"/>
                         <c:forEach items="${customer}" var="cus">
                             <option value="${cus.id}" label="${cus.fullName}-${cus.dateOfBirth}"/>
                         </c:forEach>
@@ -54,7 +54,7 @@
                 <div class="col form-group">
                     <label for="prevention">Prevention:</label>
                     <select name="prevention" id="prevention" class="form-control">
-                        <option label="${injectionResult.prevention}" selected value="${injectionResult.prevention}"/>
+                        <option label="${injectionResultUpdate.prevention}" selected value="${injectionResultUpdate.prevention}"/>
                         <c:forEach items="${preventionList}" var="pre">
                             <option value="${pre}" label="${pre}"/>
                         </c:forEach>
@@ -64,8 +64,8 @@
                 <div class="col form-group">
                     <label for="vaccineT">Vaccine type:</label>
                     <select class="form-control" id="vaccineT" name="vaccine">
-                        <option label="${injectionResult.vaccine.vaccineName}" selected
-                                value="${injectionResult.vaccine.id}"/>
+                        <option label="${injectionResultUpdate.vaccine.vaccineName}" selected
+                                value="${injectionResultUpdate.vaccine.id}"/>
                         <c:forEach items="${vaccineList}" var="vaccines">
                             <option value="${vaccines.id}" label="${vaccines.vaccineName}"/>
                         </c:forEach>
@@ -95,8 +95,8 @@
                 <div class="col form-group">
                     <label for="placeOfinjection">Place of injection:</label>
                     <form:select path="injectionPlace" id="placeOfinjection" class="form-control">
-                        <option label="${injectionResult.injectionPlace}" selected
-                                value="${injectionResult.injectionPlace}"/>
+                        <option label="${injectionResultUpdate.injectionPlace}" selected
+                                value="${injectionResultUpdate.injectionPlace}"/>
                         <c:forEach items="${placeOfInjectionList}" var="place">
                             <option value="${place}" label="${place}"/>
                         </c:forEach>
@@ -116,5 +116,13 @@
         </form:form>
     </div>
 </div>
+<script src="${pageContext.request.contextPath}/js/ValidateInjectionResult.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+        integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer">
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js"
+        integrity="sha512-rstIgDs0xPgmG6RX1Aba4KV5cWJbAMcvRCVmglpam9SoHZiUCyQVDdH2LPlxoHtrv17XWblE/V/PP+Tr04hbtA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </body>
 </html>
