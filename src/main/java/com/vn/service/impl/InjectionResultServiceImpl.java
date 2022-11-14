@@ -52,6 +52,11 @@ public class InjectionResultServiceImpl implements InjectionResultService {
         return injectionResultRepository.findElementReport(prevention, vaccineType, startDate, endDate, pageable);
     }
 
+    @Override
+    public List<InjectionResult> findAll() {
+        return injectionResultRepository.findAll();
+    }
+
 
     @Override
     public Page<InjectionResult> findAll(Pageable pageable) {

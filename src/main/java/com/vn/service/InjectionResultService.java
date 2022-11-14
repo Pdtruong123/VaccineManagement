@@ -16,4 +16,5 @@ public interface InjectionResultService {
     Page<InjectionResult> findContainElement(String searchParam, Pageable pageable);
     Page<InjectionResult> findElementReport(String prevention, String vaccineType, LocalDate startDate, LocalDate endDate,
                                             Pageable pageable);
+    List<InjectionResult> findAll();
 }
