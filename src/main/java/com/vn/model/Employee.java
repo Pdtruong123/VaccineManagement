@@ -60,7 +60,7 @@ public class Employee implements Serializable {
 	public String toString() {
 		return "Employee [id=" + id + ", address=" + address + ", dateOfBirth=" + dateOfBirth + ", email=" + email
 				+ ", employeeName=" + employeeName + ", gender=" + gender + ", image=" + image + ", password="
-				+ password + ", phone=" + phone + ", position=" + position + ", userName=" + userName
+				+ password + ", phone=" + phone + ", position=" + position
 				+ ", workingPlace=" + workingPlace + "]";
 	}
 }

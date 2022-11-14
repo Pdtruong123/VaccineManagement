@@ -264,13 +264,13 @@
                         </div>
 
                         <div class="form-group col-sm-4">
-                            <label class="font-weight-bold" for="workingPlace">Working Palace:</label>
+                            <label class="font-weight-bold" for="workingPlace">Working Palace:</span></label>
                             <form:input class="form-control" type="text" placeholder="Hong Ngoc" id="workingPlace" path="workingPlace" />
                         </div>
 
 
                         <div class="form-group col-sm-4">
-                            <label class="font-weight-bold" for="position">Position:</label>
+                            <label class="font-weight-bold" for="position">Position:</span></label>
                             <form:input class="form-control" type="text" id="position" path="position" placeholder="Doctor" />
                         </div>
                     </div>
