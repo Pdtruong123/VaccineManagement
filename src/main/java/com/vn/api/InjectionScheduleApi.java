@@ -34,7 +34,23 @@ public class InjectionScheduleApi {
     public InjectionScheduleDTO createInjection(@Valid @RequestBody InjectionScheduleDTO injectionScheduleDTO){
         return injectionScheduleService.save(injectionScheduleDTO);
     }
-
+//    @GetMapping("/api/getAll")
+//    public List<InjectionScheduleDTO> getAll(){
+//        List<InjectionScheduleDTO> result = new ArrayList<>();
+//        List<InjectionSchedule> entities=injectionScheduleReponsitory.findAll();
+//        if(entities != null) {
+//            entities.forEach(x->{
+//                InjectionScheduleDTO scheduleDTO= new InjectionScheduleDTO();
+//                BeanUtils.copyProperties(x, scheduleDTO, "status");
+//                scheduleDTO.setVaccineID(x.getVaccine().getId());
+//                scheduleDTO.setVaccineName(x.getVaccine().getVaccineName());
+//                scheduleDTO.setNote(x.getDescription());
+//                scheduleDTO.setStatus(x.getStatus());
+//                result.add(scheduleDTO);
+//            });
+//        }
+//        return result;
+//    }
     @GetMapping("/api/list")
     public List<InjectionScheduleDTO> getListApi(@RequestParam("paging") Optional<Integer> l){
         List<InjectionScheduleDTO> result = new ArrayList<>();

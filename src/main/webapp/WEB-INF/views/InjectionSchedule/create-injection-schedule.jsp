@@ -50,4 +50,3 @@
     </form:form>
 </div>
 <%--<script src="${pageContext.request.contextPath}/js/ValidatorInjectionSchedule.js"></script>--%>
-<script src="${pageContext.request.contextPath}/js/InjectionScheduleApi.js"></script>
