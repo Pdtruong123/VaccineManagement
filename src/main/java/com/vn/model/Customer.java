@@ -102,8 +102,8 @@ public class Customer implements Serializable {
 				", phone='" + phone + '\'' +
 				", capcha='" + capcha + '\'' +
 				", code='" + code + '\'' +
-				", userName='" + userName + '\'' +
-				", injectionResults=" + injectionResults +
+				", userName='" + userName+
+
 				'}';
 	}
 }

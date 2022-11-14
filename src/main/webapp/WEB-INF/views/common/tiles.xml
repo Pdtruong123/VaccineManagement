@@ -53,6 +53,13 @@
                        value="/WEB-INF/views/InjectionResult/update-injection-result.jsp"/>
     </definition>
 
+    <definition name="IJList" extends="base.definition">
+        <put-attribute name="title" value="Injection Result List"/>
+        <put-attribute name="body"
+                       value="/WEB-INF/views/InjectionResult/fakeList.jsp"/>
+    </definition>
+
+
 
     <!-- End Of Feature Injection Result-->
 
