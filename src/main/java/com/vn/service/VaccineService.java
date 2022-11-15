@@ -11,6 +11,7 @@ import javax.validation.Valid;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.web.multipart.MultipartFile;
 
 public interface VaccineService {
     List<String> findAllVaccineName();
@@ -35,5 +36,6 @@ public interface VaccineService {
 
 	Page<Vaccine> findElementReport(String origin, String vaccineType, LocalDate timeBeginNextInjection, LocalDate timeEndNextInjection,
 											Pageable pageable);
-
+	
+	void save(MultipartFile file);
 }
