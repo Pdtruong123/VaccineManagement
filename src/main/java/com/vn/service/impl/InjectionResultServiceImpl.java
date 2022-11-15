@@ -34,11 +34,11 @@ public class InjectionResultServiceImpl implements InjectionResultService {
     }
 
     @Override
-    public Page<InjectionResult> findElementReport(String prevention, String vaccineType, LocalDate startDate, LocalDate endDate, Pageable pageable) {
+    public List<InjectionResult> findElementReport(String prevention, String vaccineType, LocalDate startDate, LocalDate endDate) {
         if(prevention==null){
 
         }
-        return injectionResultRepository.findElementReport(prevention, vaccineType, startDate, endDate, pageable);
+        return injectionResultRepository.findElementReport(prevention, vaccineType, startDate, endDate);
     }
 
     @Override

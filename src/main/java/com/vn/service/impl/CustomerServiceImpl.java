@@ -1,19 +1,16 @@
 package com.vn.service.impl;
 
-import java.time.LocalDate;
-import java.util.Date;
-import java.util.List;
-import java.util.Optional;
-
-import com.vn.model.Vaccine;
+import com.vn.model.Customer;
+import com.vn.repository.CustomerRepository;
+import com.vn.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import com.vn.model.Customer;
-import com.vn.repository.CustomerRepository;
-import com.vn.service.CustomerService;
+import java.util.Date;
+import java.util.List;
+import java.util.Optional;
 
 @Service
 public class CustomerServiceImpl implements CustomerService {
@@ -58,6 +55,11 @@ public class CustomerServiceImpl implements CustomerService {
 	}
 
 	@Override
+	public List<Customer> findAll() {
+		return customerRepository.findAll();
+	}
+
+	@Override
 	public Integer countElement() {
 		return (int) customerRepository.count();
 	}
@@ -80,10 +82,9 @@ public class CustomerServiceImpl implements CustomerService {
 	}
 
 	@Override
-	public Page<Customer> findElementReport(String fullName, String address, Date dOBFrom, Date dOBTo,
-											Pageable pageable) {
+	public List<Customer> findElementReport(String fullName, String address, Date dOBFrom, Date dOBTo) {
 
-		return customerRepository.findElementReport(fullName, address, dOBFrom, dOBTo, pageable);
+		return customerRepository.findElementReport(fullName, address, dOBFrom, dOBTo);
 	}
 
 

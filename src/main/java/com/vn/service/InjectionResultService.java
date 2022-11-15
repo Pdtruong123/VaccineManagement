@@ -12,7 +12,6 @@ public interface InjectionResultService {
     InjectionResult save(InjectionResult injectionResult);
     void deleteInjectionResult(String id);
     InjectionResult findById(String id);
-    Page<InjectionResult> findElementReport(String prevention, String vaccineType, LocalDate startDate, LocalDate endDate,
-                                            Pageable pageable);
+    List<InjectionResult> findElementReport(String prevention, String vaccineType, LocalDate startDate, LocalDate endDate);
     List<InjectionResult> findAll();
 }

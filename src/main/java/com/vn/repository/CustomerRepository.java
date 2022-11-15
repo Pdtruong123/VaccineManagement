@@ -11,6 +11,7 @@ import com.vn.model.Customer;
 
 import java.time.LocalDate;
 import java.util.Date;
+import java.util.List;
 
 @Repository
 public interface CustomerRepository extends JpaRepository<Customer, String> {
@@ -22,11 +23,10 @@ public interface CustomerRepository extends JpaRepository<Customer, String> {
     int countContainElement(String searchParam);
 
     @Query("""
-            select c from Customer c  where (?1 is null OR c.fullName like %?1% ) AND (?2 is null OR c.address = ?2)
+            select c from Customer c  where (?1 is null OR c.fullName like %?1% ) AND (?2 is null OR c.address like %?2%)
              AND ((?3 is null OR ?4 is null) OR c.dateOfBirth between ?3 and ?4)  
              """)
-    Page<Customer> findElementReport(String fullName, String address, Date dOBFrom, Date dOBTo,
-                                    Pageable pageable);
+    List<Customer> findElementReport(String fullName, String address, Date dOBFrom, Date dOBTo);
 
 
 }
