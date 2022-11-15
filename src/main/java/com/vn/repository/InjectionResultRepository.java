@@ -25,8 +25,7 @@ public interface InjectionResultRepository extends JpaRepository<InjectionResult
             AND (?2 = '' OR i.vaccine.id = ?2) 
             AND ((?3 is null OR ?4 is null) OR i.injectionDate between ?3 and ?4)
             """)
-    Page<InjectionResult> findElementReport(String prevention, String vaccineType, LocalDate startDate, LocalDate endDate,
-                                            Pageable pageable);
+    List<InjectionResult> findElementReport(String prevention, String vaccineType, LocalDate startDate, LocalDate endDate);
 
 
 }

@@ -34,8 +34,8 @@ public interface VaccineService {
 
 	void updateStatus(List<String> ids, Boolean status);
 
-	Page<Vaccine> findElementReport(String origin, String vaccineType, LocalDate timeBeginNextInjection, LocalDate timeEndNextInjection,
-											Pageable pageable);
-	
 	void save(MultipartFile file);
+
+	List<Vaccine> findElementReport(String origin, String vaccineType, LocalDate timeBeginNextInjection, LocalDate timeEndNextInjection);
+
 }

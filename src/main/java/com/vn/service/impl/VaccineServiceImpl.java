@@ -16,11 +16,10 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import javax.validation.Valid;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
-
-import javax.validation.Valid;
 
 @Service
 public class VaccineServiceImpl implements VaccineService {
@@ -157,10 +156,9 @@ public class VaccineServiceImpl implements VaccineService {
 	}
 
 	@Override
-	public Page<Vaccine> findElementReport(String origin, String vaccineType, LocalDate timeBeginNextInjection, LocalDate timeEndNextInjection,
-										   Pageable pageable) {
+	public List<Vaccine> findElementReport(String origin, String vaccineType, LocalDate timeBeginNextInjection, LocalDate timeEndNextInjection) {
 
-		return vaccineRepository.findElementReport(origin, vaccineType, timeBeginNextInjection, timeEndNextInjection, pageable);
+		return vaccineRepository.findElementReport(origin, vaccineType, timeBeginNextInjection, timeEndNextInjection);
 	}
 
 
@@ -173,6 +171,6 @@ public class VaccineServiceImpl implements VaccineService {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 	}
 }

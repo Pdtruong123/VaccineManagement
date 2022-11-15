@@ -15,14 +15,12 @@ public interface VaccineTypeService {
 	String update(VaccineTypeDTO vaccineTypeDTO);
 
 	VaccineType findById(String id);
-
-	Page<VaccineType> findAll(Pageable pageable);
-
-	Page<VaccineType> findByVaccineTypeNameContaining(String string, Pageable pageable);
 	
 	List<VaccineType> findAll();
 
     void upDateStatus(List<String> ids, Boolean inactive);
 
 	List<VaccineType> findAllActice();
+
+	void upDateStatusVaccine(List<String> ids, Boolean inactive);
 }
