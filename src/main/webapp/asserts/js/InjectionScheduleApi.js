@@ -1,5 +1,9 @@
 $(document).ready(function () {
     Pageging();
+    $("#vaccineID").click(function (){
+        var abc= $("#inputID").val();
+        console.log(abc);
+    })
 })
 
 
@@ -13,8 +17,8 @@ function Pageging() {
                 return "<tr><td><a href='#' id='vaccineID'><input id='inputID' type='hidden' value="+item.id+">" + item.vaccineName + "</a></td>\n" +
                     "                                    <td>From " + item.startDate + " to " + item.endDate + "</td>\n" +
                     "                                    <td>" + item.place + "</td>\n" +
-                    "                                    <td>" + item.note + "</td>\n" +
-                    "                                    <td>" + item.status + "</td>" +
+                    "                                    <td>" + item.status + "</td>\n" +
+                    "                                    <td>" + item.note + "</td>" +
                     "</tr>"
             })
             $("#bodyList").html(vaccineNameApi);

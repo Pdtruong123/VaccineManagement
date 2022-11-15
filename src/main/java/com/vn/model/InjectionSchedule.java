@@ -14,6 +14,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Table(name = "Injection_Schedule")
@@ -39,6 +40,7 @@ public class InjectionSchedule implements Serializable {
     private String description;
     @NotNull
     @Column(name = "end_date")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate endDate;
     @NotBlank
     private String place;
@@ -50,8 +52,10 @@ public class InjectionSchedule implements Serializable {
     public void setVaccine(Vaccine vaccine) {
         this.vaccine = vaccine;
     }
-   @NotNull
+
+    @NotNull
     @Column(name = "start_date")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate startDate;
 
     //    @JsonIgnore

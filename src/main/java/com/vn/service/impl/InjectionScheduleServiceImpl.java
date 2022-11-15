@@ -34,7 +34,7 @@ public class InjectionScheduleServiceImpl implements InjectionScheduleService {
             injectionSchedule.setEndDate(endDate);
         }
         injectionSchedule.setPlace(injectionScheduleDTO.getPlace());
-        injectionSchedule.setDescription(injectionScheduleDTO.getNote());
+        injectionSchedule.setDescription(injectionScheduleDTO.getDescription());
         injectionSchuduleRepository.save(injectionSchedule);
         return injectionScheduleDTO;
     }

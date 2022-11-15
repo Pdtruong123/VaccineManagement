@@ -35,8 +35,8 @@
                 </div>
                 <div class="col-sm-7">
                     <label>Note:</label>
-                    <form:textarea path="note" class="form-control note"/>
-                    <form:errors path="note"/>
+                    <form:textarea path="description" class="form-control note"/>
+                    <form:errors path="description"/>
                 </div>
 
             </div>
