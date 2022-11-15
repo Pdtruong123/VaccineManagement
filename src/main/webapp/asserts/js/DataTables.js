@@ -9,4 +9,9 @@ $(document).ready(function () {
         ordering: false,
         lengthMenu: [[5, 10,15, 20, 50, -1], [5, 10,15, 20, 50, "All"]]
     })
+    $('#table-VC').DataTable({
+        searching: true,
+        ordering: false,
+        lengthMenu: [[5, 10,15, 20, 50, -1], [5, 10,15, 20, 50, "All"]]
+    });
 });
