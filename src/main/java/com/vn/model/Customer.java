@@ -89,11 +89,21 @@ public class Customer implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Customer [id=" + id + ", address=" + address + ", dateOfBirth=" + dateOfBirth + ", email=" + email
-				+ ", fullName=" + fullName + ", gender=" + gender + ", identityCard=" + identityCard + ", password="
-				+ password + ", confirmPassword=" + confirmPassword + ", phone=" + phone + ", capcha=" + capcha
-				+ ", code=" + code + ", userName=" + userName + "]";
+		return "Customer{" +
+				"id='" + id + '\'' +
+				", address='" + address + '\'' +
+				", dateOfBirth=" + dateOfBirth +
+				", email='" + email + '\'' +
+				", fullName='" + fullName + '\'' +
+				", gender=" + gender +
+				", identityCard='" + identityCard + '\'' +
+				", password='" + password + '\'' +
+				", confirmPassword='" + confirmPassword + '\'' +
+				", phone='" + phone + '\'' +
+				", capcha='" + capcha + '\'' +
+				", code='" + code + '\'' +
+				", userName='" + userName + '\'' +
+				", injectionResults=" + injectionResults +
+				'}';
 	}
-
-   
 }
