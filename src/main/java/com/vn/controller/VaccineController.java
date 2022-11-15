@@ -21,7 +21,11 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -30,6 +34,7 @@ import com.vn.model.Vaccine;
 import com.vn.model.VaccineType;
 import com.vn.service.VaccineService;
 import com.vn.service.VaccineTypeService;
+import com.vn.util.ReadFileExcel;
 
 @Controller
 public class VaccineController {
@@ -167,4 +172,23 @@ public class VaccineController {
 		redirectAttributes.addFlashAttribute("msg", "Update vaccine successfull!");
 		return modelRedirectList;
 	}
+	
+	@GetMapping("/vaccine/import")
+	public ModelAndView viewImport() {
+		ModelAndView view = new ModelAndView("vaccineImport");
+		return view;
+	}
+	
+	@PostMapping("/vaccine/import")
+	@ResponseBody
+	public String importVaccineFileExcel(@RequestParam("file") MultipartFile file) {
+		if (ReadFileExcel.checkExcelFormat(file)) {
+			vaccineService.save(file);
+			return "Import Sucessfull!";
+		}else {
+			return "Pls upload file excel!";
+		}
+		
+	}
+	
 }
