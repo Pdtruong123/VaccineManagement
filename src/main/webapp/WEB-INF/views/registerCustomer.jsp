@@ -276,7 +276,7 @@
 
                             </div>
                             <div class="form-group col-sm-4">
-                                <label class="font-weight-bold" for="DOB">Date Of Birth
+                                <label class="font-weight-bold" for="DOB">Date of Birth
                                     <span class="text-danger">(*)</span> :
                                 </label>
                                 <div class="form-inline">
@@ -287,15 +287,15 @@
                                 </div>
                             </div>
                             <div class="form-group col-sm-3">
-                                <label class="font-weight-bold" for="gender">Gender </label>
+                                <label class="font-weight-bold" >Gender </label>
                                 <div class="form-inline">
                                     <i class="fa-regular fa-face-meh-blank"></i>
                                     <div class="gender d-flex justify-content-evenly border rounded">
                                         <div class="form-check form-check-inline">
-                                            <form:radiobutton path="gender" id="gender" value="0"/>Male
+                                            <form:radiobutton path="gender" id="genderMale" value="0"/>Male
                                         </div>
                                         <div class="form-check form-check-inline">
-                                            <form:radiobutton path="gender" id="gender" value="1"/>Female
+                                            <form:radiobutton path="gender" id="genderFemale" value="1"/>Female
                                         </div>
                                     </div>
                                 </div>
@@ -354,7 +354,7 @@
                                 <div class="form-inline">
                                     <i class="fa-solid fa-lock"></i>
                                     <form:input type="password" path="password"
-                                                class="form-control ml-2" value="${customer.password}"
+                                                class="form-control ml-2"
                                                 id="password"/>
                                 </div>
                             </div>
@@ -395,37 +395,39 @@
                             </div>
                         </div>
 
-<%--                        <div class="form-row">--%>
-<%--                            <div class="form-group col-sm-4">--%>
-<%--                                <label class="font-weight-bold" for="email">Capcha <span--%>
-<%--                                        class="text-danger">(*)</span> :--%>
-<%--                                </label>--%>
-<%--                                <div class="form-inline">--%>
-<%--                                    <i class="fa-solid fa-lock"></i>--%>
-<%--                                    <form:input type="email" path="email"--%>
-<%--                                                class="form-control ml-2" value="${customer.email}"--%>
-<%--                                                id="email"/>--%>
-<%--                                </div>--%>
-<%--                            </div>--%>
-<%--                            <div class="form-group col-sm-4">--%>
-<%--                                <label class="font-weight-bold" for="phone">Code--%>
-<%--                                </label>--%>
-<%--                                <div class="form-inline">--%>
-<%--                                    <i class="fa-solid fa-building-lock"></i>--%>
-<%--                                    <form:input type="text" path="phone" class="form-control ml-2"--%>
-<%--                                                value="${customer.phone}" id="phone"/>--%>
-<%--                                </div>--%>
-<%--                            </div>--%>
-<%--                        </div>--%>
+                        <div class="form-row">
+                            <div class="form-group col-sm-4">
+                                <label class="font-weight-bold" for="captcha">Captcha <span
+                                        class="text-danger">(*)</span> :
+                                </label>
+                                <div class="form-inline">
+                                    <i class="fa-solid fa-lock"></i>
+                                    <form:input type="text" path="captcha" maxlength="5" spellcheck="false"
+                                                class="form-control ml-2 inputCaptcha"
+                                                id="captcha"/>
+                                </div>
+                            </div>
+                            <div class="form-group col-sm-4">
+                                <label class="font-weight-bold">Code
+                                </label>
+                                <div class="form-inline">
+                                    <i class="fa-solid fa-building-lock"></i>
+                                    <div class = "captcha rounded d-flex align-items-center" id="captchaCode"></div>
+                                    <button class="refresh-btn" type="button" onclick="getCaptcha()"><i
+                                            class="fa-solid fa-rotate-right reload-btn"></i></button> <%-- refresh button--%>
 
+                                </div>
+                            </div>
+                        </div>
+                        <div class="status-txt"></div>
                         <div class="p-btn mt-5">
-                            <button type="submit" class="btn btn-sm btn-success">
+                            <button type="submit" class="btn btn-sm btn-success" onclick="return submitValidate()">
                                 Save
                             </button>
                             <button type="reset" class="btn btn-sm btn-primary ml-2">Reset</button>
-                            <a class="btn btn-sm btn-warning ml-2" href="#">Cancel</a>
+                            <a class="btn btn-sm btn-warning ml-2" href="${pageContext.request.contextPath}/">Cancel</a>
                         </div>
-                        <p>${message}</p>
+
                     </div>
                 </div>
             </form:form>
@@ -434,6 +436,7 @@
     </div>
 </div>
 <script src="../../asserts/js/CustomerCreate.js"></script>
+<script src="../../asserts/js/Captcha.js"></script>
 <script
         src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js"
         integrity="sha512-rstIgDs0xPgmG6RX1Aba4KV5cWJbAMcvRCVmglpam9SoHZiUCyQVDdH2LPlxoHtrv17XWblE/V/PP+Tr04hbtA=="

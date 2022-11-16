@@ -1,27 +1,20 @@
 package com.vn.model;
 
 import java.io.Serializable;
-import java.util.Date;
+
+import java.time.LocalDate;
 import java.util.Set;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
-import javax.persistence.Transient;
+import javax.persistence.*;
 import javax.validation.constraints.Email;
 
 import org.hibernate.annotations.GenericGenerator;
-import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.format.annotation.DateTimeFormat.ISO;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Table(name = "Customer")
@@ -50,8 +43,8 @@ public class Customer implements Serializable {
 	private String address;
 
 	@Column(name = "date_of_birth")
-	@DateTimeFormat(iso = ISO.DATE)
-	private Date dateOfBirth;
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	private LocalDate dateOfBirth;
 
 	@Column(length = 100)
 	@Email
@@ -75,10 +68,10 @@ public class Customer implements Serializable {
 	@Column(length = 20)
 	private String phone;
 
-	@Column
-	private String capcha;
+	@Transient
+	private String captcha;
 
-	@Column
+	@Transient
 	private String code;
 
 	@Column(name = "user_name")
@@ -100,10 +93,9 @@ public class Customer implements Serializable {
 				", password='" + password + '\'' +
 				", confirmPassword='" + confirmPassword + '\'' +
 				", phone='" + phone + '\'' +
-				", capcha='" + capcha + '\'' +
+				", captcha='" + captcha + '\'' +
 				", code='" + code + '\'' +
 				", userName='" + userName + '\'' +
-				", injectionResults=" + injectionResults +
 				'}';
 	}
 }

@@ -1,6 +1,5 @@
 package com.vn.controller;
 
-import java.util.List;
 import java.util.Optional;
 
 import javax.servlet.http.HttpServletRequest;
@@ -18,6 +17,7 @@ import org.springframework.web.bind.annotation.*;
 import com.vn.model.Customer;
 import com.vn.service.CustomerService;
 
+
 @Controller
 public class CustomerController {
 
@@ -30,7 +30,6 @@ public class CustomerController {
     @GetMapping("/registerCustomer")
     public String showRegistrationForm(Model model) {
         Customer c = new Customer();
-
         model.addAttribute("customer", c);
         return "registerCustomer";
     }

@@ -82,11 +82,38 @@
     border: none;
 }
 
+.captcha{
+    width: auto;
+    height: 38px;
+    border: 1px solid #ebebeb;
+    margin: 0 10px;
+    padding: 0 10px;
+}
+
+.refresh-btn{
+    border: none;
+    background: #fff;
+}
+
 .gender{
     width: auto;
     height: 38px;
     padding-left: 3px;
     margin-left: 10px ;
+    position: relative;
+}
+
+#gender-error{
+    position: absolute;
+    top: 35px;
+    left: -35px;
+    width: 200px;
+}
+
+.status-txt{
+    margin-left: 20px ;
+    margin-top: 10px;
+    font-size: 17px;
 }
 
 .fs-20{
@@ -105,6 +132,6 @@
 }
 
 .error{
-    color: red;
+    color: #c92432;
 }
 
