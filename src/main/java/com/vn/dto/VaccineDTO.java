@@ -30,10 +30,10 @@ public class VaccineDTO {
 	
 	private String origin;
 	
-	
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date timeBeginNextInjection;
 	
-	
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date timeEndNextInjection;
 	
 	

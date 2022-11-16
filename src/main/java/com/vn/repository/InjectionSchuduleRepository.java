@@ -14,6 +14,10 @@ import java.util.List;
 
 @Repository
 public interface InjectionSchuduleRepository extends JpaRepository<InjectionSchedule, String> {
-    @Query(value = "SELECT c FROM InjectionSchedule c WHERE c.place LIKE %:search%")
-    Page<InjectionSchedule> findByName(String search, Pageable pageable);
+	@Query(value = "SELECT c FROM InjectionSchedule c WHERE c.place LIKE %:search%")
+	Page<InjectionSchedule> findByName(String search, Pageable pageable);
+
+	@Modifying
+	@Query(value = "Delete from InjectionSchedule where vaccine.id in :ids")
+	void deleteByListVaccine(@Param("ids") List<String> ids);
 }
