@@ -15,7 +15,7 @@ public class InjectionScheduleDTO {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate endDate;
     private String place;
-    private String note;
+    private String description;
     private String vaccineID;
     private String vaccineName;
     private String status;

@@ -64,7 +64,7 @@ public class InjectionScheduleApi {
 
                 scheduleDTO.setVaccineID(x.getVaccine().getId());
                 scheduleDTO.setVaccineName(x.getVaccine().getVaccineName());
-                scheduleDTO.setNote(x.getDescription());
+                scheduleDTO.setDescription(x.getDescription());
                 scheduleDTO.setStatus(x.getStatus());
 
                 result.add(scheduleDTO);
@@ -84,7 +84,7 @@ public class InjectionScheduleApi {
 
                 scheduleDTO.setVaccineID(x.getVaccine().getId());
                 scheduleDTO.setVaccineName(x.getVaccine().getVaccineName());
-                scheduleDTO.setNote(x.getDescription());
+                scheduleDTO.setDescription(x.getDescription());
                 scheduleDTO.setStatus(x.getStatus());
 
                 result.add(scheduleDTO);

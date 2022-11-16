@@ -20,7 +20,7 @@ $(document).ready(function () {
             place:{
                 required:true
             },
-            note:{
+            description:{
                 required:true
             }
         }
