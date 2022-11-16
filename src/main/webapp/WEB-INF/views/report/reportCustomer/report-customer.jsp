@@ -2,6 +2,13 @@
          pageEncoding="ISO-8859-1" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+        integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.js"></script>
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/DataTables.css">
+<script src="${pageContext.request.contextPath}/js/DataTables.js"></script>
 <script src="${pageContext.request.contextPath}/js/Report.js"></script>
 
 
@@ -66,8 +73,8 @@
 
             </form>
         </div>
-        <div class="mt-4">
-            <table class="table table-bordered table-striped">
+        <div class="mt-4 report">
+            <table class="table table-bordered table-striped" id="table-report">
                 <thead>
                 <tr class="bg-info text-white text-center">
                     <th>No</th>
@@ -79,7 +86,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                <c:forEach items="${customerList.content}" var="result" varStatus="loop">
+                <c:forEach items="${customerList}" var="result" varStatus="loop">
                     <tr>
                         <td>${loop.count}</td>
                         <td>${result.fullName}</td>
@@ -92,38 +99,6 @@
                 </tbody>
             </table>
         </div>
-        <div class="row mt-4">
-            <div class="col-sm-3">
-                <span>Showing ${firstElement} to ${lastElement} of ${customerList.totalElements} entities</span>
-            </div>
-            <div class="col-sm-6"></div>
-            <div class="col-sm-3">
-                <nav aria-label="Page">
-                    <ul class="pagination">
-                        <li class="page-item">
-                            <a class="page-link pagination-list" href="${pageContext.request.contextPath}/report/customer?p=${customerList.number - 1}" aria-label="Previous">
-                                <span aria-hidden="true">&laquo;</span>
-                                <span class="sr-only">Previous</span>
-                            </a>
-                        </li>
-                        <li class="page-item"><a class="page-link pagination-list"
-                                                 href="${pageContext.request.contextPath}/report/customer?p=0">1</a>
-                        </li>
-                        <li class="page-item"><a class="page-link pagination-list"
-                                                 href="${pageContext.request.contextPath}/report/customer?p=1">2</a>
-                        </li>
-                        <li class="page-item"><a class="page-link pagination-list"
-                                                 href="${pageContext.request.contextPath}/report/customer?p=2">3</a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link pagination-list" href="${pageContext.request.contextPath}/report/customer?p=${customerList.number + 1}" aria-label="Next">
-                                <span aria-hidden="true">&raquo;</span>
-                                <span class="sr-only">Next</span>
-                            </a>
-                        </li>
-                    </ul>
-                </nav>
-            </div>
-        </div>
+
     </div>
 </div>

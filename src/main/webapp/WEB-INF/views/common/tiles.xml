@@ -121,6 +121,12 @@
         <put-attribute name="body"
                        value="/WEB-INF/views/vaccine/vaccine-create.jsp"/>
     </definition>
+    
+    <definition name="vaccineImport" extends="base.definition">
+        <put-attribute name="title" value="Import Vaccine"/>
+        <put-attribute name="body"
+                       value="/WEB-INF/views/vaccine/vaccine-import.jsp"/>
+    </definition>
 
     <!--Report-->
     <!--Report Inject-->

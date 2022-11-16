@@ -33,7 +33,9 @@ public interface VaccineRepository extends JpaRepository<Vaccine, String> {
              AND ((?3 is null OR ?4 is null) OR v.timeBeginNextInjection between ?3 and ?4)  
              AND ((?3 is null OR ?4 is null) OR v.timeEndNextInjection between ?3 and ?4)
              """)
-    Page<Vaccine> findElementReport(String origin, String vaccineType, LocalDate timeBeginNextInjection, LocalDate timeEndNextInjection,
-                                            Pageable pageable);
+    List<Vaccine> findElementReport(String origin, String vaccineType, LocalDate timeBeginNextInjection, LocalDate timeEndNextInjection);
 
+    @Modifying
+    @Query("Update Vaccine v set v.status =:status WHERE v.vaccineType.id IN :ids")
+    void updateStatusByType(@Param("ids") List<String> ids, @Param("status") boolean status);
 }
