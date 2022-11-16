@@ -1,11 +1,11 @@
 package com.vn.service;
 
-import java.util.List;
-
+import com.vn.model.Customer;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
-import com.vn.model.Customer;
+import java.util.Date;
+import java.util.List;
 
 public interface CustomerService {
 	Customer create(Customer customer);
@@ -18,6 +18,8 @@ public interface CustomerService {
     
     Page<Customer> findAll(Pageable pageable);
 
+    List<Customer> findAll();
+
     Integer countElement();
     
     Page<Customer> findContainElement(String searchParam, Pageable pageable);
@@ -25,6 +27,8 @@ public interface CustomerService {
     int countContainElement(String searchParam);
     
     void deleteCustomer(String id);
+
+    List<Customer> findElementReport(String fullName, String address, Date dOBFrom, Date dOBTo);
 
 
 
