@@ -5,7 +5,7 @@
 <script src="${pageContext.request.contextPath}/js/VaccineType.js"></script>
 
             <div class="h5 mt-3 text-center text-secondary font-weight-bold mb-3">CREATE VACCINE TYPE</div>
-            <div class="card mx-3">
+            <div class="card mx-3 shadow">
                 <div class="card-body">
                     <div class="h5 text-danger">${message}</div>
                     <c:if test="${empty vaccineType.id}">

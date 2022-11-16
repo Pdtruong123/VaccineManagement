@@ -7,8 +7,8 @@
         <div class="mt-1">admin@fsoft.com.vn</div>
     </div>
     <div class="menu">
-        <div class="list-group-item text font-weight-bold act">
-            <a href="${pageContext.request.contextPath}/">Home</a>
+        <div class="list-group-item text font-weight-bold act ">
+            <a class='text-decoration-none text-dark ' href="${pageContext.request.contextPath}/">Home</a>
             </div>
         <div class="list-group-item">
             <div class="row text act" data-toggle="collapse" data-target="#employee">
