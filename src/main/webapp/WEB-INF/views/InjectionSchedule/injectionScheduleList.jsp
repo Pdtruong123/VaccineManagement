@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="../../../asserts/css/DataTables.css">
 </head>
 <div class="h5 mt-3 text-center text-secondary font-weight-bold mb-3">Injection Schedule</div>
-    <div class="card mx-3">
+    <div class="card mx-3 shadow">
         <div class="card-body">
             <div class="mt-3">
                 <table class="table table-bordered" id="table-TS">
