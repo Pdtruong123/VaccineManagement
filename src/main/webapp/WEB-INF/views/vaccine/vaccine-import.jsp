@@ -64,9 +64,9 @@
 	<div class="card mx-3">
 		<div class="card-body">
 			<form action="${pageContext.request.contextPath}/vaccine/import" enctype="multipart/form-data" method="post">
-			<input type="file" name=file>
+			<input class="form-control form-control-lg" type="file" name=file>
 			<br>
-			<input type="submit" value="import">
+			<input class="btn btn-success" type="submit" value="import">
 			</form>
 		</div>
 	</div>

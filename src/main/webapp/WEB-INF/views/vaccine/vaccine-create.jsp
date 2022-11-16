@@ -43,7 +43,7 @@
 	src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js"></script>
 <script src="../../asserts/js/loadFileName.js"></script>
 <script src="../../asserts/js/previewImg.js"></script>
-<script src="${pageContext.request.contextPath}/js/VaccineType.js"></script>
+<link rel="stylesheet" href="../../asserts/css/style.css">
 <title>Create</title>
 <style type="text/css">
 .a {
@@ -320,7 +320,7 @@
 						<button type="submit" class="btn btn-sm btn-success"
 							onclick="return submitValidate()">Submit</button>
 						<button type="reset" class="btn btn-sm btn-primary ml-2">Reset</button>
-						<a class="btn btn-sm btn-warning ml-2" id="back" href="#">Cancel</a>
+						<a class="btn btn-sm btn-warning ml-2" href="${pageContext.request.contextPath}/vaccine/list">Cancel</a>
 					</div>
 
 				</form:form>
