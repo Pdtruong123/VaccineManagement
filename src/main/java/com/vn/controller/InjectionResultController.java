@@ -32,7 +32,7 @@ public class InjectionResultController {
 
 
 
-    @GetMapping("/injection-result-list")
+    @GetMapping("/injection-result/list")
     public ModelAndView viewPage() {
         ModelAndView model = new ModelAndView("injectionResultList");
         model.addObject("injectionResultList", injectionResultService.findAll());
@@ -40,7 +40,7 @@ public class InjectionResultController {
 
     }
 
-    @GetMapping("/add/injection-result")
+    @GetMapping("/injection-result/add")
     public ModelAndView addInjectionResultPage() {
         ModelAndView model = new ModelAndView("createInjectionResult");
         model.addObject("preventionList", DataInjectionResult.preventionData);

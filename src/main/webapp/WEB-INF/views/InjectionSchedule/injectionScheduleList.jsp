@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
          pageEncoding="ISO-8859-1" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
 <head>
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.css">
     <link rel="stylesheet" href="../../../asserts/css/style.css">
@@ -33,9 +34,11 @@
                 </tbody>
                 </table>
             </div>
+             <security:authorize access="hasAuthority('ADMIN')">
             <div class="">
                 <a class="btn btn-sm btn-success" href="${pageContext.request.contextPath}/add/injectionSchedule">New Injection Schedule</a>
             </div>
+            </security:authorize>
         </div>
     </div>
 <%--<script src="${pageContext.request.contextPath}/js/InjectionScheduleApi.js"></script>--%>

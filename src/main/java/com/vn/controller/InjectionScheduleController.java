@@ -35,7 +35,7 @@ public class InjectionScheduleController {
     @Autowired
     InjectionScheduleService injectionScheduleService;
 
-    @GetMapping("/add/injectionSchedule")
+    @GetMapping("/injection-schedule/add")
     public ModelAndView listInjection(Model model) {
         model.addAttribute("injection", new InjectionScheduleDTO());
         List<InjectionSchedule> scheduleList = injectionScheduleReponsitory.findAll();
@@ -46,7 +46,7 @@ public class InjectionScheduleController {
         return modelAndView;
     }
 
-    @GetMapping("/lisst")
+    @GetMapping("/injection-schedule/list")
     public ModelAndView getlist(Model model) {
         ModelAndView modelAndView = new ModelAndView("ListSchedule");
         model.addAttribute("listSchedule", injectionScheduleReponsitory.findAll());

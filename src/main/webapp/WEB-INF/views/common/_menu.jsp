@@ -1,15 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
          pageEncoding="ISO-8859-1"%>
+<%@taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
     <div class="list-group list-group-flush">
     <div class="list-group-item text-white profile">
         <div><img class="img-admin" src="../../../asserts/img/admin.png"></div>
-        <div class="mt-1">Admin</div>
-        <div class="mt-1">admin@fsoft.com.vn</div>
+        <div class="mt-1"><Strong><%= request.getUserPrincipal().getName() %></Strong></div>
+        <div class="mt-1"><%= request.getSession().getAttribute("emailLogin") %></div>
     </div>
     <div class="menu">
         <div class="list-group-item text font-weight-bold act ">
-            <a class='text-decoration-none text-dark ' href="${pageContext.request.contextPath}/">Home</a>
+            <a class='text-decoration-none text-dark ' href="${pageContext.request.contextPath}/home">Home</a>
             </div>
+            <security:authorize access="hasAuthority('ADMIN')">
         <div class="list-group-item">
             <div class="row text act" data-toggle="collapse" data-target="#employee">
                 <div class="col-sm-10 font-weight-bold ">Employee Management</div>
@@ -84,6 +86,8 @@
                 </div>
             </div>
         </div>
+        </security:authorize>
+        
         <div class="list-group-item">
             <div class="row text act" data-toggle="collapse" data-target="#inject">
                 <div class="col-sm-10 font-weight-bold ">Injection Schedule</div>
@@ -91,17 +95,20 @@
             </div>
             <div class="mt-3 collapse" id="inject" data-parent="#accordion">
                 <div class="ml-4 text-sub">
-                    <a class="text-reset text-decoration-none " href="${pageContext.request.contextPath}/lisst">
+                    <a class="text-reset text-decoration-none " href="${pageContext.request.contextPath}/injection-schedule/list">
                         <span class="ml-2">Injection Schedule List</span>
                     </a>
                 </div>
+                <security:authorize access="hasAuthority('ADMIN')">
                 <div class="ml-4 mt-2 text-sub">
-                    <a class="text-reset text-decoration-none " href="${pageContext.request.contextPath}/add/injectionSchedule">
+                    <a class="text-reset text-decoration-none " href="${pageContext.request.contextPath}/injection-schedule/add">
                         <span class="ml-2">Create Injection Schedule</span>
                     </a>
                 </div>
+                </security:authorize>
             </div>
         </div>
+        
         <div class="list-group-item">
             <div class="row text act" data-toggle="collapse" data-target="#injectResult">
                 <div class="col-sm-10 font-weight-bold ">Injection Result</div>
@@ -109,17 +116,20 @@
             </div>
             <div class="mt-3 collapse" id="injectResult" data-parent="#accordion">
                 <div class="ml-4 text-sub">
-                    <a class="text-reset text-decoration-none" href="${pageContext.request.contextPath}/injection-result-list">
+                    <a class="text-reset text-decoration-none" href="${pageContext.request.contextPath}/injection-result/list">
                         <span class="ml-2">Injection Result List</span>
                     </a>
                 </div>
+                <security:authorize access="hasAuthority('ADMIN')">
                 <div class="ml-4 mt-2 text-sub">
-                    <a class="text-reset text-decoration-none " href="${pageContext.request.contextPath}/add/injection-result">
+                    <a class="text-reset text-decoration-none " href="${pageContext.request.contextPath}/injection-result/add">
                         <span class="ml-2">Create Injection Result</span>
                     </a>
                 </div>
+                </security:authorize>
             </div>
         </div>
+        <security:authorize access="hasAuthority('ADMIN')">
         <div class="list-group-item">
             <div class="row text act" data-toggle="collapse" data-target="#news">
                 <div class="col-sm-10 font-weight-bold ">News</div>
@@ -161,7 +171,9 @@
                 </div>
             </div>
         </div>
+        </security:authorize>
     </div>
+    
 </div>
 
 
