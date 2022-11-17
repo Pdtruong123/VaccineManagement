@@ -3,7 +3,18 @@ package com.vn.controller;
 import com.fasterxml.jackson.annotation.JacksonInject.Value;
 import com.vn.model.Customer;
 import com.vn.service.InjectionResultService;
+import com.vn.service.impl.CustomUserDetail;
+
+import java.util.Collection;
+
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,8 +28,17 @@ public class HomeController {
     InjectionResultService injectionResultService;
 
     @GetMapping(value={"/home", "/index"})
-    public ModelAndView homePage(){
-        ModelAndView model = new ModelAndView("homePage");
+    public ModelAndView homePage(HttpSession session){
+    	ModelAndView model = new ModelAndView("homePage");
+    	Customer customer = new Customer();
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		if (!(auth instanceof AnonymousAuthenticationToken)) {
+			CustomUserDetail userDetails = (CustomUserDetail) auth.getPrincipal();
+			customer = userDetails.getCustomer();
+			
+		}
+		session.setAttribute("emailLogin", customer.getEmail());
+		
         return model;
     }
     

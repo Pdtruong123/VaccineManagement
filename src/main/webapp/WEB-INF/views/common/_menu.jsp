@@ -4,8 +4,8 @@
     <div class="list-group list-group-flush">
     <div class="list-group-item text-white profile">
         <div><img class="img-admin" src="../../../asserts/img/admin.png"></div>
-        <div class="mt-1">Admin</div>
-        <div class="mt-1">admin@fsoft.com.vn</div>
+        <div class="mt-1"><Strong><%= request.getUserPrincipal().getName() %></Strong></div>
+        <div class="mt-1"><%= request.getSession().getAttribute("emailLogin") %></div>
     </div>
     <div class="menu">
         <div class="list-group-item text font-weight-bold act ">
