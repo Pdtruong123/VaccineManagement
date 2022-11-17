@@ -26,7 +26,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 public class Customer implements Serializable {
 
 	/**
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = 1L;
 
@@ -79,6 +79,15 @@ public class Customer implements Serializable {
 
 	@OneToMany(mappedBy = "customer")
 	private Set<InjectionResult> injectionResults;
+
+//	@Transient
+//	public int getCountNumberOfInjection(){
+//		int total = injectionResults.stream().map(x -> {
+//			return x.getNumberOfInjection();
+//		}).reduce(0, (subtotal, element) -> subtotal + element);
+//		return total;
+//	}
+
 
 	@Override
 	public String toString() {
