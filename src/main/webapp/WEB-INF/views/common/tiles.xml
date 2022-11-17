@@ -170,5 +170,14 @@
 
     <!--End Report-->
 
+    <!--Create Customer-->
+    <definition name="registerCustomer" extends="base.definition">
+        <put-attribute name="title" value="Register Customer"/>
+        <put-attribute name="body"
+                       value="/WEB-INF/views/Customer/registerCustomer.jsp"/>
+    </definition>
+
+
+
 </tiles-definitions>
 
