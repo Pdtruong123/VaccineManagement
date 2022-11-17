@@ -29,16 +29,16 @@ $(window).on('load', function(event) {
 		var y = document.getElementById("design5");
   		y.style.color = "#4154f1";
 	}
-	//if(x.includes('http://localhost:8080/vaccineType') ){
+	if(x.includes('http://localhost:8080/injection-schedule/') ){
 		
-	//	var y = document.getElementById("design6");
-  //		y.style.color = "#4154f1";
-//	}
-//	if(x.includes('http://localhost:8080/vaccineType') ){
-//		
-//		var y = document.getElementById("design7");
- // 		y.style.color = "#4154f1";
-//	}
+		var y = document.getElementById("design6");
+  		y.style.color = "#4154f1";
+	}
+	if(x.includes('http://localhost:8080/injection-result/') ){
+
+		var y = document.getElementById("design7");
+  		y.style.color = "#4154f1";
+	}
 //	if(x.includes('http://localhost:8080/vaccineType') ){
 		
 //		var y = document.getElementById("design8");
