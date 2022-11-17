@@ -1,20 +1,29 @@
 package com.vn.model;
 
 import java.io.Serializable;
-
-import java.time.LocalDate;
+import java.util.Date;
+import java.util.List;
 import java.util.Set;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.validation.constraints.Email;
 
 import org.hibernate.annotations.GenericGenerator;
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.DateTimeFormat.ISO;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Table(name = "Customer")
@@ -26,7 +35,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 public class Customer implements Serializable {
 
 	/**
-	 *
+	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 
@@ -43,8 +52,8 @@ public class Customer implements Serializable {
 	private String address;
 
 	@Column(name = "date_of_birth")
-	@DateTimeFormat(pattern = "yyyy-MM-dd")
-	private LocalDate dateOfBirth;
+	@DateTimeFormat(iso = ISO.DATE)
+	private Date dateOfBirth;
 
 	@Column(length = 100)
 	@Email
@@ -68,10 +77,10 @@ public class Customer implements Serializable {
 	@Column(length = 20)
 	private String phone;
 
-	@Transient
-	private String captcha;
+	@Column
+	private String capcha;
 
-	@Transient
+	@Column
 	private String code;
 
 	@Column(name = "user_name")
@@ -79,7 +88,9 @@ public class Customer implements Serializable {
 
 	@OneToMany(mappedBy = "customer")
 	private Set<InjectionResult> injectionResults;
-
+	
+	@OneToMany(mappedBy = "customer",fetch = FetchType.EAGER)
+	private List<UserRole> userRoles;
 	@Transient
 	public int getCountNumberOfInjection(){
 		int total = injectionResults.stream().map(x -> {
@@ -102,7 +113,7 @@ public class Customer implements Serializable {
 				", password='" + password + '\'' +
 				", confirmPassword='" + confirmPassword + '\'' +
 				", phone='" + phone + '\'' +
-				", captcha='" + captcha + '\'' +
+				", capcha='" + capcha + '\'' +
 				", code='" + code + '\'' +
 				", userName='" + userName + '\'' +
 				'}';

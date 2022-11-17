@@ -12,6 +12,7 @@ import com.vn.model.Customer;
 import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface CustomerRepository extends JpaRepository<Customer, String> {
@@ -27,6 +28,8 @@ public interface CustomerRepository extends JpaRepository<Customer, String> {
                  AND ((?3 is null OR ?4 is null) OR c.dateOfBirth between ?3 and ?4)  
                  """)
     List<Customer> findElementReport(String fullName, String address, Date dOBFrom, Date dOBTo);
+
+	Optional<Customer> findByUserName(String userName);
 
 
 }

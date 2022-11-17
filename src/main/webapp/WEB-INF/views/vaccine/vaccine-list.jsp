@@ -71,9 +71,9 @@
 									<td id="status" class="status" >In-Active</td>
 									</c:if> --%>
 								<td id="status" class="status"><c:if
-										test="${result.status=='true'}">
+										test="${result.status == 'true'}">
 									Active
-									</c:if> <c:if test="${result.status=='false'}">
+									</c:if> <c:if test="${result.status == 'false'}">
 									In-Active
 									</c:if></td>
 							</tr>
