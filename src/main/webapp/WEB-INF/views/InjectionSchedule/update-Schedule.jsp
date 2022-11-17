@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
          pageEncoding="ISO-8859-1" %>
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<div class="card">
+<div class="card shadow">
     <div class="head-title card-header">
         <h4 class="text-center">CREATE INJECTION SCHEDULE</h4>
     </div>

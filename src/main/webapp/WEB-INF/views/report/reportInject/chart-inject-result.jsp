@@ -44,9 +44,8 @@
         </div>
     </div>
 </div>
-<div class="card mx-3 mt-4 shadow">
+<div class="card mx-3 mt-3 shadow">
     <div class="font-weight-bold h6 mt-3 ml-3">REPORT INJECTION CHART</div>
-    <div id="value-chart">${injectValue}</div>
     <div class="mx-3 border-top">
         <canvas class="mt-3" id="chartInject"></canvas>
     </div>

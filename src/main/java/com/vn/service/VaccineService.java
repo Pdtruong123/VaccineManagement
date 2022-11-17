@@ -26,7 +26,6 @@ public interface VaccineService {
 
 	Vaccine save(@Valid VaccineDTO vaccineDTO);
 
-	Vaccine updateInActive(Boolean status, String id);
 
 	Vaccine findVaccineById(String id);
 
