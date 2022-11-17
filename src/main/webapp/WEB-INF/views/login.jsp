@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
          pageEncoding="ISO-8859-1" %>
+         <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,24 +23,28 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
             integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
             crossorigin="anonymous"></script>
+            <script type="text/javascript"
+	src="${pageContext.request.contextPath}/js/login.js"></script>
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
 </head>
 <body>
 <div class="modal-dialog text-center">
     <div class="col-sm-8 main-section">
         <div class="modal-content">
             <div class="col-12 user-img">
-                <img src="../../asserts/img/avatarlogin.webp" alt="user-img">
+                <img src="${pageContext.request.contextPath}/img/avatarlogin.webp" alt="user-img">
             </div>
             <h4 class="model-header">Member Login</h4>
-            <form action="" class="col-12">
+            <form:form action="${pageContext.request.contextPath}/j_spring_security_check" method="post" class="col-12" modelAttribute="memberLogin" >
                 <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Username" name="username">
+                    <form:input type="text" class="form-control" placeholder="Username" path="userName"/>
                 </div>
                 <div class="form-group">
-                    <input type="password" class="form-control" placeholder="Password" name="password">
+                    <form:input type="password" class="form-control" placeholder="Password" path="password"/>
                 </div>
+                <span class="error">${error}</span>
                 <button type="submit" class="btn btn-block">Sign in</button>
-            </form>
+            </form:form>
             <div class="forgot">
                 <a href="#">Forgot password?</a>
             </div>
