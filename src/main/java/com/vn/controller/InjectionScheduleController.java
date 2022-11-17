@@ -74,6 +74,14 @@ public class InjectionScheduleController {
 
     @PostMapping("/update/injectionSchedule")
     public ModelAndView postUpdate(@ModelAttribute("updateSchedule") InjectionSchedule injectionSchedule) {
+//        InjectionSchedule schedule= new InjectionSchedule();
+//        schedule.setId(injectionSchedule.getId());
+//        schedule.setStartDate(injectionSchedule.getStartDate());
+//        schedule.setEndDate(injectionSchedule.getEndDate());
+//        schedule.setDescription(injectionSchedule.getDescription());
+//        schedule.setPlace(injectionSchedule.getPlace());
+//        schedule.setVaccine(vaccineReponsitory.findById(injectionSchedule.getVaccine().getId()).orElse(null));
+        injectionScheduleReponsitory.save(injectionSchedule);
         ModelAndView modelAndView = new ModelAndView("redirect:/lisst");
         return modelAndView;
     }
