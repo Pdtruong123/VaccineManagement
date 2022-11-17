@@ -28,7 +28,7 @@ public class CustomerController {
     @Autowired
     HttpServletRequest httpServletRequest;
 
-    @GetMapping("/registerCustomer")
+    @GetMapping("customer/registerCustomer")
     public ModelAndView showRegistrationForm() {
         ModelAndView model = new ModelAndView("registerCustomer");
         Customer c = new Customer();
@@ -36,7 +36,7 @@ public class CustomerController {
         return model;
     }
 
-    @PostMapping("/registerCustomer")
+    @PostMapping("customer/registerCustomer")
     public ModelAndView saveRegister(@ModelAttribute("customer") Customer customer) {
         ModelAndView model = new ModelAndView("registerCustomer");
         customerService.create(customer);
@@ -44,7 +44,7 @@ public class CustomerController {
         return model;
     }
 
-    @GetMapping("/injectionCustomerList")
+    @GetMapping("customer/injectionCustomerList")
     public ModelAndView viewCustomerList(@RequestParam(value = "p", defaultValue = "0") Optional<Integer> p,
                                    @RequestParam(value = "size", defaultValue = "5") Integer size) {
         ModelAndView model = new ModelAndView("injectionCustomerList");
@@ -61,7 +61,7 @@ public class CustomerController {
         return model;
     }
 
-    @PostMapping("/search/injectionCustomerList")
+    @PostMapping("customer/search/injectionCustomerList")
     public ModelAndView searchInjectionCustomerList(@RequestParam(value = "p", defaultValue = "0") Integer p,
                                               @RequestParam(value = "size", defaultValue = "5") Integer size) {
         ModelAndView model = new ModelAndView("injectionCustomerList");
@@ -82,7 +82,7 @@ public class CustomerController {
 
 
     }
-    @GetMapping(value = { "/update/injectionCustomerList/{id}" })
+    @GetMapping(value = { "customer/update/injectionCustomerList/{id}" })
     public ModelAndView edit(@PathVariable("id") String id) {
         ModelAndView model = new ModelAndView("updateInjectionCustomerList");
         Customer customer = customerService.findById(id);
@@ -90,9 +90,9 @@ public class CustomerController {
         return model;
     }
 
-    @PostMapping(value = { "/update/injectionCustomerList" })
+    @PostMapping(value = { "customer/update/injectionCustomerList" })
     public ModelAndView updateCustomer(BindingResult result, @Valid Customer customer) {
-        ModelAndView model = new ModelAndView("redirect:/injectionCustomerList");
+        ModelAndView model = new ModelAndView("redirect:/customer/injectionCustomerList");
         ModelAndView modelError = new ModelAndView("updateInjectionCustomerList");
         if (result.hasErrors()){
             return modelError;
@@ -102,10 +102,10 @@ public class CustomerController {
         }
     }
 
-    @PostMapping("/delete/customer")
+    @PostMapping("customer/delete")
     public String deleteCustomer(@RequestParam String id) {
         customerService.deleteCustomer(id);
-        return "redirect:/injectionCustomerList";
+        return "redirect:/customer/injectionCustomerList";
     }
 
 

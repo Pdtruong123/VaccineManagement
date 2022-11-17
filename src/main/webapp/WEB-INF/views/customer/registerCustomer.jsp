@@ -51,7 +51,7 @@
     </div>
 
     <form:form
-            action="${pageContext.request.contextPath}/registerCustomer"
+            action="${pageContext.request.contextPath}/customer/registerCustomer"
             method="post" modelAttribute="customer" id="registerForm">
         <div class="card mx-3">
             <div class="card-body">
