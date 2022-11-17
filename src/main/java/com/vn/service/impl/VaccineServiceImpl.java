@@ -3,6 +3,7 @@ package com.vn.service.impl;
 import com.vn.dto.VaccineDTO;
 import com.vn.model.InjectionResult;
 import com.vn.model.Vaccine;
+import com.vn.repository.InjectionSchuduleRepository;
 import com.vn.repository.VaccineRepository;
 import com.vn.service.VaccineService;
 import com.vn.util.ReadFileExcel;
@@ -25,6 +26,8 @@ import java.util.Optional;
 public class VaccineServiceImpl implements VaccineService {
     @Autowired
     VaccineRepository vaccineRepository;
+    @Autowired
+    InjectionSchuduleRepository injectionSchuduleRepository;
 
     @Override
     public List<String> findAllVaccineName() {
@@ -92,21 +95,7 @@ public class VaccineServiceImpl implements VaccineService {
 	}
 
 
-	@Override
-	public Vaccine updateInActive(Boolean status, String id) {
-		
-		Optional<Vaccine> optionalV = vaccineRepository.findById(id);
-		if (optionalV.isPresent()) {
-			Vaccine vaccine = optionalV.get();
-			vaccine.setStatus(status);
-			vaccineRepository.save(vaccine);
-			return vaccine;
-		}else {
-			return null;
-		}
-		
-		
-	}
+	
 
 
 	@Override
@@ -153,6 +142,8 @@ public class VaccineServiceImpl implements VaccineService {
 	@Transactional
 	public void updateStatus(List<String> ids, Boolean status) {
 		vaccineRepository.updateStatus(ids, status);
+		injectionSchuduleRepository.deleteByListVaccine(ids);
+		
 	}
 
 	@Override

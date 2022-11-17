@@ -1,34 +1,16 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+         pageEncoding="ISO-8859-1" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<head>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.css">
+    <link rel="stylesheet" href="../../../asserts/css/style.css">
+    <link rel="stylesheet" href="../../../asserts/css/DataTables.css">
+</head>
 <div class="h5 mt-3 text-center text-secondary font-weight-bold mb-3">Injection Schedule</div>
-    <div class="card mx-3">
+    <div class="card mx-3 shadow">
         <div class="card-body">
-            <div class="row">
-                <div class="col-sm-3 form-inline">
-                    <span>Show</span>
-                    <select class="form-select mx-2 border-right-0 border-top-0 border-left-0"
-                            id="inlineFormCustomSelect">
-                        <option selected></option>
-                        <option value="1">5</option>
-                        <option value="2">10</option>
-                        <option value="3">15</option>
-                    </select>
-                    <span>entities</span>
-                </div>
-                <div class="col-sm-6"></div>
-                <div class="col-sm-3">
-                    <form action="#">
-                        <div class="input-group ">
-                            <input type="search"
-                                   class="dataSearch form-control border-right-0 border-top-0 border-left-0 form-select"
-                                   placeholder="Search" aria-label="Search" aria-describedby="search-addon" onchange="searchOnchange(this.value)"/>
-                            <button class="input-group-text border-0 bg-white" id="search-addon">
-                                <i class="fas fa-search"></i>
-                            </button>
-                        </div>
-                    </form>
-                </div>
-            </div>
             <div class="mt-3">
-                <table class="table table-bordered">
+                <table class="table table-bordered" id="table-TS">
                     <thead>
                     <tr class="bg-info text-white text-center">
                         <th>Vaccine</th>
@@ -38,43 +20,27 @@
                         <th>Note</th>
                     </tr>
                     </thead>
-                   <tbody id="bodyList">
-
+                   <tbody>
+                   <c:forEach items="${listSchedule}" var="schedule">
+                       <tr>
+                           <td><a href="${pageContext.request.contextPath}/update/injectionSchedule/?id=${schedule.id}">${schedule.vaccine.vaccineName}</a></td>
+                           <td>From ${schedule.startDate} to ${schedule.endDate}</td>
+                           <td>${schedule.place}</td>
+                           <td>${schedule.status}</td>
+                           <td>${schedule.description}</td>
+                       </tr>
+                   </c:forEach>
                 </tbody>
                 </table>
-            </div>
-            <div class="row mt-4">
-                <div class="col-sm-3">
-                    <span>Showing <span class="curren"></span> to 5 of 12 entities</span>
-                </div>
-                <div class="col-sm-6"></div>
-                <div class="col-sm-3">
-                    <nav aria-label="Page">
-                        <ul class="pagination">
-                            <li class="page-item-pre">
-                                <a class="page-link pagination-list"
-                                   href="#"
-                                   aria-label="Previous">
-                                    <span aria-hidden="true">&laquo;</span>
-                                    <span class="sr-only">Previous</span>
-                                </a>
-                            </li>
-                            <li class="page-item"><a class="page-link pagination-list" href="#">1</a></li>
-                            <li class="page-item"><a class="page-link pagination-list" href="#">2</a></li>
-                            <li class="page-item"><a class="page-link pagination-list" href="#">3</a></li>
-                            <li class="page-item-next">
-                                <a class="page-link pagination-list" href="#" aria-label="Next">
-                                    <span aria-hidden="true">&raquo;</span>
-                                    <span class="sr-only">Next</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </nav>
-                </div>
             </div>
             <div class="">
                 <a class="btn btn-sm btn-success" href="${pageContext.request.contextPath}/add/injectionSchedule">New Injection Schedule</a>
             </div>
         </div>
     </div>
-<script src="${pageContext.request.contextPath}/js/InjectionScheduleApi.js"></script>
+<%--<script src="${pageContext.request.contextPath}/js/InjectionScheduleApi.js"></script>--%>
+<script src="${pageContext.request.contextPath}/js/DataTables.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+        integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.js"></script>

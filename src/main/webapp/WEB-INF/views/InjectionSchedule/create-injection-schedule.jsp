@@ -1,6 +1,6 @@
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<div class="card">
+<div class="card shadow">
     <div class="head-title card-header">
         <h4 class="text-center">CREATE INJECTION SCHEDULE</h4>
     </div>
@@ -35,8 +35,8 @@
                 </div>
                 <div class="col-sm-7">
                     <label>Note:</label>
-                    <form:textarea path="note" class="form-control note"/>
-                    <form:errors path="note"/>
+                    <form:textarea path="description" class="form-control note"/>
+                    <form:errors path="description"/>
                 </div>
 
             </div>
