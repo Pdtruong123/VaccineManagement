@@ -5,10 +5,11 @@
     <div class="head-title card-header">
         <h4 class="text-center">CREATE INJECTION SCHEDULE</h4>
     </div>
-    <form:form id="form-update" method="POST" modelAttribute="updateSchedule">
+    <form:form id="form-update" action="${pageContext.request.contextPath}/update/injectionSchedule" method="POST" modelAttribute="updateSchedule">
         <div class="card-body">
             <div class="mt-1 row">
-                <form:input path="id" type="hidden"/>
+                <form:input path="id" type="text"/>
+                <form:input path="vaccine.id" type="text"/>
                 <div class="col-sm-4">
                     <label>Vaccine</label><label class="lbls">(*)</label>
                     <form:input class="form-control" disabled="true" path="vaccine.vaccineName"/>
@@ -39,8 +40,8 @@
             </div>
             <div class="pt-3">
                 <button type="submit" id="btnSave" class="btn btn-primary">Save</button>
-                <button type="submit" class="btn btn-danger ml-4">Reset</button>
-                <button type="reset" class="btn btn-warning ml-4"><a href="${pageContext.request.contextPath}/lisst">Cancle</a>
+                <button type="reset" class="btn btn-danger ml-4">Reset</button>
+                <button type="submit" class="btn btn-warning ml-4"><a href="${pageContext.request.contextPath}/lisst">Cancle</a>
                 </button>
             </div>
         </div>
