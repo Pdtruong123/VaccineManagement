@@ -260,7 +260,9 @@
                     <div class="card-body">
                         <div class="fs-20 font-weight-bold">Personal Information</div>
                         <div class="form-row pt-15">
-                            
+                            <div><form:input path="id" type="hidden"
+                                             class="form-control ml-2" value="${customer.id}"
+                                             id="id"/></div>
                             <div class="form-group col-sm-4">
                                 <label class="font-weight-bold" for="fullName">Full
                                     Name <span class="text-danger">(*)</span> :
