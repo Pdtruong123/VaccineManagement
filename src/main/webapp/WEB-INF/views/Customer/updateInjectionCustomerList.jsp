@@ -41,21 +41,21 @@
             crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="../../asserts/js/loadFileName.js"></script>
     <script src="../../asserts/js/previewImg.js"></script>
-    <link rel="stylesheet" href="../../asserts/css/Customer.css">
+    <link rel="stylesheet" href="../../../asserts/css/Customer.css">
     <title>Register Customer Information</title>
 </head>
 <body>
 <div class="container-fluid ">
     <nav class="row topnavbar py-1">
         <a href="index.html" class="navbar-brand ml-3 mr-auto"><img
-                class="img" src="../../asserts/img/logo.png"></a>
+                class="img" src="../../../asserts/img/logo.png"></a>
     </nav>
     <div class="row">
         <div class="col-sm-3 border-right left" id="accordion">
             <div class="list-group list-group-flush">
                 <div class="list-group-item text-white profile">
                     <div>
-                        <img class="img-admin" src="../../asserts/img/admin.png">
+                        <img class="img-admin" src="../../../asserts/img/admin.png">
                     </div>
                     <div class="mt-1">Admin</div>
                     <div class="mt-1">admin@fsoft.com.vn</div>
@@ -395,28 +395,30 @@
                             </div>
                         </div>
 
-                            <%--                        <div class="form-row">--%>
-                            <%--                            <div class="form-group col-sm-4">--%>
-                            <%--                                <label class="font-weight-bold" for="email">Capcha <span--%>
-                            <%--                                        class="text-danger">(*)</span> :--%>
-                            <%--                                </label>--%>
-                            <%--                                <div class="form-inline">--%>
-                            <%--                                    <i class="fa-solid fa-lock"></i>--%>
-                            <%--                                    <form:input type="email" path="email"--%>
-                            <%--                                                class="form-control ml-2" value="${customer.email}"--%>
-                            <%--                                                id="email"/>--%>
-                            <%--                                </div>--%>
-                            <%--                            </div>--%>
-                            <%--                            <div class="form-group col-sm-4">--%>
-                            <%--                                <label class="font-weight-bold" for="phone">Code--%>
-                            <%--                                </label>--%>
-                            <%--                                <div class="form-inline">--%>
-                            <%--                                    <i class="fa-solid fa-building-lock"></i>--%>
-                            <%--                                    <form:input type="text" path="phone" class="form-control ml-2"--%>
-                            <%--                                                value="${customer.phone}" id="phone"/>--%>
-                            <%--                                </div>--%>
-                            <%--                            </div>--%>
-                            <%--                        </div>--%>
+                        <div class="form-row">
+                            <div class="form-group col-sm-4">
+                                <label class="font-weight-bold" for="captcha">Captcha <span
+                                        class="text-danger">(*)</span> :
+                                </label>
+                                <div class="form-inline">
+                                    <i class="fa-solid fa-lock"></i>
+                                    <form:input type="text" path="captcha" maxlength="5" spellcheck="false"
+                                                class="form-control ml-2 inputCaptcha"
+                                                id="captcha"/>
+                                </div>
+                            </div>
+                            <div class="form-group col-sm-4">
+                                <label class="font-weight-bold">Code
+                                </label>
+                                <div class="form-inline">
+                                    <i class="fa-solid fa-building-lock"></i>
+                                    <div class = "captcha rounded d-flex align-items-center" id="captchaCode"></div>
+                                    <button class="refresh-btn" type="button" onclick="getCaptcha()"><i
+                                            class="fa-solid fa-rotate-right reload-btn"></i></button> <%-- refresh button--%>
+
+                                </div>
+                            </div>
+                        </div>
 
                         <div class="p-btn mt-5">
                             <button type="submit" class="btn btn-sm btn-success">
@@ -433,7 +435,7 @@
 
     </div>
 </div>
-<script src="../../asserts/js/CustomerCreate.js"></script>
+<script src="../../../asserts/js/CustomerCreate.js"></script>
 <script
         src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js"
         integrity="sha512-rstIgDs0xPgmG6RX1Aba4KV5cWJbAMcvRCVmglpam9SoHZiUCyQVDdH2LPlxoHtrv17XWblE/V/PP+Tr04hbtA=="

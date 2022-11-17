@@ -67,7 +67,7 @@ public class CustomerServiceImpl implements CustomerService {
 	@Override
 	public Page<Customer> findContainElement(String searchParam, Pageable pageable) {
 		return customerRepository.findContainElement(searchParam, pageable);
-		
+
 	}
 
 	@Override
@@ -78,7 +78,7 @@ public class CustomerServiceImpl implements CustomerService {
 	@Override
 	public void deleteCustomer(String id) {
 		customerRepository.deleteById(id);
-		
+
 	}
 
 	@Override

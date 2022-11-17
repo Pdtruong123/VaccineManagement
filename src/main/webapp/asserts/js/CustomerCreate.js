@@ -2,14 +2,10 @@ $(document).ready(function () {
 
     $("#registerForm").validate({
         rules: {
-            id: {
-                required: true,
-                max: 999999,
-                minLength: 6,
-            },
             fullName: {
                 required: true,
-                maxLength: 100
+                minlength: 3,
+                maxlength: 25
             },
             dateOfBirth: {
                 required: true
@@ -19,15 +15,16 @@ $(document).ready(function () {
             },
             identityCard: {
                 required: true,
-                maxLength: 10
+                maxlength: 10,
+                minlength: 10
             },
             address: {
                 required: true,
-                maxLength: 100
+                maxlength: 100
             },
             userName: {
                 required: true,
-                maxLength: 10
+                maxlength: 10
             },
             password: {
                 required: true,
@@ -46,27 +43,64 @@ $(document).ready(function () {
             phone: {
                 required: true,
                 maxlength: 11
+            },
+            captcha:{
+                required: true,
+                maxlength: 5,
             }
         },
         messages: {
-            id: {},
-            fullName:{},
-            dateOfBirth:{},
-            gender:{},
-            identityCard:{},
-            address:{},
-            userName: {},
-            email: {},
-            phone:{},
-            password: {},
+            fullName: {
+                required: "Please input your full name",
+                minlength: "Full name only accept 3-25 characters",
+                maxlength: "Full name only accept 3-25 characters"
+            },
+            dateOfBirth:{
+                required: "Please input your birthday",
+            },
+            gender:{
+                required: "Please choose your gender",
+            },
+            identityCard:{
+                required: "Please input your identity number",
+                minlength: "Identity card must be 10 numbers",
+                maxlength: "Identity card must be 10 numbers"
+            },
+            address:{
+                required: "Please input your address",
+                maxlength: "Address too long"
+            },
+            userName: {
+                required: "Please input your username",
+                maxlength: "Username too long. Can't accept more than 10 characters"
+            },
+            email: {
+                required: "Please input your email",
+                maxlength: "Email too long. Can't accept more than 25 characters"
+            },
+            phone:{
+                required: "Please input your phone number",
+                maxlength: "Phone number can't more than 11 numbers"
+            },
+            password: {
+                required: "Please input your password",
+                minlength: "Password have at least 5 characters ",
+                maxlength: "Password can't more than 20 characters"
+            },
             rePassword: {
-                equalTo: "Password and password confirmation must be same."
+                required: "Please input your confirm password" ,
+                equalTo: "Password and Password Confirm not matched",
+                maxlength: "Password can't more than 20 characters"
+            },
+            captcha: {
+                required: "Please identity the captcha",
+                maxlength: "Captcha wrong. Please try again",
             },
         },
     })
 
 
-    
+
 
 });
 
@@ -126,5 +160,28 @@ $("#update-button").click(function (){
         return false;
     }
 })
+function submitValidate() {
+
+    let captcha = document.querySelector("#captchaCode");
+    let inputField = document.querySelector(".inputCaptcha");
+    let statusTxt = document.querySelector(".status-txt");
+    let inputVal = inputField.value;
+    let captchaVal = $("#captchaCode").text();
+
+
+    if ($("#registerForm").valid()) {
+        if(inputVal == captchaVal){
+            statusTxt.style.color = "#4db2ec";
+            statusTxt.innerText = "Register Successfully";
+            return true;
+        }else{
+            statusTxt.style.color = "#ff0000";
+            statusTxt.innerText = "Captcha not matched. Please try again!";
+            return false;
+        }
+    } else {
+        return false;
+    }
+}
 
 

@@ -235,8 +235,8 @@
                             </thead>
                             <tbody>
                             <c:forEach items="${injectionCustomerList.content}" var="result">
-                            <tr>
-                                <td><input class="form-check mx-auto" type="checkbox" value="${result.id}" name="id"></td>
+                                <tr>
+                                    <td><input class="form-check mx-auto" type="checkbox" value="${result.id}" name="id"></td>
                                     <td>${result.fullName}</td>
                                     <td>${result.dateOfBirth}</td>
                                     <td>${result.gender}</td>
@@ -244,7 +244,7 @@
                                     <td>${result.identityCard}</td>
                                     <td>${result.phone}</td>
 
-                            </tr>
+                                </tr>
                             </c:forEach>
                             </tbody>
                         </table>
