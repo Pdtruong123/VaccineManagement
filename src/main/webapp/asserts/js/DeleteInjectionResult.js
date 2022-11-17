@@ -18,7 +18,7 @@ $("#delete-button").click(function (){
        if(c) {
            $.ajax({
                type: "POST",
-               url: "/delete/injection-result?id=" + id,
+               url: "/injection-result/delete?id=" + id,
                success: function (){
                    thisResult.closest("tr").remove();
                    alert("Delete Successfully!")
@@ -61,7 +61,7 @@ $("#update-button").click(function (){
         return false;
     }
     if(count==1){
-        window.location.href="/update/injection-result/"+id;
+        window.location.href="/injection-result/update/"+id;
         return false;
     }
 })

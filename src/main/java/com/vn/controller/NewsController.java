@@ -22,24 +22,24 @@ public class NewsController {
     @Autowired
     HttpServletRequest request;
 
-    @GetMapping("/news-list")
+    @GetMapping("/news/list")
     public ModelAndView newsListPage(){
         ModelAndView model = new ModelAndView("newsList");
             model.addObject("newsList", newsService.findAll());
             return model;
     }
 
-    @GetMapping("add/news")
+    @GetMapping("/news/add")
     public ModelAndView addNewsPage(){
         ModelAndView model = new ModelAndView("addNews");
         model.addObject("news", new News());
         return model;
     }
 
-    @PostMapping("/add/news")
+    @PostMapping("/news/add")
     public ModelAndView addNews(@Valid @ModelAttribute("news") News news, RedirectAttributes redirectAttributes,
                           BindingResult bindingResult){
-        ModelAndView model = new ModelAndView("redirect:/add/news");
+        ModelAndView model = new ModelAndView("redirect:/news/add");
         ModelAndView modelError = new ModelAndView("addNews");
         if(bindingResult.hasErrors()){
             return modelError;
@@ -50,14 +50,14 @@ public class NewsController {
         return model;
     }
 
-    @PostMapping("/delete/news")
+    @PostMapping("/news/delete")
     public ModelAndView deleteNews(@RequestParam String id){
         newsService.deleteNews(id);
-        ModelAndView model = new ModelAndView("redirect:/news-list");
+        ModelAndView model = new ModelAndView("redirect:/news/list");
         return model;
     }
 
-    @GetMapping("/update/news/{id}")
+    @GetMapping("/news/update/{id}")
     public ModelAndView updateNewsPage(@PathVariable String id){
         ModelAndView model = new ModelAndView("update-news");
         News news = newsService.findById(id);
@@ -65,10 +65,10 @@ public class NewsController {
         return model;
     }
 
-    @PostMapping("/update/news")
+    @PostMapping("/news/update")
     public ModelAndView updateNews(@Valid @ModelAttribute("news") News news, BindingResult bindingResult, RedirectAttributes redirectAttributes){
         ModelAndView modelError = new ModelAndView("update-news");
-        ModelAndView model = new ModelAndView("redirect:/news-list");
+        ModelAndView model = new ModelAndView("redirect:/news/list");
         if(bindingResult.hasErrors()){
             return modelError;
         }

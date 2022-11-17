@@ -38,7 +38,7 @@
 <div class="h4 text-success font-weight-bold ml-3">${success}</div>
 <div class="card mx-3 shadow">
     <div class="card-body">
-        <form:form action="${pageContext.request.contextPath}/add/news" method="post"
+        <form:form action="${pageContext.request.contextPath}/news/add" method="post"
                    modelAttribute="news" id="news-form">
             <div class="form-group">
                 <label class="font-weight-bold" for="title">Title<span class="text-danger">(*):</span></label>
@@ -55,12 +55,13 @@
             <div class="form-button mt-4">
                 <button class="btn btn-success mr-1" type="submit">Save</button>
                 <button class="btn btn-primary mr-1" type="reset">Reset</button>
-                <button class="btn btn-warning text-white" type="submit"><a
-                        href="${pageContext.request.contextPath}/news-list"
+                <button class="btn btn-warning text-white" type="button"><a
+                        href="${pageContext.request.contextPath}/news/list"
                         class="text-white text-decoration-none">Cancel</a></button>
             </div>
         </form:form>
     </div>
 </div>
+<script src="${pageContext.request.contextPath}/js/VailidateNews.js"></script>
 </body>
 </html>

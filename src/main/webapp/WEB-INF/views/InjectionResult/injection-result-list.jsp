@@ -41,7 +41,7 @@
         <div class="h5 text-right text-danger">${error}</div>
         <div class="">
             <button class="btn btn-success mr-1" type="submit"><a
-                    href="${pageContext.request.contextPath}/add/injection-result"
+                    href="${pageContext.request.contextPath}/injection-result/add"
                     class="text-white text-decoration-none">Create Injection Result</a></button>
             <button class="btn btn-warning mr-1 text-white" type="submit" id="update-button">Update Injection Result
             </button>

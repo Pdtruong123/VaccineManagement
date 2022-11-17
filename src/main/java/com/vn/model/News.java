@@ -1,6 +1,7 @@
 package com.vn.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -33,12 +34,15 @@ public class News extends BaseModel implements Serializable {
 	private String id;
 	
 	@Column(length = 4000)
+	@NotBlank(message = "Please fill content of news")
 	private String content;
 	
 	@Column(length = 1000)
+	@NotBlank(message = "Please fill preview of news")
 	private String preview;
 	
 	@Column(length = 300)
+	@NotBlank(message = "Please fill title of news")
 	private String title;
 	
 	@ManyToOne
