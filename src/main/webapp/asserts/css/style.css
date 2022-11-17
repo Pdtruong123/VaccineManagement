@@ -36,7 +36,7 @@
     background: linear-gradient(45deg, rgb(172, 175, 6), rgb(219, 9, 156));
 }
 .text:hover{
-    color: #EE0849FF;
+    color: #72b696;
     font-weight: 500;
     cursor: pointer;
 }
@@ -45,7 +45,7 @@
     height: 20px;
 }
 .text-sub:hover{
-    color: #EE0849FF;
+    color: #72b696;
     font-weight: 600;
 
 }

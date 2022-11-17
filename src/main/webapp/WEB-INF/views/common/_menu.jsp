@@ -9,7 +9,7 @@
     </div>
     <div class="menu">
         <div class="list-group-item text font-weight-bold act ">
-            <a class='text-decoration-none text-dark ' href="${pageContext.request.contextPath}/home">Home</a>
+            <a class='text-decoration-none text-dark ' id="design1" href="${pageContext.request.contextPath}/home">Home</a>
             </div>
             <security:authorize access="hasAuthority('ADMIN')">
         <div class="list-group-item">
@@ -32,7 +32,7 @@
         </div>
         <div class="list-group-item">
             <div class="row text act" data-toggle="collapse" data-target="#customer">
-                <div class="col-sm-10 font-weight-bold ">Customer Management</div>
+                <div class="col-sm-10 font-weight-bold " id="design3">Customer Management</div>
                 <div class="col-sm-2"><i class="fa-solid fa-plus"></i></div>
             </div>
             <div class="mt-3 collapse" id="customer" data-parent="#accordion">
@@ -50,7 +50,7 @@
         </div>
         <div class="list-group-item">
             <div class="row text act" data-toggle="collapse" data-target="#vaccineType1">
-                <div class="col-sm-10 font-weight-bold ">Vaccine Type Management</div>
+                <div class="col-sm-10 font-weight-bold " id="design4">Vaccine Type Management</div>
                 <div class="col-sm-2"><i class="fa-solid fa-plus"></i></div>
             </div>
             <div class="mt-3 collapse" id="vaccineType1" data-parent="#accordion">
@@ -70,7 +70,7 @@
         </div>
         <div class="list-group-item">
             <div class="row text act" data-toggle="collapse" data-target="#vaccine">
-                <div class="col-sm-10 font-weight-bold ">Vaccine Management</div>
+                <div class="col-sm-10 font-weight-bold " id="design5">Vaccine Management</div>
                 <div class="col-sm-2"><i class="fa-solid fa-plus"></i></div>
             </div>
             <div class="mt-3 collapse" id="vaccine" data-parent="#accordion">
@@ -87,10 +87,10 @@
             </div>
         </div>
         </security:authorize>
-        
+
         <div class="list-group-item">
             <div class="row text act" data-toggle="collapse" data-target="#inject">
-                <div class="col-sm-10 font-weight-bold ">Injection Schedule</div>
+                <div class="col-sm-10 font-weight-bold " id="design6">Injection Schedule</div>
                 <div class="col-sm-2"><i class="fa-solid fa-plus"></i></div>
             </div>
             <div class="mt-3 collapse" id="inject" data-parent="#accordion">
@@ -108,10 +108,10 @@
                 </security:authorize>
             </div>
         </div>
-        
+
         <div class="list-group-item">
             <div class="row text act" data-toggle="collapse" data-target="#injectResult">
-                <div class="col-sm-10 font-weight-bold ">Injection Result</div>
+                <div class="col-sm-10 font-weight-bold " id="design7">Injection Result</div>
                 <div class="col-sm-2"><i class="fa-solid fa-plus"></i></div>
             </div>
             <div class="mt-3 collapse" id="injectResult" data-parent="#accordion">
@@ -132,7 +132,7 @@
         <security:authorize access="hasAuthority('ADMIN')">
         <div class="list-group-item">
             <div class="row text act" data-toggle="collapse" data-target="#news">
-                <div class="col-sm-10 font-weight-bold ">News</div>
+                <div class="col-sm-10 font-weight-bold " id="design8">News</div>
                 <div class="col-sm-2"><i class="fa-solid fa-plus"></i></div>
             </div>
             <div class="mt-3 collapse" id="news" data-parent="#accordion">
@@ -150,7 +150,7 @@
         </div>
         <div class="list-group-item">
             <div class="row text act" data-toggle="collapse" data-target="#report">
-                <div class="col-sm-10 font-weight-bold ">Report</div>
+                <div class="col-sm-10 font-weight-bold " id="design9">Report</div>
                 <div class="col-sm-2"><i class="fa-solid fa-plus"></i></div>
             </div>
             <div class="mt-3 collapse" id="report" data-parent="#accordion">
@@ -173,7 +173,7 @@
         </div>
         </security:authorize>
     </div>
-    
+
 </div>
 
 
