@@ -86,7 +86,9 @@ public class Customer implements Serializable {
 
 	@OneToMany(mappedBy = "customer")
 	private Set<InjectionResult> injectionResults;
-
+	
+	@OneToMany(mappedBy = "customer")
+	private Set<UserRole> userRoles;
 	@Transient
 	public int getCountNumberOfInjection(){
 		int total = injectionResults.stream().map(x -> {
