@@ -1,6 +1,7 @@
 package com.vn.dto;
 
 import java.time.LocalDate;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Id;
@@ -30,10 +31,10 @@ public class VaccineDTO {
 	private String origin;
 	
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
-	private LocalDate timeBeginNextInjection;
+	private Date timeBeginNextInjection;
 	
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
-	private LocalDate timeEndNextInjection;
+	private Date timeEndNextInjection;
 	
 	
 	private String usage;

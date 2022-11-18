@@ -35,36 +35,54 @@ public class InjectionScheduleController {
     @Autowired
     InjectionScheduleService injectionScheduleService;
 
-    @GetMapping("/add/injectionSchedule")
+    @GetMapping("/injection-schedule/add")
     public ModelAndView listInjection(Model model) {
-        model.addAttribute("injection",new InjectionScheduleDTO());
-        List<InjectionSchedule> scheduleList= injectionScheduleReponsitory.findAll();
+        model.addAttribute("injection", new InjectionScheduleDTO());
+        List<InjectionSchedule> scheduleList = injectionScheduleReponsitory.findAll();
         model.addAttribute("listInjection", scheduleList);
-        List<Vaccine> vaccineList= vaccineReponsitory.findAll();
-        model.addAttribute("listVaccine",vaccineList);
-        ModelAndView modelAndView= new ModelAndView("createSchedule");
+        List<Vaccine> vaccineList = vaccineReponsitory.findAll();
+        model.addAttribute("listVaccine", vaccineList);
+        ModelAndView modelAndView = new ModelAndView("createSchedule");
         return modelAndView;
     }
-    @GetMapping("/lisst")
-    public ModelAndView getlist(){
-        ModelAndView modelAndView= new ModelAndView("ListSchedule");
+
+    @GetMapping("/injection-schedule/list")
+    public ModelAndView getlist(Model model) {
+        ModelAndView modelAndView = new ModelAndView("ListSchedule");
+        model.addAttribute("listSchedule", injectionScheduleReponsitory.findAll());
         return modelAndView;
     }
+
     @PostMapping("/add/injectionSchedule")
     public ModelAndView addInjection(@Valid @ModelAttribute("injection") InjectionScheduleDTO injectionScheduleDTO, BindingResult bindingResult) {
-        if (bindingResult.hasErrors()){
-            ModelAndView modelerror= new ModelAndView("createSchedule");
+        if (bindingResult.hasErrors()) {
+            ModelAndView modelerror = new ModelAndView("createSchedule");
             return modelerror;
         }
         injectionScheduleService.save(injectionScheduleDTO);
-        ModelAndView modelAndView= new ModelAndView("redirect:/lisst");
+        ModelAndView modelAndView = new ModelAndView("redirect:/lisst");
         return modelAndView;
     }
+
     @GetMapping("/update/injectionSchedule")
-    public ModelAndView update(@RequestParam String id,Model model){
-        InjectionSchedule injectionSchedule= injectionScheduleReponsitory.findById(id).orElse(null);
-        model.addAttribute("updateSchedule",injectionSchedule);
-        ModelAndView modelAndView= new ModelAndView("update");
+    public ModelAndView getUpdate(@RequestParam String id, Model model) {
+        InjectionSchedule injectionSchedule = injectionScheduleReponsitory.findById(id).orElse(null);
+        model.addAttribute("updateSchedule", injectionSchedule);
+        ModelAndView modelAndView = new ModelAndView("update");
+        return modelAndView;
+    }
+
+    @PostMapping("/update/injectionSchedule")
+    public ModelAndView postUpdate(@ModelAttribute("updateSchedule") InjectionSchedule injectionSchedule) {
+//        InjectionSchedule schedule= new InjectionSchedule();
+//        schedule.setId(injectionSchedule.getId());
+//        schedule.setStartDate(injectionSchedule.getStartDate());
+//        schedule.setEndDate(injectionSchedule.getEndDate());
+//        schedule.setDescription(injectionSchedule.getDescription());
+//        schedule.setPlace(injectionSchedule.getPlace());
+//        schedule.setVaccine(vaccineReponsitory.findById(injectionSchedule.getVaccine().getId()).orElse(null));
+        injectionScheduleReponsitory.save(injectionSchedule);
+        ModelAndView modelAndView = new ModelAndView("redirect:/lisst");
         return modelAndView;
     }
 }

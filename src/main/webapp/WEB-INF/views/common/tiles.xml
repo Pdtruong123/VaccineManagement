@@ -53,6 +53,13 @@
                        value="/WEB-INF/views/InjectionResult/update-injection-result.jsp"/>
     </definition>
 
+    <definition name="IJList" extends="base.definition">
+        <put-attribute name="title" value="Injection Result List"/>
+        <put-attribute name="body"
+                       value="/WEB-INF/views/InjectionResult/fakeList.jsp"/>
+    </definition>
+
+
 
     <!-- End Of Feature Injection Result-->
 
@@ -114,6 +121,12 @@
         <put-attribute name="body"
                        value="/WEB-INF/views/vaccine/vaccine-create.jsp"/>
     </definition>
+    
+    <definition name="vaccineImport" extends="base.definition">
+        <put-attribute name="title" value="Import Vaccine"/>
+        <put-attribute name="body"
+                       value="/WEB-INF/views/vaccine/vaccine-import.jsp"/>
+    </definition>
 
     <!--Report-->
     <!--Report Inject-->
@@ -157,25 +170,13 @@
 
     <!--End Report-->
 
-    <!--Start Of Feature Employee-->
-    <definition name="employeeList" extends="base.definition">
-        <put-attribute name="title" value="News List"/>
+    <!--Create Customer-->
+    <definition name="registerCustomer" extends="base.definition">
+        <put-attribute name="title" value="Register Customer"/>
         <put-attribute name="body"
-                       value="/WEB-INF/views/News/news-list.jsp"/>
+                       value="/WEB-INF/views/Customer/registerCustomer.jsp"/>
     </definition>
 
-    <definition name="addNews" extends="base.definition">
-        <put-attribute name="title" value="Add News Page"/>
-        <put-attribute name="body"
-                       value="/WEB-INF/views/News/create-news.jsp"/>
-    </definition>
-
-    <definition name="update-news" extends="base.definition">
-        <put-attribute name="title" value="Update News"/>
-        <put-attribute name="body"
-                       value="/WEB-INF/views/News/update-news.jsp"/>
-    </definition>
-    <!--End Of Feature Employee-->
 
 
 </tiles-definitions>

@@ -1,6 +1,7 @@
 package com.vn.model;
 
 import java.time.LocalDate;
+import java.util.Date;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -21,6 +22,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 @Entity
 @Table(name = "Vaccine")
@@ -32,7 +34,6 @@ import lombok.Setter;
 public class Vaccine {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name = "vaccine_id", length = 36)
 	private String id;
 	
@@ -49,10 +50,10 @@ public class Vaccine {
 	private String origin;
 	
 	@Column(name = "time_begin_next_injection")
-	private LocalDate timeBeginNextInjection;
+	private Date timeBeginNextInjection;
 	
 	@Column(name = "time_end_next_injection")
-	private LocalDate timeEndNextInjection;
+	private Date timeEndNextInjection;
 	
 	@Column(length = 200)
 	private String usage;
@@ -73,6 +74,32 @@ public class Vaccine {
 	
 	@Column(name = "status")	
 	private Boolean status;
+
+	public Vaccine(String id, String contraindication, String indication, Integer numberOfInjection, String origin,
+			Date timeBeginNextInjection, Date timeEndNextInjection, String usage, String vaccineName,
+			Boolean status) {
+		super();
+		this.id = id;
+		this.contraindication = contraindication;
+		this.indication = indication;
+		this.numberOfInjection = numberOfInjection;
+		this.origin = origin;
+		this.timeBeginNextInjection = timeBeginNextInjection;
+		this.timeEndNextInjection = timeEndNextInjection;
+		this.usage = usage;
+		this.vaccineName = vaccineName;
+		this.status = status;
+	}
+
+	@Override
+	public String toString() {
+		return "Vaccine [id=" + id + ", contraindication=" + contraindication + ", indication=" + indication
+				+ ", numberOfInjection=" + numberOfInjection + ", origin=" + origin + ", timeBeginNextInjection="
+				+ timeBeginNextInjection + ", timeEndNextInjection=" + timeEndNextInjection + ", usage=" + usage
+				+ ", vaccineName=" + vaccineName + ", status=" + status + "]";
+	}
+	
+	
 	
 	
 	

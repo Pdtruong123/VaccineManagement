@@ -3,24 +3,31 @@ package com.vn.service.impl;
 import com.vn.dto.VaccineDTO;
 import com.vn.model.InjectionResult;
 import com.vn.model.Vaccine;
+import com.vn.repository.InjectionSchuduleRepository;
 import com.vn.repository.VaccineRepository;
 import com.vn.service.VaccineService;
+import com.vn.util.ReadFileExcel;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
+import javax.validation.Valid;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
-
-import javax.validation.Valid;
 
 @Service
 public class VaccineServiceImpl implements VaccineService {
     @Autowired
     VaccineRepository vaccineRepository;
+    @Autowired
+    InjectionSchuduleRepository injectionSchuduleRepository;
 
     @Override
     public List<String> findAllVaccineName() {
@@ -76,7 +83,7 @@ public class VaccineServiceImpl implements VaccineService {
 		vaccine.setTimeEndNextInjection(vaccineDTO.getTimeEndNextInjection());
 		vaccine.setOrigin(vaccineDTO.getOrigin());
 		
-		if (vaccine.getTimeBeginNextInjection().isAfter(vaccine.getTimeEndNextInjection())) {
+		if (vaccine.getTimeBeginNextInjection().after(vaccine.getTimeEndNextInjection())) {
 			return null;
 		}else {
 			vaccineRepository.save(vaccine);
@@ -88,21 +95,7 @@ public class VaccineServiceImpl implements VaccineService {
 	}
 
 
-	@Override
-	public Vaccine updateInActive(Boolean status, String id) {
-		
-		Optional<Vaccine> optionalV = vaccineRepository.findById(id);
-		if (optionalV.isPresent()) {
-			Vaccine vaccine = optionalV.get();
-			vaccine.setStatus(status);
-			vaccineRepository.save(vaccine);
-			return vaccine;
-		}else {
-			return null;
-		}
-		
-		
-	}
+	
 
 
 	@Override
@@ -121,7 +114,7 @@ public class VaccineServiceImpl implements VaccineService {
 
 	@Override
 	public Vaccine update(@Valid VaccineDTO vaccineDTO) {
-		if (vaccineDTO.getTimeBeginNextInjection().isAfter(vaccineDTO.getTimeEndNextInjection())) {
+		if (vaccineDTO.getTimeBeginNextInjection().after(vaccineDTO.getTimeEndNextInjection())) {
 			return null;
 		}
 		Optional<Vaccine> vaccineOptional = vaccineRepository.findById(vaccineDTO.getId());
@@ -149,11 +142,26 @@ public class VaccineServiceImpl implements VaccineService {
 	@Transactional
 	public void updateStatus(List<String> ids, Boolean status) {
 		vaccineRepository.updateStatus(ids, status);
+		injectionSchuduleRepository.deleteByListVaccine(ids);
+		
 	}
 
 	@Override
-	public Page<Vaccine> findElementReport(String origin, String vaccineType, LocalDate timeBeginNextInjection, LocalDate timeEndNextInjection,
-										   Pageable pageable) {
-		return vaccineRepository.findElementReport(origin, vaccineType, timeBeginNextInjection, timeEndNextInjection, pageable);
+	public List<Vaccine> findElementReport(String origin, String vaccineType, LocalDate timeBeginNextInjection, LocalDate timeEndNextInjection) {
+
+		return vaccineRepository.findElementReport(origin, vaccineType, timeBeginNextInjection, timeEndNextInjection);
+	}
+
+
+	@Override
+	public void save(MultipartFile file) {
+		try {
+			List<Vaccine> vaccines = ReadFileExcel.importFileExcel(file.getInputStream());
+			vaccineRepository.saveAll(vaccines);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
 	}
 }

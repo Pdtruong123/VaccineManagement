@@ -14,6 +14,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Table(name = "Injection_Schedule")
@@ -39,6 +40,7 @@ public class InjectionSchedule implements Serializable {
     private String description;
     @NotNull
     @Column(name = "end_date")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate endDate;
     @NotBlank
     private String place;
@@ -50,8 +52,10 @@ public class InjectionSchedule implements Serializable {
     public void setVaccine(Vaccine vaccine) {
         this.vaccine = vaccine;
     }
-   @NotNull
+
+    @NotNull
     @Column(name = "start_date")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate startDate;
 
     //    @JsonIgnore
@@ -61,17 +65,20 @@ public class InjectionSchedule implements Serializable {
     private Vaccine vaccine;
 
     @Transient
-    private String status;
+    private String status="";
 
     public String getStatus() {
-        if (endDate.isBefore(LocalDate.now()) && vaccine.getStatus() != null && vaccine.getStatus() == true) {
+        if (startDate.isAfter(LocalDate.now()) && !endDate.isAfter(LocalDate.now()) && vaccine.getStatus() == true) {
             status = "Open";
         }
-        if (!endDate.isBefore(LocalDate.now()) && vaccine.getStatus() != null && vaccine.getStatus() == true) {
+        if (startDate.isBefore(LocalDate.now()) && vaccine.getStatus() == true) {
             status = "Not yet";
         }
-        if (!(vaccine.getStatus() != null && vaccine.getStatus()) && endDate.isBefore(LocalDate.now())) {
+        if (vaccine.getStatus()==true && endDate.isBefore(LocalDate.now())) {
             status = "Over";
+        }
+        if(vaccine.getStatus()==false){
+            status="in-Active";
         }
         return status;
     }

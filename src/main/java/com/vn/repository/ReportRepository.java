@@ -1,28 +1,38 @@
 package com.vn.repository;
 
-import com.vn.model.InjectionResult;
-import com.vn.model.News;
 import com.vn.model.Vaccine;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
-import java.time.LocalDate;
+import java.util.List;
 
 @Repository
-public interface ReportRepository extends JpaRepository<News, String> {
+public interface ReportRepository extends JpaRepository<Vaccine, String> {
 
-    @Query("select i from InjectionResult i where i.prevention like %:prevention% or i.vaccine.vaccineName =:vaccineType" +
-            " or i.injectionDate between :startDate and :endDate")
-    Page<InjectionResult> findInjectionResultReport(String prevention, String vaccineType, LocalDate startDate, LocalDate endDate,
-                                            Pageable pageable);
+    @Query(value = "Select ISNULL(c.total,0) from date_report d " +
+            "  Left Join " +
+            "  (SELECT SUM(ir.number_of_injection) as total, month(injection_date)  as month FROM injection_result ir " +
+            "  Where YEAR(injection_date) = ?1 " +
+            "  GROUP BY   month(injection_date) ) as c " +
+            "  on d.id = c.month", nativeQuery = true)
+    List<Integer> listValueInjectChart(String year);
 
-    @Query("select v from Vaccine v where v.origin like %:origin% AND v.vaccineType.id =:vaccineType" +
-            " or (v.timeBeginNextInjection between :timeBeginNextInjection and :timeEndNextInjection)  " +
-            " or (v.timeEndNextInjection between :timeBeginNextInjection and :timeEndNextInjection)")
-    Page<Vaccine> findVaccineReport(String origin, String vaccineType, LocalDate timeBeginNextInjection, LocalDate timeEndNextInjection,
-                                    Pageable pageable);
+    @Query(value = "Select ISNULL(c.total,0) from date_report d " +
+            "  Left Join " +
+            "  (SELECT SUM(v.number_of_injection) as total, month(time_begin_next_injection)  as month FROM vaccine v " +
+            "  Where YEAR(time_begin_next_injection) = ?1 " +
+            "  GROUP BY   month(time_begin_next_injection) ) as c " +
+            "  on d.id = c.month", nativeQuery = true)
+    List<Integer> listValueVaccineChart(String year);
+
+    @Query(value = "Select ISNULL(c.total,0) from date_report d " +
+            "  Left Join " +
+            "  (SELECT COUNT(ir.customer_id) as total, month(injection_date)  as month FROM injection_result ir " +
+            "  Where YEAR(injection_date) = ?1 " +
+            "  GROUP BY   month(injection_date) ) as c " +
+            "  on d.id = c.month", nativeQuery = true)
+    List<Integer> listValueCustomerChart(String year);
+
 
 }

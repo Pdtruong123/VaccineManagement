@@ -2,10 +2,12 @@ package com.vn.model;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -86,6 +88,17 @@ public class Customer implements Serializable {
 
 	@OneToMany(mappedBy = "customer")
 	private Set<InjectionResult> injectionResults;
+	
+	@OneToMany(mappedBy = "customer",fetch = FetchType.EAGER)
+	private List<UserRole> userRoles;
+	@Transient
+	public int getCountNumberOfInjection(){
+		int total = injectionResults.stream().map(x -> {
+			return x.getNumberOfInjection();
+		}).reduce(0, (subtotal, element) -> subtotal + element);
+		return total;
+	}
+
 
 	@Override
 	public String toString() {
@@ -103,7 +116,6 @@ public class Customer implements Serializable {
 				", capcha='" + capcha + '\'' +
 				", code='" + code + '\'' +
 				", userName='" + userName + '\'' +
-				", injectionResults=" + injectionResults +
 				'}';
 	}
 }

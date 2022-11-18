@@ -19,11 +19,6 @@ public class InjectionResultServiceImpl implements InjectionResultService {
 
 
     @Override
-    public List<String> findAllPrevention() {
-        return injectionResultRepository.findAllPrevention();
-    }
-
-    @Override
     public InjectionResult save(InjectionResult injectionResult) {
         return injectionResultRepository.save(injectionResult);
     }
@@ -38,23 +33,21 @@ public class InjectionResultServiceImpl implements InjectionResultService {
         return injectionResultRepository.findById(id).get();
     }
 
-
     @Override
-    public Page<InjectionResult> findContainElement(String searchParam, Pageable pageable) {
-        return injectionResultRepository.findContainElement(searchParam, pageable);
-    }
-
-    @Override
-    public Page<InjectionResult> findElementReport(String prevention, String vaccineType, LocalDate startDate, LocalDate endDate, Pageable pageable) {
+    public List<InjectionResult> findElementReport(String prevention, String vaccineType, LocalDate startDate, LocalDate endDate) {
         if(prevention==null){
 
         }
-        return injectionResultRepository.findElementReport(prevention, vaccineType, startDate, endDate, pageable);
+        return injectionResultRepository.findElementReport(prevention, vaccineType, startDate, endDate);
+    }
+
+    @Override
+    public List<InjectionResult> findAll() {
+        return injectionResultRepository.findAll();
     }
 
 
-    @Override
-    public Page<InjectionResult> findAll(Pageable pageable) {
-        return injectionResultRepository.findAll(pageable);
+    public InjectionResultServiceImpl(InjectionResultRepository injectionResultRepository) {
+        this.injectionResultRepository = injectionResultRepository;
     }
 }
