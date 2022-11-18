@@ -20,11 +20,7 @@ public class ReadFileExcel {
 		
 		// check file excel
 		String type = file.getContentType();
-		if (type.equals("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")) {
-			return true;
-		}else {
-			return false;
-		}
+        return type.equals("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
 	}
 	@SuppressWarnings("deprecation")
 	public static List<Vaccine> importFileExcel(InputStream inputStream) {
@@ -57,15 +53,15 @@ public class ReadFileExcel {
 					int collumIndex = nextCell.getColumnIndex();
 					switch (collumIndex) {
 					case 0:
-						id = (String) nextCell.getStringCellValue();
+						id = nextCell.getStringCellValue();
 						System.out.println(id);
 						break;
 					case 1:
-						contraindication = (String) nextCell.getStringCellValue();
+						contraindication = nextCell.getStringCellValue();
 						System.out.println(contraindication);
 						break;
 					case 2:
-						indication = (String) nextCell.getStringCellValue();
+						indication = nextCell.getStringCellValue();
 						System.out.println(indication);
 						break;
 					case 3:
@@ -73,7 +69,7 @@ public class ReadFileExcel {
 						System.out.println(numberOfInjection);
 						break;
 					case 4:
-						origin = (String) nextCell.getStringCellValue();
+						origin = nextCell.getStringCellValue();
 						System.out.println(origin);
 						break;
 					case 5:
@@ -87,15 +83,15 @@ public class ReadFileExcel {
 						System.out.println(dateNext);
 						break;
 					case 7:
-						usage = (String) nextCell.getStringCellValue();
+						usage = nextCell.getStringCellValue();
 						System.out.println(usage);
 						break;
 					case 8:
-						vaccineName = (String) nextCell.getStringCellValue();
+						vaccineName = nextCell.getStringCellValue();
 						System.out.println(vaccineName);
 						break;
 					case 9:
-						status = (Boolean) nextCell.getBooleanCellValue();
+						status = nextCell.getBooleanCellValue();
 						System.out.println(status);
 						break;
 					default:

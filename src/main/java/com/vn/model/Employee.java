@@ -3,59 +3,72 @@ package com.vn.model;
 import java.io.Serializable;
 import java.time.LocalDate;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 
+import com.vn.util.GenerateID;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.GenericGenerator;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.web.multipart.MultipartFile;
 
 @Entity
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name ="employee")
+@Table(name = "employee")
 public class Employee implements Serializable {
 
-	@Id
-	@Column(name ="employee_id", length = 36)
-	private String id;
-	
-	private String address;
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "Employee_ID")
+    @GenericGenerator(name = "Employee_ID", strategy = "com.vn.util.GenerateID", parameters = {
+            @org.hibernate.annotations.Parameter(name = GenerateID.INCREMENT_PARAM, value = "1"),
+            @org.hibernate.annotations.Parameter(name = GenerateID.VALUE_PREFIX_PARAMATER, value = "Employee_"),
+            @org.hibernate.annotations.Parameter(name = GenerateID.NUMBER_FORMAT_PARAMETER, value = "%05d")
+    })
+    @Column(name = "employee_id", length = 36, nullable = false)
+    private String id;
 
-	@DateTimeFormat(pattern = "yyyy-MM-dd")
-	@Column(name ="dateOfBirth")
-	private LocalDate dateOfBirth;
-	
-	@Column(length = 100)
-	@Email
-	@NotEmpty
-	private String email;
-	
-	@Column(name = "employee_name",length = 100)
-	private String employeeName;
-	
-	private Integer gender;
-	
-	private String image;
-	
-	private String password;
-	
-	@Column(length = 20)
-	private String phone;
-	
-	@Column(length = 100)
-	private String position;
+    private String address;
 
-	
-	@Column(name = "working_place")
-	private String workingPlace;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @Column(name = "dateOfBirth")
+    private LocalDate dateOfBirth;
+
+    @Column(length = 100)
+    @Email
+    @NotEmpty
+    private String email;
+
+    @Column(name = "employee_name", length = 100)
+    private String employeeName;
+
+    private Integer gender;
+
+
+    @Transient
+    private String customFileInputHidden;
+
+    @Transient
+    private MultipartFile imageFile;
+
+    @Column
+    private String imageUrl;
+
+
+    @Column(length = 20)
+    private String phone;
+
+    @Column(length = 100)
+    private String position;
+
+
+    @Column(name = "working_place")
+    private String workingPlace;
 
 }

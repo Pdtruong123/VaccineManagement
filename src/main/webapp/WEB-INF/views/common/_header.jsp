@@ -3,7 +3,7 @@
 
 
     <nav class="row topnavbar py-1">
-        <a href="${pageContext.request.contextPath}/" class="navbar-brand ml-3 mr-auto"><img class="img" src="../../asserts/img/logo.png"></a>
+        <a href="${pageContext.request.contextPath}/home" class="navbar-brand ml-3 mr-auto"><img class="img" src="../../asserts/img/logo.png"></a>
     </nav>
 
 

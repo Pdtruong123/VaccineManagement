@@ -2,43 +2,9 @@
          pageEncoding="ISO-8859-1" %>
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!DOCTYPE html>
-<html>
+<script src="${pageContext.request.contextPath}/js/VaccineType.js"></script>
+<script src="${pageContext.request.contextPath}/js/ValidateEmployee.js"></script>
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
-          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-            crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"
-            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-            crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Open+Sans|Sofia|Trirong">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
-          integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
-          crossorigin="anonymous" referrerpolicy="no-referrer"
-    />
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
-            integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js"></script>
-    <script src="../../asserts/js/loadFileName.js"></script>
-    <script src="../../asserts/js/previewImg.js"></script>
-    <link rel="stylesheet" href="../../../asserts/css/style.css">
-    <link rel="stylesheet" href="employee.css">
-    <script src="image.js"></script>
-</head>
-
-<body>
         <div>
             <div class="h5 mt-3 text-center text-secondary font-weight-bold mb-3" style="color: black">CREATE EMPLOYEE
             </div>
@@ -47,25 +13,18 @@
                 <div class="card-body">
 
                     <form:form action="${pageContext.request.contextPath}/employee/add" method="post"
-                               modelAttribute="employee" id="employee-form">
+                               modelAttribute="employee" enctype="multipart/form-data" id="employee-form">
 
 
                     <div class="form-row">
-                        <div class="form-group col-sm-4">
-                            <label class="font-weight-bold" for="id">Employee id<span
-                                    class="text-danger">(*):</span></label>
-                            <form:input class="form-control w-50" type="text" placeholder="00126192" id="id" value=""
-                                        path="id"/>
-                        </div>
 
-
-                        <div class="form-group col-sm-4">
+                        <div class="form-group col-sm-5">
                             <label class="font-weight-bold" for="name">Employee name<span
                                     class="text-danger">(*):</span></label>
                             <form:input class="form-control" type="text" placeholder="Nguyen Van A" id="name"
                                         path="employeeName"/>
                         </div>
-
+                        <div class="form-group col-sm-2"></div>
 
                         <div class="form-group col-sm-4">
                             <label class="font-weight-bold" for="gender">Gender </label>
@@ -133,13 +92,19 @@
                         <div class="col-sm-1">
                             <i class="fa-solid fa-image mt-2 h5"></i>
                         </div>
-                        <div class="file-upload">
-                            <div class="file-select">
-                                <div class="file-select-button" id="fileName">Choose File</div>
-                                <div class="file-select-name" id="noFile">No file chosen...</div>
-                                <input type="file" name="chooseFile" id="chooseFile">
-                            </div>
+                        <div class="custom-file mb-3 ml-3 col-sm-10">
+                            <form:input type="file" class="custom-file-input" path="imageFile" accept="image/*"
+                                   id="file-input"/>
+                            <form:input type="hidden" class="custom-file-input_hidden"
+                                   path="customFileInputHidden"/>
+                            <label class="custom-file-label" for="customFile">Choose file</label>
                         </div>
+                    </div>
+                    <div class="img-upload">
+
+                        <img id="img-preview"
+                             src="${pageContext.request.contextPath}/img/imgemployee/${employee.imageUrl}"/>
+
                     </div>
 
                 </div>
@@ -157,7 +122,3 @@
 
             </div>
         </div>
-
-        </body>
-
-</html>
