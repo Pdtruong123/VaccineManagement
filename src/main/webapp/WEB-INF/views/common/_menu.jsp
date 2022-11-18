@@ -87,7 +87,7 @@
             </div>
         </div>
         </security:authorize>
-
+		<security:authorize access="hasAuthority('ADMIN')">
         <div class="list-group-item">
             <div class="row text act" data-toggle="collapse" data-target="#inject">
                 <div class="col-sm-10 font-weight-bold " id="design6">Injection Schedule</div>
@@ -99,16 +99,16 @@
                         <span class="ml-2">Injection Schedule List</span>
                     </a>
                 </div>
-                <security:authorize access="hasAuthority('ADMIN')">
+                
                 <div class="ml-4 mt-2 text-sub">
                     <a class="text-reset text-decoration-none " href="${pageContext.request.contextPath}/injection-schedule/add">
                         <span class="ml-2">Create Injection Schedule</span>
                     </a>
                 </div>
-                </security:authorize>
+                
             </div>
         </div>
-
+		</security:authorize>
         <div class="list-group-item">
             <div class="row text act" data-toggle="collapse" data-target="#injectResult">
                 <div class="col-sm-10 font-weight-bold " id="design7">Injection Result</div>
@@ -129,7 +129,7 @@
                 </security:authorize>
             </div>
         </div>
-        <security:authorize access="hasAuthority('ADMIN')">
+        
         <div class="list-group-item">
             <div class="row text act" data-toggle="collapse" data-target="#news">
                 <div class="col-sm-10 font-weight-bold " id="design8">News</div>
@@ -141,13 +141,16 @@
                         <span class="ml-2">News List</span>
                     </a>
                 </div>
+            <security:authorize access="hasAuthority('ADMIN')">    
                 <div class="ml-4 mt-2 text-sub">
                     <a class="text-reset text-decoration-none " href="${pageContext.request.contextPath}/news/add">
                         <span class="ml-2">Create News</span>
                     </a>
                 </div>
+                 </security:authorize>
             </div>
         </div>
+        <security:authorize access="hasAuthority('ADMIN')">
         <div class="list-group-item">
             <div class="row text act" data-toggle="collapse" data-target="#report">
                 <div class="col-sm-10 font-weight-bold " id="design9">Report</div>
@@ -171,9 +174,8 @@
                 </div>
             </div>
         </div>
-        </security:authorize>
+       </security:authorize>
     </div>
-
 </div>
 
 
