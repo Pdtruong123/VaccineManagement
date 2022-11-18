@@ -1,8 +1,10 @@
 package com.vn.controller;
 
 import com.vn.model.InjectionResult;
+import com.vn.model.Vaccine;
 import com.vn.service.InjectionResultService;
 import com.vn.service.VaccineService;
+import com.vn.service.VaccineTypeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -30,6 +32,9 @@ public class ReportController {
 
     @Autowired
     VaccineService vaccineService;
+
+    @Autowired
+    VaccineTypeService vaccineTypeService;
 
     @Autowired
     HttpServletRequest request;
@@ -86,17 +91,46 @@ public class ReportController {
         return model;
     }
 
-    @GetMapping("report/customer")
-    public ModelAndView customerReportPage(@RequestParam(value = "p", defaultValue = "0") Integer p,
+    @GetMapping("report/vaccine")
+    public ModelAndView vaccineReportPage(@RequestParam(value = "p", defaultValue = "0") Integer p,
                                                   @RequestParam(value = "size", defaultValue = "5") Integer size){
-        ModelAndView model = new ModelAndView("reportCustomer");
+        ModelAndView model = new ModelAndView("reportVaccine");
         Pageable pageable = PageRequest.of(p, size);
-        Page<InjectionResult> injectionResults = injectionResultService.findAll(pageable);
-        model.addObject("injectionResultList", injectionResults);
-        model.addObject("vaccineList", vaccineService.findAll());
-        if ((long) size * (injectionResults.getNumber() + 1) > injectionResults.getTotalElements()) {
+        Page<Vaccine> vaccines = vaccineService.findAll(pageable);
+        model.addObject("vaccineList", vaccines);
+        model.addObject("vaccineTypeList", vaccineTypeService.findAll());
+        if ((long) size * (vaccines.getNumber() + 1) > vaccines.getTotalElements()) {
             model.addObject("firstElement", size * p + 1);
-            model.addObject("lastElement", injectionResults.getTotalElements());
+            model.addObject("lastElement", vaccines.getTotalElements());
+        } else {
+            model.addObject("firstElement", size * p + 1);
+            model.addObject("lastElement", size * (p + 1));
+        }
+        return model;
+    }
+
+    @PostMapping("/search/report/vaccine")
+    public ModelAndView searchVaccineReportPage(@RequestParam(value = "p", defaultValue = "0") Integer p,
+                                   @RequestParam(value = "size", defaultValue = "5") Integer size,
+                                   @RequestParam(value ="origin", required = false) String origin,
+                                   @RequestParam(value ="vaccineType", required = false) String vaccineType,
+                                   @RequestParam(value = "timeBeginNextInjection", required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate timeBeginNextInjection,
+                                   @RequestParam(value = "timeEndNextInjection", required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate timeEndNextInjection){
+
+        ModelAndView model = new ModelAndView("reportVaccine");
+        Pageable pageable = PageRequest.of(p, size);
+
+        Page<Vaccine> vaccines = vaccineService.findElementReport(origin, vaccineType, timeBeginNextInjection,timeEndNextInjection,pageable);
+        System.out.println(origin);
+        System.out.println(vaccineType);
+        System.out.println(timeBeginNextInjection);
+        System.out.println(timeEndNextInjection);
+        System.out.println(pageable);
+        model.addObject("vaccineList", vaccines);
+
+        if ((long) size * (vaccines.getNumber() + 1) > vaccines.getTotalElements()) {
+            model.addObject("firstElement", size * p + 1);
+            model.addObject("lastElement", vaccines.getTotalElements());
         } else {
             model.addObject("firstElement", size * p + 1);
             model.addObject("lastElement", size * (p + 1));

@@ -29,8 +29,8 @@ public class EmployeeController {
     @Autowired
     HttpServletRequest request;
 
-    @GetMapping("/employee-list")
-    public String employeeListPage(Model model, @RequestParam(value = "p",defaultValue = "0") Integer p,
+    @GetMapping("/employee/list")
+    public ModelAndView employeeListPage(Model model, @RequestParam(value = "p",defaultValue = "0") Integer p,
                                    @RequestParam(value = "size", defaultValue = "5") Integer size){
         Pageable pageable = PageRequest.of(p, size);
         Page<Employee> employee = employeeService.findAllEmployee(pageable);
@@ -43,17 +43,17 @@ public class EmployeeController {
             model.addAttribute("firstElement", size * p + 1);
             model.addAttribute("lastElement", size * (p + 1));
         }
-        return "employee-list";
+        return model;
     }
 
-    @GetMapping("add/employee")
-    public String addEmployeePage(Model model){
+    @GetMapping("/employee/add")
+    public ModelAndView addEmployeePage(Model model){
         model.addAttribute("employee", new Employee());
         return "create-employee";
     }
 
-    @PostMapping("/add/employee")
-    public String addEmployee(@Valid @ModelAttribute("employee") Employee employee
+    @PostMapping("/employee/add")
+    public ModelAndView addEmployee(@Valid @ModelAttribute("employee") Employee employee
                               , RedirectAttributes redirectAttributes
                               ,BindingResult bindingResult){
         if(bindingResult.hasErrors()){
@@ -62,11 +62,11 @@ public class EmployeeController {
 
         employeeService.save(employee);
         redirectAttributes.addFlashAttribute("success","Add employee successfully!");
-        return "redirect:/add/employee";
+        return "redirect:/employee/add";
     }
 
-    @PostMapping("/search/employee")
-    public String searchEmployee(Model model, @RequestParam(value = "p",defaultValue = "0") Integer p,
+    @PostMapping("/employee/search")
+    public ModelAndView searchEmployee(Model model, @RequestParam(value = "p",defaultValue = "0") Integer p,
                                  @RequestParam(value = "size", defaultValue = "5") Integer size){
         String keyword = request.getParameter("searchEmployee");
         Pageable pageable = PageRequest.of(p,size);
@@ -78,13 +78,13 @@ public class EmployeeController {
         return "employee-list";
     }
 
-    @PostMapping("/delete/employee")
-    public String deleteEmployee(@RequestParam String id){
+    @PostMapping("/employee/delete")
+    public ModelAndView deleteEmployee(@RequestParam String id){
         employeeService.deleteEmployee(id);
-        return "redirect:/employee-list";
+        return "redirect:/employee/list";
     }
 
-    @GetMapping("/update/employee/{id}")
+    @GetMapping("/employee/update/{id}")
     public ModelAndView updateEmployeePage(@PathVariable String id){
         ModelAndView model = new ModelAndView("update-employee");
         Employee employee = employeeService.findById(id);
@@ -92,12 +92,12 @@ public class EmployeeController {
         return model;
     }
 
-    @PostMapping("/update/employee")
+    @PostMapping("/employee/update")
     public ModelAndView updateEmployee(@Valid @ModelAttribute("employee") Employee employee
             , BindingResult bindingResult
             , RedirectAttributes redirectAttributes){
         ModelAndView modelError = new ModelAndView("update-employee");
-        ModelAndView model = new ModelAndView("redirect:/employee-list");
+        ModelAndView model = new ModelAndView("redirect:/employee/list");
         if(bindingResult.hasErrors()){
             return modelError;
         }

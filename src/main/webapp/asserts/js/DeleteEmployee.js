@@ -20,7 +20,7 @@ $("#delete-button").click(function (){
         if(c) {
             $.ajax({
                 type: "POST",
-                url: "/delete/employee?id=" + id,
+                url: "/employee/delete?id=" + id,
                 success: function (){
                     thisResult.closest("tr").remove();
                     alert("Delete Successfully!")
@@ -52,7 +52,7 @@ $("#update-button").click(function (){
         return false;
     }
     if(count==1){
-        window.location.href="/update/employee/"+id;
+        window.location.href="/employee/update/"+id;
         return false;
     }
 })

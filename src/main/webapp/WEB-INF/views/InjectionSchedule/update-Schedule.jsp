@@ -1,41 +1,42 @@
-<%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+         pageEncoding="ISO-8859-1" %>
 <div class="card">
     <div class="head-title card-header">
         <h4 class="text-center">CREATE INJECTION SCHEDULE</h4>
     </div>
-    <form:form id="form-injectionSchedule" method="POST" modelAttribute="injection">
+    <form:form id="form-update" method="POST" modelAttribute="updateSchedule">
         <div class="card-body">
             <div class="mt-1 row">
                 <div class="col-sm-4">
                     <label>Vaccine</label><label class="lbls">(*)</label>
                     <form:select path="vaccineID" class="form-control">
-                        <c:forEach items="${listVaccine}" var="listvaccine">
-                            <option id="vaccineID" name="vaccineID"
+                        <c:forEach items="${updateSchedule}" var="listvaccine">
+                            <option id="vaccineID"
                                     value="${listvaccine.id}">${listvaccine.vaccineName}</option>
                         </c:forEach>
                     </form:select>
                 </div>
+
                 <div class="col-sm-4">
                     <label>From</label><label class="lbls">(*)</label>
-                    <form:input path="startDate" type="date" id="startDate" class="form-control"/>
+                    <form:input path="startDate" type="date" id="startDate"  class="form-control">${updateSchedule.startDate}</form:input>
                     <form:errors path="startDate"/>
                 </div>
                 <div class="col-sm-4">
                     <label>To</label><label class="lbls">(*)</label>
-                    <form:input path="endDate" type="date" class="form-control endDate"/>
+                    <form:input path="endDate" type="date" class="form-control endDate">${updateSchedule.endDate}</form:input>
                     <form:errors path="endDate"/>
                 </div>
             </div>
             <div class="mt-2 row">
                 <div class="col-sm-5">
                     <label>Place</label><label class="lbls">(*)</label>
-                    <form:textarea path="place" class="form-control place"/>
+                    <form:textarea path="place" class="form-control place">${updateSchedule.place}</form:textarea>
                     <form:errors path="place"/>
                 </div>
                 <div class="col-sm-7">
                     <label>Note:</label>
-                    <form:textarea path="note" class="form-control note"/>
+                    <form:textarea path="note" class="form-control note">${updateSchedule.description}</form:textarea>
                     <form:errors path="note"/>
                 </div>
 
@@ -49,4 +50,3 @@
         </div>
     </form:form>
 </div>
-<script src="${pageContext.request.contextPath}/js/ValidatorInjectionSchedule.js"></script>
