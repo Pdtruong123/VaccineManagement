@@ -1,10 +1,11 @@
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<div class="card shadow">
-    <div class="head-title card-header">
-        <h4 class="text-center">CREATE INJECTION SCHEDULE</h4>
-    </div>
-    <form:form id="form-injectionSchedule" method="POST" modelAttribute="injection">
+
+        <h1 class="text-center">CREATE INJECTION SCHEDULE</h1>
+    <div class="h4 text-success font-weight-bold ml-3">${successAdd}</div>
+<div class="card mx-3 shadow">
+    <div class="card-body">
+    <form:form id="form-injectionSchedule" action="${pageContext.request.contextPath}/injectionSchedule/add" method="POST" modelAttribute="injection">
         <div class="card-body">
             <div class="mt-1 row">
                 <div class="col-sm-4">
@@ -42,11 +43,12 @@
             </div>
             <div class="pt-3">
                 <button type="submit" id="btnSave" class="btn btn-primary">Save</button>
-                <button type="submit" class="btn btn-danger ml-4">Reset</button>
-                <button type="reset" class="btn btn-warning ml-4"><a href="${pageContext.request.contextPath}/lisst">Cancle</a>
+                <button type="reset" class="btn btn-danger ml-4">Reset</button>
+                <button type="button" class="btn btn-warning ml-4"><a href="${pageContext.request.contextPath}/injection-schedule/list">Cancle</a>
                 </button>
             </div>
         </div>
     </form:form>
+</div>
 </div>
 <script src="${pageContext.request.contextPath}/js/ValidatorInjectionSchedule.js"></script>

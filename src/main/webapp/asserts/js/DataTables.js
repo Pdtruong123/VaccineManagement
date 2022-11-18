@@ -28,7 +28,7 @@ $(document).ready(function () {
         lengthMenu: [[5, 10,15, 20, 50, -1], [5, 10,15, 20, 50, "All"]]
     });
 
-    $('#employee-tb').DataTable({
+    $('#table-IC').DataTable({
         searching: true,
         ordering: true,
         lengthMenu: [[5, 10,15, 20, 50, -1], [5, 10,15, 20, 50, "All"]]
