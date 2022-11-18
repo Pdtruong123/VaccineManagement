@@ -1,5 +1,6 @@
 package com.vn.controller;
 
+import java.util.List;
 import java.util.Optional;
 
 import javax.servlet.http.HttpServletRequest;
@@ -28,7 +29,7 @@ public class CustomerController {
     @Autowired
     HttpServletRequest httpServletRequest;
 
-    @GetMapping("customer/registerCustomer")
+    @GetMapping("/customer/registerCustomer")
     public ModelAndView showRegistrationForm() {
         ModelAndView model = new ModelAndView("registerCustomer");
         Customer c = new Customer();
@@ -36,53 +37,25 @@ public class CustomerController {
         return model;
     }
 
-    @PostMapping("customer/registerCustomer")
+    @PostMapping("/customer/registerCustomer")
     public ModelAndView saveRegister(@ModelAttribute("customer") Customer customer) {
-        ModelAndView model = new ModelAndView("registerCustomer");
+            ModelAndView model = new ModelAndView("registerCustomer");
         customerService.create(customer);
         model.addObject("customer", customer);
         return model;
     }
 
-    @GetMapping("customer/injectionCustomerList")
-    public ModelAndView viewCustomerList(@RequestParam(value = "p", defaultValue = "0") Optional<Integer> p,
-                                   @RequestParam(value = "size", defaultValue = "5") Integer size) {
+    @GetMapping("/customer/injectionCustomerList")
+    public ModelAndView viewCustomerList() {
         ModelAndView model = new ModelAndView("injectionCustomerList");
-        Pageable pageable = PageRequest.of(p.orElse(0), size);
-        Page<Customer> page = customerService.findAll(pageable);
-        model.addObject("injectionCustomerList", page);
-        Integer total = customerService.countElement();
+        List<Customer> list = customerService.findAll();
+        model.addObject("injectionCustomerList", list);
 
-        if (size >= total) {
-            size = total;
-        }
-        model.addObject("size", size);
-        model.addObject("total", total);
         return model;
     }
 
-    @PostMapping("customer/search/injectionCustomerList")
-    public ModelAndView searchInjectionCustomerList(@RequestParam(value = "p", defaultValue = "0") Integer p,
-                                              @RequestParam(value = "size", defaultValue = "5") Integer size) {
-        ModelAndView model = new ModelAndView("injectionCustomerList");
-        String keyword = httpServletRequest.getParameter("searchInjectionCustomerList");
-        Pageable pageable = PageRequest.of(p, size);
-        Page<Customer> page = customerService.findContainElement(keyword, pageable);
-        if (page.isEmpty()) {
-            model.addObject("error", "No data found!");
-        }
-        int total = customerService.countContainElement(keyword);
-        if (size >= total) {
-            size = total;
-        }
-        model.addObject("size", size);
-        model.addObject("injectionCustomerList", page);
-        model.addObject("total", total);
-        return model;
 
-
-    }
-    @GetMapping(value = { "customer/update/injectionCustomerList/{id}" })
+    @GetMapping(value = { "/customer/update/injectionCustomerList/{id}" })
     public ModelAndView edit(@PathVariable("id") String id) {
         ModelAndView model = new ModelAndView("updateInjectionCustomerList");
         Customer customer = customerService.findById(id);
@@ -90,19 +63,16 @@ public class CustomerController {
         return model;
     }
 
-    @PostMapping(value = { "customer/update/injectionCustomerList" })
-    public ModelAndView updateCustomer(BindingResult result, @Valid Customer customer) {
+    @PostMapping(value = { "/customer/update" })
+    public ModelAndView updateCustomer(@ModelAttribute ("customer") @Valid Customer customer, BindingResult result) {
         ModelAndView model = new ModelAndView("redirect:/customer/injectionCustomerList");
         ModelAndView modelError = new ModelAndView("updateInjectionCustomerList");
-        if (result.hasErrors()){
-            return modelError;
-        }else{
-            customerService.create(customer);
-            return model;
-        }
+        customerService.create(customer);
+        return model;
+
     }
 
-    @PostMapping("customer/delete")
+    @PostMapping("/customer/injectionCustomerList/delete")
     public String deleteCustomer(@RequestParam String id) {
         customerService.deleteCustomer(id);
         return "redirect:/customer/injectionCustomerList";

@@ -42,14 +42,12 @@
     <script src="../../asserts/js/loadFileName.js"></script>
     <script src="../../asserts/js/previewImg.js"></script>
     <link rel="stylesheet" href="../../../asserts/css/Customer.css">
-
 </head>
 <body>
-<div class="container-fluid ">
-    <div class="h5 mt-3 text-center text-secondary font-weight-bold mb-3">UPDATE
-        CUSTOMER INFORMATION
-    </div>
-
+<div class="h5 mt-3 text-center text-secondary font-weight-bold mb-3">REGISTER
+    CUSTOMER INFORMATION
+</div>
+<div class="card-body shadow">
     <form:form
             action="${pageContext.request.contextPath}/registerCustomer"
             method="post" modelAttribute="customer" id="registerForm">
@@ -73,7 +71,7 @@
 
                     </div>
                     <div class="form-group col-sm-4">
-                        <label class="font-weight-bold" for="DOB">Date Of Birth
+                        <label class="font-weight-bold" for="DOB">Date of Birth
                             <span class="text-danger">(*)</span> :
                         </label>
                         <div class="form-inline">
@@ -84,15 +82,15 @@
                         </div>
                     </div>
                     <div class="form-group col-sm-3">
-                        <label class="font-weight-bold" for="gender">Gender </label>
+                        <label class="font-weight-bold">Gender </label>
                         <div class="form-inline">
                             <i class="fa-regular fa-face-meh-blank"></i>
                             <div class="gender d-flex justify-content-evenly border rounded">
                                 <div class="form-check form-check-inline">
-                                    <form:radiobutton path="gender" id="gender" value="0"/>Male
+                                    <form:radiobutton path="gender" id="genderMale" value="0"/>Male
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <form:radiobutton path="gender" id="gender" value="1"/>Female
+                                    <form:radiobutton path="gender" id="genderFemale" value="1"/>Female
                                 </div>
                             </div>
                         </div>
@@ -151,7 +149,7 @@
                         <div class="form-inline">
                             <i class="fa-solid fa-lock"></i>
                             <form:input type="password" path="password"
-                                        class="form-control ml-2" value="${customer.password}"
+                                        class="form-control ml-2"
                                         id="password"/>
                         </div>
                     </div>
@@ -217,8 +215,9 @@
                         </div>
                     </div>
                 </div>
+                <div class="status-txt"></div>
                 <div class="p-btn mt-5">
-                    <button type="submit" class="btn btn-sm btn-success">
+                    <button type="submit" class="btn btn-sm btn-success" onclick="return submitValidate()">
                         Save
                     </button>
                     <button type="reset" class="btn btn-sm btn-primary ml-2">Reset</button>
@@ -228,8 +227,6 @@
             </div>
         </div>
     </form:form>
-</div>
-
 </div>
 </div>
 <script src="../../../asserts/js/CustomerCreate.js"></script>

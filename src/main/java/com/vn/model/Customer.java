@@ -5,10 +5,19 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Set;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.validation.constraints.Email;
 
 import org.hibernate.annotations.GenericGenerator;
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.DateTimeFormat.ISO;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -80,13 +89,13 @@ public class Customer implements Serializable {
 	@OneToMany(mappedBy = "customer")
 	private Set<InjectionResult> injectionResults;
 
-//	@Transient
-//	public int getCountNumberOfInjection(){
-//		int total = injectionResults.stream().map(x -> {
-//			return x.getNumberOfInjection();
-//		}).reduce(0, (subtotal, element) -> subtotal + element);
-//		return total;
-//	}
+	@Transient
+	public int getCountNumberOfInjection(){
+		int total = injectionResults.stream().map(x -> {
+			return x.getNumberOfInjection();
+		}).reduce(0, (subtotal, element) -> subtotal + element);
+		return total;
+	}
 
 
 	@Override

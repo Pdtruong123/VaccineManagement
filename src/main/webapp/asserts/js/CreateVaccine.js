@@ -1,9 +1,14 @@
 $(document).ready(function() {
-	$("#formUpdate").validate({
+	$.validator.addMethod("greaterThanToday", function (value, element) {
+        return new Date().setHours(0,0,0,0) <= Date.parse(value);
+    }, "Please input Date of vaccination with value greater or equal the current date");
+	$("#formAdd").validate({
 		rules: {
 			id: {
 				required: true,
 				maxlength: 10,
+				number: true,
+				max: 9999999999,
 			},
 			vaccineName: {
 				required: true,
@@ -12,6 +17,12 @@ $(document).ready(function() {
 			usage: {
 
 				maxlength: 200,
+			},
+			timeBeginNextInjection: {
+				greaterThanToday: true,
+			},
+			timeEndNextInjection: {
+				greaterThanToday: true,
 			},
 			indication: {
 
@@ -34,6 +45,8 @@ $(document).ready(function() {
 			id: {
 				required: "Pls input id of vaccine",
 				maxlength: "Pls input id of vaccine must at least 10c",
+				number: "Pls input number of injection must is number",
+				max: "Pls input number of injection must small than 9999999999",
 			},
 			vaccineName: {
 				required: "Pls input name of vaccine",
@@ -69,7 +82,7 @@ function submitValidate() {
 	var dateEnd = new Date($("#vaccine-time-end-injection").val());
 
 	if (dateStart < dateEnd) {
-		if ($("#formUpdate").valid()) {
+		if ($("#formAdd").valid()) {
 			return true;
 		} else {
 			return false;

@@ -8,6 +8,7 @@ import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 
 import com.vn.model.Vaccine;
+import com.vn.repository.VaccineRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -24,6 +25,9 @@ public class VaccineTypeServiceImpl implements VaccineTypeService  {
 	
 	@Autowired
     VaccineTypeRepository vaccineTypeRepository;
+
+	@Autowired
+	VaccineRepository vaccineRepository;
 	
 	@Autowired
     ServletContext context;
@@ -77,11 +81,7 @@ public class VaccineTypeServiceImpl implements VaccineTypeService  {
 		vaccineType.setVaccineTypeName(vaccineTypeDTO.getVaccineTypeName());
 
 		String status = httpServletRequest.getParameter("vaccineTypeStatus");
-		if("active".equals(status)){
-			vaccineType.setVaccineTypeStatus(true);
-		}else {
-			vaccineType.setVaccineTypeStatus(false);
-		}
+        vaccineType.setVaccineTypeStatus("active".equals(status));
 
 		vaccineType.setDescription(vaccineTypeDTO.getDescription());
 		vaccineType.setImageFile(vaccineTypeDTO.getImageFile());
@@ -102,17 +102,6 @@ public class VaccineTypeServiceImpl implements VaccineTypeService  {
 	}
 
 	@Override
-	public Page<VaccineType> findAll(Pageable pageable) {
-
-		return vaccineTypeRepository.findAll(pageable);
-	}
-
-	@Override
-	public Page<VaccineType> findByVaccineTypeNameContaining(String name, Pageable pageable) {
-		return vaccineTypeRepository.findByVaccineTypeNameContaining(name,pageable);
-	}
-
-	@Override
 	public List<VaccineType> findAll() {
 		
 		return vaccineTypeRepository.findAll();
@@ -128,5 +117,12 @@ public class VaccineTypeServiceImpl implements VaccineTypeService  {
 	public List<VaccineType> findAllActice() {
 		Boolean status = true;
 		return vaccineTypeRepository.findByVaccineTypeStatus(status);
+	}
+
+	@Override
+	@Transactional
+	public void upDateStatusVaccine(List<String> ids, Boolean inactive) {
+
+		vaccineRepository.updateStatusByType(ids, inactive);
 	}
 }
