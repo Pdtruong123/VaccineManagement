@@ -30,19 +30,9 @@ public class EmployeeController {
     HttpServletRequest request;
 
     @GetMapping("/employee/list")
-    public ModelAndView employeeListPage(Model model, @RequestParam(value = "p",defaultValue = "0") Integer p,
-                                   @RequestParam(value = "size", defaultValue = "5") Integer size){
-        Pageable pageable = PageRequest.of(p, size);
-        Page<Employee> employee = employeeService.findAllEmployee(pageable);
-        model.addAttribute("employeeList", employee);
-
-        if ((long) size * (employee.getNumber() + 1) > employee.getTotalElements()) {
-            model.addAttribute("firstElement", size * p + 1);
-            model.addAttribute("lastElement", employee.getTotalElements());
-        } else {
-            model.addAttribute("firstElement", size * p + 1);
-            model.addAttribute("lastElement", size * (p + 1));
-        }
+    public ModelAndView employeeListPage(){
+        ModelAndView model = new ModelAndView("employeeList");
+        model.addObject("")
         return model;
     }
 
