@@ -8,6 +8,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.ServletContext;
+import java.nio.file.Path;
 import java.util.List;
 
 
@@ -15,6 +17,9 @@ import java.util.List;
 public class EmployeeServiceImpl implements EmployeeService {
     @Autowired
     private EmployeeRepository employeeRepository;
+
+    @Autowired
+    ServletContext context;
 
 
     @Override
@@ -24,6 +29,23 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public Employee save(Employee employee) {
+
+        if(!employee.getImageFile().isEmpty()) {
+            String path = context.getRealPath("/");
+            System.out.println("path = " + path);
+            try {
+                employee.setImageUrl(employee.getImageFile().getOriginalFilename());
+                String filePath = path + "/asserts/img/imgemployee/" + employee.getImageUrl();
+                employee.getImageFile().transferTo(Path.of(filePath));
+                employee.setImageFile(null);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        employee.setImageFile(employee.getImageFile());
+        employee.setImageUrl(employee.getImageUrl());
+
+
         return employeeRepository.save(employee);
     }
 
