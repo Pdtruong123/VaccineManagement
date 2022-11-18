@@ -8,8 +8,8 @@
     <form:form id="form-update" action="${pageContext.request.contextPath}/update/injectionSchedule" method="POST" modelAttribute="updateSchedule">
         <div class="card-body">
             <div class="mt-1 row">
-                <form:input path="id" type="text"/>
-                <form:input path="vaccine.id" type="text"/>
+                <form:input path="id" type="hidden"/>
+                <form:input path="vaccine.id" type="hidden"/>
                 <div class="col-sm-4">
                     <label>Vaccine</label><label class="lbls">(*)</label>
                     <form:input class="form-control" disabled="true" path="vaccine.vaccineName"/>
