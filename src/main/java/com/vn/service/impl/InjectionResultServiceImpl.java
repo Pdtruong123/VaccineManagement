@@ -47,8 +47,7 @@ public class InjectionResultServiceImpl implements InjectionResultService {
     }
 
 
-    @Override
-    public Page<InjectionResult> findAll(Pageable pageable) {
-        return injectionResultRepository.findAll(pageable);
+    public InjectionResultServiceImpl(InjectionResultRepository injectionResultRepository) {
+        this.injectionResultRepository = injectionResultRepository;
     }
 }

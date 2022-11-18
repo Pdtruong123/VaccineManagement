@@ -8,10 +8,10 @@ import java.time.LocalDate;
 import java.util.List;
 
 public interface InjectionResultService {
-    Page<InjectionResult> findAll(Pageable pageable);
     InjectionResult save(InjectionResult injectionResult);
     void deleteInjectionResult(String id);
     InjectionResult findById(String id);
     List<InjectionResult> findElementReport(String prevention, String vaccineType, LocalDate startDate, LocalDate endDate);
     List<InjectionResult> findAll();
+
 }

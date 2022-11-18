@@ -36,7 +36,7 @@
 <h1 class="h5 mt-3 text-center text-secondary font-weight-bold mb-3">CREATE INJECTION RESULT</h1>
 <div class="card mx-3 shadow">
     <div class="card-body">
-        <form:form action="${pageContext.request.contextPath}/update/injection-result" method="post"
+        <form:form action="${pageContext.request.contextPath}/injection-result/update" method="post"
                    modelAttribute="injectionResultUpdate">
             <form:input type="hidden" id="id" path="id" value="${injectionResultUpdate.id}"/>
             <div class="row m-4">
@@ -110,7 +110,7 @@
                 <button class="btn btn-success ml-3 mr-1" type="submit">Save</button>
                 <button class="btn btn-primary mr-1" type="reset">Reset</button>
                 <button class="btn btn-warning" type="submit"><a
-                        href="${pageContext.request.contextPath}/injection-result-list"
+                        href="${pageContext.request.contextPath}/injection-result/list"
                         class="text-white text-decoration-none">Cancel</a></button>
             </div>
         </form:form>

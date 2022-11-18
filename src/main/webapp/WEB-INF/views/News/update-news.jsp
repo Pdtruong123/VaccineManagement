@@ -37,7 +37,7 @@
 <div class="h4 text-success font-weight-bold ml-3">${success}</div>
 <div class="card mx-3 shadow">
     <div class="card-body">
-        <form:form action="${pageContext.request.contextPath}/update/news" method="post"
+        <form:form action="${pageContext.request.contextPath}/news/update" method="post"
                    modelAttribute="news" id="news-form">
             <form:input type="hidden" path="id"/>
             <div class="form-group">
@@ -55,11 +55,12 @@
             <div class="form-button mt-4">
                 <button class="btn btn-success mr-1" type="submit">Save</button>
                 <button class="btn btn-warning text-white" type="button"><a
-                        href="${pageContext.request.contextPath}/news-list"
+                        href="${pageContext.request.contextPath}/news/list"
                         class="text-white text-decoration-none">Cancel</a></button>
             </div>
         </form:form>
     </div>
 </div>
+<script src="${pageContext.request.contextPath}/js/VailidateNews.js"></script>
 </body>
 </html>
