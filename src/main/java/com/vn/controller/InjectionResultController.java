@@ -32,15 +32,14 @@ public class InjectionResultController {
 
 
 
-    @GetMapping("/injection-result-list")
+    @GetMapping("/injection-result/list")
     public ModelAndView viewPage() {
         ModelAndView model = new ModelAndView("injectionResultList");
         model.addObject("injectionResultList", injectionResultService.findAll());
         return model;
-
     }
 
-    @GetMapping("/add/injection-result")
+    @GetMapping("/injection-result/add")
     public ModelAndView addInjectionResultPage() {
         ModelAndView model = new ModelAndView("createInjectionResult");
         model.addObject("preventionList", DataInjectionResult.preventionData);
@@ -52,11 +51,11 @@ public class InjectionResultController {
         return model;
     }
 
-    @PostMapping("/add/injection-result")
+    @PostMapping("/injection-result/add")
     public ModelAndView addInjectionResult(@Valid @ModelAttribute(value = "injectionResult") InjectionResult injectionResult,
                                      BindingResult bindingResult, RedirectAttributes redirectAttributes) {
         ModelAndView modelError = new ModelAndView("createInjectionResult");
-        ModelAndView model = new ModelAndView("redirect:/add/injection-result");
+        ModelAndView model = new ModelAndView("redirect:/injection-result/add");
         if (bindingResult.hasErrors()) {
             return modelError;
         }
@@ -65,13 +64,13 @@ public class InjectionResultController {
         return model;
     }
 
-    @PostMapping("/delete/injection-result")
+    @PostMapping("/injection-result/delete")
     public String deleteInjectionResult(@RequestParam String id) {
         injectionResultService.deleteInjectionResult(id);
-        return "redirect:/injection-result-list";
+        return "redirect:/injection-result/list";
     }
 
-    @GetMapping("/update/injection-result/{id}")
+    @GetMapping("/injection-result/update/{id}")
     public ModelAndView updatePage(@PathVariable String id) {
         ModelAndView model = new ModelAndView("update-injection-result");
         InjectionResult injectionResultUpdate = injectionResultService.findById(id);
@@ -83,11 +82,11 @@ public class InjectionResultController {
         return model;
     }
 
-    @PostMapping("/update/injection-result")
+    @PostMapping("/injection-result/update")
     public ModelAndView updateInjectionResult(@Valid @ModelAttribute("injectionResultUpdate") InjectionResult injectionResultUpdate,
                                         BindingResult bindingResult, RedirectAttributes redirectAttributes ){
         ModelAndView modelError = new ModelAndView("update-injection-result");
-        ModelAndView model = new ModelAndView("redirect:/injection-result-list");
+        ModelAndView model = new ModelAndView("redirect:/injection-result/list");
         if(bindingResult.hasErrors()){
             return modelError;
         }

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
          pageEncoding="ISO-8859-1" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
 <head>
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.css">
     <link rel="stylesheet" href="../../../asserts/css/style.css">
@@ -39,14 +40,16 @@
             </table>
         </div>
         <div class="h5 text-right text-danger">${error}</div>
+        <security:authorize access="hasAuthority('ADMIN')">
         <div class="">
             <button class="btn btn-success mr-1" type="submit"><a
-                    href="${pageContext.request.contextPath}/add/injection-result"
+                    href="${pageContext.request.contextPath}/injection-result/add"
                     class="text-white text-decoration-none">Create Injection Result</a></button>
             <button class="btn btn-warning mr-1 text-white" type="submit" id="update-button">Update Injection Result
             </button>
             <button class="btn btn-danger" type="submit" id="delete-button">Delete Injection Result</button>
         </div>
+        </security:authorize>
     </div>
 </div>
 </div>
