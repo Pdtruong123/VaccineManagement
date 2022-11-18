@@ -72,7 +72,7 @@
 
                                     <td>${result.phone}</td>
                                     <td>${result.address}</td>
-                                    <td>${result.image}</td>
+                                    <td>${result.imageUrl}</td>
                                 </tr>
                             </c:forEach>
                             </tbody>

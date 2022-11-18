@@ -42,6 +42,7 @@ public class EmployeeServiceImpl implements EmployeeService {
                 e.printStackTrace();
             }
         }
+        System.out.println(employee.getImageFile());
         employee.setImageFile(employee.getImageFile());
         employee.setImageUrl(employee.getImageUrl());
 

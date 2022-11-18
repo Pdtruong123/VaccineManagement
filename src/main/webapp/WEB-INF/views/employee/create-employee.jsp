@@ -3,6 +3,7 @@
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <script src="${pageContext.request.contextPath}/js/VaccineType.js"></script>
+<script src="${pageContext.request.contextPath}/js/ValidateEmployee.js"></script>
 
         <div>
             <div class="h5 mt-3 text-center text-secondary font-weight-bold mb-3" style="color: black">CREATE EMPLOYEE
@@ -92,10 +93,10 @@
                             <i class="fa-solid fa-image mt-2 h5"></i>
                         </div>
                         <div class="custom-file mb-3 ml-3 col-sm-10">
-                            <input type="file" class="custom-file-input" path="imageFile" accept="image/*"
-                                   id="file-input">
-                            <input type="hidden" class="custom-file-input_hidden"
-                                   name="customFileInputHidden">
+                            <form:input type="file" class="custom-file-input" path="imageFile" accept="image/*"
+                                   id="file-input"/>
+                            <form:input type="hidden" class="custom-file-input_hidden"
+                                   path="customFileInputHidden"/>
                             <label class="custom-file-label" for="customFile">Choose file</label>
                         </div>
                     </div>
