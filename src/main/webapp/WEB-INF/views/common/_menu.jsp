@@ -14,7 +14,7 @@
             <security:authorize access="hasAuthority('ADMIN')">
         <div class="list-group-item">
             <div class="row text act" data-toggle="collapse" data-target="#employee">
-                <div class="col-sm-10 font-weight-bold ">Employee Management</div>
+                <div class="col-sm-10 font-weight-bold " id="design2">Employee Management</div>
                 <div class="col-sm-2"><i class="fa-solid fa-plus"></i></div>
             </div>
             <div class="mt-3 collapse" id="employee" data-parent="#accordion">
