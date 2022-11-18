@@ -72,7 +72,7 @@
 
                                     <td>${result.phone}</td>
                                     <td>${result.address}</td>
-                                    <td>${result.image}</td>
+                                    <td>${result.imageUrl}</td>
                                 </tr>
                             </c:forEach>
                             </tbody>
@@ -98,4 +98,3 @@
                     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.js"></script>
 </body>
 </html>
->

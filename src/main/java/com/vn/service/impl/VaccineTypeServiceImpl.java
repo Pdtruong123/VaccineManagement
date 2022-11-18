@@ -81,11 +81,7 @@ public class VaccineTypeServiceImpl implements VaccineTypeService  {
 		vaccineType.setVaccineTypeName(vaccineTypeDTO.getVaccineTypeName());
 
 		String status = httpServletRequest.getParameter("vaccineTypeStatus");
-		if("active".equals(status)){
-			vaccineType.setVaccineTypeStatus(true);
-		}else {
-			vaccineType.setVaccineTypeStatus(false);
-		}
+        vaccineType.setVaccineTypeStatus("active".equals(status));
 
 		vaccineType.setDescription(vaccineTypeDTO.getDescription());
 		vaccineType.setImageFile(vaccineTypeDTO.getImageFile());

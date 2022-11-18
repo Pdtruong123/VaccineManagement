@@ -1,7 +1,7 @@
 package com.vn.controller;
 
 import com.vn.model.Employee;
-import com.vn.model.News;
+
 import com.vn.service.EmployeeService;
 
 import org.springframework.beans.factory.annotation.Autowired;
