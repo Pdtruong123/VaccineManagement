@@ -32,46 +32,37 @@ public class EmployeeController {
     @GetMapping("/employee/list")
     public ModelAndView employeeListPage(){
         ModelAndView model = new ModelAndView("employeeList");
-        model.addObject("")
+        model.addObject("employeeList", employeeService.findAll());
         return model;
     }
 
     @GetMapping("/employee/add")
-    public ModelAndView addEmployeePage(Model model){
-        model.addAttribute("employee", new Employee());
-        return "create-employee";
+    public ModelAndView addEmployeePage(){
+        ModelAndView model = new ModelAndView("employeeAdd");
+        model.addObject("employee", new Employee());
+        return model;
     }
 
     @PostMapping("/employee/add")
     public ModelAndView addEmployee(@Valid @ModelAttribute("employee") Employee employee
                               , RedirectAttributes redirectAttributes
                               ,BindingResult bindingResult){
+        ModelAndView modelError = new ModelAndView("employeeAdd");
+        ModelAndView model = new ModelAndView("redirect:/employee/add");
         if(bindingResult.hasErrors()){
-            return "create-employee";
+            return modelError;
         }
 
         employeeService.save(employee);
         redirectAttributes.addFlashAttribute("success","Add employee successfully!");
-        return "redirect:/employee/add";
-    }
-
-    @PostMapping("/employee/search")
-    public ModelAndView searchEmployee(Model model, @RequestParam(value = "p",defaultValue = "0") Integer p,
-                                 @RequestParam(value = "size", defaultValue = "5") Integer size){
-        String keyword = request.getParameter("searchEmployee");
-        Pageable pageable = PageRequest.of(p,size);
-        Page<Employee> page = employeeService.findContainElements(keyword, pageable);
-        if (page.isEmpty()) {
-            model.addAttribute("error", "No data found!");
-        }
-        model.addAttribute("employeeList", page);
-        return "employee-list";
+        return model;
     }
 
     @PostMapping("/employee/delete")
     public ModelAndView deleteEmployee(@RequestParam String id){
+        ModelAndView model = new ModelAndView("redirect:/employee/list");
         employeeService.deleteEmployee(id);
-        return "redirect:/employee/list";
+        return model;
     }
 
     @GetMapping("/employee/update/{id}")

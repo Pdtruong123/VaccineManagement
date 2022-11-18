@@ -170,14 +170,27 @@
 
     <!--End Report-->
 
-    <!--Create Customer-->
-    <definition name="registerCustomer" extends="base.definition">
-        <put-attribute name="title" value="Register Customer"/>
+    <!--Start Feature Employee-->
+    <definition name="employeeList" extends="base.definition">
+        <put-attribute name="title" value="Employee List"/>
         <put-attribute name="body"
-                       value="/WEB-INF/views/Customer/registerCustomer.jsp"/>
+                       value="/WEB-INF/views/employee/employee-list.jsp"/>
     </definition>
 
 
+    <definition name="employeeAdd" extends="base.definition">
+        <put-attribute name="title" value="Add employee"/>
+        <put-attribute name="body"
+                       value="/WEB-INF/views/employee/create-employee.jsp"/>
+    </definition>
+
+    <definition name="update-employee" extends="base.definition">
+        <put-attribute name="title" value="Update employee"/>
+        <put-attribute name="body"
+                       value="/WEB-INF/views/employee/update-employee.jsp"/>
+    </definition>
+
+    <!--End Employee-->
 
 </tiles-definitions>
 

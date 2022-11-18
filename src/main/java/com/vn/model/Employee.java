@@ -5,8 +5,6 @@ import java.time.LocalDate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.Email;
@@ -59,12 +57,5 @@ public class Employee implements Serializable {
 	
 	@Column(name = "working_place")
 	private String workingPlace;
-	
-	@Override
-	public String toString() {
-		return "Employee [id=" + id + ", address=" + address + ", dateOfBirth=" + dateOfBirth + ", email=" + email
-				+ ", employeeName=" + employeeName + ", gender=" + gender + ", image=" + image + ", password="
-				+ password + ", phone=" + phone + ", position=" + position
-				+ ", workingPlace=" + workingPlace + "]";
-	}
+
 }
