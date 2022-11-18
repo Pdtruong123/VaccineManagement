@@ -47,20 +47,30 @@
                        value="/WEB-INF/views/InjectionResult/create-injection-result.jsp"/>
     </definition>
 
+    <definition name="redirect:/injection-result-list?search=" extends="base.definition">
+        <put-attribute name="title" value="Create Injection Result"/>
+        <put-attribute name="body"
+                       value="/WEB-INF/views/InjectionResult/injection-result-list.jsp"/>
+    </definition>
+
+    <definition name="redirect:/add/injection-result" extends="base.definition">
+        <put-attribute name="title" value="Create Injection Result"/>
+        <put-attribute name="body"
+                       value="/WEB-INF/views/InjectionResult/create-injection-result.jsp"/>
+    </definition>
+
+
     <definition name="update-injection-result" extends="base.definition">
         <put-attribute name="title" value="Update Injection Result"/>
         <put-attribute name="body"
                        value="/WEB-INF/views/InjectionResult/update-injection-result.jsp"/>
     </definition>
 
-    <definition name="IJList" extends="base.definition">
-        <put-attribute name="title" value="Injection Result List"/>
+    <definition name="redirect:/injection-result-list" extends="base.definition">
+        <put-attribute name="title" value="Update Injection Result"/>
         <put-attribute name="body"
-                       value="/WEB-INF/views/InjectionResult/fakeList.jsp"/>
+                       value="/WEB-INF/views/InjectionResult/injection-result-list.jsp"/>
     </definition>
-
-
-
     <!-- End Of Feature Injection Result-->
 
     <!--Start Of Feature News-->
@@ -76,11 +86,37 @@
                        value="/WEB-INF/views/News/create-news.jsp"/>
     </definition>
 
+<!--    <definition name="redirect:/add/news" extends="base.definition">-->
+<!--        <put-attribute name="title" value="Add News"/>-->
+<!--        <put-attribute name="body"-->
+<!--                       value="/WEB-INF/views/News/create-news.jsp"/>-->
+<!--    </definition>-->
+
+<!--    <definition name="redirect:/news-list?search=" extends="base.definition">-->
+<!--        <put-attribute name="title" value="Search News"/>-->
+<!--        <put-attribute name="body"-->
+<!--                       value="/WEB-INF/views/News/news-list.jsp"/>-->
+<!--    </definition>-->
+
+<!--    <definition name="redirect:/news-list" extends="base.definition">-->
+<!--        <put-attribute name="title" value="Delete News"/>-->
+<!--        <put-attribute name="body"-->
+<!--                       value="/WEB-INF/views/News/news-list.jsp"/>-->
+<!--    </definition>-->
+
     <definition name="update-news" extends="base.definition">
         <put-attribute name="title" value="Update News"/>
         <put-attribute name="body"
                        value="/WEB-INF/views/News/update-news.jsp"/>
     </definition>
+
+<!--    <definition name="redirect:/news-list" extends="base.definition">-->
+<!--        <put-attribute name="title" value="Update News"/>-->
+<!--        <put-attribute name="body"-->
+<!--                       value="/WEB-INF/views/News/news-list.jsp"/>-->
+<!--    </definition>-->
+
+
     <!--End Of Feature News-->
 
     <!-- Start InjectioSchedule-->
@@ -99,11 +135,6 @@
         <put-attribute name="body"
                        value="/WEB-INF/views/InjectionSchedule/injectionScheduleList.jsp"/>
     </definition>
-    <definition name="update" extends="base.definition">
-        <put-attribute name="title" value="Update Schedule"/>
-        <put-attribute name="body"
-                       value="/WEB-INF/views/InjectionSchedule/update-Schedule.jsp"/>
-    </definition>
 
     <!--Start Of Feature Vaccine Management-->
     <definition name="vaccineList" extends="base.definition">
@@ -120,12 +151,6 @@
         <put-attribute name="title" value="Update Vaccine"/>
         <put-attribute name="body"
                        value="/WEB-INF/views/vaccine/vaccine-create.jsp"/>
-    </definition>
-    
-    <definition name="vaccineImport" extends="base.definition">
-        <put-attribute name="title" value="Import Vaccine"/>
-        <put-attribute name="body"
-                       value="/WEB-INF/views/vaccine/vaccine-import.jsp"/>
     </definition>
 
     <!--Report-->
@@ -155,7 +180,7 @@
                        value="/WEB-INF/views/report/reportCustomer/chart-customer.jsp"/>
     </definition>
 
-    <!--Report Vaccine-->
+    <!--Report Vacciner-->
     <definition name="reportVaccine" extends="base.definition">
         <put-attribute name="title" value="Report Vaccine"/>
         <put-attribute name="body"
@@ -170,27 +195,25 @@
 
     <!--End Report-->
 
-    <!--Start Feature Employee-->
-    <definition name="employeeList" extends="base.definition">
-        <put-attribute name="title" value="Employee List"/>
+    <!--Register Customer-->
+    <definition name="registerCustomer" extends="base.definition">
+        <put-attribute name="title" value="Register Customer Information"/>
         <put-attribute name="body"
-                       value="/WEB-INF/views/employee/employee-list.jsp"/>
+                       value="/WEB-INF/views/customer/registerCustomer.jsp"/>
     </definition>
 
-
-    <definition name="employeeAdd" extends="base.definition">
-        <put-attribute name="title" value="Add employee"/>
+    <!--List Customer-->
+    <definition name="injectionCustomerList" extends="base.definition">
+        <put-attribute name="title" value="List Customer"/>
         <put-attribute name="body"
-                       value="/WEB-INF/views/employee/create-employee.jsp"/>
+                       value="/WEB-INF/views/customer/injectionCustomerList.jsp"/>
     </definition>
 
-    <definition name="update-employee" extends="base.definition">
-        <put-attribute name="title" value="Update employee"/>
+    <definition name="updateInjectionCustomerList" extends="base.definition">
+        <put-attribute name="title" value="Update Customer Information"/>
         <put-attribute name="body"
-                       value="/WEB-INF/views/employee/update-employee.jsp"/>
+                       value="/WEB-INF/views/customer/updateInjectionCustomerList.jsp"/>
     </definition>
-
-    <!--End Employee-->
 
 </tiles-definitions>
 

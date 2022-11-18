@@ -109,11 +109,10 @@ $("#delete-button").click(function (){
         var id = $(this).val();
         var thisResult = $(this);
         var c = confirm('Are you sure to delete?');
-
         if(c) {
             $.ajax({
                 type: "POST",
-                url: "/delete/customer?id=" + id,
+                url: "/customer/injectionCustomerList/delete?id=" + id,
                 success: function (){
                     thisResult.closest("tr").remove();
                     alert("Delete Successfully!")
@@ -156,7 +155,7 @@ $("#update-button").click(function (){
         return false;
     }
     if(count==1){
-        window.location.href="/update/injectionCustomerList/"+id;
+        window.location.href="/customer/update/injectionCustomerList/"+id;
         return false;
     }
 })

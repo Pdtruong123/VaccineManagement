@@ -59,12 +59,7 @@ public class VaccineServiceImpl implements VaccineService {
 	@Override
 	public Boolean hasVaccineById(String id) {
 		Optional<Vaccine> optionalVaccine = vaccineRepository.findById(id);
-		if (optionalVaccine.isPresent()) {
-			return true;
-		}else {
-			return false;
-					
-		}
+        return optionalVaccine.isPresent();
 	}
 
 

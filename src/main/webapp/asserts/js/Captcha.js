@@ -20,7 +20,7 @@ function removeContent(){
 }
 
 reloadBtn.addEventListener("click", ()=>{
-    removeContent();
+     removeContent();
 });
 
 
