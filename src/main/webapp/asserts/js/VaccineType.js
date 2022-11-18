@@ -70,7 +70,7 @@ $(document).ready(function () {
             ids.push(id);
         });
             var thisResult = $("#table-IR input:checked");
-            var c = confirm('Are you sure to make in-active? \n With Vaccine Type Id: ' +ids);
+            var c = confirm('Are you sure to make in-active? \n Total: ' +ids.length +' record');
             if(c) {
                 $.ajax({
                     type: "POST",
