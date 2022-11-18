@@ -5,9 +5,8 @@ import java.time.LocalDate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 
@@ -15,21 +14,23 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Table(name ="employee")
 public class Employee implements Serializable {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name ="employee_id", length = 36)
 	private String id;
 	
 	private String address;
-	
+
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Column(name ="dateOfBirth")
 	private LocalDate dateOfBirth;
 	
@@ -52,17 +53,9 @@ public class Employee implements Serializable {
 	
 	@Column(length = 100)
 	private String position;
-	
-	private String userName;
+
 	
 	@Column(name = "working_place")
 	private String workingPlace;
-	
-	@Override
-	public String toString() {
-		return "Employee [id=" + id + ", address=" + address + ", dateOfBirth=" + dateOfBirth + ", email=" + email
-				+ ", employeeName=" + employeeName + ", gender=" + gender + ", image=" + image + ", password="
-				+ password + ", phone=" + phone + ", position=" + position + ", userName=" + userName
-				+ ", workingPlace=" + workingPlace + "]";
-	}
+
 }
