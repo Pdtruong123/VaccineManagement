@@ -86,13 +86,13 @@
                     </div>
                 </div>
 
-                <div class="form-group col-sm-4">
+                <div class="form-group">
                     <label class="font-weight-bold">Image :</label>
                     <div class="row">
                         <div class="col-sm-1">
                             <i class="fa-solid fa-image mt-2 h5"></i>
                         </div>
-                        <div class="custom-file mb-3 ml-3 col-sm-10">
+                        <div class="custom-file mb-3 ml-3 col-sm-5">
                             <form:input type="file" class="custom-file-input" path="imageFile" accept="image/*"
                                    id="file-input"/>
                             <form:input type="hidden" class="custom-file-input_hidden"

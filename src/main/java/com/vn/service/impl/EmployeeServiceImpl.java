@@ -1,6 +1,7 @@
 package com.vn.service.impl;
 
 import com.vn.model.Employee;
+import com.vn.model.VaccineType;
 import com.vn.repository.EmployeeRepository;
 import com.vn.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,13 +43,44 @@ public class EmployeeServiceImpl implements EmployeeService {
                 e.printStackTrace();
             }
         }
-        System.out.println(employee.getImageFile());
         employee.setImageFile(employee.getImageFile());
         employee.setImageUrl(employee.getImageUrl());
 
 
         return employeeRepository.save(employee);
     }
+    
+    @Override
+    public Employee update(Employee employee) {
+
+        if(!employee.getImageFile().isEmpty()) {
+            String path = context.getRealPath("/");
+            System.out.println("path = " + path);
+            try {
+                employee.setImageUrl(employee.getImageFile().getOriginalFilename());
+                String filePath = path + "/asserts/img/imgemployee/" + employee.getImageUrl();
+                employee.getImageFile().transferTo(Path.of(filePath));
+                employee.setImageFile(null);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        
+        Employee employeeCurrent = employeeRepository.getById(employee.getId());
+        employee.setImageFile(employee.getImageFile());
+        
+        if("1".equals(employee.getCustomFileInputHidden())){
+        	employee.setImageUrl(null);
+		} else if (employee.getImageUrl() == null) {
+			employee.setImageUrl(employeeCurrent.getImageUrl());
+		} else {
+			employee.setImageUrl(employee.getImageUrl());
+		}
+
+
+        return employeeRepository.save(employee);
+    }
+
 
     @Override
     public Page<Employee> findContainElements(String keyword, Pageable pageable) {

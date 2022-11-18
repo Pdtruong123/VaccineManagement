@@ -84,7 +84,7 @@ public class EmployeeController {
         }
 
 
-        employeeService.save(employee);
+        employeeService.update(employee);
         redirectAttributes.addFlashAttribute("success", "Update Employee Successfully!");
         return model;
     }
