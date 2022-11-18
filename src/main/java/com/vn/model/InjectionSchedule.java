@@ -68,17 +68,17 @@ public class InjectionSchedule implements Serializable {
     private String status="";
 
     public String getStatus() {
-        if (startDate.isAfter(LocalDate.now()) && !endDate.isAfter(LocalDate.now()) && vaccine.getStatus() == true) {
+        if(vaccine.getStatus()==false){
+            status="in-Active";
+        }
+        else if (startDate.isAfter(LocalDate.now()) && !endDate.isAfter(LocalDate.now()) && vaccine.getStatus() == true) {
             status = "Open";
         }
-        if (startDate.isBefore(LocalDate.now()) && vaccine.getStatus() == true) {
+        else if (startDate.isBefore(LocalDate.now()) && vaccine.getStatus() == true) {
             status = "Not yet";
         }
         if (vaccine.getStatus()==true && endDate.isBefore(LocalDate.now())) {
             status = "Over";
-        }
-        if(vaccine.getStatus()==false){
-            status="in-Active";
         }
         return status;
     }
