@@ -3,6 +3,7 @@ package com.vn.model;
 import java.io.Serializable;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.*;
@@ -89,6 +90,10 @@ public class Customer implements Serializable {
 		}).reduce(0, (subtotal, element) -> subtotal + element);
 		return total;
 	}
+	
+	
+	@OneToMany(mappedBy = "customer",fetch = FetchType.EAGER)
+	private List<UserRole> userRoles;
 
 
 	@Override
