@@ -35,7 +35,7 @@ public class InjectionScheduleController {
     @Autowired
     InjectionScheduleService injectionScheduleService;
 
-    @GetMapping("/injection-schedule/add")
+    @GetMapping("/injectionSchedule/add")
     public ModelAndView listInjection(Model model) {
         model.addAttribute("injection", new InjectionScheduleDTO());
         List<InjectionSchedule> scheduleList = injectionScheduleReponsitory.findAll();
@@ -47,24 +47,25 @@ public class InjectionScheduleController {
     }
 
     @GetMapping("/injection-schedule/list")
-    public ModelAndView getlist(Model model) {
+    public ModelAndView getlist() {
         ModelAndView modelAndView = new ModelAndView("ListSchedule");
-        model.addAttribute("listSchedule", injectionScheduleReponsitory.findAll());
+        modelAndView.addObject("listSchedule", injectionScheduleReponsitory.findAll());
         return modelAndView;
     }
 
-    @PostMapping("/add/injectionSchedule")
+    @PostMapping("/injectionSchedule/add")
     public ModelAndView addInjection(@Valid @ModelAttribute("injection") InjectionScheduleDTO injectionScheduleDTO, BindingResult bindingResult) {
+        ModelAndView modelAndView = new ModelAndView("redirect:/injection-schedule/list");
+        ModelAndView modelerror = new ModelAndView("createSchedule");
         if (bindingResult.hasErrors()) {
-            ModelAndView modelerror = new ModelAndView("createSchedule");
             return modelerror;
         }
         injectionScheduleService.save(injectionScheduleDTO);
-        ModelAndView modelAndView = new ModelAndView("redirect:/lisst");
+        modelAndView.addObject("successAdd","Successfully");
         return modelAndView;
     }
 
-    @GetMapping("/update/injectionSchedule")
+    @GetMapping("/injectionSchedule/update")
     public ModelAndView getUpdate(@RequestParam String id, Model model) {
         InjectionSchedule injectionSchedule = injectionScheduleReponsitory.findById(id).orElse(null);
         model.addAttribute("updateSchedule", injectionSchedule);
@@ -72,7 +73,7 @@ public class InjectionScheduleController {
         return modelAndView;
     }
 
-    @PostMapping("/update/injectionSchedule")
+    @PostMapping("/injectionSchedule/update")
     public ModelAndView postUpdate(@ModelAttribute("updateSchedule") InjectionSchedule injectionSchedule) {
 //        InjectionSchedule schedule= new InjectionSchedule();
 //        schedule.setId(injectionSchedule.getId());

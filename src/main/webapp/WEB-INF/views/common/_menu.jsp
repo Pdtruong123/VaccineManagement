@@ -101,7 +101,7 @@
                 </div>
                 <security:authorize access="hasAuthority('ADMIN')">
                 <div class="ml-4 mt-2 text-sub">
-                    <a class="text-reset text-decoration-none " href="${pageContext.request.contextPath}/injection-schedule/add">
+                    <a class="text-reset text-decoration-none " href="${pageContext.request.contextPath}/injectionSchedule/add">
                         <span class="ml-2">Create Injection Schedule</span>
                     </a>
                 </div>
