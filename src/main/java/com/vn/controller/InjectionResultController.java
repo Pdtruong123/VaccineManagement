@@ -37,7 +37,6 @@ public class InjectionResultController {
         ModelAndView model = new ModelAndView("injectionResultList");
         model.addObject("injectionResultList", injectionResultService.findAll());
         return model;
-
     }
 
     @GetMapping("/injection-result/add")
