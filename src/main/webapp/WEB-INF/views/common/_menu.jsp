@@ -3,9 +3,14 @@
 <%@taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
     <div class="list-group list-group-flush">
     <div class="list-group-item text-white profile">
-        <div><img class="img-admin" src="../../../asserts/img/admin.png"></div>
+        <div><img class="img-admin" src="${pageContext.request.contextPath}/img/admin.png"></div>
         <div class="mt-1"><Strong><%= request.getUserPrincipal().getName() %></Strong></div>
-        <div class="mt-1"><%= request.getSession().getAttribute("emailLogin") %></div>
+        <div class="row">
+            <div class="col-sm-8 mt-1"><%= request.getSession().getAttribute("emailLogin") %></div>
+            <div class="col-sm-2"></div>
+            <a class="col-sm-2 text-white" href="${pageContext.request.contextPath}/logout" data-toggle="tooltip" title="Logout"><i class="fa-solid fa-right-from-bracket"></i></a>
+
+        </div>
     </div>
     <div class="menu">
         <div class="list-group-item text font-weight-bold act ">
@@ -177,6 +182,7 @@
        </security:authorize>
     </div>
 </div>
+
 
 
 

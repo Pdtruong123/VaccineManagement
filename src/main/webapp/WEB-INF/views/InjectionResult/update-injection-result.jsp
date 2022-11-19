@@ -33,7 +33,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/InjectionResult.css">
 </head>
 <body>
-<h1 class="h5 mt-3 text-center text-secondary font-weight-bold mb-3">CREATE INJECTION RESULT</h1>
+<h1 class="h5 mt-3 text-center text-dark font-weight-bold mb-3">UPDATE INJECTION RESULT</h1>
 <div class="card mx-3 shadow">
     <div class="card-body">
         <form:form action="${pageContext.request.contextPath}/injection-result/update" method="post"

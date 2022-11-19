@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="../../../asserts/css/style.css">
     <link rel="stylesheet" href="../../../asserts/css/DataTables.css">
 </head>
-<div class="h5 mt-3 text-center text-secondary font-weight-bold mb-3">Injection Result List</div>
+<div class="h5 mt-3 text-center text-dark font-weight-bold mb-3">INJECTION RESULT LIST</div>
 <div class="h4 text-success font-weight-bold ml-3">${success}</div>
 <div class="card mx-3 shadow">
     <div class="card-body">

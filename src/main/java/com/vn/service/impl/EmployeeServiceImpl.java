@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.servlet.ServletContext;
 import java.nio.file.Path;
@@ -88,8 +89,9 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public void deleteEmployee(String id) {
-        employeeRepository.deleteById(id);
+    @Transactional
+    public void deleteEmployee(List<String> ids) {
+        employeeRepository.deleteByIds(ids);
     }
 
     @Override

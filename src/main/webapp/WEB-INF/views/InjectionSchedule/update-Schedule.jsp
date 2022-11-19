@@ -3,7 +3,7 @@
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <div class="card shadow">
     <div class="head-title card-header">
-        <h4 class="text-center">CREATE INJECTION SCHEDULE</h4>
+        <h1 class="h5 mt-3 text-center text-dark font-weight-bold mb-3">UPDATE INJECTION SCHEDULE</h1>
     </div>
     <form:form id="form-update" action="${pageContext.request.contextPath}/injectionSchedule/update" method="POST" modelAttribute="updateSchedule">
         <div class="card-body">

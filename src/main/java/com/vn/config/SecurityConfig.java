@@ -85,7 +85,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             .and()
 			.authorizeHttpRequests()
 			.antMatchers("/register", "/login","/login?error","*.css","*.webp", "*.js","/","*.img","/css/**","/img/**","/js/**", "/asserts/**" ,"/fontawesome-free-6.1.2-web/**").permitAll()
-			.antMatchers("/home","/injection-schedule/list","/injection-result/list").hasAnyAuthority("ADMIN","USER")
+			.antMatchers("/home","/injection-result/list","/news/list").hasAnyAuthority("ADMIN","USER")
             .antMatchers("/employee/**","/customer/**","/injection-schedule/**","/injection-result/**","/vaccine/**","/vaccineType/**","/news/**","/report/**").hasAnyAuthority("ADMIN")
             
             .anyRequest().authenticated();

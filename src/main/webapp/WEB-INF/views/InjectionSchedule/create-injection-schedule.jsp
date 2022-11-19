@@ -1,7 +1,7 @@
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-        <h1 class="text-center">CREATE INJECTION SCHEDULE</h1>
+<h1 class="h5 mt-3 text-center text-dark font-weight-bold mb-3">CREATE INJECTION SCHEDULE</h1>
     <div class="h4 text-success font-weight-bold ml-3">${successAdd}</div>
 <div class="card mx-3 shadow">
     <div class="card-body">

@@ -33,5 +33,12 @@ $(document).ready(function () {
         ordering: true,
         lengthMenu: [[5, 10,15, 20, 50, -1], [5, 10,15, 20, 50, "All"]]
     });
+    $('#employee-tb').DataTable({
+        searching: true,
+        ordering: true,
+        lengthMenu: [[5, 10,15, 20, 50, -1], [5, 10,15, 20, 50, "All"]]
+    });
 
 });
+
+

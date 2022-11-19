@@ -58,7 +58,7 @@
 
 <body>
 
-	<div class="h5 mt-3 text-center text-secondary font-weight-bold mb-3">Import
+	<div class="h5 mt-3 text-center text-dark font-weight-bold mb-3">IMPORT
 		VACCINE</div>
 
 	<div class="card mx-3">
