@@ -8,7 +8,7 @@
 <script src="${pageContext.request.contextPath}/js/Report.js"></script>
 
 
-<div class="h5 mt-3 text-center text-secondary font-weight-bold mb-3">REPORT VACCINE</div>
+<div class="h5 mt-3 text-center text-dark font-weight-bold mb-3">REPORT VACCINE</div>
 <div class="card mx-3 shadow">
     <div class="card-body">
         <div class="">

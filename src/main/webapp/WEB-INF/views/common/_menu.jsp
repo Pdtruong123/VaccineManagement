@@ -3,9 +3,14 @@
 <%@taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
     <div class="list-group list-group-flush">
     <div class="list-group-item text-white profile">
-        <div><img class="img-admin" src="../../../asserts/img/admin.png"></div>
+        <div><img class="img-admin" src="${pageContext.request.contextPath}/img/admin.png"></div>
         <div class="mt-1"><Strong><%= request.getUserPrincipal().getName() %></Strong></div>
-        <div class="mt-1"><%= request.getSession().getAttribute("emailLogin") %></div>
+        <div class="row">
+            <div class="col-sm-8 mt-1"><%= request.getSession().getAttribute("emailLogin") %></div>
+            <div class="col-sm-2"></div>
+            <a class="col-sm-2 text-white" href="${pageContext.request.contextPath}/logout" data-toggle="tooltip" title="Logout"><i class="fa-solid fa-right-from-bracket"></i></a>
+
+        </div>
     </div>
     <div class="menu">
         <div class="list-group-item text font-weight-bold act ">
@@ -14,7 +19,7 @@
             <security:authorize access="hasAuthority('ADMIN')">
         <div class="list-group-item">
             <div class="row text act" data-toggle="collapse" data-target="#employee">
-                <div class="col-sm-10 font-weight-bold ">Employee Management</div>
+                <div class="col-sm-10 font-weight-bold " id="design2">Employee Management</div>
                 <div class="col-sm-2"><i class="fa-solid fa-plus"></i></div>
             </div>
             <div class="mt-3 collapse" id="employee" data-parent="#accordion">
@@ -87,7 +92,7 @@
             </div>
         </div>
         </security:authorize>
-
+		<security:authorize access="hasAuthority('ADMIN')">
         <div class="list-group-item">
             <div class="row text act" data-toggle="collapse" data-target="#inject">
                 <div class="col-sm-10 font-weight-bold " id="design6">Injection Schedule</div>
@@ -99,16 +104,16 @@
                         <span class="ml-2">Injection Schedule List</span>
                     </a>
                 </div>
-                <security:authorize access="hasAuthority('ADMIN')">
+                
                 <div class="ml-4 mt-2 text-sub">
-                    <a class="text-reset text-decoration-none " href="${pageContext.request.contextPath}/injection-schedule/add">
+                    <a class="text-reset text-decoration-none " href="${pageContext.request.contextPath}/injectionSchedule/add">
                         <span class="ml-2">Create Injection Schedule</span>
                     </a>
                 </div>
-                </security:authorize>
+                
             </div>
         </div>
-
+		</security:authorize>
         <div class="list-group-item">
             <div class="row text act" data-toggle="collapse" data-target="#injectResult">
                 <div class="col-sm-10 font-weight-bold " id="design7">Injection Result</div>
@@ -129,7 +134,7 @@
                 </security:authorize>
             </div>
         </div>
-        <security:authorize access="hasAuthority('ADMIN')">
+        
         <div class="list-group-item">
             <div class="row text act" data-toggle="collapse" data-target="#news">
                 <div class="col-sm-10 font-weight-bold " id="design8">News</div>
@@ -141,13 +146,16 @@
                         <span class="ml-2">News List</span>
                     </a>
                 </div>
+            <security:authorize access="hasAuthority('ADMIN')">    
                 <div class="ml-4 mt-2 text-sub">
                     <a class="text-reset text-decoration-none " href="${pageContext.request.contextPath}/news/add">
                         <span class="ml-2">Create News</span>
                     </a>
                 </div>
+                 </security:authorize>
             </div>
         </div>
+        <security:authorize access="hasAuthority('ADMIN')">
         <div class="list-group-item">
             <div class="row text act" data-toggle="collapse" data-target="#report">
                 <div class="col-sm-10 font-weight-bold " id="design9">Report</div>
@@ -171,10 +179,10 @@
                 </div>
             </div>
         </div>
-        </security:authorize>
+       </security:authorize>
     </div>
-
 </div>
+
 
 
 

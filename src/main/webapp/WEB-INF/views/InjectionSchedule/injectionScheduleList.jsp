@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="../../../asserts/css/style.css">
     <link rel="stylesheet" href="../../../asserts/css/DataTables.css">
 </head>
-<div class="h5 mt-3 text-center text-secondary font-weight-bold mb-3">Injection Schedule</div>
+<div class="h5 mt-3 text-center text-dark font-weight-bold mb-3">INJECTION SCHEDULE</div>
     <div class="card mx-3 shadow">
         <div class="card-body">
             <div class="mt-3">
@@ -24,7 +24,7 @@
                    <tbody>
                    <c:forEach items="${listSchedule}" var="schedule">
                        <tr>
-                           <td><a href="${pageContext.request.contextPath}/update/injectionSchedule/?id=${schedule.id}">${schedule.vaccine.vaccineName}</a></td>
+                           <td><a href="${pageContext.request.contextPath}/injectionSchedule/update?id=${schedule.id}">${schedule.vaccine.vaccineName}</a></td>
                            <td>From ${schedule.startDate} to ${schedule.endDate}</td>
                            <td>${schedule.place}</td>
                            <td>${schedule.status}</td>
@@ -36,7 +36,7 @@
             </div>
              <security:authorize access="hasAuthority('ADMIN')">
             <div class="">
-                <a class="btn btn-sm btn-success" href="${pageContext.request.contextPath}/add/injectionSchedule">New Injection Schedule</a>
+                <a class="btn btn-sm btn-success" href="${pageContext.request.contextPath}/injectionSchedule/add">New Injection Schedule</a>
             </div>
             </security:authorize>
         </div>
