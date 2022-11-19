@@ -1,5 +1,6 @@
 package com.vn.repository;
 
+import com.vn.model.Customer;
 import com.vn.model.InjectionResult;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -26,6 +27,6 @@ public interface InjectionResultRepository extends JpaRepository<InjectionResult
             AND ((?3 is null OR ?4 is null) OR i.injectionDate between ?3 and ?4)
             """)
     List<InjectionResult> findElementReport(String prevention, String vaccineType, LocalDate startDate, LocalDate endDate);
-
+    List<InjectionResult> findByCustomer(Customer customer);
 
 }

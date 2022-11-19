@@ -31,23 +31,30 @@ public class CustomUserDetail implements UserDetails {
 	 */
 	private static final long serialVersionUID = 1L;
 	private Customer customer;
-	
+
+	public CustomUserDetail(Customer customer) {
+		this.customer = customer;
+	}
+
+	private List<String> roleName;
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		
 			List<UserRole> listUserRoles = customer.getUserRoles();
-			for (UserRole userRole : listUserRoles) {
+/*			for (UserRole userRole : listUserRoles) {
 				System.out.println(userRole.getId());
-			}
+			}*/
+			roleName = new ArrayList<>();
 			List<SimpleGrantedAuthority> authorities = listUserRoles.stream().map(ur -> {
 				Roles role = ur.getRole();
 				String name = role.getRole();
-				
+				roleName.add(name);
 				SimpleGrantedAuthority authority = new SimpleGrantedAuthority(name);
 				return authority;
 			}).collect(Collectors.toList());
 			return authorities;
 	}
+
 
 	@Override
 	public String getPassword() {
