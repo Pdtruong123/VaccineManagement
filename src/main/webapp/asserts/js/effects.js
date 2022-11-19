@@ -1,7 +1,7 @@
 $(window).on('load', function(event) {
     	$('body').removeClass('preloading');
     	$('.loader').delay(1).fadeOut('fast');
-    	
+    //
     var x = location.href;
 	
 	if(x.includes('http://localhost:8080/home') ){

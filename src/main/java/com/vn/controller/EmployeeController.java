@@ -19,6 +19,7 @@ import javax.activation.MimeType;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.time.LocalDate;
+import java.util.List;
 
 
 @Controller
@@ -48,7 +49,7 @@ public class EmployeeController {
                               , RedirectAttributes redirectAttributes
                               ,BindingResult bindingResult){
         ModelAndView modelError = new ModelAndView("employeeAdd");
-        ModelAndView model = new ModelAndView("redirect:/employee/add");
+        ModelAndView model = new ModelAndView("redirect:/employee/list");
         if(bindingResult.hasErrors()){
             return modelError;
         }
@@ -59,9 +60,11 @@ public class EmployeeController {
     }
 
     @PostMapping("/employee/delete")
-    public ModelAndView deleteEmployee(@RequestParam String id){
+    public ModelAndView deleteEmployee(@RequestParam (value = "ids") List<String> ids){
         ModelAndView model = new ModelAndView("redirect:/employee/list");
-        employeeService.deleteEmployee(id);
+        System.out.println(ids);
+        employeeService.deleteEmployee(ids);
+
         return model;
     }
 

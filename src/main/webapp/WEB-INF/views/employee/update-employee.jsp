@@ -6,8 +6,8 @@
 <script src="${pageContext.request.contextPath}/js/ValidateEmployee.js"></script>
 
 <div>
-	<div class="h5 mt-3 text-center text-secondary font-weight-bold mb-3"
-		style="color: black">CREATE EMPLOYEE</div>
+	<div class="h5 mt-3 text-center text-dark font-weight-bold mb-3"
+		style="color: black">UPADTE EMPLOYEE</div>
 
 	<div class="card mx-3">
 		<div class="card-body">

@@ -9,12 +9,12 @@
 <script src="${pageContext.request.contextPath}/js/VaccineType.js"></script>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/DataTables.css">
 <script src="${pageContext.request.contextPath}/js/DataTables.js"></script>
-<div class="h5 mt-3 text-center text-secondary font-weight-bold mb-3">Employee List</div>
+<div class="h5 mt-3 text-center text-dark font-weight-bold mb-3">EMPLOYEE LIST</div>
 <div class="text-success font-weight-bold ml-3">${success}</div>
 <div class="card mx-3 shadow">
     <div class="card-body">
                     <div class="mt-3">
-                        <table class="table table-bordered" id="table-IR">
+                        <table class="table table-bordered" id="employee-tb">
                             <thead>
                             <tr class="bg-info text-white text-center ">
                                 <th><input type="checkbox" id="checkAll"></th>
