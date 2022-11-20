@@ -5,9 +5,7 @@ import com.vn.model.Customer;
 import com.vn.service.InjectionResultService;
 import com.vn.service.impl.CustomUserDetail;
 
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
@@ -29,31 +27,27 @@ public class HomeController {
     @Autowired
     InjectionResultService injectionResultService;
 
-    @GetMapping(value = {"/home", "/index"})
-    public ModelAndView homePage(HttpSession session) {
-        ModelAndView model = new ModelAndView("homePage");
-        Customer customer = new Customer();
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        List<String> roleName = new ArrayList<>();
-        if (!(auth instanceof AnonymousAuthenticationToken)) {
-            CustomUserDetail userDetails = (CustomUserDetail) auth.getPrincipal();
-            customer = userDetails.getCustomer();
-            Collection<? extends GrantedAuthority> listRole = userDetails.getAuthorities();
-            for (GrantedAuthority r : listRole) {
-                roleName.add(r.getAuthority());
-            }
-            session.setAttribute("emailLogin", customer.getEmail());
-        }
+    @GetMapping(value={"/home", "/index"})
+    public ModelAndView homePage(HttpSession session){
+    	ModelAndView model = new ModelAndView("homePage");
+    	Customer customer = new Customer();
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		if (!(auth instanceof AnonymousAuthenticationToken)) {
+			CustomUserDetail userDetails = (CustomUserDetail) auth.getPrincipal();
+			customer = userDetails.getCustomer();
+			
+		}
+		session.setAttribute("emailLogin", customer.getEmail());
+		
         return model;
     }
-
-    @GetMapping(value = {"/login", "/", ""})
-    public String viewLogin(Model model, @RequestParam(value = "error", required = false) String error) {
-        model.addAttribute("memberLogin", new Customer());
-        if (error != null) {
-            model.addAttribute("error", "Invalid username and password!");
+    
+    @GetMapping(value = {"/login","/",""})
+    public String viewLogin(Model model,@RequestParam(value = "error",required = false) String error) {
+    	model.addAttribute("memberLogin", new Customer());
+    	if (error != null) {
+            model.addAttribute("error","Invalid username and password!");
         }
-        return "login";
+    	return "login";
     }
 }
-
