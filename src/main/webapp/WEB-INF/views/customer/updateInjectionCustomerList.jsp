@@ -186,16 +186,13 @@
                     Save
                 </button>
                 <button type="reset" class="btn btn-sm btn-primary ml-2">Reset</button>
-                <a class="btn btn-sm btn-warning ml-2" href="#">Cancel</a>
+                <a class="btn btn-sm btn-warning ml-2" href="${pageContext.request.contextPath}/customer/list">Cancel</a>
             </div>
 
         </div>
     </div>
 </form:form>
-</div>
 
-</div>
-</div>
 <script src="${pageContext.request.contextPath}/js/CustomerCreate.js"></script>
 <script src="${pageContext.request.contextPath}/js/Captcha.js"></script>
 <script

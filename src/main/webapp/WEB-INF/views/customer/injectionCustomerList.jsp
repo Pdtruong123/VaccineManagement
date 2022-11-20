@@ -13,6 +13,7 @@
 <div class="container-fluid ">
     <div class="h5 mt-3 text-center text-secondary font-weight-bold mb-3">Injection Customer List</div>
     <div class="card mx-3">
+    <span class="msg">${msg}</span>
         <div class="card-body">
             <div class="mt-3">
                 <table class="table table-bordered" id="table-IC">
@@ -49,7 +50,7 @@
             <div class="h5 text-right text-danger">${error}</div>
 
             <div class="">
-                <button class="btn btn-success mr-1" type="submit"><a href="${pageContext.request.contextPath}/customer/registerCustomer" class="text-white text-decoration-none">Register</a></button>
+                <button class="btn btn-success mr-1" type="submit"><a href="${pageContext.request.contextPath}/customer/add" class="text-white text-decoration-none">Register</a></button>
                 <button class="btn btn-warning mr-1 text-white" type="submit" id="update-button">Update Customer</button>
                 <button class="btn btn-danger" type="submit" id="delete-button">Delete Customer</button>
             </div>
