@@ -11,7 +11,7 @@
     <div class="card mx-3 shadow">
         <div class="card-body">
             <div class="mt-3">
-                <table class="table table-bordered" id="table-TS">
+                <table class="table table-bordered table-striped" id="table-TS">
                     <thead>
                     <tr class="bg-info text-white text-center">
                         <th>Vaccine</th>

@@ -44,7 +44,7 @@
 				<table class="table table-striped table-bordered text-center"
 					id="table-VC">
 					<thead class="table-thead">
-						<tr>
+						<tr class="bg-info text-white text-center">
 							<th><input type="checkbox" id="checkAll"></th>
 							<th>Vaccine Id</th>
 							<th>Vaccine Name</th>

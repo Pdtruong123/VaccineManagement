@@ -2,6 +2,7 @@
          pageEncoding="ISO-8859-1" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
         integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -32,7 +33,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="form-group col-sm-6">
+                    <div class="form-group col-sm-8">
                         <label class="font-weight-bold" for="">Next Injection Date: </label>
                         <div>
                             <div class="form-check form-check-inline">
@@ -43,7 +44,7 @@
                             <div class="form-check form-check-inline">
                                 <label class="form-check-label" for="endDate">End:</label>
                                 <input class="form-control form-check-input ml-2" type="date" name="timeEndNextInjection"
-                                       id="endDate" value="option2">
+                                       id="endDate" value="${param.timeEndNextInjection}">
                             </div>
                         </div>
                     </div>
@@ -99,8 +100,8 @@
                         <td>${result.vaccineName}</td>
                         <td>${result.vaccineType.vaccineTypeName}</td>
                         <td>${result.numberOfInjection}</td>
-                        <td>${result.timeBeginNextInjection}</td>
-                        <td>${result.timeEndNextInjection}</td>
+                        <td> <fmt:formatDate pattern="yyyy-MM-dd" value="${result.timeBeginNextInjection}" /></td>
+                        <td> <fmt:formatDate pattern="yyyy-MM-dd" value="${result.timeEndNextInjection}"/></td>
                         <td>${result.origin}</td>
                     </tr>
                 </c:forEach>

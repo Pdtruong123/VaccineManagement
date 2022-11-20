@@ -15,7 +15,7 @@
     <span class="msg">${msg}</span>
         <div class="card-body">
             <div class="mt-3">
-                <table class="table table-bordered" id="table-IC">
+                <table class="table table-bordered table-striped" id="table-IC">
                     <thead>
                     <tr class="bg-info text-white text-center">
                         <td><input class="form-check mx-auto" type="checkbox" id="checkAll"></td>

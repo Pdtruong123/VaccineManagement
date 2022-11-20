@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.Set;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
@@ -39,7 +40,8 @@ public class VaccineType implements Serializable {
     @Column(name = "vaccine_type_id", nullable = false)
     private String id;
 
-    @Column(name = "vaccine_type_name", length = 10, nullable = false)
+    @NotBlank(message = "Please insert Vaccine Type Name")
+    @Column(name = "vaccine_type_name", length = 50, nullable = false)
     private String vaccineTypeName;
 
     @Column(length = 200)
