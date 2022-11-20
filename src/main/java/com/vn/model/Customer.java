@@ -80,7 +80,7 @@ public class Customer implements Serializable {
 	@Column(name = "user_name")
 	private String userName;
 
-	@OneToMany(mappedBy = "customer")
+	@OneToMany(mappedBy = "customer",cascade = CascadeType.ALL)
 	private Set<InjectionResult> injectionResults;
 
 	@Transient
@@ -92,7 +92,7 @@ public class Customer implements Serializable {
 	}
 	
 	
-	@OneToMany(mappedBy = "customer",fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "customer",fetch = FetchType.EAGER,cascade = CascadeType.ALL)
 	private List<UserRole> userRoles;
 
 
