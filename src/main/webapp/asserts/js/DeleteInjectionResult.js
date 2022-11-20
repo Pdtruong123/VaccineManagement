@@ -11,14 +11,23 @@ $("#checkAll").change(function (){
 })
 
 $("#delete-button").click(function (){
+        var ids= [];
+        var count = 0;
     $("#table-IR > tbody input:checked").each(function (){
        var id = $(this).val();
-       var thisResult = $(this);
-       var c = confirm('Are you sure to delete?');
+       count++;
+       ids.push(id);
+    })
+        if(count==0){
+            alert("Please select at least one!");
+            return false;
+        }
+       var thisResult = $("#table-IR input:checked");
+       var c = confirm('Are you sure to delete with id?' + ids);
        if(c) {
            $.ajax({
                type: "POST",
-               url: "/injection-result/delete?id=" + id,
+               url: "/injection-result/delete?ids=" + ids,
                success: function (){
                    thisResult.closest("tr").remove();
                    alert("Delete Successfully!")
@@ -28,7 +37,6 @@ $("#delete-button").click(function (){
                }
            })
         }
-    })
 })
 
 

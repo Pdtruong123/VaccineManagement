@@ -3,9 +3,9 @@
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <div class="card shadow">
     <div class="head-title card-header">
-        <h4 class="text-center">CREATE INJECTION SCHEDULE</h4>
+        <h1 class="h5 mt-3 text-center text-dark font-weight-bold mb-3">UPDATE INJECTION SCHEDULE</h1>
     </div>
-    <form:form id="form-update" action="${pageContext.request.contextPath}/update/injectionSchedule" method="POST" modelAttribute="updateSchedule">
+    <form:form id="form-update" action="${pageContext.request.contextPath}/injectionSchedule/update" method="POST" modelAttribute="updateSchedule">
         <div class="card-body">
             <div class="mt-1 row">
                 <form:input path="id" type="hidden"/>
@@ -41,7 +41,7 @@
             <div class="pt-3">
                 <button type="submit" id="btnSave" class="btn btn-primary">Save</button>
                 <button type="reset" class="btn btn-danger ml-4">Reset</button>
-                <button type="submit" class="btn btn-warning ml-4"><a href="${pageContext.request.contextPath}/lisst">Cancle</a>
+                <button type="submit" class="btn btn-warning ml-4"><a href="${pageContext.request.contextPath}/injection-schedule/list">Cancle</a>
                 </button>
             </div>
         </div>

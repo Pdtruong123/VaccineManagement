@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
          pageEncoding="ISO-8859-1" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
+<%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
 <head>
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.css">
     <link rel="stylesheet" href="../../../asserts/css/style.css">
@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="../../../asserts/css/DataTables.css">
 </head>
 <body>
-<div class="h5 mt-3 text-center text-secondary font-weight-bold mb-3">NEWS LIST</div>
+<div class="h5 mt-3 text-center text-dark font-weight-bold mb-3">NEWS LIST</div>
 <div class="h4 text-success font-weight-bold ml-3">${success}</div>
 <div class="card mx-3 shadow">
     <div class="card-body">
@@ -38,6 +38,7 @@
             </table>
         </div>
         <div class="h5 text-right text-danger">${error}</div>
+        <security:authorize access="hasAuthority('ADMIN')">
         <div class="">
             <button class="btn btn-success mr-1" type="submit"><a href="${pageContext.request.contextPath}/news/add"
                                                                   class="text-white text-decoration-none">Create
@@ -45,6 +46,7 @@
             <button class="btn btn-warning mr-1 text-white" type="submit" id="update-button">Update News</button>
             <button class="btn btn-danger" type="submit" id="delete-button">Delete News</button>
         </div>
+        </security:authorize>
     </div>
 </div>
 <script src="${pageContext.request.contextPath}/js/DataTables.js"></script>

@@ -20,14 +20,23 @@ $("#checkAll").change(function (){
 })
 
 $("#delete-button").click(function (){
+    var ids =[];
+    var count = 0;
     $("#news-tb > tbody input:checked").each(function (){
         var id = $(this).val();
-        var thisResult = $(this);
+        count++;
+        ids.push(id);
+    })
+    if(count==0){
+        alert("Please select at least one!");
+        return false;
+    }
+        var thisResult = $("#news-tb input:checked");
         var c = confirm('Are you sure to delete?');
         if(c) {
             $.ajax({
                 type: "POST",
-                url: "/news/delete?id=" + id,
+                url: "/news/delete?ids=" + ids,
                 success: function (){
                     thisResult.closest("tr").remove();
                     alert("Delete Successfully!")
@@ -37,7 +46,7 @@ $("#delete-button").click(function (){
                 }
             })
         }
-    })
+
 })
 
 $("#update-button").click(function (){
