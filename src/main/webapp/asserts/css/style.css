@@ -23,6 +23,8 @@
 .right{
     margin: 0;
     padding: 0;
+    background-image: url("../../asserts/img/background-1.jpg");
+    background-size: cover;
 }
 .img{
     width: 80px;
@@ -119,10 +121,4 @@ body{
 	left: 50%;
 	margin-top: -75px;
 	margin-left: -75px;
-}
-
-ul {
-	list-style-type: none;
-	margin: 0;
-  padding: 0;
 }

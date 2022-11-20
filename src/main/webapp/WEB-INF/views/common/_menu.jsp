@@ -7,15 +7,12 @@
 		<div>
 			<img class="img-admin" src="../../../asserts/img/admin.png">
 		</div>
-		<div class="header-home">
-			<ul class="header-home-list">
-				<li><Strong><%= request.getSession().getAttribute("roleNames") %></Strong></li>
-				<li><Strong><%= request.getSession().getAttribute("emailLogin") %></Strong></li>	
-				<li class="header-home-item"><a
-					href="${pageContext.request.contextPath}/logout"
-					class="header-home-link"><i
-						class="fa-solid fa-right-from-bracket"></i>Logout</a></li>
-			</ul>
+		<div class="mt-1"><Strong><%= request.getSession().getAttribute("roleNames") %></Strong></div>
+		<div class="row">
+			<div class="mt-1 col-sm-6"><%= request.getSession().getAttribute("emailLogin") %></div>
+			<div class="col-sm-4"></div>
+			<a href="${pageContext.request.contextPath}/logout" class="col-sm-2 text-white" data-toggle="tooltip" title="Logout">
+				<i class="fa-solid fa-right-from-bracket"></i></a>
 		</div>
 	</div>
 	<div class="menu">
