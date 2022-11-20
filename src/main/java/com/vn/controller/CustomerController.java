@@ -29,7 +29,7 @@ public class CustomerController {
     @Autowired
     HttpServletRequest httpServletRequest;
 
-    @GetMapping("/customer/add")
+    @GetMapping("/customer/registerCustomer")
     public ModelAndView showRegistrationForm() {
         ModelAndView model = new ModelAndView("registerCustomer");
         Customer c = new Customer();
@@ -37,7 +37,7 @@ public class CustomerController {
         return model;
     }
 
-    @PostMapping("/customer/add")
+    @PostMapping("/customer/registerCustomer")
     public ModelAndView saveRegister(@ModelAttribute("customer") Customer customer) {
             ModelAndView model = new ModelAndView("registerCustomer");
         customerService.create(customer);
@@ -45,7 +45,7 @@ public class CustomerController {
         return model;
     }
 
-    @GetMapping("/customer/list")
+    @GetMapping("/customer/injectionCustomerList")
     public ModelAndView viewCustomerList() {
         ModelAndView model = new ModelAndView("injectionCustomerList");
         List<Customer> list = customerService.findAll();
@@ -55,7 +55,7 @@ public class CustomerController {
     }
 
 
-    @GetMapping(value = { "/customer/update/{id}" })
+    @GetMapping(value = { "/customer/update/injectionCustomerList/{id}" })
     public ModelAndView edit(@PathVariable("id") String id) {
         ModelAndView model = new ModelAndView("updateInjectionCustomerList");
         Customer customer = customerService.findById(id);
@@ -65,18 +65,17 @@ public class CustomerController {
 
     @PostMapping(value = { "/customer/update" })
     public ModelAndView updateCustomer(@ModelAttribute ("customer") @Valid Customer customer, BindingResult result) {
-        ModelAndView model = new ModelAndView("redirect:/customer/list");
-        model.addObject("msg","Update customer successfull!");
+        ModelAndView model = new ModelAndView("redirect:/customer/injectionCustomerList");
+        ModelAndView modelError = new ModelAndView("updateInjectionCustomerList");
         customerService.create(customer);
         return model;
 
     }
 
-    @PostMapping("/customer/delete")
-    public ModelAndView deleteCustomer(@RequestParam String id) {
+    @PostMapping("/customer/injectionCustomerList/delete")
+    public String deleteCustomer(@RequestParam String id) {
         customerService.deleteCustomer(id);
-        ModelAndView model = new ModelAndView("redirect:/customer/list");
-        return model;
+        return "redirect:/customer/injectionCustomerList";
     }
 
 
