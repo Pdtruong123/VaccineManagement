@@ -105,14 +105,17 @@ $(document).ready(function () {
 });
 
 $("#delete-button").click(function (){
+    var ids = [];
     $("#table-IC > tbody input:checked").each(function (){
         var id = $(this).val();
-        var thisResult = $(this);
+        ids.push(id);
+    })
+        var thisResult = $("#table-IC input:checked");
         var c = confirm('Are you sure to delete?');
         if(c) {
             $.ajax({
                 type: "POST",
-                url: "/customer/delete?id=" + id,
+                url: "/customer/delete?ids=" + ids,
                 success: function (){
                     thisResult.closest("tr").remove();
                     alert("Delete Successfully!")
@@ -122,7 +125,7 @@ $("#delete-button").click(function (){
                 }
             })
         }
-    })
+
 })
 $("#checkAll").change(function (){
     if(this.checked){

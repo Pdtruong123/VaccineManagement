@@ -73,11 +73,9 @@ public class CustomerController {
     }
 
     @PostMapping("/customer/delete")
-    public ModelAndView deleteCustomer(@RequestParam String id) {
-        customerService.deleteCustomer(id);
+    public ModelAndView deleteCustomer(@RequestParam List<String> ids) {
+        customerService.deleteAllIds(ids);
         ModelAndView model = new ModelAndView("redirect:/customer/list");
         return model;
     }
-
-
 }

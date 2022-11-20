@@ -233,8 +233,8 @@
 
     </div>
 </div>
-<script src="../../../asserts/js/CustomerCreate.js"></script>
-<script src="../../../asserts/js/Captcha.js"></script>
+<script src="${pageContext.request.contextPath}/js/CustomerCreate.js"></script>
+<script src="${pageContext.request.contextPath}/js/Captcha.js"></script>
 <script
         src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js"
         integrity="sha512-rstIgDs0xPgmG6RX1Aba4KV5cWJbAMcvRCVmglpam9SoHZiUCyQVDdH2LPlxoHtrv17XWblE/V/PP+Tr04hbtA=="

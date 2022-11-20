@@ -129,6 +129,11 @@ public class CustomerServiceImpl implements CustomerService {
 	}
 
 	@Override
+	public void deleteAllIds(List<String> ids) {
+		customerRepository.deleteAllById(ids);
+	}
+
+	@Override
 	public List<Customer> findElementReport(String fullName, String address, Date dOBFrom, Date dOBTo) {
 
 		return customerRepository.findElementReport(fullName, address, dOBFrom, dOBTo);

@@ -7,10 +7,9 @@
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.js"></script>
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/DataTables.css">
+<link rel="stylesheet" href="../../../asserts/css/DataTables.css">
 <script src="${pageContext.request.contextPath}/js/DataTables.js"></script>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/Customer.css">
-<div class="container-fluid ">
     <div class="h5 mt-3 text-center text-secondary font-weight-bold mb-3">Injection Customer List</div>
     <div class="card mx-3">
     <span class="msg">${msg}</span>
