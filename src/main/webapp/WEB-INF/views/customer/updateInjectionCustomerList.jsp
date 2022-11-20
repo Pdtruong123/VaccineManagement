@@ -11,8 +11,7 @@
 <script src="${pageContext.request.contextPath}/js/DataTables.js"></script>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/Customer.css">
 <body>
-<div class="h5 mt-3 text-center text-secondary font-weight-bold mb-3">UPDATE
-    CUSTOMER INFORMATION
+<div class="h5 mt-3 text-center text-secondary font-weight-bold mb-3">UPDATE CUSTOMER INFORMATION
 </div>
 
 <form:form
