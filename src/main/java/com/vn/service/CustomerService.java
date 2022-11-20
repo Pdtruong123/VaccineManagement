@@ -28,6 +28,8 @@ public interface CustomerService {
 
     void deleteCustomer(String id);
 
+    void deleteAllIds(List<String> ids);
+
     List<Customer> findElementReport(String fullName, String address, Date dOBFrom, Date dOBTo);
 
 
