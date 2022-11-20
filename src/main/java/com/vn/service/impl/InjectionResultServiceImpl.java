@@ -1,5 +1,6 @@
 package com.vn.service.impl;
 
+import com.vn.model.Customer;
 import com.vn.model.InjectionResult;
 import com.vn.repository.InjectionResultRepository;
 import com.vn.service.InjectionResultService;
@@ -24,13 +25,19 @@ public class InjectionResultServiceImpl implements InjectionResultService {
     }
 
     @Override
+    public void deleteAllInjectionResult(List<String> ids) {
+        injectionResultRepository.deleteAllById(ids);
+    }
+
+    @Override
     public void deleteInjectionResult(String id) {
         injectionResultRepository.deleteById(id);
     }
 
+
     @Override
-    public InjectionResult findById(String id) {
-        return injectionResultRepository.findById(id).get();
+    public List<InjectionResult> findByCustomer(Customer customer) {
+        return injectionResultRepository.findByCustomer(customer);
     }
 
     @Override
@@ -44,6 +51,11 @@ public class InjectionResultServiceImpl implements InjectionResultService {
     @Override
     public List<InjectionResult> findAll() {
         return injectionResultRepository.findAll();
+    }
+
+    @Override
+    public InjectionResult findById(String id) {
+        return injectionResultRepository.findById(id).get();
     }
 
 

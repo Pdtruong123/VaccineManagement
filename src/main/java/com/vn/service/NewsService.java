@@ -11,6 +11,7 @@ public interface NewsService {
     News save(News news);
     Page<News> findContainElements(String keyword, Pageable pageable);
     void deleteNews(String id);
+    void deleteAllNews(List<String> ids);
     News findById(String id);
     List<News> findAll();
 }

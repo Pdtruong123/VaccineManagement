@@ -12,6 +12,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.time.LocalDate;
+import java.util.List;
 
 @Controller
 public class NewsController {
@@ -51,8 +52,8 @@ public class NewsController {
     }
 
     @PostMapping("/news/delete")
-    public ModelAndView deleteNews(@RequestParam String id){
-        newsService.deleteNews(id);
+    public ModelAndView deleteNews(@RequestParam List<String> ids){
+        newsService.deleteAllNews(ids);
         ModelAndView model = new ModelAndView("redirect:/news/list");
         return model;
     }
