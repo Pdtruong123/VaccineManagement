@@ -14,7 +14,7 @@
 }
 
 .topnavbar{
-    background-color: #72a58f;
+    background-color: #72b696;
 }
 .left{
     margin: 0;
@@ -23,9 +23,6 @@
 .right{
     margin: 0;
     padding: 0;
-    background-image: url("../img/background-1.jpg");
-    background-repeat: no-repeat;
-    background-size: cover;
 }
 .img{
     width: 80px;
@@ -123,8 +120,9 @@ body{
 	margin-top: -75px;
 	margin-left: -75px;
 }
-#img-employee{
-    margin-left: 25%;
-	width: 40px;
-	height: 40px;
+
+ul {
+	list-style-type: none;
+	margin: 0;
+  padding: 0;
 }
