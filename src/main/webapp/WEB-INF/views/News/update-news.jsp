@@ -61,6 +61,6 @@
         </form:form>
     </div>
 </div>
-<script src="${pageContext.request.contextPath}/js/VailidateNews.js"></script>
+<script src="${pageContext.request.contextPath}/js/ValidateNews.js"></script>
 </body>
 </html>
