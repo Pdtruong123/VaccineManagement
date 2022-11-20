@@ -29,32 +29,25 @@ public class HomeController {
 
     @GetMapping(value={"/home", "/index"})
     public ModelAndView homePage(HttpSession session){
-    	ModelAndView modelHome = new ModelAndView("homePage");
+    	ModelAndView model = new ModelAndView("homePage");
     	Customer customer = new Customer();
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		if (!(auth instanceof AnonymousAuthenticationToken)) {
 			CustomUserDetail userDetails = (CustomUserDetail) auth.getPrincipal();
 			customer = userDetails.getCustomer();
-			session.setAttribute("roleNames", userDetails.getAuthorities());
-			session.setAttribute("memberLogin", customer);
 			
 		}
 		session.setAttribute("emailLogin", customer.getEmail());
 		
-        return modelHome;
+        return model;
     }
     
     @GetMapping(value = {"/login","/",""})
-    public ModelAndView viewLogin(@RequestParam(value = "error",required = false) String error,HttpSession session) {
-    	ModelAndView modelHome = new ModelAndView("homePage");
-    	if (session.getAttribute("memberLogin")!=null) {
-			return modelHome;
-		}
-    	ModelAndView modelLogin = new ModelAndView("login");
-    	modelLogin.addObject("memberLogin", new Customer());
+    public String viewLogin(Model model,@RequestParam(value = "error",required = false) String error) {
+    	model.addAttribute("memberLogin", new Customer());
     	if (error != null) {
-    		modelLogin.addObject(modelLogin);
+            model.addAttribute("error","Invalid username and password!");
         }
-    	return modelLogin;
+    	return "login";
     }
 }

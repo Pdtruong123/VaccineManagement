@@ -45,14 +45,216 @@
     <title>Register Customer Information</title>
 </head>
 <body>
-        
+<div class="container-fluid ">
+    <nav class="row topnavbar py-1">
+        <a href="index.html" class="navbar-brand ml-3 mr-auto"><img
+                class="img" src="../../../asserts/img/logo.png"></a>
+    </nav>
+    <div class="row">
+        <div class="col-sm-3 border-right left" id="accordion">
+            <div class="list-group list-group-flush">
+                <div class="list-group-item text-white profile">
+                    <div>
+                        <img class="img-admin" src="../../../asserts/img/admin.png">
+                    </div>
+                    <div class="mt-1">Admin</div>
+                    <div class="mt-1">admin@fsoft.com.vn</div>
+                </div>
+                <div class="menu">
+                    <div class="list-group-item text font-weight-bold act">Home</div>
+                    <div class="list-group-item">
+                        <div class="row text act" data-toggle="collapse"
+                             data-target="#employee">
+                            <div class="col-sm-10 font-weight-bold ">Employee
+                                Management
+                            </div>
+                            <div class="col-sm-2">
+                                <i class="fa-solid fa-plus"></i>
+                            </div>
+                        </div>
+                        <div class="mt-3 collapse" id="employee" data-parent="#accordion">
+                            <div class="ml-4 text-sub">
+                                <a class="text-reset text-decoration-none " href="#"> <span
+                                        class="ml-2">Employee List</span>
+                                </a>
+                            </div>
+                            <div class="ml-4 mt-2 text-sub">
+                                <a class="text-reset text-decoration-none " href="#"> <span
+                                        class="ml-2">Create Employee</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="list-group-item">
+                        <div class="row text act" data-toggle="collapse"
+                             data-target="#customer">
+                            <div class="col-sm-10 font-weight-bold ">Customer
+                                Management
+                            </div>
+                            <div class="col-sm-2">
+                                <i class="fa-solid fa-plus"></i>
+                            </div>
+                        </div>
+                        <div class="mt-3 collapse" id="customer" data-parent="#accordion">
+                            <div class="ml-4 text-sub">
+                                <a class="text-reset text-decoration-none "
+                                   href="${pageContext.request.contextPath}/injectionCustomerList"> <span
+                                        class="ml-2">Customer List</span>
+                                </a>
+                            </div>
+                            <div class="ml-4 mt-2 text-sub">
+                                <a class="text-reset text-decoration-none "
+                                   href="${pageContext.request.contextPath}/registerCustomer"> <span
+                                        class="ml-2">Create Customer</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="list-group-item">
+                        <div class="row text act" data-toggle="collapse"
+                             data-target="#vaccineType">
+                            <div class="col-sm-10 font-weight-bold ">Vaccine Type
+                                Management
+                            </div>
+                            <div class="col-sm-2">
+                                <i class="fa-solid fa-plus"></i>
+                            </div>
+                        </div>
+                        <div class="mt-3 collapse" id="vaccineType"
+                             data-parent="#accordion">
+                            <div class="ml-4 text-sub">
+                                <a class="text-reset text-decoration-none" href="#"> <span
+                                        class="ml-2">Vaccine Type List</span>
+                                </a>
+                            </div>
+                            <div class="ml-4 mt-2 text-sub">
+                                <a class="text-reset text-decoration-none" href="#"> <span
+                                        class="ml-2">Vaccine Type Employee</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="list-group-item">
+                        <div class="row text act" data-toggle="collapse"
+                             data-target="#vaccine">
+                            <div class="col-sm-10 font-weight-bold ">Vaccine
+                                Management
+                            </div>
+                            <div class="col-sm-2">
+                                <i class="fa-solid fa-plus"></i>
+                            </div>
+                        </div>
+                        <div class="mt-3 collapse" id="vaccine" data-parent="#accordion">
+                            <div class="ml-4 text-sub">
+                                <a class="text-reset text-decoration-none" href="#"> <span
+                                        class="ml-2">Vaccine List</span>
+                                </a>
+                            </div>
+                            <div class="ml-4 mt-2 text-sub">
+                                <a class="text-reset text-decoration-none " href="#"> <span
+                                        class="ml-2">Create Vaccine</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="list-group-item">
+                        <div class="row text act" data-toggle="collapse"
+                             data-target="#inject">
+                            <div class="col-sm-10 font-weight-bold ">Injection
+                                Schedule
+                            </div>
+                            <div class="col-sm-2">
+                                <i class="fa-solid fa-plus"></i>
+                            </div>
+                        </div>
+                        <div class="mt-3 collapse" id="inject" data-parent="#accordion">
+                            <div class="ml-4 text-sub">
+                                <a class="text-reset text-decoration-none " href="#"> <span
+                                        class="ml-2">Injection Schedule List</span>
+                                </a>
+                            </div>
+                            <div class="ml-4 mt-2 text-sub">
+                                <a class="text-reset text-decoration-none " href="#"> <span
+                                        class="ml-2">Create Injection Schedule</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="list-group-item">
+                        <div class="row text act" data-toggle="collapse"
+                             data-target="#injectResult">
+                            <div class="col-sm-10 font-weight-bold ">Injection Result</div>
+                            <div class="col-sm-2">
+                                <i class="fa-solid fa-plus"></i>
+                            </div>
+                        </div>
+                        <div class="mt-3 collapse" id="injectResult"
+                             data-parent="#accordion">
+                            <div class="ml-4 text-sub">
+                                <a class="text-reset text-decoration-none" href="#"> <span
+                                        class="ml-2">Injection Result List</span>
+                                </a>
+                            </div>
+                            <div class="ml-4 mt-2 text-sub">
+                                <a class="text-reset text-decoration-none " href="#"> <span
+                                        class="ml-2">Create Injection Result</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="list-group-item">
+                        <div class="row text act" data-toggle="collapse"
+                             data-target="#news">
+                            <div class="col-sm-10 font-weight-bold ">News</div>
+                            <div class="col-sm-2">
+                                <i class="fa-solid fa-plus"></i>
+                            </div>
+                        </div>
+                        <div class="mt-3 collapse" id="news" data-parent="#accordion">
+                            <div class="ml-4 text-sub">
+                                <a class="text-reset text-decoration-none " href="#"> <span
+                                        class="ml-2">News List</span>
+                                </a>
+                            </div>
+                            <div class="ml-4 mt-2 text-sub">
+                                <a class="text-reset text-decoration-none " href="#"> <span
+                                        class="ml-2">Create News</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="list-group-item">
+                        <div class="row text act" data-toggle="collapse"
+                             data-target="#report">
+                            <div class="col-sm-10 font-weight-bold ">Report</div>
+                            <div class="col-sm-2">
+                                <i class="fa-solid fa-plus"></i>
+                            </div>
+                        </div>
+                        <div class="mt-3 collapse" id="report" data-parent="#accordion">
+                            <div class="ml-4 text-sub">
+                                <a class="text-reset text-decoration-none " href="#"> <span
+                                        class="ml-2">Report Customer</span>
+                                </a>
+                            </div>
+                            <div class="ml-4 mt-2 text-sub">
+                                <a class="text-reset text-decoration-none" href="#"> <span
+                                        class="ml-2">Report Vaccine</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-9 bg-light right">
             <div
                     class="h5 mt-3 text-center text-secondary font-weight-bold mb-3">REGISTER
                 CUSTOMER INFORMATION
             </div>
 
             <form:form
-                    action="${pageContext.request.contextPath}/customer/add"
+                    action="${pageContext.request.contextPath}/registerCustomer"
                     method="post" modelAttribute="customer" id="registerForm">
                 <div class="card mx-3">
                     <div class="card-body">
@@ -167,7 +369,7 @@
                                                 class="form-control ml-2" id="rePassword"/>
                                 </div>
                             </div>
-                        </div>
+                        </div>gi
 
                         <div class="form-row">
                             <div class="form-group col-sm-4">
@@ -223,7 +425,7 @@
                                 Save
                             </button>
                             <button type="reset" class="btn btn-sm btn-primary ml-2">Reset</button>
-                            <a class="btn btn-sm btn-warning ml-2" href="${pageContext.request.contextPath}/customer/list">Cancel</a>
+                            <a class="btn btn-sm btn-warning ml-2" href="${pageContext.request.contextPath}/">Cancel</a>
                         </div>
 
                     </div>
