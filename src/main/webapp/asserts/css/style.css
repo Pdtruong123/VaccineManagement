@@ -120,3 +120,6 @@ body{
 	margin-top: -75px;
 	margin-left: -75px;
 }
+ul {
+	list-style-type: none;
+}
