@@ -154,3 +154,4 @@
             </div>
 
 <script src="${pageContext.request.contextPath}/js/ValidateVaccineType.js"></script>
+

@@ -1,13 +1,13 @@
 $(document).ready(function (){
     $("#form-vaccine-type").validate({
         rules: {
-            typename: {
+            vaccineTypeName: {
                 required: true,
-                maxLength: 50,
+                maxlength: 50,
             },
             description: {
                 required: true,
-                maxLength: 200
+                maxlength: 200
             },
         },
         messages: {

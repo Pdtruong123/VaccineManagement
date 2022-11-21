@@ -62,9 +62,7 @@ public class EmployeeController {
     @PostMapping("/employee/delete")
     public ModelAndView deleteEmployee(@RequestParam (value = "ids") List<String> ids){
         ModelAndView model = new ModelAndView("redirect:/employee/list");
-        System.out.println(ids);
         employeeService.deleteEmployee(ids);
-
         return model;
     }
 
