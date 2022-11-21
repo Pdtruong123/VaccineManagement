@@ -61,7 +61,7 @@
 	<div class="h5 mt-3 text-center text-dark font-weight-bold mb-3">IMPORT
 		VACCINE</div>
 
-	<div class="card mx-3">
+	<div class="card mx-3 shadow">
 		<div class="card-body">
 			<form action="${pageContext.request.contextPath}/vaccine/import" enctype="multipart/form-data" method="post">
 			<input class="form-control form-control-lg" type="file" name=file>

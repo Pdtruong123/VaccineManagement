@@ -38,7 +38,7 @@
 	<div class="h5 mt-3 text-center text-dark font-weight-bold mb-3">LIST
 		VACCINE</div>
 	<span class="msg">${msg}</span>
-	<div class="card mx-3">
+	<div class="card mx-3 shadow">
 		<div class="card-body">
 			<div class="mt-3">
 				<table class="table table-striped table-bordered text-center"

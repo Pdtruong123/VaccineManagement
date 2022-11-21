@@ -61,7 +61,7 @@
 	<div class="h5 mt-3 text-center text-dark font-weight-bold mb-3">CREATE
 		VACCINE</div>
 
-	<div class="card mx-3">
+	<div class="card mx-3 shadow">
 		<div class="card-body">
 			<c:if test="${empty vaccineUpdate.id}">
 				<form:form action="${pageContext.request.contextPath}/vaccine/add"

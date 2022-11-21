@@ -67,12 +67,10 @@ public class Employee implements Serializable {
     private String phone;
 
     @Column(length = 100)
-    @NotBlank(message = "Please fill position of employee")
     private String position;
 
 
     @Column(name = "working_place")
-    @NotBlank(message = "Please working place of employee")
     private String workingPlace;
 
 }

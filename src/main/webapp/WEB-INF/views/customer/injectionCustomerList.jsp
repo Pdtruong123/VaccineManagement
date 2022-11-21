@@ -10,10 +10,10 @@
 <link rel="stylesheet" href="../../../asserts/css/DataTables.css">
 <script src="${pageContext.request.contextPath}/js/DataTables.js"></script>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/Customer.css">
-    <div class="h5 mt-3 text-center text-secondary font-weight-bold mb-3">Injection Customer List</div>
-    <div class="card mx-3">
+    <div class="h5 mt-3 text-center text-dark font-weight-bold mb-3">INJECTION CUSTOMER LIST</div>
+    <div class="card mx-3 shadow">
     <span class="msg">${msg}</span>
-        <div class="card-body">
+        <div class="card-body m-3">
             <div class="mt-3">
                 <table class="table table-bordered table-striped" id="table-IC">
                     <thead>
