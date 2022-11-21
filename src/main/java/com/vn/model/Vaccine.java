@@ -76,7 +76,7 @@ public class Vaccine {
 
 	public Vaccine(String id, String contraindication, String indication, Integer numberOfInjection, String origin,
 			Date timeBeginNextInjection, Date timeEndNextInjection, String usage, String vaccineName,
-			Boolean status) {
+			Boolean status,VaccineType vaccineType) {
 		super();
 		this.id = id;
 		this.contraindication = contraindication;
@@ -88,6 +88,7 @@ public class Vaccine {
 		this.usage = usage;
 		this.vaccineName = vaccineName;
 		this.status = status;
+		this.vaccineType = vaccineType;
 	}
 
 	@Override

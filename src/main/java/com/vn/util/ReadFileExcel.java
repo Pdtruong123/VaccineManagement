@@ -6,16 +6,26 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Optional;
 
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.vn.model.Vaccine;
+import com.vn.model.VaccineType;
+import com.vn.repository.VaccineRepository;
+import com.vn.repository.VaccineTypeRepository;
+import com.vn.service.VaccineService;
+import com.vn.service.VaccineTypeService;
+import com.vn.service.impl.VaccineServiceImpl;
+import com.vn.service.impl.VaccineTypeServiceImpl;
 
 public class ReadFileExcel {
+	
 	public static boolean checkExcelFormat(MultipartFile file) {
 		
 		// check file excel
@@ -24,6 +34,7 @@ public class ReadFileExcel {
 	}
 	@SuppressWarnings("deprecation")
 	public static List<Vaccine> importFileExcel(InputStream inputStream) {
+		VaccineTypeService vaccineTypeService = new VaccineTypeServiceImpl();
 		List<Vaccine> vaccines = new ArrayList<>();
 		String id="";
 		String contraindication="";
@@ -35,6 +46,8 @@ public class ReadFileExcel {
 		String usage="";
 		String vaccineName="";
 		Boolean status = null;
+		String vaccineTypeName = "";
+		VaccineType vaccineType = new VaccineType();
 		
 		
 		
@@ -94,12 +107,20 @@ public class ReadFileExcel {
 						status = nextCell.getBooleanCellValue();
 						System.out.println(status);
 						break;
+					case 10:
+						vaccineTypeName = nextCell.getStringCellValue();
+						
+						vaccineType = vaccineTypeService.findByVaccineTypeName(vaccineTypeName);
+						
+						System.out.println(vaccineTypeName);
+						break;
 					default:
 						break;
 					}
 				}
-				vaccines.add(new Vaccine(id, contraindication, indication, numberOfInjection, origin, timeBeginNextInjection, timeEndNextInjection, usage, vaccineName, status));
-				
+					if (vaccineType!=null) {
+						vaccines.add(new Vaccine(id, contraindication, indication, numberOfInjection, origin, timeBeginNextInjection, timeEndNextInjection, usage, vaccineName, status,vaccineType));
+					}
 			}
 			workbook.close();
 		} catch (Exception e) {
