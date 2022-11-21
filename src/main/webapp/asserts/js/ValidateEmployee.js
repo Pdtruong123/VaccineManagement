@@ -1,20 +1,41 @@
 $(document).ready(function () {
-
+    $.validator.addMethod("email", function (value, element, params) {
+        let regex = new RegExp(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/);
+        return regex.test(value) === params;
+    }, "Wrong email format");
+    $.validator.addMethod("phone", function (value, element, params) {
+        let regex = new RegExp("^[0]{1}\\d{9}$");
+        return regex.test(value) === params;
+    }, "Wrong phone number format");
+    $.validator.addMethod("validateBirthday", function (value,element,params){
+        var today = new Date();
+        var birthDay = new Date(value);
+        if((today.getFullYear() - birthDay.getFullYear()) <18){
+            return false;
+        }
+        if((today.getFullYear() - birthDay.getFullYear()) == 18){
+            if(today.getMonth() < birthDay.getMonth()){
+                return false;
+            }else{
+                if (today.getDay() < birthDay.getDay()){
+                    return false;
+                }
+            }
+        }
+        return true;
+    }, "The age is smaller 18 or no valid, please check date of birth!")
     $("#employee-form").validate({
         rules: {
-            id: {
-                required: true,
-                minlength: 3,
-                maxlength: 25
-            },
             employeeName: {
-                required: true,
-                maxlength: 3,
-                minlength: 25
+                required: true
             },
 
             dateOfBirth: {
-                required: true
+                required: true,
+                validateBirthday: true
+            },
+            gender: {
+                required: true,
             },
 
             address: {
@@ -40,28 +61,21 @@ $(document).ready(function () {
                 required: true,
                 maxlength: 25
             },
-
-
         },
         messages: {
-            id: {
-                required: "Please input your ID",
-                minlength: "ID only accept 1-10 characters",
-                maxlength: "ID only accept 1-10 characters"
-            },
             employeeName: {
-                required: "Please input your Name",
-                minlength: "Name must be 1-25 numbers",
-                maxlength: "Name must be 1-25 numbers"
+                required: "Please input your Employee Name"
             },
             dateOfBirth: {
                 required: "Please input your birthday",
             },
-
+            gender: {
+                required: "Please choose your gender",
+            },
 
             address: {
                 required: "Please input your address",
-
+                maxlength: "Address too long"
             },
             phone: {
                 required: "Please input your phone number",
@@ -73,72 +87,16 @@ $(document).ready(function () {
             },
 
             workingPlace: {
-                required: "Please input your workingPlace",
-
+                required: "Please input your working place",
+                minlength: "workingPlace have at least 5 characters ",
+                maxlength: "workingPlace can't more than 20 characters"
             },
             position: {
                 required: "Please input your position",
-
+                equalTo: "position have at least 5 characters",
+                maxlength: "position can't more than 25 characters"
             },
 
         },
     })
-
 });
-
-$.validator.addMethod("email", function (value, element, params) {
-    let regex = new RegExp(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/);
-    return regex.test(value) === params;
-}, "Wrong email");
-// $.validator.addMethod("phone", function (value, element, params) {
-//     let regex = new RegExp("^[0]{1}\\d{12}$");
-//     return regex.test(value) === params;
-// }, "Wrong phone number");
-
-$.validator.addMethod('phone',function (value, element, params) {
-        return (
-            this.optional(element) ||
-            /\(?([0-9]{3})\)?([ .-]?)([0-9]{3})\2([0-9]{4})/.test(value)
-        );
-    }
-);
-$validator.addMethod("dateOfBirth", function (value, element, params){
-    ("#dateOfBirth").datepicker({
-        changeMonth: true,
-        changeYear: true,
-        showOn: 'button',
-        buttonImageOnly: true,
-        buttonImage: 'images/calendar.gif',
-        dateFormat: 'dd/mm/yy',
-        yearRange: '1900:+0',
-        onSelect: function (dateString, dateOfBirth) {
-            ValidateDOB(dateString);
-        }
-    });
-});
-function ValidateDOB(dateString) {
-    var lblError = $("#lblError");
-    var parts = dateString.split("/");
-    var dtDOB = new Date(parts[1] + "/" + parts[0] + "/" + parts[2]);
-    var dtCurrent = new Date();
-    lblError.html("Eligibility 18 years ONLY.")
-    if (dtCurrent.getFullYear() - dtDOB.getFullYear() < 18) {
-        return false;
-    }
-
-    if (dtCurrent.getFullYear() - dtDOB.getFullYear() == 18) {
-
-        //CD: 11/06/2018 and DB: 15/07/2000. Will turned 18 on 15/07/2018.
-        if (dtCurrent.getMonth() < dtDOB.getMonth()) {
-            return false;
-        }
-        if (dtCurrent.getMonth() == dtDOB.getMonth()) {
-            //CD: 11/06/2018 and DB: 15/06/2000. Will turned 18 on 15/06/2018.
-            if (dtCurrent.getDate() < dtDOB.getDate()) {
-                return false;
-            }
-        }
-    }
-    lblError.html("");
-    return true;
-}

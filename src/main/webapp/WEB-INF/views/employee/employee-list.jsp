@@ -16,7 +16,7 @@
 <div class="card mx-3 shadow">
     <div class="card-body">
                     <div class="mt-3">
-                        <table class="table table-bordered" id="employee-tb">
+                        <table class="table table-bordered table-striped" id="employee-tb">
                             <thead>
                             <tr class="bg-info text-white text-center ">
                                 <th><input type="checkbox" id="checkAll"></th>

@@ -7,15 +7,15 @@
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.js"></script>
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/DataTables.css">
+<link rel="stylesheet" href="../../../asserts/css/DataTables.css">
 <script src="${pageContext.request.contextPath}/js/DataTables.js"></script>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/Customer.css">
-<div class="container-fluid ">
     <div class="h5 mt-3 text-center text-secondary font-weight-bold mb-3">Injection Customer List</div>
     <div class="card mx-3">
+    <span class="msg">${msg}</span>
         <div class="card-body">
             <div class="mt-3">
-                <table class="table table-bordered" id="table-IC">
+                <table class="table table-bordered table-striped" id="table-IC">
                     <thead>
                     <tr class="bg-info text-white text-center">
                         <td><input class="form-check mx-auto" type="checkbox" id="checkAll"></td>
@@ -49,7 +49,7 @@
             <div class="h5 text-right text-danger">${error}</div>
 
             <div class="">
-                <button class="btn btn-success mr-1" type="submit"><a href="${pageContext.request.contextPath}/customer/registerCustomer" class="text-white text-decoration-none">Register</a></button>
+                <button class="btn btn-success mr-1" type="submit"><a href="${pageContext.request.contextPath}/customer/add" class="text-white text-decoration-none">Register</a></button>
                 <button class="btn btn-warning mr-1 text-white" type="submit" id="update-button">Update Customer</button>
                 <button class="btn btn-danger" type="submit" id="delete-button">Delete Customer</button>
             </div>

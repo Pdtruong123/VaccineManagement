@@ -38,12 +38,12 @@
                             <div class="form-check form-check-inline">
                                 <label class="form-check-label" for="inlineRadio1">From:</label>
                                 <input class="form-control form-check-input ml-2" type="date" name="startDate"
-                                       id="startDate" value="option1">
+                                       id="startDate" value="${param.startDate}">
                             </div>
                             <div class="form-check form-check-inline">
                                 <label class="form-check-label" for="inlineRadio2">To:</label>
                                 <input class="form-control form-check-input ml-2" type="date" name="endDate"
-                                       id="endDate" value="option2">
+                                       id="endDate" value="${param.endDate}">
                             </div>
                         </div>
                     </div>
