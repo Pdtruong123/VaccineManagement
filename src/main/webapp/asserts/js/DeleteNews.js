@@ -6,7 +6,9 @@ $("#news-tb tbody tr td .link-col").click(function (){
             "\nPost Date: " + thisParent.find("td:eq(4)").text()
     );*/
 
-    $("#content-news").text(thisParent.find("td:eq(2)").text());
+    $("#news-title").text($(this).text());
+    $("#news-content").text(thisParent.find("td:eq(2)").text());
+    $("#news-date").text(thisParent.find("td:eq(4)").text());
 })
 
 $("#checkAll").change(function (){

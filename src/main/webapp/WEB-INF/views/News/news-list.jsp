@@ -54,17 +54,33 @@
 <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle">Detail News</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
+            <div class="modal-header bg-primary text-white">
+                <h5 class="modal-title " id="exampleModalLongTitle">Detail News</h5>
             </div>
-            <div class="modal-body" id="content-news">
+            <div class="modal-body">
+                <div class="list-group-item list-group-item-action flex-column align-items-start" >
+                    <div class="d-flex ">
+                        <div class="mb-1 text-info font-weight-bold">Title : </div>
+                    </div>
+                    <p class="mb-1 ml-3" id="news-title"></p>
+                </div>
+                <div class="list-group-item list-group-item-action flex-column align-items-start" >
+                    <div class="d-flex ">
+                        <div class="mb-1 text-info font-weight-bold">Content : </div>
+                    </div>
+                    <p class="mb-1 ml-3" id="news-content"></p>
+                </div>
+                <div class="list-group-item list-group-item-action flex-column align-items-start" >
+                    <div class="d-flex ">
+                        <div class="mb-1 text-info font-weight-bold">Post Date : </div>
+                    </div>
+                    <p class="mb-1 ml-3" id="news-date"></p>
+                </div>
+
 
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <div class="modal-footer border-top-0">
+                <button type="button" class="btn btn-light" data-dismiss="modal">Close</button>
             </div>
 
         </div>
