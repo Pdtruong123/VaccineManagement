@@ -9,6 +9,8 @@
 <script src="${pageContext.request.contextPath}/js/VaccineType.js"></script>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/DataTables.css">
 <script src="${pageContext.request.contextPath}/js/DataTables.js"></script>
+<link rel="stylesheet" href="../../../asserts/css/style.css">
+
 <div class="h5 mt-3 text-center text-dark font-weight-bold mb-3">EMPLOYEE LIST</div>
 <div class="text-success font-weight-bold ml-3">${success}</div>
 <div class="card mx-3 shadow">
