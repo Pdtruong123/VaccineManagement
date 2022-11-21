@@ -26,6 +26,10 @@ import java.util.Optional;
 public class VaccineServiceImpl implements VaccineService {
     @Autowired
     VaccineRepository vaccineRepository;
+
+	@Autowired
+	ReadFileExcel readFileExcel;
+
     @Autowired
     InjectionSchuduleRepository injectionSchuduleRepository;
 
@@ -151,7 +155,7 @@ public class VaccineServiceImpl implements VaccineService {
 	@Override
 	public void save(MultipartFile file) {
 		try {
-			List<Vaccine> vaccines = ReadFileExcel.importFileExcel(file.getInputStream());
+			List<Vaccine> vaccines = readFileExcel.importFileExcel(file.getInputStream());
 			vaccineRepository.saveAll(vaccines);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block

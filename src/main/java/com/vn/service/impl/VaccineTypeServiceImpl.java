@@ -127,10 +127,11 @@ public class VaccineTypeServiceImpl implements VaccineTypeService  {
 	}
 
 	@Override
-	public VaccineType findByVaccineTypeName(String vaccineName) {
-		Optional<VaccineType> optional = vaccineTypeRepository.findByVaccineTypeName(vaccineName);
+	public VaccineType findByVaccineTypeName(String vaccineTypeName) {
+		Optional<VaccineType> optional = vaccineTypeRepository.findByVaccineTypeName(vaccineTypeName);
 		if (optional.isPresent()) {
-			return optional.get();
+			VaccineType vaccineType = optional.get();
+			return vaccineType;
 		}else {
 			return null;
 		}
