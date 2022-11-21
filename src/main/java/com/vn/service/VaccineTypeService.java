@@ -23,4 +23,6 @@ public interface VaccineTypeService {
 	List<VaccineType> findAllActice();
 
 	void upDateStatusVaccine(List<String> ids, Boolean inactive);
+
+	VaccineType findByVaccineTypeName(String vaccineName);
 }

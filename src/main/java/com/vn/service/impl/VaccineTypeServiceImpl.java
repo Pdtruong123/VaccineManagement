@@ -125,4 +125,15 @@ public class VaccineTypeServiceImpl implements VaccineTypeService  {
 
 		vaccineRepository.updateStatusByType(ids, inactive);
 	}
+
+	@Override
+	public VaccineType findByVaccineTypeName(String vaccineName) {
+		Optional<VaccineType> optional = vaccineTypeRepository.findByVaccineTypeName(vaccineName);
+		if (optional.isPresent()) {
+			return optional.get();
+		}else {
+			return null;
+		}
+		
+	}
 }
