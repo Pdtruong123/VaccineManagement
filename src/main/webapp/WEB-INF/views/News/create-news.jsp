@@ -29,6 +29,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js"
             integrity="sha512-rstIgDs0xPgmG6RX1Aba4KV5cWJbAMcvRCVmglpam9SoHZiUCyQVDdH2LPlxoHtrv17XWblE/V/PP+Tr04hbtA=="
             crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdn.ckeditor.com/ckeditor5/35.3.1/classic/ckeditor.js"></script>
+
     <link rel="stylesheet" href="../../../asserts/css/style.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/news.css">
 </head>
@@ -41,16 +43,19 @@
         <form:form action="${pageContext.request.contextPath}/news/add" method="post"
                    modelAttribute="news" id="news-form">
             <div class="form-group">
-                <label class="font-weight-bold" for="title">Title<span class="text-danger">(*):</span></label>
+                <label class="font-weight-bold" for="title">Title<span class="text-danger"> (*):</span></label>
                 <form:input class="form-control w-50" type="text" id="title" value="" path="title"/>
             </div>
             <div class="form-group">
-                <label class="font-weight-bold" for="preview">Preview<span class="text-danger">(*):</span></label>
-                <form:input class="form-control" type="text" id="preview" path="preview"/>
+                <label class="font-weight-bold" for="preview">Preview<span class="text-danger"> (*):</span></label>
+                <form:input class="form-control h-50" type="text" id="preview" path="preview"/>
             </div>
             <div class="form-group">
-                <label class="font-weight-bold" for="content">Content<span class="text-danger">(*):</span></label>
-                <form:input class="form-control" type="text" id="content" path="content"/>
+                <label class="font-weight-bold" for="content">Content<span class="text-danger"> (*):</span></label>
+                <div id="editor" rows="20" >
+                    <form:textarea class="form-control " type="text" id="content" path="content"/>
+                </div>
+
             </div>
             <div class="form-button mt-4">
                 <button class="btn btn-success mr-1" type="submit">Save</button>
@@ -63,5 +68,12 @@
     </div>
 </div>
 <script src="${pageContext.request.contextPath}/js/ValidateNews.js"></script>
+<script>
+    ClassicEditor
+        .create( document.querySelector( '#editor' ) )
+        .catch( error => {
+            console.error( error );
+        } );
+</script>
 </body>
 </html>
