@@ -133,7 +133,7 @@
         <put-attribute name="body"
                        value="/WEB-INF/views/InjectionSchedule/create-injection-schedule.jsp"/>
     </definition>
-    <definition name="redirect:/lisst" extends="base.definition">
+    <definition name="redirect:/injection-schedule/list" extends="base.definition">
         <put-attribute name="title" value="Create Schedule"/>
         <put-attribute name="body"
                        value="/WEB-INF/views/InjectionSchedule/injectionScheduleList.jsp"/>

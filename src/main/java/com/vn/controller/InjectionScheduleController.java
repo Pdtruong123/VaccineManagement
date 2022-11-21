@@ -71,7 +71,7 @@ public class InjectionScheduleController {
     @PostMapping("/injectionSchedule/update")
     public ModelAndView postUpdate(@ModelAttribute("updateSchedule") InjectionSchedule injectionSchedule) {
         injectionScheduleService.save1(injectionSchedule);
-        ModelAndView modelAndView = new ModelAndView("redirect:/lisst");
+        ModelAndView modelAndView = new ModelAndView("redirect:/injection-schedule/list");
         return modelAndView;
     }
 }
