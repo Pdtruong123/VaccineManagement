@@ -11,14 +11,14 @@
 <script src="${pageContext.request.contextPath}/js/DataTables.js"></script>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/Customer.css">
 <body>
-<div class="h5 mt-3 text-center text-secondary font-weight-bold mb-3">UPDATE
+<div class="h5 mt-3 text-center text-dark font-weight-bold mb-3">UPDATE
     CUSTOMER INFORMATION
 </div>
 
 <form:form
         action="${pageContext.request.contextPath}/customer/update"
         method="post" modelAttribute="customer" id="registerForm">
-    <div class="card mx-3">
+    <div class="card mx-3 shadow">
         <div class="card-body">
             <div class="fs-20 font-weight-bold">Personal Information</div>
             <div class="form-row pt-15">
@@ -92,7 +92,7 @@
 
         </div>
     </div>
-    <div class="card m-3">
+    <div class="card m-3 ml-4">
         <div class="card-body">
 
             <div class="fs-20 font-weight-bold ">Account Information</div>

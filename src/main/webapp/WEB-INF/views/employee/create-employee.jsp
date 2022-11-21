@@ -15,7 +15,7 @@
         <div>
             <div class="h5 mt-3 text-center text-dark font-weight-bold mb-3" style="color: black">CREATE EMPLOYEE</div>
             <div class="h4 text-success font-weight-bold ml-3">${success}</div>
-            <div class="card mx-3">
+            <div class="card mx-3 shadow">
                 <div class="card-body">
 
                     <form:form action="${pageContext.request.contextPath}/employee/add" method="post"
@@ -26,8 +26,8 @@
 
                         <div class="form-group col-sm-5">
                             <label class="font-weight-bold" for="name">Employee name<span
-                                    class="text-danger">(*):</span></label>
-                            <form:input class="form-control" type="text" placeholder="Nguyen Van A" id="name"
+                                    class="text-danger"> (*):</span></label>
+                            <form:input class="form-control" type="text" placeholder="Enter Name" id="name"
                                         path="employeeName"/>
                         </div>
                         <div class="form-group col-sm-2"></div>
@@ -35,13 +35,13 @@
                         <div class="form-group col-sm-4">
                             <label class="font-weight-bold" for="gender">Gender </label>
                             <div class="form-inline">
-                                <i class="fa-regular fa-face-meh-blank"></i>
+                                <i class="fa-regular fa-face-meh-blank mr-2"></i>
                                 <div class="gender d-flex justify-content-evenly border rounded">
                                     <div class="form-check form-check-inline">
                                         <form:radiobutton path="gender" id="gender" value="0"/>Male
 
                                     </div>
-                                    <div class="form-check form-check-inline">
+                                    <div class="form-check form-check-inline ">
                                         <form:radiobutton path="gender" id="gender" value="1"/>Female
                                     </div>
                                 </div>
@@ -51,35 +51,35 @@
 
 
                         <div class="form-group col-sm-4">
-                            <label class="font-weight-bold" for="dateOfBirth">Date Of Birth<span class="text-danger">(*):</span></label>
-                            <form:input class="form-control" type="date" placeholder="12/12/1999" id="dateOfBirth"
+                            <label class="font-weight-bold" for="dateOfBirth">Date Of Birth<span class="text-danger"> (*):</span></label>
+                            <form:input class="form-control" type="date" id="dateOfBirth"
                                         path="dateOfBirth"/>
                         </div>
 
                         <div class="form-group col-sm-4">
                             <label class="font-weight-bold" for="phone">Phone<span
-                                    class="text-danger">(*):</span></label>
-                            <form:input class="form-control" type="phone" placeholder="0123456789" id="phone"
+                                    class="text-danger"> (*):</span></label>
+                            <form:input class="form-control" type="phone" placeholder="Enter Phone number" id="phone"
                                         path="phone"/>
                         </div>
 
                         <div class="form-group col-sm-4">
                             <label class="font-weight-bold" for="address">Address<span
-                                    class="text-danger">(*):</span></label>
-                            <form:input class="form-control" type="text" placeholder="17 Duy Tan" id="address"
+                                    class="text-danger"> (*):</span></label>
+                            <form:input class="form-control" type="text" placeholder="Enter Address" id="address"
                                         path="address"/>
                         </div>
 
 
                         <div class="form-group col-sm-4">
                             <label class="font-weight-bold" for="email">Email<span
-                                    class="text-danger">(*):</span></label>
-                            <form:input class="form-control" type="email" placeholder="" id="email" path="email"/>
+                                    class="text-danger"> (*):</span></label>
+                            <form:input class="form-control" type="email" placeholder="Enter Email"  id="email" path="email"/>
                         </div>
 
                         <div class="form-group col-sm-4">
                             <label class="font-weight-bold" for="workingPlace">Working Palace:</label>
-                            <form:input class="form-control" type="text" placeholder="Hong Ngoc" id="workingPlace"
+                            <form:input class="form-control" type="text" placeholder="Enter Working place" id="workingPlace"
                                         path="workingPlace"/>
                         </div>
 
@@ -87,12 +87,12 @@
                         <div class="form-group col-sm-4">
                             <label class="font-weight-bold" for="position">Position:</label>
                             <form:input class="form-control" type="text" id="position" path="position"
-                                        placeholder="Doctor"/>
+                                        placeholder="Enter Poisition"/>
                         </div>
                     </div>
                 </div>
 
-                <div class="form-group">
+                <div class="form-group ml-4">
                     <label class="font-weight-bold">Image :</label>
                     <div class="row">
                         <div class="col-sm-1">
@@ -116,7 +116,7 @@
                 </div>
 
 
-                <div class="form-button mt-4">
+                <div class="form-button mx-4 my-3">
                     <button class="btn btn-success mr-1" type="submit">Save</button>
                     <button class="btn btn-primary mr-1" type="reset">Reset</button>
                     <button class="btn btn-warning text-white" type="button"><a
