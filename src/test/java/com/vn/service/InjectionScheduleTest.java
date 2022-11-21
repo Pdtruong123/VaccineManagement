@@ -43,6 +43,6 @@ public class InjectionScheduleTest {
     }
     @Test
     public void findById(){
-        InjectionSchedule injectionSchedule = new InjectionSchedule()
+        InjectionSchedule injectionSchedule = new InjectionSchedule();
     }
 }
