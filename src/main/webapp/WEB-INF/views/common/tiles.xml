@@ -230,5 +230,25 @@
     </definition>
     <!--End Employee-->
 
+    <!--Register Customer-->
+    <definition name="registerCustomer" extends="base.definition">
+        <put-attribute name="title" value="Register Customer Information"/>
+        <put-attribute name="body"
+                       value="/WEB-INF/views/customer/registerCustomer.jsp"/>
+    </definition>
+
+    <!--List Customer-->
+    <definition name="injectionCustomerList" extends="base.definition">
+        <put-attribute name="title" value="List Customer"/>
+        <put-attribute name="body"
+                       value="/WEB-INF/views/customer/injectionCustomerList.jsp"/>
+    </definition>
+
+    <definition name="updateInjectionCustomerList" extends="base.definition">
+        <put-attribute name="title" value="Update Customer Information"/>
+        <put-attribute name="body"
+                       value="/WEB-INF/views/customer/updateInjectionCustomerList.jsp"/>
+    </definition>
+
 </tiles-definitions>
 
