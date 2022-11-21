@@ -35,15 +35,19 @@ public class InjectionSchedule implements Serializable {
     })
     @Column(name = "injection_schedule_id", length = 36)
     private String id;
-    @NotBlank
-    @Column(length = 1000)
-    private String description;
+    @NotNull
+    @Column(name = "start_date")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private LocalDate startDate;
     @NotNull
     @Column(name = "end_date")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate endDate;
     @NotBlank
     private String place;
+    @NotBlank
+    @Column(length = 1000)
+    private String description;
 
     public Vaccine getVaccine() {
         return vaccine;
@@ -52,11 +56,6 @@ public class InjectionSchedule implements Serializable {
     public void setVaccine(Vaccine vaccine) {
         this.vaccine = vaccine;
     }
-
-    @NotNull
-    @Column(name = "start_date")
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private LocalDate startDate;
 
     //    @JsonIgnore
     @JsonManagedReference
@@ -71,10 +70,10 @@ public class InjectionSchedule implements Serializable {
         if (!vaccine.getStatus() || !endDate.isBefore(LocalDate.now())) {
             status = "Over";
         }
-        if (startDate.isAfter(LocalDate.now())) {
+        if (startDate.isAfter(LocalDate.now()) && LocalDate.now().isBefore(endDate)) {
             status = "Open";
         }
-        if(startDate.isBefore(LocalDate.now())){
+        if (startDate.isBefore(LocalDate.now())) {
             status = "Not yet";
         }
         return status;
