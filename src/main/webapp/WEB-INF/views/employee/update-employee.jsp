@@ -7,7 +7,7 @@
 
 <div>
 	<div class="h5 mt-3 text-center text-dark font-weight-bold mb-3"
-		style="color: black">UPADTE EMPLOYEE</div>
+		style="color: black">UPDATE EMPLOYEE</div>
 
 	<div class="card mx-3 shadow">
 		<div class="card-body">
@@ -28,14 +28,18 @@
 					<div class="form-group col-sm-5">
 						<label class="font-weight-bold" for="name">Employee name<span
 							class="text-danger"> (*):</span></label>
-						<form:input class="form-control" type="text"
-							 id="name" path="employeeName" />
+						<div class="row">
+							<i class="fa-solid fa-circle-user col-sm-1 pt-3"></i>
+							<form:input class="form-control col-sm-11" type="text" placeholder="Enter Name" id="name"
+										path="employeeName"/>
+						</div>
+
 					</div>
 					<div class="form-group col-sm-2"></div>
 
 
 					<div class="form-group col-sm-5">
-						<label class="font-weight-bold" for="gender">Gender </label>
+						<label class="font-weight-bold" for="gender">Gender</label>
 						<div class="form-inline">
 							<i class="fa-regular fa-face-meh-blank"></i>
 							<div class="gender d-flex justify-content-evenly border rounded">
@@ -54,48 +58,66 @@
 					</div>
 
 
-					<div class="form-group col-sm-4">
+					<div class="form-group col-sm-3">
 						<label class="font-weight-bold" for="dateOfBirth">Date Of
 							Birth<span class="text-danger"> (*):</span>
 						</label>
-						<form:input class="form-control" type="date"
-							 id="dateOfBirth" path="dateOfBirth" />
+						<div class="row">
+							<i class="fa-regular fa-calendar col-sm-1 pt-3 mr-2"></i>
+							<form:input class="form-control col-sm-10" type="date" id="dateOfBirth"
+										path="dateOfBirth"/>
+						</div>
 					</div>
-
-					<div class="form-group col-sm-4">
+					<div class="col-sm-1"></div>
+					<div class="form-group col-sm-3">
 						<label class="font-weight-bold" for="phone">Phone<span
 							class="text-danger"> (*):</span></label>
-						<form:input class="form-control" type="phone"
-							 id="phone" path="phone" />
+						<div class="row">
+							<i class="fa-solid fa-phone col-sm-1 pt-3 mr-2"></i>
+							<form:input class="form-control col-sm-10" type="phone" placeholder="Enter Phone number" id="phone"
+										path="phone"/>
+						</div>
 					</div>
-
-					<div class="form-group col-sm-4">
+					<div class="col-sm-1"></div>
+					<div class="form-group col-sm-3">
 						<label class="font-weight-bold" for="address">Address<span
 							class="text-danger"> (*):</span></label>
-						<form:input class="form-control" type="text"
-							 id="address" path="address" />
+						<div class="row">
+							<i class="fa-solid fa-location-dot col-sm-1 pt-3 mr-2"></i>
+							<form:input class="form-control col-sm-10" type="text" placeholder="Enter Address" id="address"
+										path="address"/>
+						</div>
 					</div>
 
 
-					<div class="form-group col-sm-4">
+					<div class="form-group col-sm-3">
 						<label class="font-weight-bold" for="email">Email<span
 							class="text-danger"> (*):</span></label>
-						<form:input class="form-control" type="email"
-							id="email" path="email" />
+						<div class="row">
+							<i class="fa-solid fa-envelope col-sm-1 pt-3 mr-2"></i>
+							<form:input class="form-control col-sm-10" type="email" placeholder="Enter Email" id="email"
+										path="email"/>
+						</div>
 					</div>
-
-					<div class="form-group col-sm-4">
+					<div class="col-sm-1"></div>
+					<div class="form-group col-sm-3">
 						<label class="font-weight-bold" for="workingPlace">Working
-							Palace:</label>
-						<form:input class="form-control" type="text"
-							 id="workingPlace" path="workingPlace" />
+							Place:</label>
+						<div class="row">
+							<i class="fa-solid fa-building-columns col-sm-1 pt-3 mr-2"></i>
+							<form:input class="form-control col-sm-10" type="text" placeholder="Enter Working Place" id="workingPlace"
+										path="workingPlace"/>
+						</div>
 					</div>
 
-
-					<div class="form-group col-sm-4">
+					<div class="col-sm-1"></div>
+					<div class="form-group col-sm-3">
 						<label class="font-weight-bold" for="position">Position:</label>
-						<form:input class="form-control" type="text" id="position"
-							path="position"  />
+						<div class="row">
+							<i class="fa-sharp fa-solid fa-circle-dot col-sm-1 pt-3 mr-2"></i>
+							<form:input class="form-control col-sm-10" type="text" id="position" path="position"
+										placeholder="Enter Poisition"/>
+						</div>
 					</div>
 				</div>
 		</div>
