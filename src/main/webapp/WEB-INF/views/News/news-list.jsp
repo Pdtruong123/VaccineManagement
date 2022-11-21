@@ -28,7 +28,7 @@
                 <c:forEach items="${newsList}" var="result">
                     <tr>
                         <td><input class="form-check mx-auto" type="checkbox" value="${result.id}" name="id"></td>
-                        <td class="title-row"><a class="link-col" href="#">${result.title}</a></td>
+                        <td class="title-row"><a class="link-col" href="#" data-toggle="modal" data-target="#exampleModalCenter">${result.title}</a></td>
                         <td hidden class="content-row"><input type="hidden">${result.content}</td>
                         <td class="preview-row">${result.preview}</td>
                         <td class="postdate-row">${result.postDate}</td>
@@ -49,6 +49,28 @@
         </security:authorize>
     </div>
 </div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Detail News</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" id="content-news">
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
 <script src="${pageContext.request.contextPath}/js/DataTables.js"></script>
 <script src="${pageContext.request.contextPath}/js/DeleteNews.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
