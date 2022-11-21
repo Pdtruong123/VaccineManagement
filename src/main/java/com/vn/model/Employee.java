@@ -5,6 +5,7 @@ import java.time.LocalDate;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 
 import com.vn.util.GenerateID;
@@ -46,10 +47,10 @@ public class Employee implements Serializable {
     private String email;
 
     @Column(name = "employee_name", length = 100)
+    @NotBlank(message = "Please fill name of employee")
     private String employeeName;
 
     private Integer gender;
-
 
     @Transient
     private String customFileInputHidden;
@@ -62,13 +63,16 @@ public class Employee implements Serializable {
 
 
     @Column(length = 20)
+    @NotBlank(message = "Please fill phone number of employee")
     private String phone;
 
     @Column(length = 100)
+    @NotBlank(message = "Please fill position of employee")
     private String position;
 
 
     @Column(name = "working_place")
+    @NotBlank(message = "Please working place of employee")
     private String workingPlace;
 
 }
