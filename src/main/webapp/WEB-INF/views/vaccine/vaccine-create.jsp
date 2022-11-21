@@ -183,8 +183,9 @@
 						<button type="reset" class="btn btn-sm btn-primary ml-2">Reset</button>
 						<a class="btn btn-sm btn-warning ml-2"
 							href="${pageContext.request.contextPath}/vaccine/list">Cancel</a>
-						<button type="button" class="btn btn-sm btn-primary ml-2"
-							id="importVaccine">>Import Vaccine</button>
+
+							<a class="btn btn-sm btn-warning ml-2"
+												  href="${pageContext.request.contextPath}/vaccine/import">Import Vaccine</a>
 					</div>
 
 				</form:form>

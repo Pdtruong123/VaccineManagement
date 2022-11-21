@@ -76,7 +76,7 @@ public class InjectionResultController {
     public ModelAndView addInjectionResult(@Valid @ModelAttribute(value = "injectionResult") InjectionResult injectionResult,
                                      BindingResult bindingResult, RedirectAttributes redirectAttributes) {
         ModelAndView modelError = new ModelAndView("createInjectionResult");
-        ModelAndView model = new ModelAndView("redirect:/injection-result/add");
+        ModelAndView model = new ModelAndView("redirect:/injection-result/list");
         if (bindingResult.hasErrors()) {
             return modelError;
         }

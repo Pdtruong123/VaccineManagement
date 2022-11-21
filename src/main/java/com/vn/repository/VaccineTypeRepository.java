@@ -24,5 +24,6 @@ public interface VaccineTypeRepository extends JpaRepository<VaccineType, String
     @Query("Select vt from VaccineType vt where vt.vaccineTypeStatus =:status")
 	List<VaccineType> findByVaccineTypeStatus(Boolean status);
 
+    @Query("Select vt from VaccineType vt where vt.vaccineTypeName =:vaccineTypeName")
 	Optional<VaccineType> findByVaccineTypeName(String vaccineTypeName);
 }
