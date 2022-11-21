@@ -12,6 +12,7 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.time.LocalDate;
+import java.util.Optional;
 
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -21,14 +22,16 @@ public class InjectionScheduleTest {
     @Mock
     private InjectionSchuduleRepository injectionSchuduleRepository;
     @InjectMocks
-    private InjectionScheduleServiceImpl injectionScheduleService;
-    @BeforeEach
-    public void setUp(){
+    private InjectionScheduleServiceImpl injectionScheduleServiceImpl;
 
+    @BeforeEach
+    public void setUp() {
+        injectionScheduleServiceImpl = new InjectionScheduleServiceImpl(this.injectionSchuduleRepository);
     }
+
     @Test
     public void getAll() {
-        injectionScheduleService.findAll();
+        injectionScheduleServiceImpl.findAll();
         verify(injectionSchuduleRepository).findAll();
     }
 
@@ -38,11 +41,16 @@ public class InjectionScheduleTest {
                 ("abc123", LocalDate.of(2022, 11, 21),
                         LocalDate.of(2022, 11, 25), "hai duong",
                         "abc", null, "abcc");
-            when(injectionSchuduleRepository.save(injectionSchedule)).thenReturn(injectionSchedule);
-        Assertions.assertEquals(injectionSchedule,injectionScheduleService.save1(injectionSchedule));
+        when(injectionSchuduleRepository.save(injectionSchedule)).thenReturn(injectionSchedule);
+        Assertions.assertEquals(injectionSchedule, injectionScheduleServiceImpl.save1(injectionSchedule));
     }
+
     @Test
-    public void findById(){
-        InjectionSchedule injectionSchedule = new InjectionSchedule();
+    public void findById() {
+        InjectionSchedule injectionSchedule = new InjectionSchedule("abc123", LocalDate.of(2022, 11, 21),
+                LocalDate.of(2022, 11, 25), "hai duong",
+                "abc", null, "abcc");
+        when(injectionSchuduleRepository.findById("abc123")).thenReturn(Optional.of(injectionSchedule));
+        Assertions.assertEquals(injectionScheduleServiceImpl.findByID("abc123"),injectionSchedule);
     }
 }

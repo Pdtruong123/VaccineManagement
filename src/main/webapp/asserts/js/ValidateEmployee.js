@@ -34,10 +34,6 @@ $(document).ready(function () {
                 required: true,
                 validateBirthday: true
             },
-            gender: {
-                required: true,
-            },
-
             address: {
                 required: true,
                 maxlength: 100
@@ -46,17 +42,7 @@ $(document).ready(function () {
                 required: true,
                 maxlength: 12
             },
-            workingPlace: {
-                required: true,
-                minlength: 5,
-                maxlength: 20,
-            },
-            position: {
-                required: true,
-                minlength: 5,
-                maxlength: 20,
 
-            },
             email: {
                 required: true,
                 maxlength: 25
@@ -68,9 +54,6 @@ $(document).ready(function () {
             },
             dateOfBirth: {
                 required: "Please input your birthday",
-            },
-            gender: {
-                required: "Please choose your gender",
             },
 
             address: {
@@ -84,17 +67,6 @@ $(document).ready(function () {
             email: {
                 required: "Please input your email",
 
-            },
-
-            workingPlace: {
-                required: "Please input your working place",
-                minlength: "workingPlace have at least 5 characters ",
-                maxlength: "workingPlace can't more than 20 characters"
-            },
-            position: {
-                required: "Please input your position",
-                equalTo: "position have at least 5 characters",
-                maxlength: "position can't more than 25 characters"
             },
 
         },

@@ -1,10 +1,12 @@
 $("#news-tb tbody tr td .link-col").click(function (){
     var thisParent = $(this).closest("tr");
-    alert("Title: " + $(this).text()+
+ /*   alert("Title: " + $(this).text()+
             "\nPreview: " + thisParent.find("td:eq(3)").text()+
             "\nContent: " + thisParent.find("td:eq(2)").text()+
             "\nPost Date: " + thisParent.find("td:eq(4)").text()
-    );
+    );*/
+
+    $("#content-news").text(thisParent.find("td:eq(2)").text());
 })
 
 $("#checkAll").change(function (){

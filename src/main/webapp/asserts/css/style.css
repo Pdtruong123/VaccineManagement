@@ -122,3 +122,8 @@ body{
 	margin-top: -75px;
 	margin-left: -75px;
 }
+#img-employee{
+    height: 40px;
+    width:35px;
+    margin-left: 25%;
+}

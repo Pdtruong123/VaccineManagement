@@ -21,6 +21,7 @@
                                         <input type="text" class="form-control ml-5 w-75" placeholder="Enter name"
                                                name="vaccineTypeName" id="typename" required>
                                     </div>
+                                    <form:errors path="vaccineTypeName"></form:errors>
                                 </div>
                                 <div class="form-group col-sm-6">
                                     <label class="font-weight-bold" for="typeactive">Active <span class="text-danger">(*)</span>

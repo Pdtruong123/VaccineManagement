@@ -46,8 +46,9 @@ public class EmployeeController {
 
     @PostMapping("/employee/add")
     public ModelAndView addEmployee(@Valid @ModelAttribute("employee") Employee employee
-                              , RedirectAttributes redirectAttributes
-                              ,BindingResult bindingResult){
+                            ,BindingResult bindingResult
+                            , RedirectAttributes redirectAttributes
+                              ){
         ModelAndView modelError = new ModelAndView("employeeAdd");
         ModelAndView model = new ModelAndView("redirect:/employee/list");
         if(bindingResult.hasErrors()){

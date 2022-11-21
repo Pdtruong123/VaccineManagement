@@ -34,11 +34,11 @@
     <script src="${pageContext.request.contextPath}/js/effects.js"></script>
 </head>
 <body>
-<div class="preloading">
+<%--<div class="preloading">
     <div class="loader">
 	<img src="${pageContext.request.contextPath}/img/loader.gif">
 </div>
-</div>
+</div>--%>
 <div class="container-fluid ">
     <tiles:insertAttribute name="header" />
     <div class="row">

@@ -45,5 +45,29 @@ $('#employee-tb input').change(function () {
             })
         }
         return false;
-    // });
-});
+    });
+        //update
+
+        $("#update-button").click(function (){
+            var count=0;
+            var id;
+            $("#employee-tb input").each(function (){
+                if(this.checked) {
+                    count ++;
+                    id = $(this).val();
+                }
+            })
+            if(count==0){
+                alert("No record be chosen!");
+                return false;
+            }
+
+            if(count>1){
+                alert("Can not choose multi selects for update!");
+                return false;
+            }
+            if(count==1){
+                window.location.href="/employee/update/"+id;
+                return false;
+            }
+        })
