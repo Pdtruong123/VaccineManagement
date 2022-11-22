@@ -67,7 +67,7 @@ public class CustomerController {
     public ModelAndView updateCustomer(@ModelAttribute ("customer") @Valid Customer customer, BindingResult result) {
         ModelAndView model = new ModelAndView("redirect:/customer/list");
         model.addObject("msg","Update customer successfull!");
-        customerService.create(customer);
+        customerService.update(customer);
         return model;
 
     }

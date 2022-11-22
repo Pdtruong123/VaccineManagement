@@ -32,6 +32,7 @@ public interface CustomerService {
 
     List<Customer> findElementReport(String fullName, String address, Date dOBFrom, Date dOBTo);
 
+    Customer update(Customer customer);
 
 
 }
