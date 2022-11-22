@@ -6,6 +6,7 @@ import java.util.Optional;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
+import com.vn.repository.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -25,7 +26,8 @@ public class CustomerController {
 
     @Autowired
     CustomerService customerService;
-
+    @Autowired
+    CustomerRepository customerRepository;
     @Autowired
     HttpServletRequest httpServletRequest;
 
@@ -39,9 +41,23 @@ public class CustomerController {
 
     @PostMapping("/customer/add")
     public ModelAndView saveRegister(@ModelAttribute("customer") Customer customer) {
-            ModelAndView model = new ModelAndView("registerCustomer");
+        ModelAndView model = new ModelAndView("redirect:/customer/list");
+        ModelAndView modelError = new ModelAndView("registerCustomer");
+        Optional<Customer> userName = customerRepository.CheckFindByUserName(customer.getUserName());
+        Optional<Customer> email = customerRepository.CheckFindByEmail(customer.getEmail());
+        if (userName.isPresent() && email.isPresent()) {
+            model.addObject("msg", "Email or User Name Duplicate");
+            return modelError;
+        }
+        if (userName.isPresent()) {
+            model.addObject("msg", "Email or User Name Duplicate");
+            return modelError;
+        }
+        if (email.isPresent()) {
+            model.addObject("msg", "Email or User Name Duplicate");
+            return modelError;
+        }
         customerService.create(customer);
-        model.addObject("customer", customer);
         return model;
     }
 
@@ -55,7 +71,7 @@ public class CustomerController {
     }
 
 
-    @GetMapping(value = { "/customer/update/{id}" })
+    @GetMapping(value = {"/customer/update/{id}"})
     public ModelAndView edit(@PathVariable("id") String id) {
         ModelAndView model = new ModelAndView("updateInjectionCustomerList");
         Customer customer = customerService.findById(id);
@@ -63,13 +79,35 @@ public class CustomerController {
         return model;
     }
 
-    @PostMapping(value = { "/customer/update" })
-    public ModelAndView updateCustomer(@ModelAttribute ("customer") @Valid Customer customer, BindingResult result) {
+    @PostMapping(value = {"/customer/update"})
+    public ModelAndView updateCustomer(@ModelAttribute("customer") @Valid Customer customer, BindingResult result) {
         ModelAndView model = new ModelAndView("redirect:/customer/list");
-        model.addObject("msg","Update customer successfull!");
-        customerService.update(customer);
-        return model;
-
+        ModelAndView modelError = new ModelAndView("updateInjectionCustomerList");
+        model.addObject("msg", "Update customer successfull!");
+//        final String userNameDefault= customer.getUserName();
+//        final String emailDefault= customer.getEmail();
+        Optional<Customer> userName = customerRepository.CheckFindByUserName(customer.getUserName());
+        Optional<Customer> email = customerRepository.CheckFindByEmail(customer.getEmail());
+        if (userName.isPresent() && email.isPresent() && customer.getId().equals(userName.get().getId())
+                && customer.getId().equals(email.get().getId())) {
+            customerService.update(customer);
+            return model;
+        }
+        if (userName.isPresent() && email.isPresent()) {
+            model.addObject("msg", "Email or User Name Duplicate");
+            return modelError;
+        }
+        if (userName.isPresent()) {
+            model.addObject("msg", "Email or User Name Duplicate");
+            return modelError;
+        }
+        if (email.isPresent()) {
+            model.addObject("msg", "Email or User Name Duplicate");
+            return modelError;
+        } else {
+            customerService.update(customer);
+            return model;
+        }
     }
 
     @PostMapping("/customer/delete")
