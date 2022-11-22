@@ -44,6 +44,7 @@ public class Customer implements Serializable {
 	@Column(name = "customer_id", length = 36)
 	private String id;
 
+	@Column(columnDefinition = "nvarchar(255)")
 	private String address;
 
 	@Column(name = "date_of_birth")
