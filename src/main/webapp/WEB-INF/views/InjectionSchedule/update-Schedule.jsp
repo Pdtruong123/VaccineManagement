@@ -11,28 +11,28 @@
                 <form:input path="id" type="hidden"/>
                 <form:input path="vaccine.id" type="hidden"/>
                 <div class="col-sm-4">
-                    <label>Vaccine</label><label class="lbls">(*)</label>
+                    <label class="font-weight-bold">Vaccine<span class="lbls text-danger"> (*)</span></label>
                     <form:input class="form-control" disabled="true" path="vaccine.vaccineName"/>
                 </div>
                 <div class="col-sm-4">
-                    <label>From</label><label class="lbls">(*)</label>
+                    <label class="font-weight-bold">From<span class="lbls text-danger"> (*)</span></label>
                     <form:input path="startDate" type="date" class="form-control"/>
                     <form:errors path="startDate"/>
                 </div>
                 <div class="col-sm-4">
-                    <label>To</label><label class="lbls">(*)</label>
+                    <label class="font-weight-bold">To<span class="lbls text-danger"> (*)</span></label>
                     <form:input path="endDate" type="date" class="form-control endDate"/>
                     <form:errors path="endDate"/>
                 </div>
             </div>
             <div class="mt-2 row">
                 <div class="col-sm-5">
-                    <label>Place</label><label class="lbls">(*)</label>
+                    <label class="font-weight-bold">Place<span class="lbls text-danger"> (*)</span></label>
                     <form:textarea path="place" class="form-control place"/>
                     <form:errors path="place"/>
                 </div>
                 <div class="col-sm-7">
-                    <label>Note:</label>
+                    <label class="font-weight-bold">Note:</label>
                     <form:textarea path="description" class="form-control note"/>
                     <form:errors path="description"/>
                 </div>

@@ -129,14 +129,14 @@
 						<div class="form-group col-lg-4">
 							<label class="font-weight-bold" for="vaccine-uasge">Usage:</label>
 							<br>
-							<form:input path="usage" type="text" class="form-control-lg"
+							<form:input path="usage" type="text" class="form-control"
 								placeholder="Mô tả sử dụng" id="vaccine-uasge" />
 							<form:errors path="usage" cssClass="error" />
 						</div>
 						<div class="form-group col-lg-4">
 							<label class="font-weight-bold" for="vaccine-indication">Indication:</label>
 							<br>
-							<form:input path="indication" type="text" class="form-control-lg"
+							<form:input path="indication" type="text" class="form-control"
 								placeholder="Mô tả chi tiết sử dụng" id="vaccine-indication" />
 							<form:errors path="indication" cssClass="error" />
 						</div>
@@ -144,7 +144,7 @@
 							<label class="font-weight-bold" for="vaccine-contraindication">Contraindication
 							</label> <br>
 							<form:input path="contraindication" type="text"
-								class="form-control-lg" placeholder="Mô tả chi tiết chống định"
+								class="form-control" placeholder="Mô tả chi tiết chống định"
 								id="vaccine-contraindication" />
 							<form:errors path="contraindication" cssClass="error" />
 						</div>
@@ -269,14 +269,14 @@
 						<div class="form-group col-lg-4">
 							<label class="font-weight-bold" for="vaccine-uasge">Usage:</label>
 							<br>
-							<form:input path="usage" type="text" class="form-control-lg"
+							<form:input path="usage" type="text" class="form-control"
 								placeholder="Mô tả sử dụng" id="vaccine-uasge" />
 							<form:errors path="usage" cssClass="error" />
 						</div>
 						<div class="form-group col-lg-4">
 							<label class="font-weight-bold" for="vaccine-indication">Indication:</label>
 							<br>
-							<form:input path="indication" type="text" class="form-control-lg"
+							<form:input path="indication" type="text" class="form-control"
 								placeholder="Mô tả chi tiết sử dụng" id="vaccine-indication" />
 							<form:errors path="indication" cssClass="error" />
 						</div>
@@ -284,7 +284,7 @@
 							<label class="font-weight-bold" for="vaccine-contraindication">Contraindication
 							</label> <br>
 							<form:input path="contraindication" type="text"
-								class="form-control-lg" placeholder="Mô tả chi tiết chống định"
+								class="form-control" placeholder="Mô tả chi tiết chống định"
 								id="vaccine-contraindication" />
 							<form:errors path="contraindication" cssClass="error" />
 						</div>
