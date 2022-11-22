@@ -107,7 +107,7 @@
                                     class="form-control ml-2" value="${customer.userName}"
                                     id="userName"/>
                     </div>
-
+                    <span class="text-danger">${msg}</span>
                 </div>
                 <div class="form-group col-sm-4">
                     <label class="font-weight-bold" for="password">Password
@@ -116,7 +116,7 @@
                     <div class="form-inline">
                         <i class="fa-solid fa-lock"></i>
                         <form:input type="password" path="password"
-                                    class="form-control ml-2" value="${customer.password}"
+                                    class="form-control ml-2"
                                     id="password"/>
                     </div>
                 </div>
@@ -144,6 +144,7 @@
                                     class="form-control ml-2" value="${customer.email}"
                                     id="email"/>
                     </div>
+                    <span class="text-danger">${msg}</span>
                 </div>
                 <div class="form-group col-sm-4">
                     <label class="font-weight-bold" for="phone">Phone <span
