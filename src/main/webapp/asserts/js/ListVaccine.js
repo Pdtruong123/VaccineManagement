@@ -47,6 +47,7 @@ $("#make-in-active-button").click(function (){
                url: "/vaccine/update/makeInActive?ids=" + ids,
                success: function (){
                    thisResult.closest('tr').find("td:eq(6)").text("In-Active");
+				   thisResult.prop("checked", false);
                    alert("Update In-Active Successfully!")
                },
                error: function (){
