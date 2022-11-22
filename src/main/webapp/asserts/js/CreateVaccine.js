@@ -1,4 +1,4 @@
-$(document).ready(function() {
+/*$(document).ready(function() {
 	$.validator.addMethod("greaterThanToday", function (value, element) {
         return new Date().setHours(0,0,0,0) <= Date.parse(value);
     }, "Please input Date of vaccination with value greater or equal the current date");
@@ -98,4 +98,4 @@ function submitValidate() {
 }
 function importVaccine() {
 
-}
+}*/

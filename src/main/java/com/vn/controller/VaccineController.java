@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -39,6 +40,7 @@ public class VaccineController {
 
 	@Autowired
 	VaccineTypeService vaccineTypeService;
+	
 
 	@GetMapping(value = "/vaccine/list")
 	public ModelAndView viewListVaccine(@ModelAttribute("msg") String msg) {
@@ -69,6 +71,9 @@ public class VaccineController {
 			BindingResult bindingResult, RedirectAttributes redirectAttributes) {
 		ModelAndView model = new ModelAndView("vaccineCreate");
 		if (bindingResult.hasErrors()) {
+			List<VaccineType> vaccineTypeList = new ArrayList<>();
+			vaccineTypeList = vaccineTypeService.findAllActice();
+			model.addObject("vaccineTypeList", vaccineTypeList);
 			return model;
 		}
 		List<VaccineType> vaccineTypeList = new ArrayList<>();
@@ -96,9 +101,10 @@ public class VaccineController {
 	}
 
 	@PostMapping(value = "/vaccine/update/makeInActive")
-	public ModelAndView updateInActive(@RequestParam List<String> ids) {
+	public ModelAndView updateInActive(@RequestParam List<String> ids, RedirectAttributes redirectAttributes) {
 		Boolean status = false;
 		vaccineService.updateStatus(ids, status);
+		redirectAttributes.addFlashAttribute("msg", "Update vaccine successfull!");
 		ModelAndView modelRedirectList = new ModelAndView("redirect:/vaccine/list");
 		return modelRedirectList;
 	}
@@ -122,7 +128,7 @@ public class VaccineController {
 		vaccineDTO.setStatus(vaccine.getStatus());
 		vaccineDTO.setVaccineName(vaccine.getVaccineName());
 		vaccineDTO.setVaccineType(vaccine.getVaccineType());
-		vaccineDTO.setNumberOfInjection(vaccine.getNumberOfInjection());
+		vaccineDTO.setNumberOfInjection(vaccine.getId().toString());
 		vaccineDTO.setUsage(vaccine.getUsage());
 		vaccineDTO.setIndication(vaccine.getIndication());
 		vaccineDTO.setContraindication(vaccine.getContraindication());
@@ -174,10 +180,15 @@ public class VaccineController {
 	@PostMapping("/vaccine/import")
 	public ModelAndView importVaccineFileExcel(@RequestParam("file") MultipartFile file) {
 		ModelAndView modelImport = new ModelAndView("vaccineImport");
+		
 		if (readFileExcel.checkExcelFormat(file)) {
-			vaccineService.save(file);
-			modelImport.addObject("msg","Import successfull!");
-			return modelImport;
+			if (vaccineService.save(file)) {
+				modelImport.addObject("msg","Import successfull!");
+				return modelImport;
+			}else {
+				modelImport.addObject("msg","Import fail! Pls check file excel!");
+				return modelImport;
+			}
 		}else {
 			modelImport.addObject("msg","Pls upload file excel!");
 			return modelImport;
