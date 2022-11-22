@@ -95,7 +95,12 @@ public class InjectionResultController {
     @GetMapping("/injection-result/update/{id}")
     public ModelAndView updatePage(@PathVariable String id) {
         ModelAndView model = new ModelAndView("update-injection-result");
+        ModelAndView modelNull = new ModelAndView("redirect:/injection-result/list");
         InjectionResult injectionResultUpdate = injectionResultService.findById(id);
+        if(injectionResultUpdate == null){
+            modelNull.addObject("errorNull", "Injection Result's Id is not exist");
+            return modelNull;
+        }
         model.addObject("injectionResultUpdate", injectionResultUpdate);
         model.addObject("customer", customerService.findAllCustomer());
         model.addObject("preventionList", DataInjectionResult.preventionData);

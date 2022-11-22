@@ -35,6 +35,7 @@ public class Employee implements Serializable {
     @Column(name = "employee_id", length = 36, nullable = false)
     private String id;
 
+    @Column(columnDefinition = "nvarchar(255)")
     private String address;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
@@ -46,7 +47,7 @@ public class Employee implements Serializable {
     @NotEmpty
     private String email;
 
-    @Column(name = "employee_name", length = 100)
+    @Column(name = "employee_name", length = 100,columnDefinition = "nvarchar(100)")
     @NotBlank(message = "Please fill name of employee")
     private String employeeName;
 
@@ -66,11 +67,11 @@ public class Employee implements Serializable {
     @NotBlank(message = "Please fill phone number of employee")
     private String phone;
 
-    @Column(length = 100)
+    @Column(length = 100,columnDefinition = "nvarchar(100)")
     private String position;
 
 
-    @Column(name = "working_place")
+    @Column(name = "working_place",columnDefinition = "nvarchar(255)")
     private String workingPlace;
 
 }

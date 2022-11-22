@@ -29,10 +29,10 @@ public class NewsType implements Serializable {
 	@Column(name = "news_type_id", length = 36)
 	private String id;
 	
-	@Column(length = 10)
+	@Column(length = 10,columnDefinition = "nvarchar(10)")
 	private String description;
 	
-	@Column(length = 50, name = "news_type_name")
+	@Column(length = 50, name = "news_type_name",columnDefinition = "nvarchar(50)")
 	private String newsTypeName;
 	
 	@OneToMany(mappedBy = "newType")

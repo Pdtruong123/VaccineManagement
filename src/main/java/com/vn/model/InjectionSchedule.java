@@ -35,18 +35,23 @@ public class InjectionSchedule implements Serializable {
     })
     @Column(name = "injection_schedule_id", length = 36)
     private String id;
+
     @NotNull
     @Column(name = "start_date")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate startDate;
+
     @NotNull
     @Column(name = "end_date")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate endDate;
+
+    @Column(columnDefinition = "nvarchar(255)")
     @NotBlank
     private String place;
+
     @NotBlank
-    @Column(length = 1000)
+    @Column(length = 1000,columnDefinition = "nvarchar(1000)")
     private String description;
 
     public Vaccine getVaccine() {

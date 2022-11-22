@@ -47,11 +47,10 @@ public class InjectionResult implements StartEndDateable, Serializable {
 
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Column(name = "injection_date")
-	@Future(message = "")
 	private LocalDate injectionDate;
 
 
-	@Column(name = "injection_place")
+	@Column(name = "injection_place",columnDefinition = "nvarchar(255)")
 	@NotBlank(message = "Please fill Injection Place")
 	private String injectionPlace;
 
@@ -63,7 +62,7 @@ public class InjectionResult implements StartEndDateable, Serializable {
 	@NotNull(message = "Please fill Number Of Injections")
 	private Integer numberOfInjection;
 	
-	@Column(length = 100)
+	@Column(length = 100,columnDefinition = "nvarchar(100)")
 	@NotBlank(message = "Please select prevention")
 	private String prevention;
 	

@@ -33,14 +33,14 @@ public class News extends BaseModel implements Serializable {
 
 	private String id;
 	
-	@Column(length = 4000)
+	@Column(length = 4000,columnDefinition = "nvarchar(4000)")
 	private String content;
 	
-	@Column(length = 1000)
+	@Column(length = 1000,columnDefinition = "nvarchar(1000)")
 	@NotBlank(message = "Please fill preview of news")
 	private String preview;
 	
-	@Column(length = 300)
+	@Column(length = 300,columnDefinition = "nvarchar(300)")
 	@NotBlank(message = "Please fill title of news")
 	private String title;
 	

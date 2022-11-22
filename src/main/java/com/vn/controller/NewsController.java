@@ -62,7 +62,12 @@ public class NewsController {
     @GetMapping("/news/update/{id}")
     public ModelAndView updateNewsPage(@PathVariable String id){
         ModelAndView model = new ModelAndView("update-news");
+        ModelAndView modelNull = new ModelAndView("redirect:/news/list");
         News news = newsService.findById(id);
+        if(news == null){
+            modelNull.addObject("errorNull","News's id is not exist");
+            return modelNull;
+        }
         model.addObject("news", news);
         return model;
     }

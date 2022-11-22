@@ -41,10 +41,10 @@ public class VaccineType implements Serializable {
     private String id;
 
     @NotBlank(message = "Please insert Vaccine Type Name")
-    @Column(name = "vaccine_type_name", length = 50, nullable = false)
+    @Column(name = "vaccine_type_name", length = 50, nullable = false,columnDefinition = "nvarchar(50)")
     private String vaccineTypeName;
 
-    @Column(length = 200)
+    @Column(length = 200, columnDefinition = "nvarchar(200)")
     private String description;
 
     @Transient
