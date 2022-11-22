@@ -11,7 +11,7 @@ $(document).ready(function (){
             },
         },
         messages: {
-            typename: {
+            vaccineTypeName: {
                
             },
             description:{

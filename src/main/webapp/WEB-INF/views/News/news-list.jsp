@@ -10,7 +10,7 @@
 </head>
 <body>
 <div class="h5 mt-3 text-center text-dark font-weight-bold mb-3">NEWS LIST</div>
-<div class="h4 text-success font-weight-bold ml-3">${success}</div>
+<div class=" text-success font-weight-bold ml-3">${success}</div>
 <div class="card mx-3 shadow">
     <div class="card-body">
         <div class="mt-3">
@@ -19,8 +19,8 @@
                 <tr class="bg-info text-white text-center">
                     <td><input class="form-check mx-auto" type="checkbox" id="checkAll"></td>
                     <th>Title</th>
-                    <th>Content</th>
                     <th hidden>Content</th>
+                    <th>Preview</th>
                     <th>Post date</th>
                 </tr>
                 </thead>

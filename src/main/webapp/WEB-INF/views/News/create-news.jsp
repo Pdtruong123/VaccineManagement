@@ -52,8 +52,9 @@
             </div>
             <div class="form-group">
                 <label class="font-weight-bold" for="content">Content<span class="text-danger"> (*):</span></label>
-                <div id="editor" rows="20" >
-                    <form:textarea class="form-control " type="text" id="content" path="content"/>
+                <div >
+                    <textarea class="form-control " type="text" id="editor"  name="content" ></textarea>
+
                 </div>
 
             </div>

@@ -29,11 +29,12 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js"
             integrity="sha512-rstIgDs0xPgmG6RX1Aba4KV5cWJbAMcvRCVmglpam9SoHZiUCyQVDdH2LPlxoHtrv17XWblE/V/PP+Tr04hbtA=="
             crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdn.ckeditor.com/ckeditor5/35.3.1/classic/ckeditor.js"></script>
     <link rel="stylesheet" href="../../../asserts/css/style.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/news.css">
 </head>
 <body>
-<h1 class="h5 mt-3 text-center text-dark font-weight-bold mb-3">CREATE NEWS</h1>
+<h1 class="h5 mt-3 text-center text-dark font-weight-bold mb-3">UPDATE NEWS</h1>
 <div class="h4 text-success font-weight-bold ml-3">${success}</div>
 <div class="card mx-3 shadow">
     <div class="card-body">
@@ -50,10 +51,12 @@
             </div>
             <div class="form-group">
                 <label class="font-weight-bold" for="content">Content<span class="text-danger">(*):</span></label>
-                <form:input class="form-control" type="text" id="content" path="content"/>
+                <div >
+                    <textarea class="form-control " type="text" id="editor"  name="content" >${news.content}</textarea>
+                </div>
             </div>
             <div class="form-button mt-4">
-                <button class="btn btn-success mr-1" type="submit">Save</button>
+                <button class="btn btn-success mr-1" id="save" type="submit">Save</button>
                 <button class="btn btn-warning text-white" type="button"><a
                         href="${pageContext.request.contextPath}/news/list"
                         class="text-white text-decoration-none">Cancel</a></button>
@@ -62,5 +65,13 @@
     </div>
 </div>
 <script src="${pageContext.request.contextPath}/js/ValidateNews.js"></script>
+<script src="${pageContext.request.contextPath}/js/ValidateNews.js"></script>
+<script>
+    ClassicEditor
+        .create( document.querySelector( '#editor' ) )
+        .catch( error => {
+            console.error( error );
+        } );
+</script>
 </body>
 </html>
