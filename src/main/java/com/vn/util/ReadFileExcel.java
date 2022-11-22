@@ -31,13 +31,11 @@ public class ReadFileExcel {
 	@Autowired
 	VaccineTypeService vaccineTypeService;
 
-	public static boolean checkExcelFormat(MultipartFile file) {
-		
+	public boolean checkExcelFormat(MultipartFile file) {
 		// check file excel
 		String type = file.getContentType();
         return type.equals("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
 	}
-	@SuppressWarnings("deprecation")
 	public List<Vaccine> importFileExcel(InputStream inputStream) {
 		List<Vaccine> vaccines = new ArrayList<>();
 		String id="";
