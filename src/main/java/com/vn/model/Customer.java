@@ -68,6 +68,9 @@ public class Customer implements Serializable {
 
 	@Transient
 	private String confirmPassword;
+	
+	@Transient
+	private String passwordUpdate;
 
 	@Column(length = 20)
 	private String phone;

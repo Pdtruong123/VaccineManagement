@@ -67,52 +67,51 @@ public class ReadFileExcel {
 					switch (collumIndex) {
 					case 0:
 						id = nextCell.getStringCellValue();
-						System.out.println(id);
+						
 						break;
 					case 1:
 						contraindication = nextCell.getStringCellValue();
-						System.out.println(contraindication);
+						
 						break;
 					case 2:
 						indication = nextCell.getStringCellValue();
-						System.out.println(indication);
+						
 						break;
 					case 3:
-						numberOfInjection = (int) nextCell.getNumericCellValue();
-						System.out.println(numberOfInjection);
+						numberOfInjection =	(int) nextCell.getNumericCellValue();
+						
 						break;
 					case 4:
 						origin = nextCell.getStringCellValue();
-						System.out.println(origin);
+						
 						break;
 					case 5:
 						Date dateBegin = nextCell.getDateCellValue();
 						timeBeginNextInjection = dateBegin;
-						System.out.println(dateBegin);
+						
 						break;
 					case 6:
 						Date dateNext = nextCell.getDateCellValue();
 						timeEndNextInjection = dateNext;
-						System.out.println(dateNext);
+						
 						break;
 					case 7:
 						usage = nextCell.getStringCellValue();
-						System.out.println(usage);
+						
 						break;
 					case 8:
 						vaccineName = nextCell.getStringCellValue();
-						System.out.println(vaccineName);
+						
 						break;
 					case 9:
 						status = nextCell.getBooleanCellValue();
-						System.out.println(status);
+						
 						break;
 					case 10:
 						vaccineTypeName = nextCell.getStringCellValue();
 						
 						vaccineType = vaccineTypeService.findByVaccineTypeName(vaccineTypeName);
-						
-						System.out.println(vaccineType);
+					
 						break;
 					default:
 						break;
@@ -127,9 +126,7 @@ public class ReadFileExcel {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		for (Vaccine vaccine : vaccines) {
-			System.out.println(vaccine.toString());
-		}
+		
 		return vaccines;
 	}
 }
