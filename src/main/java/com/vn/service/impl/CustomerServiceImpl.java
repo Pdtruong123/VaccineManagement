@@ -140,10 +140,6 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public Customer update(Customer customer) {
-        Optional<Customer>optionalCustomer= customerRepository.findByUserName(customer.getUserName());
-        if (optionalCustomer.isPresent()){
-
-        }
         customerRepository.save(customer);
         return customer;
     }

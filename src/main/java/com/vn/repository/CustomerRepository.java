@@ -31,5 +31,11 @@ public interface CustomerRepository extends JpaRepository<Customer, String> {
 
 	Optional<Customer> findByUserName(String userName);
 
+	@Query("SELECT c FROM Customer c WHERE c.userName=:userName")
+    Optional<Customer> CheckFindByUserName(String userName);
+
+    @Query("SELECT c FROM Customer c WHERE c.email=:email")
+    Optional<Customer> CheckFindByEmail(String email);
+
 
 }

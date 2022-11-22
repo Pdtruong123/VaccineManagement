@@ -49,7 +49,7 @@ public class Customer implements Serializable {
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate dateOfBirth;
 
-	@Column(length = 100)
+	@Column(length = 100,unique = true)
 	@Email
 	private String email;
 
@@ -76,8 +76,7 @@ public class Customer implements Serializable {
 
 	@Transient
 	private String code;
-
-	@Column(name = "user_name")
+	@Column(name = "user_name",unique = true)
 	private String userName;
 
 	@OneToMany(mappedBy = "customer",cascade = CascadeType.ALL)

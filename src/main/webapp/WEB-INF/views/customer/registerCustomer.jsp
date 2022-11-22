@@ -143,6 +143,7 @@
                                                 class="form-control ml-2" value="${customer.userName}"
                                                 id="userName"/>
                                 </div>
+                                <div class="text-danger">${msg}</div>
 
                             </div>
                             <div class="form-group col-sm-4">
@@ -180,6 +181,7 @@
                                                 class="form-control ml-2" value="${customer.email}"
                                                 id="email"/>
                                 </div>
+                                <div class="text-danger">${msg}</div>
                             </div>
                             <div class="form-group col-sm-4">
                                 <label class="font-weight-bold" for="phone">Phone <span
