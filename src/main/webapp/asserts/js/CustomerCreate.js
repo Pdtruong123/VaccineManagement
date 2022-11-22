@@ -219,11 +219,11 @@ $("#delete-button").click(function (){
             $.ajax({
                 type: "POST",
                 url: "/customer/injectionCustomerList/delete?id=" + id,
-                success: function (){
+                success: function () {
                     thisResult.closest("tr").remove();
                     alert("Delete Successfully!")
                 },
-                error: function (){
+                error: function () {
                     alert("Something wrong, can not delete!")
                 }
             })

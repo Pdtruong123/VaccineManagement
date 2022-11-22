@@ -133,7 +133,6 @@
                         </div>
                     </div>
                 </div>
-                gi
 
                 <div class="form-row">
                     <div class="form-group col-sm-4">
