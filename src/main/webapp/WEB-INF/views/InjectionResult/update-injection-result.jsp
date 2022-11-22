@@ -58,6 +58,7 @@
                             <option value="${pre}" label="${pre}"/>
                         </c:forEach>
                     </select>
+                    <form:errors path="prevention" cssClass="error"></form:errors>
                 </div>
 
                 <div class="col form-group">
@@ -70,6 +71,7 @@
                         </c:forEach>
                     </select>
                 </div>
+                <form:errors path="vaccine" cssClass="error"></form:errors>
             </div>
             <div class="row m-4">
                 <div class="col form-group">
@@ -77,12 +79,14 @@
                     <form:input type="text" class="form-control" placeholder="" id="injection"
                                 path="numberOfInjection"/>
                     <form:errors path="numberOfInjection"></form:errors>
+                    <form:errors path="numberOfInjection" cssClass="error"></form:errors>
                 </div>
                 <div class="col form-group">
                     <label for="dateOfInjection">Date of injection:</label>
                     <form:input type="date" class="form-control" placeholder="" id="dateOfInjection"
                                 path="injectionDate"/>
                     <form:errors path="injectionDate"></form:errors>
+                    <form:errors path="injectionDate" cssClass="error"></form:errors>
                 </div>
                 <div class="col form-group">
                     <label for="nextOfInjection">Next injection appoinment:</label>
@@ -101,7 +105,7 @@
                             <option value="${place}" label="${place}"/>
                         </c:forEach>
                     </form:select>
-
+                    <form:errors path="injectionPlace" cssClass="error"></form:errors>
                 </div>
                 <div class="col"></div>
                 <div class="col"></div>

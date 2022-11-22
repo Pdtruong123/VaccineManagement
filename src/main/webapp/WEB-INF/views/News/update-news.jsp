@@ -43,14 +43,17 @@
             <div class="form-group">
                 <label class="font-weight-bold" for="title">Title<span class="text-danger">(*):</span></label>
                 <form:input class="form-control w-50" type="text" id="title" value="" path="title"/>
+                <form:errors path="title" cssClass="error"></form:errors>
             </div>
             <div class="form-group">
                 <label class="font-weight-bold" for="preview">Preview<span class="text-danger">(*):</span></label>
                 <form:input class="form-control" type="text" id="preview" path="preview"/>
+                <form:errors path="preview" cssClass="error"></form:errors>
             </div>
             <div class="form-group">
                 <label class="font-weight-bold" for="content">Content<span class="text-danger">(*):</span></label>
                 <form:input class="form-control" type="text" id="content" path="content"/>
+                <form:errors path="content" cssClass="error"></form:errors>
             </div>
             <div class="form-button mt-4">
                 <button class="btn btn-success mr-1" type="submit">Save</button>
