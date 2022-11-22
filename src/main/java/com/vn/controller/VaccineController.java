@@ -146,6 +146,9 @@ public class VaccineController {
 			BindingResult bindingResult, RedirectAttributes redirectAttributes) {
 		ModelAndView model = new ModelAndView("vaccineUpdate");
 		if (bindingResult.hasErrors()) {
+			List<VaccineType> vaccineTypeList = new ArrayList<>();
+			vaccineTypeList = vaccineTypeService.findAllActice();
+			model.addObject("vaccineTypeList", vaccineTypeList);
 			return model;
 		}
 		List<VaccineType> vaccineTypeList = new ArrayList<>();
