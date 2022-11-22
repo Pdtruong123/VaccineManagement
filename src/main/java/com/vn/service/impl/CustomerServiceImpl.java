@@ -20,21 +20,21 @@ import java.util.Optional;
 @Service
 public class CustomerServiceImpl implements CustomerService {
 
-	@Autowired
-	CustomerRepository customerRepository;
-	
-	@Autowired
-	PasswordEncoder passwordEncoder;
-	
-	@Autowired
-	RolesReponsitory rolesReponsitory;
-	
-	@Autowired
-	UserRoleReponsitory userRoleReponsitory;
+    @Autowired
+    CustomerRepository customerRepository;
 
-	@Override
-	public Customer create(Customer customer) {
-		Optional<Roles> roleOptional = rolesReponsitory.findByRole("USER");
+    @Autowired
+    PasswordEncoder passwordEncoder;
+
+    @Autowired
+    RolesReponsitory rolesReponsitory;
+
+    @Autowired
+    UserRoleReponsitory userRoleReponsitory;
+
+    @Override
+    public Customer create(Customer customer) {
+        Optional<Roles> roleOptional = rolesReponsitory.findByRole("USER");
         Roles role = new Roles();
         if (roleOptional.isPresent()) {
             role = roleOptional.get();
@@ -53,92 +53,100 @@ public class CustomerServiceImpl implements CustomerService {
         customerSave.setIdentityCard(customer.getIdentityCard());
         customerSave.setPhone(customer.getPhone());
         customerSave.setUserName(customer.getUserName());
-        
-        
+
+
         customerRepository.save(customerSave);
-        
-		
-		UserRole userRole = new UserRole();
-		userRole.setCustomer(customerSave);
-		userRole.setRole(role);
-		
-		userRoleReponsitory.save(userRole);
-		
-		
-		
-		System.out.println(customerSave);
-		
-		return customer;
-	}
 
-	@Override
-	public Customer findById(String id) {
 
-		Optional<Customer> optional = customerRepository.findById(id);
-		if (optional.isPresent()) {
-			Customer customer = optional.get();
-			return customer;
+        UserRole userRole = new UserRole();
+        userRole.setCustomer(customerSave);
+        userRole.setRole(role);
 
-		} else {
-			return null;
-		}
+        userRoleReponsitory.save(userRole);
 
-	}
 
-	@Override
-	public void delete(String id) {
-		customerRepository.deleteById(id);
+        System.out.println(customerSave);
 
-	}
+        return customer;
+    }
 
-	@Override
-	public List<Customer> findAllCustomer() {
-		return customerRepository.findAll();
-	}
+    @Override
+    public Customer findById(String id) {
 
-	@Override
-	public Page<Customer> findAll(Pageable pageable) {
-		return customerRepository.findAll(pageable);
-	}
+        Optional<Customer> optional = customerRepository.findById(id);
+        if (optional.isPresent()) {
+            Customer customer = optional.get();
+            return customer;
 
-	@Override
-	public List<Customer> findAll() {
-		return customerRepository.findAll();
-	}
+        } else {
+            return null;
+        }
 
-	@Override
-	public Integer countElement() {
-		return (int) customerRepository.count();
-	}
+    }
 
-	@Override
-	public Page<Customer> findContainElement(String searchParam, Pageable pageable) {
-		return customerRepository.findContainElement(searchParam, pageable);
+    @Override
+    public void delete(String id) {
+        customerRepository.deleteById(id);
 
-	}
+    }
 
-	@Override
-	public int countContainElement(String searchParam) {
-		return customerRepository.countContainElement(searchParam);
-	}
+    @Override
+    public List<Customer> findAllCustomer() {
+        return customerRepository.findAll();
+    }
 
-	@Override
-	public void deleteCustomer(String id) {
-		customerRepository.deleteById(id);
+    @Override
+    public Page<Customer> findAll(Pageable pageable) {
+        return customerRepository.findAll(pageable);
+    }
 
-	}
+    @Override
+    public List<Customer> findAll() {
+        return customerRepository.findAll();
+    }
 
-	@Override
-	public void deleteAllIds(List<String> ids) {
-		customerRepository.deleteAllById(ids);
-	}
+    @Override
+    public Integer countElement() {
+        return (int) customerRepository.count();
+    }
 
-	@Override
-	public List<Customer> findElementReport(String fullName, String address, Date dOBFrom, Date dOBTo) {
+    @Override
+    public Page<Customer> findContainElement(String searchParam, Pageable pageable) {
+        return customerRepository.findContainElement(searchParam, pageable);
 
-		return customerRepository.findElementReport(fullName, address, dOBFrom, dOBTo);
-	}
+    }
 
+    @Override
+    public int countContainElement(String searchParam) {
+        return customerRepository.countContainElement(searchParam);
+    }
+
+    @Override
+    public void deleteCustomer(String id) {
+        customerRepository.deleteById(id);
+
+    }
+
+    @Override
+    public void deleteAllIds(List<String> ids) {
+        customerRepository.deleteAllById(ids);
+    }
+
+    @Override
+    public List<Customer> findElementReport(String fullName, String address, Date dOBFrom, Date dOBTo) {
+
+        return customerRepository.findElementReport(fullName, address, dOBFrom, dOBTo);
+    }
+
+    @Override
+    public Customer update(Customer customer) {
+        Optional<Customer>optionalCustomer= customerRepository.findByUserName(customer.getUserName());
+        if (optionalCustomer.isPresent()){
+
+        }
+        customerRepository.save(customer);
+        return customer;
+    }
 
 
 }

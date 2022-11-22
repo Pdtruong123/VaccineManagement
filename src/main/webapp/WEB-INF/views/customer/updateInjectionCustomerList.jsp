@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
          pageEncoding="ISO-8859-1" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib uri="http://www.springframework.org/tags/form"  prefix="form"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
         integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -174,9 +174,10 @@
                     </label>
                     <div class="form-inline">
                         <i class="fa-solid fa-building-lock"></i>
-                        <div class = "captcha rounded d-flex align-items-center" id="captchaCode"></div>
+                        <div class="captcha rounded d-flex align-items-center" id="captchaCode"></div>
                         <button class="refresh-btn" type="button" onclick="getCaptcha()"><i
-                                class="fa-solid fa-rotate-right reload-btn"></i></button> <%-- refresh button--%>
+                                class="fa-solid fa-rotate-right reload-btn"></i></button>
+                            <%-- refresh button--%>
 
                     </div>
                 </div>
@@ -186,7 +187,8 @@
                     Save
                 </button>
                 <button type="reset" class="btn btn-sm btn-primary ml-2">Reset</button>
-                <a class="btn btn-sm btn-warning ml-2" href="${pageContext.request.contextPath}/customer/list">Cancel</a>
+                <a class="btn btn-sm btn-warning ml-2"
+                   href="${pageContext.request.contextPath}/customer/list">Cancel</a>
             </div>
 
         </div>
