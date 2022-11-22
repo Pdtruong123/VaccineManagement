@@ -13,6 +13,7 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.vn.model.Vaccine;
@@ -24,8 +25,12 @@ import com.vn.service.VaccineTypeService;
 import com.vn.service.impl.VaccineServiceImpl;
 import com.vn.service.impl.VaccineTypeServiceImpl;
 
+@Component
 public class ReadFileExcel {
-	
+
+	@Autowired
+	VaccineTypeService vaccineTypeService;
+
 	public static boolean checkExcelFormat(MultipartFile file) {
 		
 		// check file excel
@@ -33,8 +38,7 @@ public class ReadFileExcel {
         return type.equals("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
 	}
 	@SuppressWarnings("deprecation")
-	public static List<Vaccine> importFileExcel(InputStream inputStream) {
-		VaccineTypeService vaccineTypeService = new VaccineTypeServiceImpl();
+	public List<Vaccine> importFileExcel(InputStream inputStream) {
 		List<Vaccine> vaccines = new ArrayList<>();
 		String id="";
 		String contraindication="";
@@ -48,9 +52,7 @@ public class ReadFileExcel {
 		Boolean status = null;
 		String vaccineTypeName = "";
 		VaccineType vaccineType = new VaccineType();
-		
-		
-		
+
 		try {
 			XSSFWorkbook workbook = new XSSFWorkbook(inputStream);
 			Sheet sheet =  workbook.getSheetAt(0);
@@ -112,7 +114,7 @@ public class ReadFileExcel {
 						
 						vaccineType = vaccineTypeService.findByVaccineTypeName(vaccineTypeName);
 						
-						System.out.println(vaccineTypeName);
+						System.out.println(vaccineType);
 						break;
 					default:
 						break;

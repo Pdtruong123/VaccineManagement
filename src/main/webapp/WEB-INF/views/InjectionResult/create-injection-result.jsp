@@ -51,7 +51,7 @@
                             <option value="${cus.id}" label="${cus.fullName}-${cus.dateOfBirth}"/>
                         </c:forEach>
                     </form:select>
-                    <form:errors path="id"></form:errors>
+                    <form:errors path="customer"></form:errors>
                 </div>
                 <div class="col-sm-4 form-group">
                     <label class="font-weight-bold" for="prevention">Prevention</label>
@@ -74,6 +74,7 @@
                         </c:forEach>
                     </form:select>
                 </div>
+                <form:errors path="vaccine"></form:errors>
             </div>
             <div class="row m-4">
                 <div class="col-sm-4 form-group">

@@ -14,8 +14,4 @@ public interface EmployeeRepository extends JpaRepository<Employee, String> {
 
     @Query("select n from Employee n where n.employeeName like %:keyword%")
     Page<Employee> findContainElements(String keyword, Pageable pageable);
-
-    @Modifying
-    @Query("Delete from  Employee e  WHERE e.id IN :ids")
-    void deleteByIds(@Param("ids") List<String> ids);
 }

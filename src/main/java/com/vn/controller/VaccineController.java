@@ -2,29 +2,18 @@ package com.vn.controller;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -41,6 +30,9 @@ public class VaccineController {
 
 	@Autowired
 	VaccineService vaccineService;
+
+	@Autowired
+	ReadFileExcel readFileExcel;
 
 	@Autowired
 	HttpServletRequest request;
@@ -182,7 +174,7 @@ public class VaccineController {
 	@PostMapping("/vaccine/import")
 	@ResponseBody
 	public String importVaccineFileExcel(@RequestParam("file") MultipartFile file) {
-		if (ReadFileExcel.checkExcelFormat(file)) {
+		if (readFileExcel.checkExcelFormat(file)) {
 			vaccineService.save(file);
 			return "Import Sucessfull!";
 		}else {
