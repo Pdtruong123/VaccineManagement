@@ -40,12 +40,13 @@ public class NewsController {
     @PostMapping("/news/add")
     public ModelAndView addNews(@Valid @ModelAttribute("news") News news, RedirectAttributes redirectAttributes,
                           BindingResult bindingResult){
-        ModelAndView model = new ModelAndView("redirect:/news/add");
+        ModelAndView model = new ModelAndView("redirect:/news/list");
         ModelAndView modelError = new ModelAndView("addNews");
         if(bindingResult.hasErrors()){
             return modelError;
         }
         news.setPostDate(LocalDate.now());
+        news.setContent(request.getParameter("content"));
         newsService.save(news);
         redirectAttributes.addFlashAttribute("success","Add news successfully!");
         return model;
@@ -74,6 +75,7 @@ public class NewsController {
             return modelError;
         }
         news.setPostDate(LocalDate.now());
+        news.setContent(request.getParameter("content"));
         newsService.save(news);
         redirectAttributes.addFlashAttribute("success", "Update News Successfully!");
         return model;

@@ -34,7 +34,6 @@ public class News extends BaseModel implements Serializable {
 	private String id;
 	
 	@Column(length = 4000)
-	@NotBlank(message = "Please fill content of news")
 	private String content;
 	
 	@Column(length = 1000)
