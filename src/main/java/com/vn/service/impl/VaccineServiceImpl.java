@@ -74,7 +74,7 @@ public class VaccineServiceImpl implements VaccineService {
 		vaccine.setStatus(vaccineDTO.getStatus());
 		vaccine.setVaccineName(vaccineDTO.getVaccineName());
 		vaccine.setVaccineType(vaccineDTO.getVaccineType());
-		vaccine.setNumberOfInjection(vaccineDTO.getNumberOfInjection());
+		vaccine.setNumberOfInjection(Integer.valueOf(vaccineDTO.getNumberOfInjection()));
 		vaccine.setUsage(vaccineDTO.getUsage());
 		vaccine.setIndication(vaccineDTO.getIndication());
 		vaccine.setContraindication(vaccineDTO.getContraindication());
@@ -125,7 +125,7 @@ public class VaccineServiceImpl implements VaccineService {
 			vaccine.setStatus(vaccineDTO.getStatus());
 			vaccine.setVaccineName(vaccineDTO.getVaccineName());
 			vaccine.setVaccineType(vaccineDTO.getVaccineType());
-			vaccine.setNumberOfInjection(vaccineDTO.getNumberOfInjection());
+			vaccine.setNumberOfInjection(Integer.valueOf(vaccineDTO.getNumberOfInjection()));
 			vaccine.setUsage(vaccineDTO.getUsage());
 			vaccine.setIndication(vaccineDTO.getIndication());
 			vaccine.setContraindication(vaccineDTO.getContraindication());
@@ -153,13 +153,19 @@ public class VaccineServiceImpl implements VaccineService {
 
 
 	@Override
-	public void save(MultipartFile file) {
+	public Boolean save(MultipartFile file) {
 		try {
 			List<Vaccine> vaccines = readFileExcel.importFileExcel(file.getInputStream());
-			vaccineRepository.saveAll(vaccines);
+			if (vaccines.isEmpty()) {
+				return false;
+			}else {
+				vaccineRepository.saveAll(vaccines);
+				return true;
+			}	
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			return false;
 		}
 
 	}

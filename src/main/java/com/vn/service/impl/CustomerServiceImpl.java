@@ -132,7 +132,7 @@ public class CustomerServiceImpl implements CustomerService {
         Customer customerSave = new Customer();
         customerSave.setId(customer.getId());
         customerSave.setAddress(customer.getAddress());
-        customerSave.setPassword(passwordEncoder.encode(customer.getPassword()));
+        customerSave.setPassword(passwordEncoder.encode(customer.getPasswordUpdate()));
         customerSave.setDateOfBirth(customer.getDateOfBirth());
         customerSave.setEmail(customer.getEmail());
         customerSave.setFullName(customer.getFullName());
