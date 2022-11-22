@@ -167,18 +167,20 @@ public class VaccineController {
 	
 	@GetMapping("/vaccine/import")
 	public ModelAndView viewImport() {
-		ModelAndView view = new ModelAndView("vaccineImport");
-		return view;
+		ModelAndView modelImport = new ModelAndView("vaccineImport");
+		return modelImport;
 	}
 	
 	@PostMapping("/vaccine/import")
-	@ResponseBody
-	public String importVaccineFileExcel(@RequestParam("file") MultipartFile file) {
+	public ModelAndView importVaccineFileExcel(@RequestParam("file") MultipartFile file) {
+		ModelAndView modelImport = new ModelAndView("vaccineImport");
 		if (readFileExcel.checkExcelFormat(file)) {
 			vaccineService.save(file);
-			return "Import Sucessfull!";
+			modelImport.addObject("msg","Import successfull!");
+			return modelImport;
 		}else {
-			return "Pls upload file excel!";
+			modelImport.addObject("msg","Pls upload file excel!");
+			return modelImport;
 		}
 		
 	}
