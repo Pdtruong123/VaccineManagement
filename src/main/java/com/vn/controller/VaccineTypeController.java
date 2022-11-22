@@ -54,7 +54,7 @@ public class VaccineTypeController {
         return model;
     }
 
-    @GetMapping(value ="/vaccineType/update/{id}")
+    @GetMapping(value = "/vaccineType/update/{id}")
     public ModelAndView updateVaccineType(@PathVariable("id") String id, @ModelAttribute("vaccineType") VaccineType vaccineType) {
         ModelAndView model = new ModelAndView("createVaccineType");
         VaccineType v = vaccineTypeService.findById(id);
@@ -62,9 +62,15 @@ public class VaccineTypeController {
 
         return model;
     }
+
     @PostMapping("/vaccineType/update")
-    public ModelAndView updateVaccineType(@ModelAttribute("vaccineType") VaccineTypeDTO vaccineTypeDTO) {
+    public ModelAndView updateVaccineType(@Valid @ModelAttribute("vaccineType") VaccineTypeDTO vaccineTypeDTO, BindingResult bindingResult) {
         ModelAndView model = new ModelAndView("redirect:/vaccineType/list");
+        ModelAndView modelError = new ModelAndView("createVaccineType");
+        if (bindingResult.hasErrors()) {
+            modelError.addObject("message", "Update Vaccine Type Failed !!!");
+            return modelError;
+        }
         vaccineTypeService.update(vaccineTypeDTO);
         return model;
 

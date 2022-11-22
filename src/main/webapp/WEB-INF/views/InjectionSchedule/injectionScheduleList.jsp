@@ -8,20 +8,20 @@
     <link rel="stylesheet" href="../../../asserts/css/DataTables.css">
 </head>
 <div class="h5 mt-3 text-center text-dark font-weight-bold mb-3">INJECTION SCHEDULE</div>
-    <div class="card mx-3 shadow">
-        <div class="card-body">
-            <div class="mt-3">
-                <table class="table table-bordered" id="table-TS">
-                    <thead>
-                    <tr class="bg-info text-white text-center">
-                        <th>Vaccine</th>
-                        <th>Time</th>
-                        <th>Place</th>
-                        <th>Status</th>
-                        <th>Note</th>
-                    </tr>
-                    </thead>
-                   <tbody>
+<div class="card mx-3 shadow">
+    <div class="card-body">
+        <div class="mt-3">
+            <table class="table table-bordered table-striped" id="table-TS">
+                <thead>
+                <tr class="bg-info text-white text-center">
+                    <th>Vaccine</th>
+                    <th>Time</th>
+                    <th>Place</th>
+                    <th>Status</th>
+                    <th>Note</th>
+                </tr>
+                </thead>
+                <tbody>
                    <c:forEach items="${listSchedule}" var="schedule">
                        <tr>
                            <td><a href="${pageContext.request.contextPath}/injectionSchedule/update?id=${schedule.id}">${schedule.vaccine.vaccineName}</a></td>

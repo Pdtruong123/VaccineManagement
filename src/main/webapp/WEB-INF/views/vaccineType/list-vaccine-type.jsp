@@ -11,21 +11,21 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/DataTables.css">
 <script src="${pageContext.request.contextPath}/js/DataTables.js"></script>
 
-            <div class="h5 mt-3 text-center text-dark font-weight-bold mb-3">VACCINE TYPE LIST</div>
-            <div class="card mx-3 shadow">
-                <div class="card-body">
-                    <div class="mt-3">
-                        <table class="table table-bordered " id="table-IR">
-                            <thead>
-                            <tr class="bg-info text-white text-center">
-                                <th><input class="form-check mx-auto" type="checkbox" id="checkAll"></th>
-                                <th>Code</th>
-                                <th>Vaccine Type Name</th>
-                                <th>Description</th>
-                                <th>Status</th>
-                            </tr>
-                            </thead>
-                            <tbody>
+<div class="h5 mt-3 text-center text-dark font-weight-bold mb-3">VACCINE TYPE LIST</div>
+<div class="card mx-3 shadow">
+    <div class="card-body">
+        <div class="mt-3">
+            <table class="table table-bordered table-striped" id="table-IR">
+                <thead>
+                <tr class="bg-info text-white text-center">
+                    <th><input class="form-check mx-auto" type="checkbox" id="checkAll"></th>
+                    <th>Code</th>
+                    <th>Vaccine Type Name</th>
+                    <th>Description</th>
+                    <th>Status</th>
+                </tr>
+                </thead>
+                <tbody>
                             <c:forEach items="${vaccineTypeList}" var="element" varStatus="status">
                             <tr>
                                 <td><input class="form-check mx-auto" type="checkbox" name="ids" value="${element.id}"></td>

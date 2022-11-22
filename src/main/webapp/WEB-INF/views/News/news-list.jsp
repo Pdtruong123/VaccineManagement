@@ -10,17 +10,17 @@
 </head>
 <body>
 <div class="h5 mt-3 text-center text-dark font-weight-bold mb-3">NEWS LIST</div>
-<div class="h4 text-success font-weight-bold ml-3">${success}</div>
+<div class=" text-success font-weight-bold ml-3">${success}</div>
 <div class="card mx-3 shadow">
     <div class="card-body">
         <div class="mt-3">
-            <table class="table table-bordered" id="news-tb">
+            <table class="table table-bordered table-striped" id="news-tb">
                 <thead>
                 <tr class="bg-info text-white text-center">
                     <td><input class="form-check mx-auto" type="checkbox" id="checkAll"></td>
                     <th>Title</th>
-                    <th>Content</th>
                     <th hidden>Content</th>
+                    <th>Preview</th>
                     <th>Post date</th>
                 </tr>
                 </thead>
@@ -28,7 +28,8 @@
                 <c:forEach items="${newsList}" var="result">
                     <tr>
                         <td><input class="form-check mx-auto" type="checkbox" value="${result.id}" name="id"></td>
-                        <td class="title-row"><a class="link-col" href="#">${result.title}</a></td>
+                        <td class="title-row"><a class="link-col" href="#" data-toggle="modal"
+                                                 data-target="#exampleModalCenter">${result.title}</a></td>
                         <td hidden class="content-row"><input type="hidden">${result.content}</td>
                         <td class="preview-row">${result.preview}</td>
                         <td class="postdate-row">${result.postDate}</td>
@@ -49,6 +50,45 @@
         </security:authorize>
     </div>
 </div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+     aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-primary text-white">
+                <h5 class="modal-title " id="exampleModalLongTitle">Detail News</h5>
+            </div>
+            <div class="modal-body">
+                <div class="list-group-item list-group-item-action flex-column align-items-start">
+                    <div class="d-flex ">
+                        <div class="mb-1 text-info font-weight-bold">Title :</div>
+                    </div>
+                    <p class="mb-1 ml-3" id="news-title"></p>
+                </div>
+                <div class="list-group-item list-group-item-action flex-column align-items-start">
+                    <div class="d-flex ">
+                        <div class="mb-1 text-info font-weight-bold">Content :</div>
+                    </div>
+                    <p class="mb-1 ml-3" id="news-content"></p>
+                </div>
+                <div class="list-group-item list-group-item-action flex-column align-items-start">
+                    <div class="d-flex ">
+                        <div class="mb-1 text-info font-weight-bold">Post Date :</div>
+                    </div>
+                    <p class="mb-1 ml-3" id="news-date"></p>
+                </div>
+
+
+            </div>
+            <div class="modal-footer border-top-0">
+                <button type="button" class="btn btn-light" data-dismiss="modal">Close</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
 <script src="${pageContext.request.contextPath}/js/DataTables.js"></script>
 <script src="${pageContext.request.contextPath}/js/DeleteNews.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"

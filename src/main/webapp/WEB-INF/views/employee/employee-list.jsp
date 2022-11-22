@@ -13,18 +13,18 @@
 <div class="text-success font-weight-bold ml-3">${success}</div>
 <div class="card mx-3 shadow">
     <div class="card-body">
-                    <div class="mt-3">
-                        <table class="table table-bordered" id="employee-tb">
-                            <thead>
-                            <tr class="bg-info text-white text-center ">
-                                <th><input type="checkbox" id="checkAll"></th>
-                                <th>Employee ID</th>
-                                <th>Employee Name</th>
-                                <th>Date Of Birth</th>
-                                <th>Gender</th>
-                                <th>Phone</th>
-                                <th>Address</th>
-                                <th>Image</th>
+        <div class="mt-3">
+            <table class="table table-bordered table-striped" id="employee-tb">
+                <thead>
+                <tr class="bg-info text-white text-center ">
+                    <th><input type="checkbox" id="checkAll"></th>
+                    <th>Employee ID</th>
+                    <th>Employee Name</th>
+                    <th>Date Of Birth</th>
+                    <th>Gender</th>
+                    <th>Phone</th>
+                    <th>Address</th>
+                    <th>Image</th>
                             </tr>
                             </thead>
                             <tbody>

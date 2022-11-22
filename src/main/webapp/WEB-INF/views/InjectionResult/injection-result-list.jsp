@@ -12,7 +12,7 @@
 <div class="card mx-3 shadow">
     <div class="card-body">
         <div class="mt-3">
-            <table class="table table-bordered" id="table-IR">
+            <table class="table table-bordered table-striped" id="table-IR">
                 <thead>
                 <tr class="bg-info text-white text-center">
                     <td><input class="form-check mx-auto" type="checkbox" id="checkAll"></td>

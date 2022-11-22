@@ -33,7 +33,7 @@ public interface VaccineService {
 
 	void updateStatus(List<String> ids, Boolean status);
 
-	void save(MultipartFile file);
+	Boolean save(MultipartFile file);
 
 	List<Vaccine> findElementReport(String origin, String vaccineType, LocalDate timeBeginNextInjection, LocalDate timeEndNextInjection);
 

@@ -14,13 +14,15 @@ public interface VaccineTypeService {
 
 	String update(VaccineTypeDTO vaccineTypeDTO);
 
-	VaccineType findById(String id);
-	
-	List<VaccineType> findAll();
+    VaccineType findById(String id);
+
+    List<VaccineType> findAll();
 
     void upDateStatus(List<String> ids, Boolean inactive);
 
-	List<VaccineType> findAllActice();
+    List<VaccineType> findAllActice();
 
-	void upDateStatusVaccine(List<String> ids, Boolean inactive);
+    void upDateStatusVaccine(List<String> ids, Boolean inactive);
+
+    VaccineType findByVaccineTypeName(String vaccineName);
 }

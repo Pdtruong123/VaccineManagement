@@ -29,11 +29,12 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js"
             integrity="sha512-rstIgDs0xPgmG6RX1Aba4KV5cWJbAMcvRCVmglpam9SoHZiUCyQVDdH2LPlxoHtrv17XWblE/V/PP+Tr04hbtA=="
             crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdn.ckeditor.com/ckeditor5/35.3.1/classic/ckeditor.js"></script>
     <link rel="stylesheet" href="../../../asserts/css/style.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/news.css">
 </head>
 <body>
-<h1 class="h5 mt-3 text-center text-dark font-weight-bold mb-3">CREATE NEWS</h1>
+<h1 class="h5 mt-3 text-center text-dark font-weight-bold mb-3">UPDATE NEWS</h1>
 <div class="h4 text-success font-weight-bold ml-3">${success}</div>
 <div class="card mx-3 shadow">
     <div class="card-body">
@@ -43,14 +44,19 @@
             <div class="form-group">
                 <label class="font-weight-bold" for="title">Title<span class="text-danger">(*):</span></label>
                 <form:input class="form-control w-50" type="text" id="title" value="" path="title"/>
+                <form:errors path="title" cssClass="error"></form:errors>
             </div>
             <div class="form-group">
                 <label class="font-weight-bold" for="preview">Preview<span class="text-danger">(*):</span></label>
                 <form:input class="form-control" type="text" id="preview" path="preview"/>
+                <form:errors path="preview" cssClass="error"></form:errors>
             </div>
             <div class="form-group">
                 <label class="font-weight-bold" for="content">Content<span class="text-danger">(*):</span></label>
-                <form:input class="form-control" type="text" id="content" path="content"/>
+                <div>
+                    <textarea class="form-control " type="text" id="editor" name="content">${news.content}</textarea>
+                    <form:errors path="content" cssClass="error"></form:errors>
+                </div>
             </div>
             <div class="form-button mt-4">
                 <button class="btn btn-success mr-1" type="submit">Save</button>
@@ -61,6 +67,6 @@
         </form:form>
     </div>
 </div>
-<script src="${pageContext.request.contextPath}/js/VailidateNews.js"></script>
+<script src="${pageContext.request.contextPath}/js/ValidateNews.js"></script>
 </body>
 </html>

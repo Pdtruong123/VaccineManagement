@@ -2,13 +2,17 @@
     height: 100px;
 }
 
-.form-group #content{
+.form-group #content {
     height: 100px;
 }
 
-.preview-row{
+.preview-row {
     max-width: 200px;
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
+}
+
+.error {
+    color: red;
 }

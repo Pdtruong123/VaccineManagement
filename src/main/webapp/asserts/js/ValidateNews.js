@@ -7,10 +7,11 @@ $(document).ready(function (){
             preview: {
                 required: true
             },
-            content:{
+            content: {
                 required: true
             }
         }
 
-    })
+    });
+
 })

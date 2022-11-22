@@ -115,14 +115,26 @@ public class VaccineTypeServiceImpl implements VaccineTypeService  {
 
 	@Override
 	public List<VaccineType> findAllActice() {
-		Boolean status = true;
-		return vaccineTypeRepository.findByVaccineTypeStatus(status);
-	}
+        Boolean status = true;
+        return vaccineTypeRepository.findByVaccineTypeStatus(status);
+    }
 
-	@Override
-	@Transactional
-	public void upDateStatusVaccine(List<String> ids, Boolean inactive) {
+    @Override
+    @Transactional
+    public void upDateStatusVaccine(List<String> ids, Boolean inactive) {
 
-		vaccineRepository.updateStatusByType(ids, inactive);
-	}
+        vaccineRepository.updateStatusByType(ids, inactive);
+    }
+
+    @Override
+    public VaccineType findByVaccineTypeName(String vaccineTypeName) {
+        Optional<VaccineType> optional = vaccineTypeRepository.findByVaccineTypeName(vaccineTypeName);
+        if (optional.isPresent()) {
+            VaccineType vaccineType = optional.get();
+            return vaccineType;
+        } else {
+            return null;
+        }
+
+    }
 }

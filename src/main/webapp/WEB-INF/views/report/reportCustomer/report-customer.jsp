@@ -37,14 +37,14 @@
                         <label class="font-weight-bold" for="">Date of Birth: </label>
                         <div>
                             <div class="form-check form-check-inline">
-                                <label class="form-check-label" for="inlineRadio1">From:</label>
+                                <label class="form-check-label" for="dOBFrom">From:</label>
                                 <input class="form-control form-check-input ml-2" type="date" name="dOBFrom"
-                                       id="inlineRadio1" value="option1">
+                                       id="dOBFrom" value="${param.dOBFrom}">
                             </div>
                             <div class="form-check form-check-inline">
-                                <label class="form-check-label" for="inlineRadio2">To:</label>
+                                <label class="form-check-label" for="dOBTo">To:</label>
                                 <input class="form-control form-check-input ml-2" type="date" name="dOBTo"
-                                       id="inlineRadio2" value="option2">
+                                       id="dOBTo" value="${param.dOBTo}">
                             </div>
                         </div>
                     </div>
@@ -53,13 +53,15 @@
                     <div class="form-group col-sm-4">
                         <label class="font-weight-bold" for="fullName">Full Name: </label>
                         <div class="form-inline">
-                            <input type="text" class="form-control w-75" placeholder="Enter name" name="fullName" id="fullName">
+                            <input type="text" class="form-control w-75" placeholder="Enter name" name="fullName"
+                                   id="fullName" value="${param.fullName}">
                         </div>
                     </div>
                     <div class="form-group col-sm-4">
                         <label class="font-weight-bold" for="address">Address: </label>
                         <div class="form-inline">
-                            <input type="text" class="form-control w-75" placeholder="Enter address" name="address" id="address">
+                            <input type="text" class="form-control w-75" placeholder="Enter address" name="address"
+                                   id="address" value="${param.address}">
                         </div>
                     </div>
                     <div class="form-group col-sm-3 ml-5">

@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
          pageEncoding="ISO-8859-1" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib uri="http://www.springframework.org/tags/form"  prefix="form"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
         integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -11,13 +11,14 @@
 <script src="${pageContext.request.contextPath}/js/DataTables.js"></script>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/Customer.css">
 <body>
-<div class="h5 mt-3 text-center text-secondary font-weight-bold mb-3">UPDATE CUSTOMER INFORMATION
+<div class="h5 mt-3 text-center text-dark font-weight-bold mb-3">UPDATE
+    CUSTOMER INFORMATION
 </div>
 
 <form:form
         action="${pageContext.request.contextPath}/customer/update"
         method="post" modelAttribute="customer" id="registerForm">
-    <div class="card mx-3">
+    <div class="card mx-3 shadow">
         <div class="card-body">
             <div class="fs-20 font-weight-bold">Personal Information</div>
             <div class="form-row pt-15">
@@ -91,10 +92,11 @@
 
         </div>
     </div>
-    <div class="card m-3">
+    <div class="card m-3 ml-4">
         <div class="card-body">
 
             <div class="fs-20 font-weight-bold ">Account Information</div>
+            <span class="text-danger">${msg}</span>
             <div class="form-row pt-15">
                 <div class="form-group col-sm-4">
                     <label class="font-weight-bold" for="userName">Username
@@ -106,7 +108,7 @@
                                     class="form-control ml-2" value="${customer.userName}"
                                     id="userName"/>
                     </div>
-
+                    <span class="text-danger">${msgUser}</span>
                 </div>
                 <div class="form-group col-sm-4">
                     <label class="font-weight-bold" for="password">Password
@@ -114,9 +116,11 @@
                     </label>
                     <div class="form-inline">
                         <i class="fa-solid fa-lock"></i>
-                        <form:input type="password" path="password"
-                                    class="form-control ml-2" value="${customer.password}"
+
+                        <form:input type="password" path="passwordUpdate"
+                                    class="form-control ml-2"
                                     id="password"/>
+
                     </div>
                 </div>
 
@@ -143,6 +147,7 @@
                                     class="form-control ml-2" value="${customer.email}"
                                     id="email"/>
                     </div>
+                    <span class="text-danger">${msgEmail}</span>
                 </div>
                 <div class="form-group col-sm-4">
                     <label class="font-weight-bold" for="phone">Phone <span
@@ -173,9 +178,10 @@
                     </label>
                     <div class="form-inline">
                         <i class="fa-solid fa-building-lock"></i>
-                        <div class = "captcha rounded d-flex align-items-center" id="captchaCode"></div>
+                        <div class="captcha rounded d-flex align-items-center" id="captchaCode"></div>
                         <button class="refresh-btn" type="button" onclick="getCaptcha()"><i
-                                class="fa-solid fa-rotate-right reload-btn"></i></button> <%-- refresh button--%>
+                                class="fa-solid fa-rotate-right reload-btn"></i></button>
+                            <%-- refresh button--%>
 
                     </div>
                 </div>
@@ -185,17 +191,15 @@
                     Save
                 </button>
                 <button type="reset" class="btn btn-sm btn-primary ml-2">Reset</button>
-                <a class="btn btn-sm btn-warning ml-2" href="#">Cancel</a>
+                <a class="btn btn-sm btn-warning ml-2"
+                   href="${pageContext.request.contextPath}/customer/list">Cancel</a>
             </div>
 
         </div>
     </div>
 </form:form>
-</div>
 
-</div>
-</div>
-<script src="${pageContext.request.contextPath}/js/CustomerCreate.js"></script>
+<script src="${pageContext.request.contextPath}/js/CustomerUpdate.js"></script>
 <script src="${pageContext.request.contextPath}/js/Captcha.js"></script>
 <script
         src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js"

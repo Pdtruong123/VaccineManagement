@@ -4,13 +4,14 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <script src="${pageContext.request.contextPath}/js/VaccineType.js"></script>
 
+
             <div class="h5 mt-3 text-center text-dark font-weight-bold mb-3">CREATE VACCINE TYPE</div>
             <div class="card mx-3 shadow mb-3">
                 <div class="card-body">
                     <div class="h5 text-danger">${message}</div>
                     <c:if test="${empty vaccineType.id}">
                         <form:form action="${pageContext.request.contextPath}/vaccineType/add"
-                                   modelAttribute="vaccineType" enctype="multipart/form-data">
+                                   modelAttribute="vaccineType" id="form-vaccine-type" enctype="multipart/form-data">
                             <div class="form-row">
                                 <div class="form-group col-sm-6">
                                     <label class="font-weight-bold" for="typename">Vaccine Type Name <span
@@ -20,6 +21,7 @@
                                         <input type="text" class="form-control ml-5 w-75" placeholder="Enter name"
                                                name="vaccineTypeName" id="typename" required>
                                     </div>
+                                    <form:errors path="vaccineTypeName"></form:errors>
                                 </div>
                                 <div class="form-group col-sm-6">
                                     <label class="font-weight-bold" for="typeactive">Active <span class="text-danger">(*)</span>
@@ -70,7 +72,7 @@
 
                     <c:if test="${not empty vaccineType.id}">
                         <form:form action="${pageContext.request.contextPath}/vaccineType/update"
-                                   modelAttribute="vaccineType" enctype="multipart/form-data">
+                                   modelAttribute="vaccineType" id="form-vaccine-type" enctype="multipart/form-data">
                             <div class="form-row">
                                 <input type="hidden" class="form-control ml-2" placeholder="Enter code"
                                        value="${vaccineType.id}" name="id" id="typecode">
@@ -143,7 +145,7 @@
                             <div class="mt-5">
                                 <button type="submit" class="btn btn-sm btn-success">Submit</button>
                                 <button type="reset" class="btn btn-sm btn-primary ml-2">Reset</button>
-                                <a class="btn btn-sm btn-warning ml-2" id="back" href="" >Cancel</a>
+                                <a class="btn btn-sm btn-warning ml-2" id="back" href="">Cancel</a>
                             </div>
 
                         </form:form>
@@ -151,3 +153,6 @@
 
                 </div>
             </div>
+
+<script src="${pageContext.request.contextPath}/js/ValidateVaccineType.js"></script>
+

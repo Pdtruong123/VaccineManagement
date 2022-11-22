@@ -1,10 +1,14 @@
 $("#news-tb tbody tr td .link-col").click(function (){
     var thisParent = $(this).closest("tr");
-    alert("Title: " + $(this).text()+
-            "\nPreview: " + thisParent.find("td:eq(3)").text()+
-            "\nContent: " + thisParent.find("td:eq(2)").text()+
-            "\nPost Date: " + thisParent.find("td:eq(4)").text()
-    );
+    /*   alert("Title: " + $(this).text()+
+               "\nPreview: " + thisParent.find("td:eq(3)").text()+
+               "\nContent: " + thisParent.find("td:eq(2)").text()+
+               "\nPost Date: " + thisParent.find("td:eq(4)").text()
+       );*/
+
+    $("#news-title").text($(this).text());
+    $("#news-content").text(thisParent.find("td:eq(2)").text());
+    $("#news-date").text(thisParent.find("td:eq(4)").text());
 })
 
 $("#checkAll").change(function (){

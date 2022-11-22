@@ -32,7 +32,7 @@ $(document).ready(function () {
                 required: true,
                 maxlength: 10
             },
-            password: {
+            passwordUpdate: {
                 required: true,
                 minlength: 5,
                 maxlength: 20,
@@ -50,7 +50,7 @@ $(document).ready(function () {
                 required: true,
                 maxlength: 11
             },
-            captcha:{
+            captcha: {
                 required: true,
                 maxlength: 5,
                 capchaValidate: true
@@ -62,18 +62,18 @@ $(document).ready(function () {
                 minlength: "Full name only accept 3-25 characters",
                 maxlength: "Full name only accept 3-25 characters"
             },
-            dateOfBirth:{
+            dateOfBirth: {
                 required: "Please input your birthday",
             },
-            gender:{
+            gender: {
                 required: "Please choose your gender",
             },
-            identityCard:{
+            identityCard: {
                 required: "Please input your identity number",
                 minlength: "Identity card must be 10 numbers",
                 maxlength: "Identity card must be 10 numbers"
             },
-            address:{
+            address: {
                 required: "Please input your address",
                 maxlength: "Address too long"
             },
@@ -85,17 +85,17 @@ $(document).ready(function () {
                 required: "Please input your email",
                 maxlength: "Email too long. Can't accept more than 25 characters"
             },
-            phone:{
+            phone: {
                 required: "Please input your phone number",
                 maxlength: "Phone number can't more than 11 numbers"
             },
-            password: {
+            passwordUpdate: {
                 required: "Please input your password",
                 minlength: "Password have at least 5 characters ",
                 maxlength: "Password can't more than 20 characters"
             },
             rePassword: {
-                required: "Please input your confirm password" ,
+                required: "Please input your confirm password",
                 equalTo: "Password and Password Confirm not matched",
                 maxlength: "Password can't more than 20 characters"
             },
@@ -105,8 +105,6 @@ $(document).ready(function () {
             },
         },
     })
-
-
 
 
 });
@@ -131,31 +129,31 @@ $("#delete-button").click(function () {
                 alert("Something wrong, can not delete!")
             }
         })
-        }
+    }
 
 })
-$("#checkAll").change(function (){
-    if(this.checked){
-        $("#table-IC input").each(function (){
+$("#checkAll").change(function () {
+    if (this.checked) {
+        $("#table-IC input").each(function () {
             $(this).attr("checked", true)
         })
-    } else{
-        $("#table-IC input").each(function (){
+    } else {
+        $("#table-IC input").each(function () {
             $(this).attr("checked", false)
         })
     }
 })
 
-$("#update-button").click(function (){
-    var count=0;
+$("#update-button").click(function () {
+    var count = 0;
     var id;
-    $("#table-IC input").each(function (){
-        if(this.checked) {
-            count ++;
+    $("#table-IC input").each(function () {
+        if (this.checked) {
+            count++;
             id = $(this).val();
         }
     })
-    if(count==0){
+    if (count == 0) {
         alert("No injection result be chosen!");
         return false;
     }

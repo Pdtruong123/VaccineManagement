@@ -39,17 +39,22 @@ $(window).on('load', function(event) {
 		var y = document.getElementById("design7");
   		y.style.color = "#4154f1";
 	}
-	if(x.includes('http://localhost:8080/news/') ){
-		
-		var y = document.getElementById("design8");
-  		y.style.color = "#4154f1";
-	}
-	if(x.includes('http://localhost:8080/report') ){
-		
-		var y = document.getElementById("design9");
-  		y.style.color = "#4154f1";
-	}
-    	
-    });
+    if (x.includes('http://localhost:8080/news/')) {
+
+        var y = document.getElementById("design8");
+        y.style.color = "#4154f1";
+    }
+    if (x.includes('http://localhost:8080/report')) {
+
+        var y = document.getElementById("design9");
+        y.style.color = "#4154f1";
+    }
+    if (x.includes('http://localhost:8080/chart')) {
+
+        var y = document.getElementById("design9");
+        y.style.color = "#4154f1";
+    }
+
+});
 
 

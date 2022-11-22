@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Service
 public class InjectionScheduleServiceImpl implements InjectionScheduleService {
@@ -33,5 +34,24 @@ public class InjectionScheduleServiceImpl implements InjectionScheduleService {
         injectionSchedule.setDescription(injectionScheduleDTO.getDescription());
         injectionSchuduleRepository.save(injectionSchedule);
         return injectionScheduleDTO;
+    }
+
+    @Override
+    public InjectionSchedule save1(InjectionSchedule injectionSchedule) {
+        injectionSchuduleRepository.save(injectionSchedule);
+        return injectionSchedule;
+    }
+
+    @Override
+    public List<InjectionSchedule> findAll() {
+        return injectionSchuduleRepository.findAll();
+    }
+
+    public InjectionSchedule findByID(String id) {
+        return injectionSchuduleRepository.findById(id).orElse(null);
+    }
+
+    public InjectionScheduleServiceImpl(InjectionSchuduleRepository injectionSchuduleRepository) {
+        this.injectionSchuduleRepository = injectionSchuduleRepository;
     }
 }

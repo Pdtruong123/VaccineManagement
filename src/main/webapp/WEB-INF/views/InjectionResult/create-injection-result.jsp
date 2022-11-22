@@ -51,7 +51,6 @@
                             <option value="${cus.id}" label="${cus.fullName}-${cus.dateOfBirth}"/>
                         </c:forEach>
                     </form:select>
-                    <form:errors path="id"></form:errors>
                 </div>
                 <div class="col-sm-4 form-group">
                     <label class="font-weight-bold" for="prevention">Prevention</label>
@@ -62,7 +61,7 @@
                             <option value="${pre}" label="${pre}"/>
                         </c:forEach>
                     </form:select>
-                    <form:errors path="prevention"></form:errors>
+                    <form:errors path="prevention" cssClass="error"></form:errors>
                 </div>
                 <div class="col-sm-4 form-group">
                     <label class="font-weight-bold" for="vaccineType">Vaccine type</label>
@@ -74,25 +73,26 @@
                         </c:forEach>
                     </form:select>
                 </div>
+                <form:errors path="vaccine" cssClass="error"></form:errors>
             </div>
             <div class="row m-4">
                 <div class="col-sm-4 form-group">
                     <label class="font-weight-bold" for="injection">Injection:</label>
                     <form:input type="text" class="form-control" placeholder="" id="injection"
                                 path="numberOfInjection" value="${injectionResult.numberOfInjection}"/>
-                    <form:errors path="numberOfInjection"></form:errors>
+                    <form:errors path="numberOfInjection" cssClass="error"></form:errors>
                 </div>
                 <div class="col-sm-4 form-group">
                     <label class="font-weight-bold" for="dateOfInjection">Date of injection:</label>
                     <form:input type="date" class="form-control" placeholder="" id="dateOfInjection"
                                 path="injectionDate" value="${injectionResult.injectionDate}"/>
-                    <form:errors path="injectionDate"></form:errors>
+                    <form:errors path="injectionDate" cssClass="error"></form:errors>
                 </div>
                 <div class="col-sm-4 form-group">
                     <label class="font-weight-bold" for="nextOfInjection">Next injection appoinment:</label>
                     <form:input type="date" class="form-control" placeholder="" id="nextOfInjection"
                                 path="nextInjectionDate" value="${injectionResult.nextInjectionDate}"/>
-                    <form:errors path="nextInjectionDate"></form:errors>
+                    <form:errors path="nextInjectionDate" cssClass="error"></form:errors>
                 </div>
             </div>
             <div class="row m-4">
@@ -104,7 +104,7 @@
                             <option value="${place}" label="${place}"/>
                         </c:forEach>
                     </form:select>
-                    <form:errors path="injectionPlace"></form:errors>
+                    <form:errors path="injectionPlace" cssClass="error"></form:errors>
                 </div>
                 <div class="col-sm-4"></div>
                 <div class="col-sm-4"></div>

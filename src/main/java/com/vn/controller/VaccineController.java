@@ -2,29 +2,19 @@ package com.vn.controller;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -43,10 +33,14 @@ public class VaccineController {
 	VaccineService vaccineService;
 
 	@Autowired
+	ReadFileExcel readFileExcel;
+
+	@Autowired
 	HttpServletRequest request;
 
 	@Autowired
 	VaccineTypeService vaccineTypeService;
+
 
 	@GetMapping(value = "/vaccine/list")
 	public ModelAndView viewListVaccine(@ModelAttribute("msg") String msg) {
@@ -77,6 +71,9 @@ public class VaccineController {
 			BindingResult bindingResult, RedirectAttributes redirectAttributes) {
 		ModelAndView model = new ModelAndView("vaccineCreate");
 		if (bindingResult.hasErrors()) {
+			List<VaccineType> vaccineTypeList = new ArrayList<>();
+			vaccineTypeList = vaccineTypeService.findAllActice();
+			model.addObject("vaccineTypeList", vaccineTypeList);
 			return model;
 		}
 		List<VaccineType> vaccineTypeList = new ArrayList<>();
@@ -104,9 +101,10 @@ public class VaccineController {
 	}
 
 	@PostMapping(value = "/vaccine/update/makeInActive")
-	public ModelAndView updateInActive(@RequestParam List<String> ids) {
+	public ModelAndView updateInActive(@RequestParam List<String> ids, RedirectAttributes redirectAttributes) {
 		Boolean status = false;
 		vaccineService.updateStatus(ids, status);
+		redirectAttributes.addFlashAttribute("msg", "Update vaccine successfull!");
 		ModelAndView modelRedirectList = new ModelAndView("redirect:/vaccine/list");
 		return modelRedirectList;
 	}
@@ -130,7 +128,7 @@ public class VaccineController {
 		vaccineDTO.setStatus(vaccine.getStatus());
 		vaccineDTO.setVaccineName(vaccine.getVaccineName());
 		vaccineDTO.setVaccineType(vaccine.getVaccineType());
-		vaccineDTO.setNumberOfInjection(vaccine.getNumberOfInjection());
+		vaccineDTO.setNumberOfInjection(vaccine.getId());
 		vaccineDTO.setUsage(vaccine.getUsage());
 		vaccineDTO.setIndication(vaccine.getIndication());
 		vaccineDTO.setContraindication(vaccine.getContraindication());
@@ -148,6 +146,9 @@ public class VaccineController {
 			BindingResult bindingResult, RedirectAttributes redirectAttributes) {
 		ModelAndView model = new ModelAndView("vaccineUpdate");
 		if (bindingResult.hasErrors()) {
+			List<VaccineType> vaccineTypeList = new ArrayList<>();
+			vaccineTypeList = vaccineTypeService.findAllActice();
+			model.addObject("vaccineTypeList", vaccineTypeList);
 			return model;
 		}
 		List<VaccineType> vaccineTypeList = new ArrayList<>();
@@ -175,20 +176,27 @@ public class VaccineController {
 	
 	@GetMapping("/vaccine/import")
 	public ModelAndView viewImport() {
-		ModelAndView view = new ModelAndView("vaccineImport");
-		return view;
+		ModelAndView modelImport = new ModelAndView("vaccineImport");
+		return modelImport;
 	}
-	
+
 	@PostMapping("/vaccine/import")
-	@ResponseBody
-	public String importVaccineFileExcel(@RequestParam("file") MultipartFile file) {
-		if (ReadFileExcel.checkExcelFormat(file)) {
-			vaccineService.save(file);
-			return "Import Sucessfull!";
-		}else {
-			return "Pls upload file excel!";
+	public ModelAndView importVaccineFileExcel(@RequestParam("file") MultipartFile file) {
+		ModelAndView modelImport = new ModelAndView("vaccineImport");
+
+		if (readFileExcel.checkExcelFormat(file)) {
+			if (vaccineService.save(file)) {
+				modelImport.addObject("msg", "Import successfull!");
+				return modelImport;
+			} else {
+				modelImport.addObject("msg", "Import fail! Pls check file excel!");
+				return modelImport;
+			}
+		} else {
+			modelImport.addObject("msg", "Pls upload file excel!");
+			return modelImport;
 		}
-		
+
 	}
 	
 }

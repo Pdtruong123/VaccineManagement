@@ -75,19 +75,20 @@ public class Vaccine {
 	private Boolean status;
 
 	public Vaccine(String id, String contraindication, String indication, Integer numberOfInjection, String origin,
-			Date timeBeginNextInjection, Date timeEndNextInjection, String usage, String vaccineName,
-			Boolean status) {
-		super();
-		this.id = id;
-		this.contraindication = contraindication;
-		this.indication = indication;
-		this.numberOfInjection = numberOfInjection;
-		this.origin = origin;
-		this.timeBeginNextInjection = timeBeginNextInjection;
-		this.timeEndNextInjection = timeEndNextInjection;
-		this.usage = usage;
-		this.vaccineName = vaccineName;
-		this.status = status;
+                   Date timeBeginNextInjection, Date timeEndNextInjection, String usage, String vaccineName,
+                   Boolean status, VaccineType vaccineType) {
+        super();
+        this.id = id;
+        this.contraindication = contraindication;
+        this.indication = indication;
+        this.numberOfInjection = numberOfInjection;
+        this.origin = origin;
+        this.timeBeginNextInjection = timeBeginNextInjection;
+        this.timeEndNextInjection = timeEndNextInjection;
+        this.usage = usage;
+        this.vaccineName = vaccineName;
+        this.status = status;
+        this.vaccineType = vaccineType;
 	}
 
 	@Override

@@ -18,6 +18,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Entity
 @Table(name = "Customer")
@@ -49,7 +50,7 @@ public class Customer implements Serializable {
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate dateOfBirth;
 
-	@Column(length = 100)
+	@Column(length = 100, unique = true)
 	@Email
 	private String email;
 
@@ -68,6 +69,9 @@ public class Customer implements Serializable {
 	@Transient
 	private String confirmPassword;
 
+	@Transient
+	private String passwordUpdate;
+
 	@Column(length = 20)
 	private String phone;
 
@@ -76,11 +80,10 @@ public class Customer implements Serializable {
 
 	@Transient
 	private String code;
-
-	@Column(name = "user_name")
+	@Column(name = "user_name", unique = true)
 	private String userName;
 
-	@OneToMany(mappedBy = "customer")
+	@OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
 	private Set<InjectionResult> injectionResults;
 
 	@Transient
@@ -90,9 +93,9 @@ public class Customer implements Serializable {
 		}).reduce(0, (subtotal, element) -> subtotal + element);
 		return total;
 	}
-	
-	
-	@OneToMany(mappedBy = "customer",fetch = FetchType.EAGER)
+
+
+	@OneToMany(mappedBy = "customer", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private List<UserRole> userRoles;
 
 

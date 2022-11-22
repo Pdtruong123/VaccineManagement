@@ -7,8 +7,6 @@ import com.vn.repository.InjectionSchuduleRepository;
 import com.vn.repository.VaccineRepository;
 import com.vn.service.InjectionScheduleService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -19,10 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
-import java.awt.print.Pageable;
-import java.text.ParseException;
 import java.util.List;
-import java.util.Optional;
 
 @Controller
 public class InjectionScheduleController {
@@ -38,7 +33,7 @@ public class InjectionScheduleController {
     @GetMapping("/injectionSchedule/add")
     public ModelAndView listInjection(Model model) {
         model.addAttribute("injection", new InjectionScheduleDTO());
-        List<InjectionSchedule> scheduleList = injectionScheduleReponsitory.findAll();
+        List<InjectionSchedule> scheduleList = injectionScheduleService.findAll();
         model.addAttribute("listInjection", scheduleList);
         List<Vaccine> vaccineList = vaccineReponsitory.findAll();
         model.addAttribute("listVaccine", vaccineList);
@@ -49,7 +44,7 @@ public class InjectionScheduleController {
     @GetMapping("/injection-schedule/list")
     public ModelAndView getlist() {
         ModelAndView modelAndView = new ModelAndView("ListSchedule");
-        modelAndView.addObject("listSchedule", injectionScheduleReponsitory.findAll());
+        modelAndView.addObject("listSchedule", injectionScheduleService.findAll());
         return modelAndView;
     }
 
@@ -67,7 +62,7 @@ public class InjectionScheduleController {
 
     @GetMapping("/injectionSchedule/update")
     public ModelAndView getUpdate(@RequestParam String id, Model model) {
-        InjectionSchedule injectionSchedule = injectionScheduleReponsitory.findById(id).orElse(null);
+        InjectionSchedule injectionSchedule = injectionScheduleService.findByID(id);
         model.addAttribute("updateSchedule", injectionSchedule);
         ModelAndView modelAndView = new ModelAndView("update");
         return modelAndView;
@@ -75,15 +70,8 @@ public class InjectionScheduleController {
 
     @PostMapping("/injectionSchedule/update")
     public ModelAndView postUpdate(@ModelAttribute("updateSchedule") InjectionSchedule injectionSchedule) {
-//        InjectionSchedule schedule= new InjectionSchedule();
-//        schedule.setId(injectionSchedule.getId());
-//        schedule.setStartDate(injectionSchedule.getStartDate());
-//        schedule.setEndDate(injectionSchedule.getEndDate());
-//        schedule.setDescription(injectionSchedule.getDescription());
-//        schedule.setPlace(injectionSchedule.getPlace());
-//        schedule.setVaccine(vaccineReponsitory.findById(injectionSchedule.getVaccine().getId()).orElse(null));
-        injectionScheduleReponsitory.save(injectionSchedule);
-        ModelAndView modelAndView = new ModelAndView("redirect:/lisst");
+        injectionScheduleService.save1(injectionSchedule);
+        ModelAndView modelAndView = new ModelAndView("redirect:/injection-schedule/list");
         return modelAndView;
     }
 }

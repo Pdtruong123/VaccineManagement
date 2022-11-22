@@ -20,7 +20,10 @@ public interface VaccineTypeRepository extends JpaRepository<VaccineType, String
     @Modifying
     @Query("Update VaccineType vt set vt.vaccineTypeStatus =:status WHERE vt.id IN :ids")
     void upDateStatus(@Param("ids") List<String> ids, @Param("status") boolean inactive);
-    
+
     @Query("Select vt from VaccineType vt where vt.vaccineTypeStatus =:status")
-	List<VaccineType> findByVaccineTypeStatus(Boolean status);
+    List<VaccineType> findByVaccineTypeStatus(Boolean status);
+
+    @Query("Select vt from VaccineType vt where vt.vaccineTypeName =:vaccineTypeName")
+    Optional<VaccineType> findByVaccineTypeName(String vaccineTypeName);
 }

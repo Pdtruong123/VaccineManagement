@@ -51,19 +51,20 @@
 }
 
 .eroor {
-	color: red;
+    color: red;
 }
 </style>
 </head>
 
 <body>
 
-	<div class="h5 mt-3 text-center text-dark font-weight-bold mb-3">CREATE
-		VACCINE</div>
+<div class="h5 mt-3 text-center text-dark font-weight-bold mb-3">CREATE
+    VACCINE
+</div>
 
-	<div class="card mx-3">
-		<div class="card-body">
-			<c:if test="${empty vaccineUpdate.id}">
+<div class="card mx-3 shadow">
+    <div class="card-body">
+        <c:if test="${empty vaccineUpdate.id}">
 				<form:form action="${pageContext.request.contextPath}/vaccine/add"
 					method="post" modelAttribute="vaccineDto" id="formAdd">
 					<div class="form-row">
@@ -173,21 +174,23 @@
 							<label class="font-weight-bold" for="typecode">Origin:</span> :
 							</label>
 							<form:input path="origin" type="text" class="form-control"
-								placeholder="Vietnam" id="vaccine-origin" />
+                                        placeholder="Vietnam" id="vaccine-origin"/>
 
-						</div>
-					</div>
-					<div class="mt-5">
-						<button type="submit" class="btn btn-sm btn-success"
-							onclick="return submitValidate()">Submit</button>
-						<button type="reset" class="btn btn-sm btn-primary ml-2">Reset</button>
-						<a class="btn btn-sm btn-warning ml-2"
-							href="${pageContext.request.contextPath}/vaccine/list">Cancel</a>
-						<button type="button" class="btn btn-sm btn-primary ml-2"
-							id="importVaccine">>Import Vaccine</button>
-					</div>
+                        </div>
+                    </div>
+                    <div class="mt-5">
+                        <button type="submit" class="btn btn-sm btn-success"
+                                onclick="return submitValidate()">Submit
+                        </button>
+                        <button type="reset" class="btn btn-sm btn-primary ml-2">Reset</button>
+                        <a class="btn btn-sm btn-warning ml-2"
+                           href="${pageContext.request.contextPath}/vaccine/list">Cancel</a>
 
-				</form:form>
+                        <a class="btn btn-sm btn-warning ml-2"
+                           href="${pageContext.request.contextPath}/vaccine/import">Import Vaccine</a>
+                    </div>
+
+                </form:form>
 				<script src="${pageContext.request.contextPath}/js/CreateVaccine.js"></script>
 			</c:if>
 

@@ -6,6 +6,7 @@ import org.springframework.data.domain.Pageable;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 public interface CustomerService {
     Customer create(Customer customer);
@@ -20,16 +21,13 @@ public interface CustomerService {
 
     List<Customer> findAll();
 
-    Integer countElement();
-
-    Page<Customer> findContainElement(String searchParam, Pageable pageable);
-
-    int countContainElement(String searchParam);
-
-    void deleteCustomer(String id);
+    void deleteAllIds(List<String> ids);
 
     List<Customer> findElementReport(String fullName, String address, Date dOBFrom, Date dOBTo);
 
+    Optional<Customer> CheckFindByUserName(String userName);
 
+    Optional<Customer> CheckFindByEmail(String email);
 
+    Customer update(Customer customer);
 }

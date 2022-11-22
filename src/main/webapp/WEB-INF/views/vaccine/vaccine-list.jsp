@@ -38,23 +38,23 @@
 	<div class="h5 mt-3 text-center text-dark font-weight-bold mb-3">LIST
 		VACCINE</div>
 	<span class="msg">${msg}</span>
-	<div class="card mx-3">
-		<div class="card-body">
-			<div class="mt-3">
-				<table class="table table-striped table-bordered text-center"
-					id="table-VC">
-					<thead class="table-thead">
-						<tr>
-							<th><input type="checkbox" id="checkAll"></th>
-							<th>Vaccine Id</th>
-							<th>Vaccine Name</th>
-							<th>Vaccine Type</th>
-							<th>Number of Injection</th>
-							<th>Origin</th>
-							<th>Status</th>
-						</tr>
-					</thead>
-					<tbody>
+    <div class="card mx-3 shadow">
+        <div class="card-body">
+            <div class="mt-3">
+                <table class="table table-striped table-bordered text-center"
+                       id="table-VC">
+                    <thead class="table-thead">
+                    <tr class="bg-info text-white text-center">
+                        <th><input type="checkbox" id="checkAll"></th>
+                        <th>Vaccine Id</th>
+                        <th>Vaccine Name</th>
+                        <th>Vaccine Type</th>
+                        <th>Number of Injection</th>
+                        <th>Origin</th>
+                        <th>Status</th>
+                    </tr>
+                    </thead>
+                    <tbody>
 						<c:forEach items="${vaccineList}" var="result">
 							<tr>
 								<td><input type="checkbox" value="${result.id}" name="id"></td>

@@ -26,6 +26,10 @@ import java.util.Optional;
 public class VaccineServiceImpl implements VaccineService {
     @Autowired
     VaccineRepository vaccineRepository;
+
+    @Autowired
+    ReadFileExcel readFileExcel;
+
     @Autowired
     InjectionSchuduleRepository injectionSchuduleRepository;
 
@@ -69,9 +73,9 @@ public class VaccineServiceImpl implements VaccineService {
 		vaccine.setId(vaccineDTO.getId());
 		vaccine.setStatus(vaccineDTO.getStatus());
 		vaccine.setVaccineName(vaccineDTO.getVaccineName());
-		vaccine.setVaccineType(vaccineDTO.getVaccineType());
-		vaccine.setNumberOfInjection(vaccineDTO.getNumberOfInjection());
-		vaccine.setUsage(vaccineDTO.getUsage());
+        vaccine.setVaccineType(vaccineDTO.getVaccineType());
+        vaccine.setNumberOfInjection(Integer.valueOf(vaccineDTO.getNumberOfInjection()));
+        vaccine.setUsage(vaccineDTO.getUsage());
 		vaccine.setIndication(vaccineDTO.getIndication());
 		vaccine.setContraindication(vaccineDTO.getContraindication());
 		vaccine.setTimeBeginNextInjection(vaccineDTO.getTimeBeginNextInjection());
@@ -120,9 +124,9 @@ public class VaccineServiceImpl implements VaccineService {
 			vaccine.setId(vaccineDTO.getId());
 			vaccine.setStatus(vaccineDTO.getStatus());
 			vaccine.setVaccineName(vaccineDTO.getVaccineName());
-			vaccine.setVaccineType(vaccineDTO.getVaccineType());
-			vaccine.setNumberOfInjection(vaccineDTO.getNumberOfInjection());
-			vaccine.setUsage(vaccineDTO.getUsage());
+            vaccine.setVaccineType(vaccineDTO.getVaccineType());
+            vaccine.setNumberOfInjection(Integer.valueOf(vaccineDTO.getNumberOfInjection()));
+            vaccine.setUsage(vaccineDTO.getUsage());
 			vaccine.setIndication(vaccineDTO.getIndication());
 			vaccine.setContraindication(vaccineDTO.getContraindication());
 			vaccine.setTimeBeginNextInjection(vaccineDTO.getTimeBeginNextInjection());
@@ -148,14 +152,20 @@ public class VaccineServiceImpl implements VaccineService {
 	}
 
 
-	@Override
-	public void save(MultipartFile file) {
-		try {
-			List<Vaccine> vaccines = ReadFileExcel.importFileExcel(file.getInputStream());
-			vaccineRepository.saveAll(vaccines);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
+    @Override
+    public Boolean save(MultipartFile file) {
+        try {
+            List<Vaccine> vaccines = readFileExcel.importFileExcel(file.getInputStream());
+            if (vaccines.isEmpty()) {
+                return false;
+            } else {
+                vaccineRepository.saveAll(vaccines);
+                return true;
+            }
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
 			e.printStackTrace();
+            return false;
 		}
 
 	}

@@ -91,7 +91,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     @Transactional
     public void deleteEmployee(List<String> ids) {
-        employeeRepository.deleteByIds(ids);
+        employeeRepository.deleteAllById(ids);
     }
 
     @Override

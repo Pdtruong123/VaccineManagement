@@ -14,17 +14,16 @@
 }
 
 .topnavbar{
-    background-color: #72a58f;
+    background-color: #72b696;
 }
 .left{
     margin: 0;
     padding: 0;
 }
-.right{
+.right {
     margin: 0;
     padding: 0;
-    background-image: url("../img/background-1.jpg");
-    background-repeat: no-repeat;
+    background-image: url("../../asserts/img/background-1.jpg");
     background-size: cover;
 }
 .img{
@@ -123,8 +122,8 @@ body{
 	margin-top: -75px;
 	margin-left: -75px;
 }
-#img-employee{
+#img-employee {
+    height: 40px;
+    width: 35px;
     margin-left: 25%;
-	width: 40px;
-	height: 40px;
 }

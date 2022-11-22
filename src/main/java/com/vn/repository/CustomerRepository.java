@@ -24,12 +24,18 @@ public interface CustomerRepository extends JpaRepository<Customer, String> {
     int countContainElement(String searchParam);
 
     @Query("""
-                select c from Customer c  where (?1 is null OR c.fullName like %?1% ) AND (?2 is null OR c.address like %?2%)
-                 AND ((?3 is null OR ?4 is null) OR c.dateOfBirth between ?3 and ?4)  
-                 """)
+            select c from Customer c  where (?1 is null OR c.fullName like %?1% ) AND (?2 is null OR c.address like %?2%)
+             AND ((?3 is null OR ?4 is null) OR c.dateOfBirth between ?3 and ?4)  
+             """)
     List<Customer> findElementReport(String fullName, String address, Date dOBFrom, Date dOBTo);
 
-	Optional<Customer> findByUserName(String userName);
+    Optional<Customer> findByUserName(String userName);
+
+    @Query("SELECT c FROM Customer c WHERE c.userName=:userName")
+    Optional<Customer> CheckFindByUserName(String userName);
+
+    @Query("SELECT c FROM Customer c WHERE c.email=:email")
+    Optional<Customer> CheckFindByEmail(String email);
 
 
 }

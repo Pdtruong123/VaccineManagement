@@ -46,25 +46,24 @@ public class EmployeeController {
 
     @PostMapping("/employee/add")
     public ModelAndView addEmployee(@Valid @ModelAttribute("employee") Employee employee
-                              , RedirectAttributes redirectAttributes
-                              ,BindingResult bindingResult){
+            , BindingResult bindingResult
+            , RedirectAttributes redirectAttributes
+    ) {
         ModelAndView modelError = new ModelAndView("employeeAdd");
         ModelAndView model = new ModelAndView("redirect:/employee/list");
-        if(bindingResult.hasErrors()){
+        if (bindingResult.hasErrors()) {
             return modelError;
         }
 
         employeeService.save(employee);
-        redirectAttributes.addFlashAttribute("success","Add employee successfully!");
+        redirectAttributes.addFlashAttribute("success", "Add employee successfully!");
         return model;
     }
 
     @PostMapping("/employee/delete")
     public ModelAndView deleteEmployee(@RequestParam (value = "ids") List<String> ids){
         ModelAndView model = new ModelAndView("redirect:/employee/list");
-        System.out.println(ids);
         employeeService.deleteEmployee(ids);
-
         return model;
     }
 
