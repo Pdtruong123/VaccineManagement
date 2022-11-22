@@ -6,13 +6,10 @@ import java.util.Optional;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
+
 import com.vn.repository.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
@@ -26,35 +23,29 @@ public class CustomerController {
 
     @Autowired
     CustomerService customerService;
-    @Autowired
-    CustomerRepository customerRepository;
+
+
     @Autowired
     HttpServletRequest httpServletRequest;
 
     @GetMapping("/customer/add")
     public ModelAndView showRegistrationForm() {
         ModelAndView model = new ModelAndView("registerCustomer");
-        Customer c = new Customer();
-        model.addObject("customer", c);
+        model.addObject("customer", new Customer());
         return model;
     }
 
     @PostMapping("/customer/add")
-    public ModelAndView saveRegister(@ModelAttribute("customer") Customer customer) {
+    public ModelAndView saveRegister(@Valid @ModelAttribute("customer") Customer customer, BindingResult bindingResult) {
         ModelAndView model = new ModelAndView("redirect:/customer/list");
         ModelAndView modelError = new ModelAndView("registerCustomer");
-        Optional<Customer> userName = customerRepository.CheckFindByUserName(customer.getUserName());
-        Optional<Customer> email = customerRepository.CheckFindByEmail(customer.getEmail());
-        if (userName.isPresent() && email.isPresent()) {
-            model.addObject("msg", "Email or User Name Duplicate");
+        Optional<Customer> userName = customerService.CheckFindByUserName(customer.getUserName());
+        Optional<Customer> email = customerService.CheckFindByEmail(customer.getEmail());
+        if(bindingResult.hasErrors()){
             return modelError;
         }
-        if (userName.isPresent()) {
-            model.addObject("msg", "Email or User Name Duplicate");
-            return modelError;
-        }
-        if (email.isPresent()) {
-            model.addObject("msg", "Email or User Name Duplicate");
+        if (userName.isPresent() || email.isPresent()) {
+            modelError.addObject("msg", "User Name or Email already existed!");
             return modelError;
         }
         customerService.create(customer);
@@ -84,30 +75,27 @@ public class CustomerController {
         ModelAndView model = new ModelAndView("redirect:/customer/list");
         ModelAndView modelError = new ModelAndView("updateInjectionCustomerList");
         model.addObject("msg", "Update customer successfull!");
-//        final String userNameDefault= customer.getUserName();
-//        final String emailDefault= customer.getEmail();
-        Optional<Customer> userName = customerRepository.CheckFindByUserName(customer.getUserName());
-        Optional<Customer> email = customerRepository.CheckFindByEmail(customer.getEmail());
+        Optional<Customer> userName = customerService.CheckFindByUserName(customer.getUserName());
+        Optional<Customer> email = customerService.CheckFindByEmail(customer.getEmail());
         if (userName.isPresent() && email.isPresent() && customer.getId().equals(userName.get().getId())
                 && customer.getId().equals(email.get().getId())) {
             customerService.update(customer);
             return model;
         }
         if (userName.isPresent() && email.isPresent()) {
-            model.addObject("msg", "Email or User Name Duplicate");
+            modelError.addObject("msg", "User Name or Email already existed!");
             return modelError;
         }
         if (userName.isPresent()) {
-            model.addObject("msg", "Email or User Name Duplicate");
+            modelError.addObject("msg", "User Name or Email already existed!");
             return modelError;
         }
         if (email.isPresent()) {
-            model.addObject("msg", "Email or User Name Duplicate");
+            modelError.addObject("msg", "User Name or Email already existed!");
             return modelError;
-        } else {
+        }
             customerService.update(customer);
             return model;
-        }
     }
 
     @PostMapping("/customer/delete")

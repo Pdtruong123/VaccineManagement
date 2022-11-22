@@ -106,28 +106,6 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public Integer countElement() {
-        return (int) customerRepository.count();
-    }
-
-    @Override
-    public Page<Customer> findContainElement(String searchParam, Pageable pageable) {
-        return customerRepository.findContainElement(searchParam, pageable);
-
-    }
-
-    @Override
-    public int countContainElement(String searchParam) {
-        return customerRepository.countContainElement(searchParam);
-    }
-
-    @Override
-    public void deleteCustomer(String id) {
-        customerRepository.deleteById(id);
-
-    }
-
-    @Override
     public void deleteAllIds(List<String> ids) {
         customerRepository.deleteAllById(ids);
     }
@@ -139,10 +117,31 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public Customer update(Customer customer) {
-        customerRepository.save(customer);
-        return customer;
+    public Optional<Customer> CheckFindByUserName(String userName) {
+        return customerRepository.CheckFindByUserName(userName);
     }
 
+    @Override
+    public Optional<Customer> CheckFindByEmail(String email) {
+        return customerRepository.CheckFindByEmail(email);
+    }
+
+    @Override
+    public Customer update(Customer customer) {
+
+        Customer customerSave = new Customer();
+        customerSave.setId(customer.getId());
+        customerSave.setAddress(customer.getAddress());
+        customerSave.setPassword(passwordEncoder.encode(customer.getPassword()));
+        customerSave.setDateOfBirth(customer.getDateOfBirth());
+        customerSave.setEmail(customer.getEmail());
+        customerSave.setFullName(customer.getFullName());
+        customerSave.setGender(customer.getGender());
+        customerSave.setIdentityCard(customer.getIdentityCard());
+        customerSave.setPhone(customer.getPhone());
+        customerSave.setUserName(customer.getUserName());
+        customerSave.setUserRoles(customer.getUserRoles());
+        return customerRepository.save(customerSave);
+    }
 
 }

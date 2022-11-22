@@ -1,5 +1,11 @@
 $(document).ready(function () {
-
+    $.validator.addMethod("capchaValidate", function (value, element, params){
+        let capchaCode = $("#captchaCode").text();
+        if(value != capchaCode){
+            return false;
+        }
+        return true;
+    },"Captcha not matched. Please try again!")
     $("#registerForm").validate({
         rules: {
             fullName: {
@@ -47,6 +53,7 @@ $(document).ready(function () {
             captcha:{
                 required: true,
                 maxlength: 5,
+                capchaValidate: true
             }
         },
         messages: {
@@ -162,28 +169,5 @@ $("#update-button").click(function (){
         return false;
     }
 })
-function submitValidate() {
-
-    let captcha = document.querySelector("#captchaCode");
-    let inputField = document.querySelector(".inputCaptcha");
-    let statusTxt = document.querySelector(".status-txt");
-    let inputVal = inputField.value;
-    let captchaVal = $("#captchaCode").text();
-
-
-    if ($("#registerForm").valid()) {
-        if(inputVal == captchaVal){
-            statusTxt.style.color = "#4db2ec";
-            statusTxt.innerText = "Register Successfully";
-            return true;
-        }else{
-            statusTxt.style.color = "#ff0000";
-            statusTxt.innerText = "Captcha not matched. Please try again!";
-            return false;
-        }
-    } else {
-        return false;
-    }
-}
 
 

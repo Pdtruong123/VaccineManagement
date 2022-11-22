@@ -143,7 +143,7 @@
                                                 class="form-control ml-2" value="${customer.userName}"
                                                 id="userName"/>
                                 </div>
-                                <div class="text-danger">${msg}</div>
+                                <span class="text-danger">${msg}</span>
 
                             </div>
                             <div class="form-group col-sm-4">
@@ -181,7 +181,7 @@
                                                 class="form-control ml-2" value="${customer.email}"
                                                 id="email"/>
                                 </div>
-                                <div class="text-danger">${msg}</div>
+                                <span class="text-danger">${msg}</span>
                             </div>
                             <div class="form-group col-sm-4">
                                 <label class="font-weight-bold" for="phone">Phone <span
@@ -221,7 +221,7 @@
                         </div>
                         <div class="status-txt"></div>
                         <div class="p-btn mt-5">
-                            <button type="submit" class="btn btn-sm btn-success" onclick="return submitValidate()">
+                            <button type="submit" class="btn btn-sm btn-success">
                                 Save
                             </button>
                             <button type="reset" class="btn btn-sm btn-primary ml-2">Reset</button>
