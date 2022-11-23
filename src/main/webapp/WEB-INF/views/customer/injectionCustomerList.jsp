@@ -12,7 +12,7 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/Customer.css">
 <div class="h5 mt-3 text-center text-dark font-weight-bold mb-3">INJECTION CUSTOMER LIST</div>
 <div class="card mx-3 shadow">
-    <span class="msg">${msg}</span>
+    <span class="msg ml-2 mt-2">${msg}</span>
     <div class="card-body m-3">
         <div class="mt-3">
             <table class="table table-bordered table-striped" id="table-IC">
@@ -26,24 +26,24 @@
                     <th>Identity Card</th>
                     <th>Phone</th>
                 </tr>
-                    </thead>
-                    <tbody>
-                    <c:forEach items="${injectionCustomerList}" var="result">
-                        <tr>
-                            <td><input class="form-check mx-auto" type="checkbox" value="${result.id}" name="id"></td>
-                            <td>${result.fullName}</td>
-                            <td>${result.dateOfBirth}</td>
-                            <td>
-                                <c:if test="${result.gender ==0}">Male</c:if>
-                                <c:if test="${result.gender ==1}">Female</c:if>
-                            </td>
-                            <td>${result.address}</td>
-                            <td>${result.identityCard}</td>
-                            <td>${result.phone}</td>
+                </thead>
+                <tbody>
+                <c:forEach items="${injectionCustomerList}" var="result">
+                    <tr>
+                        <td><input class="form-check mx-auto" type="checkbox" value="${result.id}" name="id"></td>
+                        <td>${result.fullName}</td>
+                        <td>${result.dateOfBirth}</td>
+                        <td>
+                            <c:if test="${result.gender ==0}">Male</c:if>
+                            <c:if test="${result.gender ==1}">Female</c:if>
+                        </td>
+                        <td>${result.address}</td>
+                        <td>${result.identityCard}</td>
+                        <td>${result.phone}</td>
 
-                        </tr>
-                    </c:forEach>
-                    </tbody>
+                    </tr>
+                </c:forEach>
+                </tbody>
             </table>
         </div>
         <div class="h5 text-right text-danger">${error}</div>

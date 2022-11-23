@@ -28,7 +28,7 @@ $("#make-in-active-button").click(function (){
 		}
 		
 	if(countInActive>0){
-			alert("Invalid data - Please recheck your selects!");
+			alert("Invalid data - Have a 'In-Active' case. \n Please recheck your selects!");
 			return false;
 		}
 		
@@ -47,6 +47,7 @@ $("#make-in-active-button").click(function (){
                url: "/vaccine/update/makeInActive?ids=" + ids,
                success: function (){
                    thisResult.closest('tr').find("td:eq(6)").text("In-Active");
+                   thisResult.prop("checked", false);
                    alert("Update In-Active Successfully!")
                },
                error: function (){

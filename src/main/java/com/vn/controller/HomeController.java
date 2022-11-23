@@ -53,7 +53,7 @@ public class HomeController {
 		ModelAndView modelLogin = new ModelAndView("login");
 		modelLogin.addObject("memberLogin", new Customer());
 		if (error != null) {
-			modelLogin.addObject(modelLogin);
+			modelLogin.addObject("error", "Invalid user name or password!");
 		}
 		return modelLogin;
 	}

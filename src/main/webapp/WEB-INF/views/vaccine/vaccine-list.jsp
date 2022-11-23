@@ -56,28 +56,25 @@
                     </thead>
                     <tbody>
 						<c:forEach items="${vaccineList}" var="result">
-							<tr>
-								<td><input type="checkbox" value="${result.id}" name="id"></td>
-								<td><a
-									href="${pageContext.request.contextPath}/vaccine/update/?idUpdate=${result.id}">${result.id}</td>
-								<td>${result.vaccineName}</td>
-								<td>${result.vaccineType.vaccineTypeName}</td>
-								<td>${result.numberOfInjection}</td>
-								<td>${result.origin}</td>
-								<%-- <c:if test="${result.status=='true'}">
-									<td id="status" class="status" >Active</td>
-									</c:if> --%>
-								<%-- <c:if test="${result.status=='false'}">
-									<td id="status" class="status" >In-Active</td>
-									</c:if> --%>
-								<td id="status" class="status"><c:if
-										test="${result.status == 'true'}">
-									Active
-									</c:if> <c:if test="${result.status == 'false'}">
-									In-Active
-									</c:if></td>
-							</tr>
-						</c:forEach>
+                            <tr>
+                                <td><input type="checkbox" value="${result.id}" name="id"></td>
+                                <td><a
+                                        href="${pageContext.request.contextPath}/vaccine/update/?idUpdate=${result.id}">${result.id}
+                                </td>
+                                <td>${result.vaccineName}</td>
+                                <td>${result.vaccineType.vaccineTypeName}</td>
+                                <td>${result.numberOfInjection}</td>
+                                <td>${result.origin}</td>
+                                <c:choose>
+                                    <c:when test="${result.status}">
+                                        <td>Active</td>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <td>In-Active</td>
+                                    </c:otherwise>
+                                </c:choose>
+                            </tr>
+                        </c:forEach>
 					</tbody>
 				</table>
 			</div>

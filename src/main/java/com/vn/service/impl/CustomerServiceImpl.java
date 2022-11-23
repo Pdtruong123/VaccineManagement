@@ -17,6 +17,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
+import javax.validation.Valid;
+
 @Service
 public class CustomerServiceImpl implements CustomerService {
 
@@ -142,6 +144,24 @@ public class CustomerServiceImpl implements CustomerService {
         customerSave.setUserName(customer.getUserName());
         customerSave.setUserRoles(customer.getUserRoles());
         return customerRepository.save(customerSave);
+    }
+
+    @Override
+    public Customer updateWithCurrentPassword(@Valid Customer customer) {
+        Customer customerSave = new Customer();
+        customerSave.setId(customer.getId());
+        customerSave.setAddress(customer.getAddress());
+        customerSave.setPassword(customer.getPasswordUpdate());
+        customerSave.setDateOfBirth(customer.getDateOfBirth());
+        customerSave.setEmail(customer.getEmail());
+        customerSave.setFullName(customer.getFullName());
+        customerSave.setGender(customer.getGender());
+        customerSave.setIdentityCard(customer.getIdentityCard());
+        customerSave.setPhone(customer.getPhone());
+        customerSave.setUserName(customer.getUserName());
+        customerSave.setUserRoles(customer.getUserRoles());
+        return customerRepository.save(customerSave);
+
     }
 
 }

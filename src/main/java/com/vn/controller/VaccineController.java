@@ -142,17 +142,17 @@ public class VaccineController {
 	}
 
 	@PostMapping(value = "/vaccine/update")
-	public ModelAndView updateVaccine(@Valid @ModelAttribute("vaccineDto") VaccineDTO vaccineDTO,
-			BindingResult bindingResult, RedirectAttributes redirectAttributes) {
-		ModelAndView model = new ModelAndView("vaccineUpdate");
-		if (bindingResult.hasErrors()) {
-			List<VaccineType> vaccineTypeList = new ArrayList<>();
-			vaccineTypeList = vaccineTypeService.findAllActice();
-			model.addObject("vaccineTypeList", vaccineTypeList);
-			return model;
-		}
-		List<VaccineType> vaccineTypeList = new ArrayList<>();
-		vaccineTypeList = vaccineTypeService.findAllActice();
+    public ModelAndView updateVaccine(@Valid @ModelAttribute("vaccineUpdate") VaccineDTO vaccineDTO,
+                                      BindingResult bindingResult, RedirectAttributes redirectAttributes) {
+        ModelAndView model = new ModelAndView("vaccineUpdate");
+        if (bindingResult.hasErrors()) {
+            List<VaccineType> vaccineTypeList = new ArrayList<>();
+            vaccineTypeList = vaccineTypeService.findAllActice();
+            model.addObject("vaccineTypeList", vaccineTypeList);
+            return model;
+        }
+        List<VaccineType> vaccineTypeList = new ArrayList<>();
+        vaccineTypeList = vaccineTypeService.findAllActice();
 		Vaccine vaccine = vaccineService.findVaccineById(vaccineDTO.getId());
 		if (vaccine == null) {
 			model.addObject("msgId", "Id is not exists!");

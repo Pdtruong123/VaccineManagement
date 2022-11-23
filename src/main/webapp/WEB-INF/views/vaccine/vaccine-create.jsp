@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 
 <!DOCTYPE html>
@@ -41,40 +42,42 @@
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js"></script>
-<script src="../../asserts/js/loadFileName.js"></script>
-<script src="../../asserts/js/previewImg.js"></script>
-<link rel="stylesheet" href="../../asserts/css/style.css">
-<title>Create</title>
-<style type="text/css">
-.a {
-	width: 100%;
-}
+	<script src="../../asserts/js/loadFileName.js"></script>
+	<script src="../../asserts/js/previewImg.js"></script>
+	<link rel="stylesheet" href="../../asserts/css/style.css">
+	<title>Create</title>
+	<style type="text/css">
+		.a {
+			width: 100%;
+		}
 
-.eroor {
-    color: red;
-}
-</style>
+		.eroor {
+			color: red;
+		}
+	</style>
 </head>
 
 <body>
 
 <div class="h5 mt-3 text-center text-dark font-weight-bold mb-3">CREATE
-    VACCINE
+	VACCINE
 </div>
 
+<c:set var="uri" value='${requestScope["javax.servlet.forward.request_uri"]}'/>
+
 <div class="card mx-3 shadow">
-    <div class="card-body">
-        <c:if test="${empty vaccineUpdate.id}">
-				<form:form action="${pageContext.request.contextPath}/vaccine/add"
-					method="post" modelAttribute="vaccineDto" id="formAdd">
-					<div class="form-row">
-						<div class="form-group col-sm-8">
-							<label class="font-weight-bold" for="vaccine-code">Vaccine
-								Id <span class="text-danger">(*)</span>:
-							</label>
-							<form:input path="id" type="text" id="vaccine-id"
-								placeholder="A123" class="form-control" />
-							<form:errors path="id" cssClass="error" />
+	<div class="card-body">
+		<c:if test="${fn:contains(uri, 'add')}">
+			<form:form action="${pageContext.request.contextPath}/vaccine/add"
+					   method="post" modelAttribute="vaccineDto" id="formAdd">
+				<div class="form-row">
+					<div class="form-group col-sm-8">
+						<label class="font-weight-bold" for="vaccine-code">Vaccine
+							Id <span class="text-danger">(*)</span>:
+						</label>
+						<form:input path="id" type="text" id="vaccine-id"
+									placeholder="A123" class="form-control"/>
+						<form:errors path="id" cssClass="error"/>
 							<span class="error">${msgId}</span>
 
 						</div>
@@ -130,23 +133,23 @@
 						<div class="form-group col-lg-4">
 							<label class="font-weight-bold" for="vaccine-uasge">Usage:</label>
 							<br>
-							<form:input path="usage" type="text" class="form-control-lg"
-								placeholder="Mô tả sử dụng" id="vaccine-uasge" />
+							<form:input path="usage" type="text" class="form-control"
+										placeholder="Mô tả sử dụng" id="vaccine-uasge"/>
 							<form:errors path="usage" cssClass="error" />
 						</div>
 						<div class="form-group col-lg-4">
 							<label class="font-weight-bold" for="vaccine-indication">Indication:</label>
 							<br>
-							<form:input path="indication" type="text" class="form-control-lg"
-								placeholder="Mô tả chi tiết sử dụng" id="vaccine-indication" />
+							<form:input path="indication" type="text" class="form-control"
+										placeholder="Mô tả chi tiết sử dụng" id="vaccine-indication"/>
 							<form:errors path="indication" cssClass="error" />
 						</div>
 						<div class="form-group col-lg-4">
 							<label class="font-weight-bold" for="vaccine-contraindication">Contraindication
 							</label> <br>
 							<form:input path="contraindication" type="text"
-								class="form-control-lg" placeholder="Mô tả chi tiết chống định"
-								id="vaccine-contraindication" />
+										class="form-control" placeholder="Mô tả chi tiết chống định"
+										id="vaccine-contraindication"/>
 							<form:errors path="contraindication" cssClass="error" />
 						</div>
 					</div>
@@ -166,45 +169,45 @@
 							<label class="font-weight-bold" for="vaccine-time-end-injection">Time
 								of endding next injection:</label>
 							<form:input path="timeEndNextInjection" type="date"
-								class="form-control" placeholder="Mô tả chi tiết sử dụng"
-								id="vaccine-time-end-injection" />
-							<form:errors path="timeEndNextInjection" cssClass="error" />
+										class="form-control" placeholder="Mô tả chi tiết sử dụng"
+										id="vaccine-time-end-injection"/>
+							<form:errors path="timeEndNextInjection" cssClass="error"/>
 						</div>
 						<div class="form-group col-sm-4">
 							<label class="font-weight-bold" for="typecode">Origin:</span> :
 							</label>
 							<form:input path="origin" type="text" class="form-control"
-                                        placeholder="Vietnam" id="vaccine-origin"/>
+										placeholder="Vietnam" id="vaccine-origin"/>
 
-                        </div>
-                    </div>
-                    <div class="mt-5">
-                        <button type="submit" class="btn btn-sm btn-success"
-                                onclick="return submitValidate()">Submit
-                        </button>
-                        <button type="reset" class="btn btn-sm btn-primary ml-2">Reset</button>
-                        <a class="btn btn-sm btn-warning ml-2"
-                           href="${pageContext.request.contextPath}/vaccine/list">Cancel</a>
+						</div>
+					</div>
+				<div class="mt-5">
+					<button type="submit" class="btn btn-sm btn-success"
+							onclick="return submitValidate()">Submit
+					</button>
+					<button type="reset" class="btn btn-sm btn-primary ml-2">Reset</button>
+					<a class="btn btn-sm btn-warning ml-2"
+					   href="${pageContext.request.contextPath}/vaccine/list">Cancel</a>
 
-                        <a class="btn btn-sm btn-warning ml-2"
-                           href="${pageContext.request.contextPath}/vaccine/import">Import Vaccine</a>
-                    </div>
+					<a class="btn btn-sm btn-warning ml-2"
+					   href="${pageContext.request.contextPath}/vaccine/import">Import Vaccine</a>
+				</div>
 
-                </form:form>
-				<script src="${pageContext.request.contextPath}/js/CreateVaccine.js"></script>
-			</c:if>
+			</form:form>
+			<script src="${pageContext.request.contextPath}/js/CreateVaccine.js"></script>
+		</c:if>
 
-			<c:if test="${not empty vaccineUpdate.id}">
-				<form:form
+		<c:if test="${fn:contains(uri, 'update')}">
+			<form:form
 					action="${pageContext.request.contextPath}/vaccine/update"
 					method="post" modelAttribute="vaccineUpdate" id="formUpdate">
-					<div class="form-row">
-						<div class="form-group col-sm-8">
-							<label class="font-weight-bold" for="vaccine-code">Vaccine
-								Id <span class="text-danger">(*)</span>:
-							</label>
-							<div>${vaccineUpdate.id}</div>
-							<form:input path="id" id="vaccine-id" type="hidden"
+				<div class="form-row">
+					<div class="form-group col-sm-8">
+						<label class="font-weight-bold" for="vaccine-code">Vaccine
+							Id <span class="text-danger">(*)</span>:
+						</label>
+						<div>${vaccineUpdate.id}</div>
+						<form:input path="id" id="vaccine-id" type="hidden"
 								placeholder="123" class="form-control" onchange="onchangeId()" />
 							<form:errors path="id" cssClass="error" />
 							<span class="error">${msgId}</span>
@@ -271,23 +274,23 @@
 						<div class="form-group col-lg-4">
 							<label class="font-weight-bold" for="vaccine-uasge">Usage:</label>
 							<br>
-							<form:input path="usage" type="text" class="form-control-lg"
-								placeholder="Mô tả sử dụng" id="vaccine-uasge" />
+							<form:input path="usage" type="text" class="form-control"
+										placeholder="Mô tả sử dụng" id="vaccine-uasge"/>
 							<form:errors path="usage" cssClass="error" />
 						</div>
 						<div class="form-group col-lg-4">
 							<label class="font-weight-bold" for="vaccine-indication">Indication:</label>
 							<br>
-							<form:input path="indication" type="text" class="form-control-lg"
-								placeholder="Mô tả chi tiết sử dụng" id="vaccine-indication" />
+							<form:input path="indication" type="text" class="form-control"
+										placeholder="Mô tả chi tiết sử dụng" id="vaccine-indication"/>
 							<form:errors path="indication" cssClass="error" />
 						</div>
 						<div class="form-group col-lg-4">
 							<label class="font-weight-bold" for="vaccine-contraindication">Contraindication
 							</label> <br>
 							<form:input path="contraindication" type="text"
-								class="form-control-lg" placeholder="Mô tả chi tiết chống định"
-								id="vaccine-contraindication" />
+										class="form-control" placeholder="Mô tả chi tiết chống định"
+										id="vaccine-contraindication"/>
 							<form:errors path="contraindication" cssClass="error" />
 						</div>
 					</div>

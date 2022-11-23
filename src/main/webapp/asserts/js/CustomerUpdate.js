@@ -33,14 +33,14 @@ $(document).ready(function () {
                 maxlength: 10
             },
             passwordUpdate: {
-                required: true,
+
                 minlength: 5,
                 maxlength: 20,
             },
             confirmPassword: {
-                required: true,
+
                 maxlength: 20,
-                equalTo: "#password"
+                equalTo: "#passwordUpdate"
             },
             email: {
                 required: true,
@@ -90,12 +90,12 @@ $(document).ready(function () {
                 maxlength: "Phone number can't more than 11 numbers"
             },
             passwordUpdate: {
-                required: "Please input your password",
+
                 minlength: "Password have at least 5 characters ",
                 maxlength: "Password can't more than 20 characters"
             },
             rePassword: {
-                required: "Please input your confirm password",
+
                 equalTo: "Password and Password Confirm not matched",
                 maxlength: "Password can't more than 20 characters"
             },

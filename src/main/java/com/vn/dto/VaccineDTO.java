@@ -10,9 +10,10 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 
 import org.hibernate.validator.constraints.Length;
+import org.springframework.data.annotation.CreatedDate;
 import org.springframework.format.annotation.DateTimeFormat;
 
-
+import com.vn.annotation.StartDateAfterNowValid;
 import com.vn.model.VaccineType;
 
 import lombok.Data;
@@ -21,41 +22,42 @@ import lombok.Data;
 public class VaccineDTO {
 
 
-    @Length(max = 10, min = 0, message = "Pls input is must small than 10 character!")
-    @NotBlank(message = "Pls fill input!")
-    @Pattern(regexp = "\\d+", message = "Pls input is must number!")
-    private String id;
+	@Length(max = 10, min = 0, message = "Pls input is must small than 10 character!")
+	@NotBlank(message = "Pls fill input!")
+	@Pattern(regexp = "\\d+", message = "Pls input is must number!")
+	private String id;
 
-    @Length(max = 200, message = "Pls input is must small than 200 character!")
-    private String contraindication;
+	@Length(max = 200, message = "Pls input is must small than 200 character!")
+	private String contraindication;
 
-    @Length(max = 200, message = "Pls input is must small than 200 character!")
-    private String indication;
+	@Length(max = 200, message = "Pls input is must small than 200 character!")
+	private String indication;
 
-    @Max(value = 15, message = "Pls input is must small than 15!")
-    @Pattern(regexp = "\\d+", message = "Pls input is must number!")
-    private String numberOfInjection;
+	@Max(value = 15, message = "Pls input is must small than 15!")
+	@Pattern(regexp = "\\d+", message = "Pls input is must number!")
+	private String numberOfInjection;
 
-    @Length(max = 50, message = "Pls input is must small than 50 character!")
-    private String origin;
+	@Length(max = 50, message = "Pls input is must small than 50 character!")
+	private String origin;
 
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    @FutureOrPresent(message = "Please input Date of vaccination with value greater or equal the current date")
-    private Date timeBeginNextInjection;
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@FutureOrPresent(message = "Please input Date of vaccination with value greater or equal the current date")
+	private Date timeBeginNextInjection;
 
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    @FutureOrPresent(message = "Please input Date of vaccination with value greater or equal the current date")
-    private Date timeEndNextInjection;
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@FutureOrPresent(message = "Please input Date of vaccination with value greater or equal the current date")
 
-    @Length(max = 200, message = "Pls input is must small than 200 character!")
-    private String usage;
+	private Date timeEndNextInjection;
 
-    private Boolean status = false;
+	@Length(max = 200, message = "Pls input is must small than 200 character!")
+	private String usage;
 
-    private VaccineType vaccineType;
+	private Boolean status = false;
 
-    @Length(max = 50, min = 0, message = "Pls input is must small than 50 character!")
-    @NotBlank(message = "Pls fill input!")
-    private String vaccineName;
+	private VaccineType vaccineType;
+
+	@Length(max = 50, min = 0, message = "Pls input is must small than 50 character!")
+	@NotBlank(message = "Pls fill input!")
+	private String vaccineName;
 
 }
