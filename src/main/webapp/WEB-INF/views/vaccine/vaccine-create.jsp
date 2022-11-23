@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
 
 <!DOCTYPE html>
@@ -60,10 +61,12 @@
 
 	<div class="h5 mt-3 text-center text-dark font-weight-bold mb-3">CREATE
 		VACCINE</div>
+	
+	<c:set var="uri" value='${requestScope["javax.servlet.forward.request_uri"]}' />
 
 	<div class="card mx-3 shadow">
 		<div class="card-body">
-			<c:if test="${empty vaccineUpdate.id}">
+			<c:if test="${fn:contains(uri, 'add')}">
 				<form:form action="${pageContext.request.contextPath}/vaccine/add"
 					method="post" modelAttribute="vaccineDto" id="formAdd">
 					<div class="form-row">
@@ -129,14 +132,14 @@
 						<div class="form-group col-lg-4">
 							<label class="font-weight-bold" for="vaccine-uasge">Usage:</label>
 							<br>
-							<form:input path="usage" type="text" class="form-control-lg"
+							<form:input path="usage" type="text" class="form-control"
 								placeholder="Mô tả sử dụng" id="vaccine-uasge" />
 							<form:errors path="usage" cssClass="error" />
 						</div>
 						<div class="form-group col-lg-4">
 							<label class="font-weight-bold" for="vaccine-indication">Indication:</label>
 							<br>
-							<form:input path="indication" type="text" class="form-control-lg"
+							<form:input path="indication" type="text" class="form-control"
 								placeholder="Mô tả chi tiết sử dụng" id="vaccine-indication" />
 							<form:errors path="indication" cssClass="error" />
 						</div>
@@ -144,7 +147,7 @@
 							<label class="font-weight-bold" for="vaccine-contraindication">Contraindication
 							</label> <br>
 							<form:input path="contraindication" type="text"
-								class="form-control-lg" placeholder="Mô tả chi tiết chống định"
+								class="form-control" placeholder="Mô tả chi tiết chống định"
 								id="vaccine-contraindication" />
 							<form:errors path="contraindication" cssClass="error" />
 						</div>
@@ -191,8 +194,8 @@
 				</form:form>
 				<script src="${pageContext.request.contextPath}/js/CreateVaccine.js"></script>
 			</c:if>
-
-			<c:if test="${not empty vaccineUpdate.id}">
+				
+			<c:if test="${fn:contains(uri, 'update')}">
 				<form:form
 					action="${pageContext.request.contextPath}/vaccine/update"
 					method="post" modelAttribute="vaccineUpdate" id="formUpdate">
@@ -269,14 +272,14 @@
 						<div class="form-group col-lg-4">
 							<label class="font-weight-bold" for="vaccine-uasge">Usage:</label>
 							<br>
-							<form:input path="usage" type="text" class="form-control-lg"
+							<form:input path="usage" type="text" class="form-control"
 								placeholder="Mô tả sử dụng" id="vaccine-uasge" />
 							<form:errors path="usage" cssClass="error" />
 						</div>
 						<div class="form-group col-lg-4">
 							<label class="font-weight-bold" for="vaccine-indication">Indication:</label>
 							<br>
-							<form:input path="indication" type="text" class="form-control-lg"
+							<form:input path="indication" type="text" class="form-control"
 								placeholder="Mô tả chi tiết sử dụng" id="vaccine-indication" />
 							<form:errors path="indication" cssClass="error" />
 						</div>
@@ -284,7 +287,7 @@
 							<label class="font-weight-bold" for="vaccine-contraindication">Contraindication
 							</label> <br>
 							<form:input path="contraindication" type="text"
-								class="form-control-lg" placeholder="Mô tả chi tiết chống định"
+								class="form-control" placeholder="Mô tả chi tiết chống định"
 								id="vaccine-contraindication" />
 							<form:errors path="contraindication" cssClass="error" />
 						</div>

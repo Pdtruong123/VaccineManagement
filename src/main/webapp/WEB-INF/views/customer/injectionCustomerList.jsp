@@ -12,7 +12,7 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/Customer.css">
     <div class="h5 mt-3 text-center text-dark font-weight-bold mb-3">INJECTION CUSTOMER LIST</div>
     <div class="card mx-3 shadow">
-    <span class="msg">${msg}</span>
+    <span class="msg ml-2 mt-2">${msg}</span>
         <div class="card-body m-3">
             <div class="mt-3">
                 <table class="table table-bordered table-striped" id="table-IC">

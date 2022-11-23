@@ -10,9 +10,10 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 
 import org.hibernate.validator.constraints.Length;
+import org.springframework.data.annotation.CreatedDate;
 import org.springframework.format.annotation.DateTimeFormat;
 
-
+import com.vn.annotation.StartDateAfterNowValid;
 import com.vn.model.VaccineType;
 
 import lombok.Data;
@@ -46,6 +47,7 @@ public class VaccineDTO {
 	
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@FutureOrPresent(message = "Please input Date of vaccination with value greater or equal the current date")
+	
 	private Date timeEndNextInjection;
 	
 	@Length(max = 200,message = "Pls input is must small than 200 character!")
