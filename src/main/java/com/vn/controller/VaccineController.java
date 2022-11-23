@@ -142,7 +142,7 @@ public class VaccineController {
 	}
 
 	@PostMapping(value = "/vaccine/update")
-	public ModelAndView updateVaccine(@Valid @ModelAttribute("vaccineDto") VaccineDTO vaccineDTO,
+	public ModelAndView updateVaccine(@Valid @ModelAttribute("vaccineUpdate") VaccineDTO vaccineDTO,
 			BindingResult bindingResult, RedirectAttributes redirectAttributes) {
 		ModelAndView model = new ModelAndView("vaccineUpdate");
 		if (bindingResult.hasErrors()) {

@@ -8,6 +8,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
+import javax.validation.Valid;
+
 public interface CustomerService {
     Customer create(Customer customer);
 
@@ -30,4 +32,6 @@ public interface CustomerService {
     Optional<Customer> CheckFindByEmail(String email);
 
     Customer update(Customer customer);
+
+	Customer updateWithCurrentPassword(@Valid Customer customer);
 }

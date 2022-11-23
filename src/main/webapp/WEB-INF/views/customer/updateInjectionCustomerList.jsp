@@ -119,8 +119,10 @@
                         
                         <form:input type="password" path="passwordUpdate"
                                     class="form-control ml-2"
+                                    id="passwordUpdate" />
+                       <form:input type="hidden" path="password"
+                                    class="form-control ml-2"
                                     id="password" />
-                        
                     </div>
                 </div>
 

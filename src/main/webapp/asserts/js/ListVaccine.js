@@ -28,7 +28,7 @@ $("#make-in-active-button").click(function (){
 		}
 		
 	if(countInActive>0){
-			alert("Invalid data - Please recheck your selects!");
+			alert("Invalid data - Have a 'In-Active' case. \n Please recheck your selects!");
 			return false;
 		}
 		

@@ -1,5 +1,6 @@
 package com.vn.model;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Date;
 import java.util.Set;
@@ -17,6 +18,9 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.vn.annotation.StartBeforeEndDateValid;
+import com.vn.annotation.StartEndDateable;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -29,7 +33,6 @@ import lombok.ToString;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-
 public class Vaccine {
 
 	@Id
@@ -98,7 +101,10 @@ public class Vaccine {
 				+ timeBeginNextInjection + ", timeEndNextInjection=" + timeEndNextInjection + ", usage=" + usage
 				+ ", vaccineName=" + vaccineName + ", status=" + status + "]";
 	}
+
 	
+
+
 	
 	
 	
