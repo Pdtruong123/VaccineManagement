@@ -90,8 +90,15 @@ public class CustomerController {
 		Optional<Customer> email = customerService.CheckFindByEmail(customer.getEmail());
 		if (userName.isPresent() && email.isPresent() && customer.getId().equals(userName.get().getId())
 				&& customer.getId().equals(email.get().getId())) {
-
+			if (customer.getPasswordUpdate().isBlank() || customer.getPasswordUpdate().isEmpty()) {
+				customer.setPasswordUpdate(customer.getPassword());
+				System.out.println(customer.getPasswordUpdate());
+				customerService.updateWithCurrentPassword(customer);	
+				redirectAttributes.addFlashAttribute("msg", "Update successfull!");
+				return model;
+			}
 			customerService.update(customer);
+			redirectAttributes.addFlashAttribute("msg", "Update successfull!");
 			return model;
 		}
 		if (userName.isPresent() && email.isPresent()) {
@@ -105,6 +112,12 @@ public class CustomerController {
 		if (email.isPresent()) {
 			modelError.addObject("msgEmail", "Email already existed!");
 			return modelError;
+		}
+		if (customer.getPasswordUpdate().isBlank() || customer.getPasswordUpdate().isEmpty()) {
+			customer.setPasswordUpdate(customer.getPassword());
+			customerService.updateWithCurrentPassword(customer);
+			redirectAttributes.addFlashAttribute("msg", "Update successfull!");
+			return model;
 		}
 		redirectAttributes.addFlashAttribute("msg", "Update successfull!");
 		customerService.update(customer);

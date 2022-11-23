@@ -2,6 +2,7 @@ package com.vn.model;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.Date;
 
 import javax.persistence.*;
 import javax.servlet.http.HttpServletRequest;
@@ -84,4 +85,6 @@ public class InjectionResult implements StartEndDateable, Serializable {
 				", prevention='" + prevention + '\'' +
 				'}';
 	}
+
+	
 }
