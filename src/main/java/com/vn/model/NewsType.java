@@ -25,7 +25,6 @@ import lombok.Setter;
 public class NewsType implements Serializable {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name = "news_type_id", length = 36)
 	private String id;
 	
