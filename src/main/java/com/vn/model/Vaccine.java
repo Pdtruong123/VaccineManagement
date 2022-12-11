@@ -39,16 +39,16 @@ public class Vaccine {
 	@Column(name = "vaccine_id", length = 36)
 	private String id;
 	
-	@Column(length = 200)
+	@Column(length = 200, columnDefinition = "nvarchar(200)")
 	private String contraindication;
 	
-	@Column(length = 200)
+	@Column(length = 200,columnDefinition = "nvarchar(200)")
 	private String indication;
 	
 	@Column(name = "number_of_injection")
 	private Integer numberOfInjection;
 	
-	@Column(length = 50)
+	@Column(length = 50, columnDefinition = "nvarchar(50)")
 	private String origin;
 	
 	@Column(name = "time_begin_next_injection")
@@ -57,10 +57,10 @@ public class Vaccine {
 	@Column(name = "time_end_next_injection")
 	private Date timeEndNextInjection;
 	
-	@Column(length = 200)
+	@Column(length = 200, columnDefinition = "nvarchar(200)")
 	private String usage;
 	
-	@Column(length = 100, name = "vaccine_name")
+	@Column(length = 100, name = "vaccine_name", columnDefinition = "nvarchar(100)")
 	private String vaccineName;
 
 	@JsonBackReference

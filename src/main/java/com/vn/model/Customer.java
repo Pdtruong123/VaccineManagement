@@ -44,6 +44,7 @@ public class Customer implements Serializable {
 	@Column(name = "customer_id", length = 36)
 	private String id;
 
+	@Column(columnDefinition = "nvarchar(255)")
 	private String address;
 
 	@Column(name = "date_of_birth")
@@ -54,7 +55,7 @@ public class Customer implements Serializable {
 	@Email
 	private String email;
 
-	@Column(name = "full_name", length = 100)
+	@Column(name = "full_name", length = 100, columnDefinition = "nvarchar(100)")
 	private String fullName;
 
 	@Column(name = "gender")

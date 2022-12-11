@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class InjectionResultServiceImpl implements InjectionResultService {
@@ -55,9 +56,13 @@ public class InjectionResultServiceImpl implements InjectionResultService {
 
     @Override
     public InjectionResult findById(String id) {
-        return injectionResultRepository.findById(id).get();
+        Optional<InjectionResult> injectionResult = injectionResultRepository.findById(id);
+        if(injectionResult.isPresent()){
+            return injectionResult.get();
+        } else{
+            return null;
+        }
     }
-
 
     public InjectionResultServiceImpl(InjectionResultRepository injectionResultRepository) {
         this.injectionResultRepository = injectionResultRepository;

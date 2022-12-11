@@ -11,6 +11,7 @@
 <body>
 <div class="h5 mt-3 text-center text-dark font-weight-bold mb-3">NEWS LIST</div>
 <div class=" text-success font-weight-bold ml-3">${success}</div>
+<div class=" text-danger font-weight-bold ml-3">${errorNull}</div>
 <div class="card mx-3 shadow">
     <div class="card-body">
         <div class="mt-3">

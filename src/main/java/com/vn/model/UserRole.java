@@ -37,7 +37,7 @@ public class UserRole implements Serializable {
 	@JoinColumn(name = "customer_id")
 	private Customer customer;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne()
 	@JoinColumn(name = "role_id")
 	private Roles role;
 	

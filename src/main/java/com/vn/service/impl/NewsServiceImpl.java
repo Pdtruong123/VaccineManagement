@@ -9,6 +9,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class NewsServiceImpl implements NewsService {
@@ -43,7 +44,12 @@ public class NewsServiceImpl implements NewsService {
 
     @Override
     public News findById(String id) {
-        return newsRepository.findById(id).get();
+        Optional<News> news = newsRepository.findById(id);
+        if(news.isPresent()){
+            return news.get();
+        } else{
+            return null;
+        }
     }
 
     @Override
